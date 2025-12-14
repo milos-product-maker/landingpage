@@ -1,5 +1,5 @@
 ---
-title: Ping-Based Location Verification: 3 Deployment Scenarios
+title: "Ping-Based Location Verification: 3 Deployment Scenarios"
 slug: ping-based-location-verification-3-deployment-scenarios
 date: 2025-05-30
 author: Kristian Rönn

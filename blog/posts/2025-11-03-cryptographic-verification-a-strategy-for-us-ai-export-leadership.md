@@ -1,5 +1,5 @@
 ---
-title: Cryptographic Verification: A Strategy for U.S. AI Export Leadership
+title: "Cryptographic Verification: A Strategy for U.S. AI Export Leadership"
 slug: cryptographic-verification-a-strategy-for-us-ai-export-leadership
 date: 2025-11-03
 author: Kristian Rönn
