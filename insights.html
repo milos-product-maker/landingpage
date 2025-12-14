@@ -19,17 +19,17 @@
             --c-card: #121212;
             --c-white: #ffffff;
             --c-gray: #a1a1aa;
+            --c-gray-dark: #52525b;
+            --c-border: rgba(255, 255, 255, 0.1);
             --c-yellow: #facc15;
             --c-yellow-dim: #baa536;
-            --c-green: #4ade80;
-            --c-red: #ef4444;
 
             /* Fonts */
             --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
             --font-mono: 'Roboto Mono', monospace;
 
             /* Layout */
-            --w-container: 1200px;
+            --w-container: 1400px;
         }
 
         * {
@@ -44,6 +44,10 @@
             color: var(--c-white);
             line-height: 1.5;
             min-height: 100vh;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
         }
 
         a {
@@ -61,20 +65,17 @@
         /* --- NAVIGATION --- */
         .navbar {
             position: fixed;
-            top: 1.5rem;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 95%;
-            max-width: var(--w-container);
+            top: 0;
+            left: 0;
+            width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(0, 0, 0, 0.6);
-            padding: 0.75rem 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
+            background: linear-gradient(to bottom, rgba(5, 5, 5, 0.95), rgba(5, 5, 5, 0.8));
+            padding: 1.5rem 3rem;
+            border-bottom: 1px solid var(--c-border);
             z-index: 1000;
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(8px);
         }
 
         .nav-brand {
@@ -83,40 +84,31 @@
             gap: 1rem;
             text-decoration: none;
             color: white;
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: -0.02em;
         }
 
         .nav-logo {
-            width: 36px;
-            height: 36px;
+            width: 32px;
+            height: 32px;
             object-fit: contain;
             filter: brightness(0) invert(1);
         }
 
-        .nav-text {
-            display: flex;
-            flex-direction: column;
-            font-family: var(--font-mono);
-            font-size: 1rem;
-            line-height: 1.1;
-            font-weight: 400;
-            color: #d4d4d8;
-        }
-
         .nav-links {
             display: flex;
-            gap: 2.5rem;
+            gap: 2rem;
             align-items: center;
         }
 
         .nav-link {
             font-family: var(--font-mono);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #a1a1aa;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            text-decoration: none;
             transition: color 0.2s;
-            font-weight: 500;
         }
 
         .nav-link:hover,
@@ -124,69 +116,232 @@
             color: var(--c-white);
         }
 
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .navbar {
-                justify-content: center;
-            }
-        }
-
-        /* --- PAGE CONTENT --- */
-        .page-header {
-            padding-top: 10rem;
-            padding-bottom: 4rem;
-            text-align: center;
-        }
-
-        h1 {
+        .btn-primary {
+            background-color: var(--c-white);
+            color: var(--c-black);
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            font-weight: 600;
             font-family: var(--font-mono);
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            line-height: 1.1;
+            font-size: 0.8rem;
+            transition: background 0.2s;
         }
 
-        .subtitle {
-            font-size: 1.25rem;
-            color: var(--c-gray);
-            max-width: 600px;
-            margin: 0 auto;
+        .btn-primary:hover {
+            background-color: #e4e4e7;
         }
 
-        /* Grid */
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
-            width: 100%;
-            margin-top: 2rem;
+        /* --- HERO SECTION --- */
+        .hero {
+            padding-top: 8rem;
             padding-bottom: 4rem;
+            position: relative;
         }
 
-        /* Cards */
-        .card {
-            background: var(--c-card);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 1.5rem;
+        .hero-layout {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content {
+            padding: 2rem 0;
+        }
+
+        .hero-label {
+            color: var(--c-yellow);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-desc {
+            font-size: 1.125rem;
+            color: var(--c-gray);
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+            max-width: 90%;
+        }
+
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border: 1px solid var(--c-white);
+            color: var(--c-white);
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.2s;
+        }
+
+        .btn-outline:hover {
+            background: var(--c-white);
+            color: var(--c-black);
+        }
+
+        .hero-image-container {
+            position: relative;
+            border-radius: 12px;
             overflow: hidden;
-            transition: transform 0.3s, border-color 0.3s;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--c-border);
+        }
+
+        .hero-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .hero-img:hover {
+            transform: scale(1.02);
+        }
+
+        /* --- FILTER BAR --- */
+        .filter-section {
+            margin: 4rem 0 2rem;
+        }
+
+        .filter-header {
+            font-family: var(--font-mono);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .control-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0;
+            background: #1a1a1a;
+            border: 1px solid var(--c-border);
+            padding: 0;
+        }
+
+        .search-container {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            border-right: 1px solid var(--c-border);
+            padding: 0 1.5rem;
+            min-width: 250px;
+        }
+
+        .search-icon {
+            color: var(--c-yellow);
+            margin-right: 1rem;
+        }
+
+        .search-input {
+            background: transparent;
+            border: none;
+            color: var(--c-white);
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            width: 100%;
+            padding: 1rem 0;
+            outline: none;
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: none;
+            border-right: 1px solid var(--c-border);
+            color: var(--c-gray);
+            padding: 1rem 1.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-btn:last-child {
+            border-right: none;
+        }
+
+        .filter-btn:hover {
+            color: var(--c-white);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .filter-btn.active {
+            color: var(--c-white);
+            background: rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .filter-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--c-yellow);
+        }
+
+
+        /* --- POSTS GRID --- */
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 2rem;
+            padding-bottom: 6rem;
+        }
+
+        .card {
+            background: rgba(18, 18, 18, 0.6);
+            border: 1px solid var(--c-border);
             display: flex;
             flex-direction: column;
+            transition: all 0.3s;
+            height: 100%;
         }
 
         .card:hover {
-            border-color: var(--c-yellow);
-            transform: translateY(-5px);
+            border-color: var(--c-gray-dark);
+            transform: translateY(-4px);
+            background: rgba(24, 24, 24, 0.8);
+        }
+
+        .card-img-container {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            border-bottom: 1px solid var(--c-border);
         }
 
         .card-img {
             width: 100%;
-            height: 200px;
+            height: 100%;
             object-fit: cover;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.5s;
+        }
+
+        .card:hover .card-img {
+            transform: scale(1.05);
         }
 
         .card-content {
@@ -197,46 +352,95 @@
         }
 
         .card-meta {
-            color: var(--c-yellow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
             font-family: var(--font-mono);
             font-size: 0.75rem;
+            color: var(--c-gray);
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.75rem;
+        }
+
+        .card-tag {
+            color: var(--c-yellow);
         }
 
         .card-title {
             font-size: 1.5rem;
-            font-weight: 700;
+            font-weight: 600;
             margin-bottom: 1rem;
-            line-height: 1.2;
-            color: var(--c-white);
+            line-height: 1.25;
+            letter-spacing: -0.01em;
         }
 
         .card-desc {
             color: var(--c-gray);
             font-size: 1rem;
-            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
             flex-grow: 1;
         }
 
-        .card-footer {
-            margin-top: auto;
-            display: flex;
+        .card-link {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--c-white);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: inline-flex;
             align-items: center;
-            justify-content: space-between;
-            font-size: 0.875rem;
-            color: #666;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 1rem;
+            gap: 0.5rem;
+        }
+
+        .card-link:hover {
+            color: var(--c-yellow);
+        }
+
+        .hidden {
+            display: none !important;
         }
 
         .loader {
-            text-align: center;
             padding: 4rem;
+            text-align: center;
             color: var(--c-gray);
-            grid-column: 1 / -1;
             font-family: var(--font-mono);
+            grid-column: 1 / -1;
+        }
+
+        /* --- MOBILE --- */
+        @media (max-width: 900px) {
+            .hero-layout {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-img {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .control-bar {
+                flex-direction: column;
+            }
+
+            .search-container {
+                border-right: none;
+                border-bottom: 1px solid var(--c-border);
+            }
+
+            .filter-btn {
+                flex-grow: 1;
+                text-align: center;
+                border-right: none;
+                border-bottom: 1px solid var(--c-border);
+            }
         }
     </style>
 </head>
@@ -245,80 +449,174 @@
 
     <nav class="navbar">
         <a href="index.html" class="nav-brand">
-            <img src="lucid-logo.svg" alt="Lucid Computing Logo" class="nav-logo">
-
-            <div class="nav-text">
-                <span>Lucid</span>
-                <span>Computing</span>
-            </div>
+            <img src="lucid-logo.svg" alt="Lucid Logo" class="nav-logo">
+            <span>Lucid Computing</span>
         </a>
 
         <div class="nav-links">
             <a href="index.html" class="nav-link">Home</a>
             <a href="insights.html" class="nav-link active">Insights</a>
-            <a href="https://www.nopinkypromises.ai/" class="nav-link">Demo</a>
+            <a href="#" class="nav-link">API</a>
             <a href="https://app.lucidcomputing.ai/login" class="nav-link">Log In</a>
+            <a href="https://www.nopinkypromises.ai/" class="btn-primary">Book a Demo &rarr;</a>
         </div>
     </nav>
 
     <div class="container">
-        <header class="page-header">
-            <h1>Insights</h1>
-            <p class="subtitle">Updates, technical deep-dives, and news from the sovereign cloud frontier.</p>
-        </header>
+        <!-- Hero Section -->
+        <section id="hero-section" class="hero">
+            <!-- Injected via JS -->
+            <div class="loader">Loading latest insight...</div>
+        </section>
 
-        <div id="posts-container" class="grid-3">
-            <div class="loader">Loading insights...</div>
+        <!-- Filter & Search -->
+        <section class="filter-section">
+            <h2 class="filter-header">All Insights</h2>
+
+            <div class="control-bar">
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="search-input" class="search-input" placeholder="Search items...">
+                </div>
+                <div class="filter-buttons" id="filter-container">
+                    <button class="filter-btn active" data-tag="all">All</button>
+                    <button class="filter-btn" data-tag="National Security">National Security</button>
+                    <button class="filter-btn" data-tag="AI Security">AI Security</button>
+                    <button class="filter-btn" data-tag="Export Controls">Export Controls</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Posts Grid -->
+        <div id="posts-grid" class="posts-grid">
+            <!-- Injected via JS -->
+            <div class="loader">Loading archive...</div>
         </div>
     </div>
 
     <script>
-        async function loadPosts() {
-            const container = document.getElementById('posts-container');
-            const fallbackPosts = [
-                {
-                    "title": "The Era of Verifiable Compute",
-                    "date": "2023-10-15",
-                    "author": "Lucid Team",
-                    "description": "Why trusting cloud providers is no longer enough for enterprise AI workloads.",
-                    "image": "https://images.unsplash.com/photo-1558494949-ef526b0042a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
-                }
-            ];
+        let allPosts = [];
 
+        async function init() {
             try {
                 const response = await fetch('blog/posts.json');
                 if (!response.ok) throw new Error('Failed to load posts');
-
                 const data = await response.json();
+                allPosts = data.posts || [];
 
-                if (!data.posts || data.posts.length === 0) {
-                    container.innerHTML = '<div class="loader">No insights published yet.</div>';
-                    return;
-                }
-
-                container.innerHTML = data.posts.map(post => `
-                    <article class="card">
-                        ${post.image ? `<img src="${post.image}" alt="${post.title}" class="card-img">` : ''}
-                        <div class="card-content">
-                            <div class="card-meta">${post.date} • ${post.author}</div>
-                            <h3 class="card-title">${post.title}</h3>
-                            <p class="card-desc">${post.description || ''}</p>
-                            <!-- <div class="card-footer">Read Article &rarr;</div> -->
-                        </div>
-                    </article>
-                `).join('');
-
+                renderPage();
             } catch (error) {
                 console.error('Error:', error);
-                // In case of error (e.g. local file:// CORS), show message
-                container.innerHTML = '<div class="loader" style="color:var(--c-red)">Unable to load insights. Please verify you are running a local server.</div>';
+                document.getElementById('posts-grid').innerHTML =
+                    '<div class="loader">Unable to load insights. Please start a local server.</div>';
             }
         }
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', loadPosts);
-    </script>
+        function renderPage() {
+            if (allPosts.length === 0) return;
 
+            // 1. Render Hero (First Post)
+            const heroPost = allPosts[0]; // Assuming newest first
+            const remainingPosts = allPosts; // We actully want to show ALL in grid too? 
+            // Usually landing page shows highlighted + others. 
+            // Let's show the hero fully, and ALL posts in the grid below for filtering purposes.
+
+            // Or better: Hero is separate, Grid filters everything.
+            // Let's make Hero display the LATEST.
+            renderHero(heroPost);
+
+            // 2. Render Grid
+            renderGrid(allPosts);
+        }
+
+        function renderHero(post) {
+            const heroSection = document.getElementById('hero-section');
+            const tags = post.tags ? post.tags.join(' | ') : 'Update';
+
+            heroSection.innerHTML = `
+                <div class="hero-layout">
+                    <div class="hero-content">
+                        <span class="hero-label">${tags}</span>
+                        <h1 class="hero-title">${post.title}</h1>
+                        <p class="hero-desc">${post.description}</p>
+                        <a href="insights/${post.slug}" class="btn-outline">Read More &rarr;</a>
+                    </div>
+                    <div class="hero-image-container">
+                        <img src="${post.image}" alt="${post.title}" class="hero-img">
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderGrid(posts) {
+            const grid = document.getElementById('posts-grid');
+            if (posts.length === 0) {
+                grid.innerHTML = '<div class="loader">No matching results found.</div>';
+                return;
+            }
+
+            grid.innerHTML = posts.map(post => {
+                const primaryTag = post.tags && post.tags.length > 0 ? post.tags[0] : 'Inisght';
+                return `
+                <article class="card">
+                    <div class="card-img-container">
+                        <img src="${post.image}" alt="${post.title}" class="card-img">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="card-tag">${primaryTag}</span>
+                            <span>${post.date}</span>
+                        </div>
+                        <h3 class="card-title">${post.title}</h3>
+                        <p class="card-desc">${post.description}</p>
+                    </div>
+                </article>
+            `}).join('');
+        }
+
+        // --- FILTER & SEARCH LOGIC ---
+        const searchInput = document.getElementById('search-input');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        let currentTag = 'all';
+        let currentQuery = '';
+
+        searchInput.addEventListener('input', (e) => {
+            currentQuery = e.target.value.toLowerCase();
+            filterPosts();
+        });
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // Add to clicked
+                btn.classList.add('active');
+
+                currentTag = btn.dataset.tag;
+                filterPosts();
+            });
+        });
+
+        function filterPosts() {
+            const filtered = allPosts.filter(post => {
+                // 1. Tag Match
+                const matchesTag = currentTag === 'all'
+                    ? true
+                    : (post.tags && post.tags.includes(currentTag));
+
+                // 2. Search Match
+                const matchesSearch = post.title.toLowerCase().includes(currentQuery) ||
+                    post.description.toLowerCase().includes(currentQuery);
+
+                return matchesTag && matchesSearch;
+            });
+
+            renderGrid(filtered);
+        }
+
+        // Start
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
 </body>
 
 </html>
