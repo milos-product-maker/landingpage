@@ -539,6 +539,7 @@ layout: null
     {{ posts_data | jsonify }}
     </script>
 
+    {% raw %}
     <script>
         let allPosts = [];
 
@@ -697,6 +698,7 @@ layout: null
         // Start
         document.addEventListener('DOMContentLoaded', init);
     </script>
+    {% endraw %}
 </body>
 
 </html>
