@@ -72,12 +72,15 @@ The site uses **Jekyll** for static site generation and is configured for deploy
 To test the site locally with Jekyll:
 
 ```bash
+# First time setup
 bundle install
+
+# Process posts and serve
 make serve
 # or: bundle exec jekyll serve
 ```
 
-The site will be available at `http://localhost:4000`
+**Note:** The `make serve` command automatically processes blog posts before starting the server. The site will be available at `http://localhost:4000`
 
 ## Blog Post Fields
 

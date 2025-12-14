@@ -535,23 +535,8 @@ layout: null
 
     <!-- Jekyll-generated posts data -->
     <script id="posts-data" type="application/json">
-    {
-        "posts": [
-        {% assign sorted_posts = site.data.processed_posts | sort: 'date' | reverse %}
-        {% for post in sorted_posts %}
-        {
-            "title": {{ post.title | jsonify }},
-            "slug": {{ post.slug | jsonify }},
-            "date": {{ post.date | jsonify }},
-            "author": {{ post.author | jsonify }},
-            "tags": {{ post.tags | jsonify }},
-            "image": {{ post.image | jsonify }},
-            "description": {{ post.description | jsonify }},
-            "content": {{ post.content | jsonify }}
-        }{% unless forloop.last %},{% endunless %}
-        {% endfor %}
-        ]
-    }
+    {% assign posts_data = site.data.processed_posts %}
+    {{ posts_data | jsonify }}
     </script>
 
     <script>
@@ -562,7 +547,11 @@ layout: null
                 // Get posts data from Jekyll-generated JSON
                 const postsDataScript = document.getElementById('posts-data');
                 const data = JSON.parse(postsDataScript.textContent);
-                allPosts = data.posts || [];
+                // Data is already an array
+                allPosts = Array.isArray(data) ? data : (data.posts || []);
+                
+                // Sort by date (newest first)
+                allPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
                 renderPage();
             } catch (error) {

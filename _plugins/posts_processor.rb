@@ -11,47 +11,68 @@ module Jekyll
       site.data['processed_posts'] = []
       
       Dir.glob(File.join(posts_dir, '*.md')).each do |file_path|
-        content = File.read(file_path)
+        content = File.read(file_path, encoding: 'UTF-8')
         
-        # Parse frontmatter
-        if content =~ /\A---\s*\n(.*?)\n---\s*\n?(.*)\z/m
+        # Parse frontmatter - match opening --- and closing ---
+        if content =~ /\A---\s*\n(.*?)\n---\s*\n(.*)\z/m
+          # Old format: content after frontmatter
           frontmatter_text = $1
           markdown_content = $2
         elsif content =~ /\A---\s*\n(.*?)\n---\s*\z/m
-          # CMS format: content is in frontmatter
+          # CMS format: content is in frontmatter, no content after
           frontmatter_text = $1
           markdown_content = ''
         else
+          Jekyll.logger.warn "No frontmatter found in #{file_path}"
           next
         end
           
-          # Parse YAML frontmatter
-          begin
-            frontmatter = YAML.safe_load(frontmatter_text)
-            
-            # Check if content is in frontmatter (CMS format)
-            if frontmatter && frontmatter['content']
-              # Extract content from frontmatter
-              cms_content = frontmatter['content']
-              # Remove leading 2 spaces from each line (YAML multiline string indentation)
-              lines = cms_content.split("\n")
-              dedented_lines = lines.map do |line|
-                if line.start_with?('  ')
-                  line[2..-1]
-                else
-                  line
-                end
+        # Parse YAML frontmatter
+        begin
+          frontmatter = YAML.safe_load(frontmatter_text)
+          
+          if frontmatter.nil?
+            Jekyll.logger.warn "Failed to parse YAML in #{file_path}"
+            next
+          end
+          
+          # Check if content is in frontmatter (CMS format)
+          if frontmatter['content']
+            # Extract content from frontmatter
+            cms_content = frontmatter['content']
+            # Remove leading 2 spaces from each line (YAML multiline string indentation)
+            lines = cms_content.split("\n")
+            dedented_lines = lines.map do |line|
+              if line.start_with?('  ')
+                line[2..-1]
+              elsif line.strip.empty?
+                ''
+              else
+                line
               end
-              markdown_content = dedented_lines.join("\n")
-              frontmatter.delete('content')
             end
-            
-            # Only include published posts
-            publish = frontmatter['publish']
-            publish = true if publish.nil? # Default to true if not specified
-            publish = publish.to_s.downcase == 'true' if publish.is_a?(String)
-            
-            next unless publish
+            markdown_content = dedented_lines.join("\n")
+            frontmatter.delete('content')
+          end
+          
+          # Only include published posts (default to true if not specified)
+          publish = frontmatter['publish']
+          if publish.nil?
+            publish = true  # Default to published
+          elsif publish.is_a?(String)
+            publish = publish.downcase == 'true'
+          end
+          
+          unless publish
+            Jekyll.logger.info "Skipping unpublished post: #{file_path}"
+            next
+          end
+          
+          # Ensure we have content to convert
+          if markdown_content.nil? || markdown_content.strip.empty?
+            Jekyll.logger.warn "No content found in #{file_path}"
+            next
+          end
             
             # Convert markdown to HTML using Jekyll's markdown converter
             # Create a temporary document-like object for conversion
@@ -73,13 +94,12 @@ module Jekyll
               'content' => html_content
             }
             
-            site.data['processed_posts'] << post_data
-          rescue => e
-            Jekyll.logger.warn "Error processing #{file_path}: #{e.message}"
-            next
-          end
-        else
-          Jekyll.logger.warn "No frontmatter found in #{file_path}"
+          site.data['processed_posts'] << post_data
+          Jekyll.logger.info "Processed post: #{post_data['title']} (#{post_data['slug']})"
+        rescue => e
+          Jekyll.logger.error "Error processing #{file_path}: #{e.message}"
+          Jekyll.logger.error e.backtrace.join("\n")
+          next
         end
       end
       

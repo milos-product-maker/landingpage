@@ -20,8 +20,13 @@ push-main:
 publish: fetch-main merge-main push-main
 	@echo "Publish workflow completed! GitHub Pages will build automatically."
 
+# Process blog posts before serving
+process-posts:
+	@echo "Processing blog posts..."
+	bundle exec ruby _scripts/process_posts.rb
+
 # Serve Jekyll site locally for testing
-serve:
+serve: process-posts
 	@echo "Starting Jekyll server..."
 	bundle exec jekyll serve
 

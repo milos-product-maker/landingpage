@@ -22,6 +22,9 @@ exclude:
   - README.md
   - __pycache__/
   - "*.py"
+  - _plugins
+  - _scripts
+  - .github
 
 # Site settings
 baseurl: ""
