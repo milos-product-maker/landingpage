@@ -1,7 +1,6 @@
 source "https://rubygems.org"
 
-gem "jekyll", "~> 4.3"
-gem "kramdown-parser-gfm"
+gem "github-pages", group: :jekyll_plugins
 gem "jekyll-feed", "~> 0.12"
 gem "jekyll-sitemap"
 
