@@ -94,9 +94,9 @@ content:
 
   - name: blog
     label: Blog Posts
-    type: json
-    path: blog/posts.json
-    list: posts
+    type: collection
+    path: blog/posts
+    format: yaml-frontmatter
     fields:
       - name: title
         label: Title
@@ -110,6 +110,9 @@ content:
       - name: author
         label: Author
         type: string
+      - name: tags
+        label: Tags
+        type: list
       - name: image
         label: Cover Image
         type: image
