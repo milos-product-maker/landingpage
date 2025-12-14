@@ -1414,7 +1414,7 @@ p {
 /* Background Variants */
 /* Background Variants */
 .bg-gradient {
-    background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #050505 70%);
+    background: radial-gradient(circle at 50% 50%, #292929 0%, var(--c-black) 50%);
     background-color: var(--c-black);
     color: var(--c-white);
     text-align: center;
