@@ -91,3 +91,31 @@ content:
           - name: subtext
             label: Footer Text
             type: string
+
+  - name: blog
+    label: Blog
+    type: json
+    path: blog/posts.json
+    list: posts 
+    fields:
+      - name: title
+        label: Title
+        type: string
+      - name: slug
+        label: Slug
+        type: string
+      - name: date
+        label: Date
+        type: date
+      - name: author
+        label: Author
+        type: string
+      - name: image
+        label: Cover Image
+        type: image
+      - name: description
+        label: Short Description
+        type: string
+      - name: content
+        label: Content
+        type: rich-text

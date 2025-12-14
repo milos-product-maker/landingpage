@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insights - Lucid Computing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- 1. VARIABLES & RESET --- */
+        :root {
+            /* Palette */
+            --c-black: #050505;
+            --c-dark: #111111;
+            --c-card: #121212;
+            --c-white: #ffffff;
+            --c-gray: #a1a1aa;
+            --c-yellow: #facc15;
+            --c-yellow-dim: #baa536;
+            --c-green: #4ade80;
+            --c-red: #ef4444;
+
+            /* Fonts */
+            --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+            --font-mono: 'Roboto Mono', monospace;
+
+            /* Layout */
+            --w-container: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--c-black);
+            color: var(--c-white);
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: var(--w-container);
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* --- NAVIGATION --- */
+        .navbar {
+            position: fixed;
+            top: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 95%;
+            max-width: var(--w-container);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 0.75rem 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            z-index: 1000;
+            backdrop-filter: blur(12px);
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav-logo {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
+
+        .nav-text {
+            display: flex;
+            flex-direction: column;
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            line-height: 1.1;
+            font-weight: 400;
+            color: #d4d4d8;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            color: #a1a1aa;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            transition: color 0.2s;
+            font-weight: 500;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--c-white);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .navbar {
+                justify-content: center;
+            }
+        }
+
+        /* --- PAGE CONTENT --- */
+        .page-header {
+            padding-top: 10rem;
+            padding-bottom: 4rem;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: var(--font-mono);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--c-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Grid */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            width: 100%;
+            margin-top: 2rem;
+            padding-bottom: 4rem;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--c-card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1.5rem;
+            overflow: hidden;
+            transition: transform 0.3s, border-color 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            border-color: var(--c-yellow);
+            transform: translateY(-5px);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .card-content {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-meta {
+            color: var(--c-yellow);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            color: var(--c-white);
+        }
+
+        .card-desc {
+            color: var(--c-gray);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .card-footer {
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.875rem;
+            color: #666;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1rem;
+        }
+
+        .loader {
+            text-align: center;
+            padding: 4rem;
+            color: var(--c-gray);
+            grid-column: 1 / -1;
+            font-family: var(--font-mono);
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">
+            <img src="lucid-logo.svg" alt="Lucid Computing Logo" class="nav-logo">
+
+            <div class="nav-text">
+                <span>Lucid</span>
+                <span>Computing</span>
+            </div>
+        </a>
+
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="insights.html" class="nav-link active">Insights</a>
+            <a href="https://www.nopinkypromises.ai/" class="nav-link">Demo</a>
+            <a href="https://app.lucidcomputing.ai/login" class="nav-link">Log In</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="page-header">
+            <h1>Insights</h1>
+            <p class="subtitle">Updates, technical deep-dives, and news from the sovereign cloud frontier.</p>
+        </header>
+
+        <div id="posts-container" class="grid-3">
+            <div class="loader">Loading insights...</div>
+        </div>
+    </div>
+
+    <script>
+        async function loadPosts() {
+            const container = document.getElementById('posts-container');
+            const fallbackPosts = [
+                {
+                    "title": "The Era of Verifiable Compute",
+                    "date": "2023-10-15",
+                    "author": "Lucid Team",
+                    "description": "Why trusting cloud providers is no longer enough for enterprise AI workloads.",
+                    "image": "https://images.unsplash.com/photo-1558494949-ef526b0042a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                }
+            ];
+
+            try {
+                const response = await fetch('blog/posts.json');
+                if (!response.ok) throw new Error('Failed to load posts');
+
+                const data = await response.json();
+
+                if (!data.posts || data.posts.length === 0) {
+                    container.innerHTML = '<div class="loader">No insights published yet.</div>';
+                    return;
+                }
+
+                container.innerHTML = data.posts.map(post => `
+                    <article class="card">
+                        ${post.image ? `<img src="${post.image}" alt="${post.title}" class="card-img">` : ''}
+                        <div class="card-content">
+                            <div class="card-meta">${post.date} • ${post.author}</div>
+                            <h3 class="card-title">${post.title}</h3>
+                            <p class="card-desc">${post.description || ''}</p>
+                            <!-- <div class="card-footer">Read Article &rarr;</div> -->
+                        </div>
+                    </article>
+                `).join('');
+
+            } catch (error) {
+                console.error('Error:', error);
+                // In case of error (e.g. local file:// CORS), show message
+                container.innerHTML = '<div class="loader" style="color:var(--c-red)">Unable to load insights. Please verify you are running a local server.</div>';
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', loadPosts);
+    </script>
+
+</body>
+
+</html>

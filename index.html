@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    
+
     <style>
         /* --- 1. VARIABLES & RESET --- */
         :root {
@@ -22,18 +23,26 @@
             --c-yellow-dim: #baa536;
             --c-green: #4ade80;
             --c-red: #ef4444;
-            
+
             /* Fonts */
             --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
             --font-mono: 'Roboto Mono', monospace;
-            
+
             /* Layout */
             --w-container: 1200px;
             --nav-dot-size: 10px;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: var(--font-sans);
             background-color: var(--c-black);
@@ -43,8 +52,17 @@
             overflow-y: scroll;
             scroll-snap-type: y mandatory;
         }
-        a { text-decoration: none; color: inherit; }
-        button { cursor: pointer; border: none; background: none; }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
 
         /* --- 2. LAYOUT UTILITIES --- */
         section {
@@ -72,25 +90,73 @@
         }
 
         /* Background Variants */
-        .bg-black { background-color: var(--c-black); color: var(--c-white); text-align: center; }
-        .bg-yellow { background-color: var(--c-white); color: var(--c-black); text-align: center; }
+        .bg-black {
+            background-color: var(--c-black);
+            color: var(--c-white);
+            text-align: center;
+        }
+
+        .bg-yellow {
+            background-color: var(--c-white);
+            color: var(--c-black);
+            text-align: center;
+        }
 
         /* Grids */
-        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; width: 100%; margin-top: 2rem; }
-        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 3rem; width: 100%; }
-        .grid-split { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; margin-top: 2rem; }
-        
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            width: 100%;
+            margin-top: 2rem;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+            width: 100%;
+        }
+
+        .grid-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
         /* Mobile Responsive */
         @media(max-width: 900px) {
-            .grid-3, .grid-split { grid-template-columns: 1fr; gap: 2rem; }
-            section { padding: 4rem 1.5rem; height: auto; min-height: 100vh; }
-            .nav-dots { display: none; }
+
+            .grid-3,
+            .grid-split {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+                height: auto;
+                min-height: 100vh;
+            }
+
+            .nav-dots {
+                display: none;
+            }
         }
+
         @media(max-width: 1024px) {
-            .grid-4 { grid-template-columns: repeat(2, 1fr); }
+            .grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
+
         @media(max-width: 600px) {
-            .grid-4 { grid-template-columns: 1fr; }
+            .grid-4 {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* --- 3. TYPOGRAPHY --- */
@@ -101,6 +167,7 @@
             margin-bottom: 1.5rem;
             line-height: 1.1;
         }
+
         h2 {
             font-family: var(--font-mono);
             font-size: clamp(2rem, 4vw, 3.5rem);
@@ -108,17 +175,42 @@
             margin-bottom: 1rem;
             letter-spacing: -0.02em;
         }
-        h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; font-family: var(--font-mono);
-        }
-        p { font-size: 1rem; margin-bottom: 1rem; color: var(--c-gray); }
-        
-        .bg-yellow h2 { color: var(--c-dark); }
-        .bg-yellow p { color: #333; }
 
-        .subtitle { font-size: 1.125rem; max-width: 700px; margin: 0 auto 3rem; }
-        .highlight { color: var(--c-yellow); }
-        .mono { font-family: var(--font-mono); }
-        
+        h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            font-family: var(--font-mono);
+        }
+
+        p {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: var(--c-gray);
+        }
+
+        .bg-yellow h2 {
+            color: var(--c-dark);
+        }
+
+        .bg-yellow p {
+            color: #333;
+        }
+
+        .subtitle {
+            font-size: 1.125rem;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+        .highlight {
+            color: var(--c-yellow);
+        }
+
+        .mono {
+            font-family: var(--font-mono);
+        }
+
         /* Pills */
         .pill {
             text-transform: uppercase;
@@ -131,8 +223,17 @@
             border-radius: 99px;
             align-self: center;
         }
-        .pill-dark { background: rgba(255,255,255,0.05); color: var(--c-yellow); border: 1px solid rgba(250, 204, 21, 0.2); }
-        .pill-light { background: rgba(0,0,0,0.1); color: #333; }
+
+        .pill-dark {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--c-yellow);
+            border: 1px solid rgba(250, 204, 21, 0.2);
+        }
+
+        .pill-light {
+            background: rgba(0, 0, 0, 0.1);
+            color: #333;
+        }
 
         /* --- NEW: NAVIGATION BAR --- */
         .navbar {
@@ -142,12 +243,12 @@
             transform: translateX(-50%);
             width: 95%;
             max-width: var(--w-container);
-            
+
             display: flex;
             justify-content: space-between;
             align-items: center;
-            
-            background: rgba(0,0,0,0.6); 
+
+            background: rgba(0, 0, 0, 0.6);
             padding: 0.75rem 2rem;
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 16px;
@@ -163,7 +264,7 @@
             text-decoration: none;
             color: white;
         }
-        
+
         .nav-logo {
             width: 36px;
             height: 36px;
@@ -205,33 +306,80 @@
 
         /* Mobile Hide */
         @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .navbar { justify-content: center; }
+            .nav-links {
+                display: none;
+            }
+
+            .navbar {
+                justify-content: center;
+            }
         }
 
         /* --- 4. NAVIGATION --- */
         .nav-dots {
-            position: fixed; left: 2rem; top: 50%; transform: translateY(-50%);
-            display: flex; flex-direction: column; gap: 1rem; z-index: 100;
+            position: fixed;
+            left: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 100;
         }
+
         .nav-dot {
-            width: var(--nav-dot-size); height: var(--nav-dot-size); border-radius: 50%;
-            background-color: #fff; mix-blend-mode: difference; transition: transform 0.3s;
+            width: var(--nav-dot-size);
+            height: var(--nav-dot-size);
+            border-radius: 50%;
+            background-color: #fff;
+            mix-blend-mode: difference;
+            transition: transform 0.3s;
         }
-        .nav-dot:hover { transform: scale(1.5); }
+
+        .nav-dot:hover {
+            transform: scale(1.5);
+        }
 
         .arrow-next {
-            position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
-            opacity: 0.6; transition: opacity 0.3s; animation: bounce 2s infinite; z-index: 10;
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0.6;
+            transition: opacity 0.3s;
+            animation: bounce 2s infinite;
+            z-index: 10;
         }
-        .arrow-next:hover { opacity: 1; }
-        .bg-black .arrow-next { color: var(--c-white); }
-        .bg-yellow .arrow-next { color: var(--c-black); }
 
-        @keyframes bounce { 
-            0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);} 
-            40% {transform: translateX(-50%) translateY(-10px);} 
-            60% {transform: translateX(-50%) translateY(-5px);} 
+        .arrow-next:hover {
+            opacity: 1;
+        }
+
+        .bg-black .arrow-next {
+            color: var(--c-white);
+        }
+
+        .bg-yellow .arrow-next {
+            color: var(--c-black);
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
         }
 
         /* --- 5. COMPONENT: CARDS --- */
@@ -241,34 +389,67 @@
             text-align: left;
             transition: transform 0.3s, border-color 0.3s;
         }
-        
+
         /* Problem Cards */
         .card-yellow {
             background-color: var(--c-yellow);
             color: var(--c-black);
-            display: flex; flex-direction: column; align-items: center; text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
-        .card-yellow:hover { background-color: var(--c-yellow-dim); transform: translateY(-5px); }
-        .card-yellow svg { width: 40px; height: 40px; margin-bottom: 1rem; color: var(--c-dark); }
-        .card-yellow h3 { color: var(--c-dark); }
-        .card-yellow p { color: #333; opacity: 0.9; }
+
+        .card-yellow:hover {
+            background-color: var(--c-yellow-dim);
+            transform: translateY(-5px);
+        }
+
+        .card-yellow svg {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 1rem;
+            color: var(--c-dark);
+        }
+
+        .card-yellow h3 {
+            color: var(--c-dark);
+        }
+
+        .card-yellow p {
+            color: #333;
+            opacity: 0.9;
+        }
 
         /* Audit/Industry Cards */
         .card-dark {
             background: var(--c-card);
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .card-dark:hover { border-color: var(--c-yellow); transform: translateY(-5px); }
-        .card-dark .icon { color: var(--c-yellow); width: 32px; height: 32px; margin-bottom: 1rem; }
-        .card-dark h3 { color: var(--c-white); }
-        
+
+        .card-dark:hover {
+            border-color: var(--c-yellow);
+            transform: translateY(-5px);
+        }
+
+        .card-dark .icon {
+            color: var(--c-yellow);
+            width: 32px;
+            height: 32px;
+            margin-bottom: 1rem;
+        }
+
+        .card-dark h3 {
+            color: var(--c-white);
+        }
+
         /* --- 6. SPECIFIC SECTIONS --- */
-        
+
         /* UPDATED HERO STYLES */
-        #hero { 
+        #hero {
             /* Subtle Grid Pattern */
             background-color: #050505;
-            background-image: 
+            background-image:
                 linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
             background-size: 50px 50px;
@@ -290,7 +471,7 @@
             transform: translate(-50%, -50%);
             width: 200px;
             height: 200px;
-            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
             filter: blur(40px);
             z-index: 1;
             pointer-events: none;
@@ -298,8 +479,17 @@
         }
 
         @keyframes pulse-glow {
-            0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
-            50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
+
+            0%,
+            100% {
+                opacity: 0.5;
+                transform: translate(-50%, -50%) scale(1);
+            }
+
+            50% {
+                opacity: 0.8;
+                transform: translate(-50%, -50%) scale(1.1);
+            }
         }
 
         .hero-logo-img {
@@ -307,135 +497,367 @@
             display: block;
             margin: 0 auto;
             z-index: 2;
-            filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(255,255,255,0.3));
+            filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
         }
 
-        .hero-title { 
+        .hero-title {
             background: linear-gradient(to bottom, #ffffff 40%, #999999 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin-top: 1rem;
-            letter-spacing: -0.04em; /* Tighter modern tracking */
+            letter-spacing: -0.04em;
+            /* Tighter modern tracking */
         }
-        
+
         /* Glassmorphism Box */
         .hero-subtitle-box {
-            margin-bottom: 2.5rem; 
-            padding: 1.25rem 2rem; 
-            border: 1px solid rgba(255,255,255,0.08); 
-            border-radius: 99px; 
-            background: rgba(255,255,255,0.02); 
+            margin-bottom: 2.5rem;
+            padding: 1.25rem 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 99px;
+            background: rgba(255, 255, 255, 0.02);
             backdrop-filter: blur(10px);
             display: inline-block;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
         }
 
         .hero-btn {
-            display: inline-flex; align-items: center; gap: 0.75rem; margin-top: 3rem;
-            padding: 1rem 2.5rem; background: var(--c-yellow); color: var(--c-black);
-            font-weight: 700; border-radius: 99px; text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-top: 3rem;
+            padding: 1rem 2.5rem;
+            background: var(--c-yellow);
+            color: var(--c-black);
+            font-weight: 700;
+            border-radius: 99px;
+            text-transform: uppercase;
             /* Enhanced Button Glow */
-            box-shadow: 0 0 20px rgba(250, 204, 21, 0.3); 
+            box-shadow: 0 0 20px rgba(250, 204, 21, 0.3);
             transition: all 0.3s ease;
         }
-        .hero-btn:hover { 
-            transform: translateY(-3px); 
-            box-shadow: 0 0 40px rgba(250, 204, 21, 0.6); 
+
+        .hero-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 40px rgba(250, 204, 21, 0.6);
             background-color: #fff;
         }
-        
+
         /* Animations */
-        .animate-up { opacity: 0; transform: translateY(30px); animation: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.4s; }
-        @keyframes fade-up { to { opacity: 1; transform: translateY(0); } }
+        .animate-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 0.1s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes fade-up {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
         /* Problem Section Stats */
         .stat-box {
-            margin-top: 4rem; max-width: 800px; width: 100%; border: 3px solid var(--c-black);
-            border-radius: 2rem; padding: 2rem 3rem; display: flex; align-items: center; gap: 2rem;
-            background-color: rgba(0,0,0,0.03); margin-left: auto; margin-right: auto;
+            margin-top: 4rem;
+            max-width: 800px;
+            width: 100%;
+            border: 3px solid var(--c-black);
+            border-radius: 2rem;
+            padding: 2rem 3rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            background-color: rgba(0, 0, 0, 0.03);
+            margin-left: auto;
+            margin-right: auto;
         }
-        .stat-num { font-size: 3.5rem; font-weight: 900; color: var(--c-red); line-height: 1; }
-        .stat-text { text-align: left; padding-left: 2rem; border-left: 2px solid rgba(0,0,0,0.1); color: var(--c-black); font-weight: 600; }
+
+        .stat-num {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--c-red);
+            line-height: 1;
+        }
+
+        .stat-text {
+            text-align: left;
+            padding-left: 2rem;
+            border-left: 2px solid rgba(0, 0, 0, 0.1);
+            color: var(--c-black);
+            font-weight: 600;
+        }
+
         @media (max-width: 768px) {
-            .stat-box { flex-direction: column; text-align: center; padding: 2rem; }
-            .stat-text { padding: 1rem 0 0 0; border-left: none; border-top: 2px solid rgba(0,0,0,0.1); text-align: center; }
+            .stat-box {
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem;
+            }
+
+            .stat-text {
+                padding: 1rem 0 0 0;
+                border-left: none;
+                border-top: 2px solid rgba(0, 0, 0, 0.1);
+                text-align: center;
+            }
         }
 
         /* Solution / TEE */
         .tee-viz {
-            position: relative; width: 100%; max-width: 350px; margin: 0 auto;
-            border: 2px solid var(--c-yellow); border-radius: 2rem; aspect-ratio: 1;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            position: relative;
+            width: 100%;
+            max-width: 350px;
+            margin: 0 auto;
+            border: 2px solid var(--c-yellow);
+            border-radius: 2rem;
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             box-shadow: 0 0 20px rgba(250, 204, 21, 0.2);
         }
+
         .tee-shield {
-            position: absolute; top: -1rem; right: -1rem; background: var(--c-yellow);
-            color: black; padding: 0.75rem; border-radius: 50%; display: flex;
+            position: absolute;
+            top: -1rem;
+            right: -1rem;
+            background: var(--c-yellow);
+            color: black;
+            padding: 0.75rem;
+            border-radius: 50%;
+            display: flex;
         }
-        .feature-list { display: flex; flex-direction: column; gap: 2rem; text-align: left; }
-        .feature-item { display: flex; gap: 1.5rem; align-items: flex-start; }
-        .feature-item h4 { color: var(--c-white); margin-bottom: 0.25rem; }
+
+        .feature-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            text-align: left;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .feature-item h4 {
+            color: var(--c-white);
+            margin-bottom: 0.25rem;
+        }
 
         /* Passport Table */
         .passport-card {
-            background: var(--c-dark); max-width: 500px; width: 100%; margin: 2rem auto;
-            border-radius: 16px; overflow: hidden; box-shadow: 0 25px 50px rgba(0,0,0,0.25);
-            text-align: left; position: relative;
+            background: var(--c-dark);
+            max-width: 500px;
+            width: 100%;
+            margin: 2rem auto;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+            text-align: left;
+            position: relative;
         }
+
         .passport-header {
-            padding: 1.5rem 2rem; display: flex; align-items: center; gap: 1rem;
-            color: var(--c-yellow); font-size: 0.8rem; text-transform: uppercase; font-weight: 700;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--c-yellow);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-        .passport-body { padding: 1rem 2rem 2rem; }
-        .row { display: flex; align-items: center; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
-        .row-val { margin-left: auto; color: var(--c-green); font-weight: 700; display: flex; align-items: center; gap: 0.5rem; }
-        
-        .score-table { width: 100%; border-collapse: collapse; margin-top: 1rem; background: rgba(255,255,255,0.02); border-radius: 8px; }
-        .score-table td, .score-table th { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.8rem; }
-        .score-table th { text-transform: uppercase; color: #666; font-size: 0.65rem; }
-        .score-bar { width: 50px; height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px; display: inline-block; margin-right: 5px; vertical-align: middle; }
-        .score-fill { height: 100%; background: var(--c-yellow); border-radius: 2px; }
+
+        .passport-body {
+            padding: 1rem 2rem 2rem;
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .row-val {
+            margin-left: auto;
+            color: var(--c-green);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .score-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+        }
+
+        .score-table td,
+        .score-table th {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.8rem;
+        }
+
+        .score-table th {
+            text-transform: uppercase;
+            color: #666;
+            font-size: 0.65rem;
+        }
+
+        .score-bar {
+            width: 50px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            display: inline-block;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+
+        .score-fill {
+            height: 100%;
+            background: var(--c-yellow);
+            border-radius: 2px;
+        }
 
         /* How it Works */
-        .steps-container { max-width: 900px; margin: 0 auto; text-align: left; }
-        .step-row { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; margin-bottom: 4rem; }
-        .step-text h4 { color: #111; text-transform: uppercase; font-size: 1rem; font-weight: 800; }
-        .step-text p { font-size: 1.25rem; font-weight: 500; color: #333; margin: 0; }
-        
-        .step-visual { background: #000; padding: 1.5rem; border-radius: 12px; border: 1px solid #333; position: relative; }
-        .code-line { font-family: var(--font-mono); font-size: 0.9rem; }
-        
-        @media(max-width: 768px) { .step-row { grid-template-columns: 1fr; gap: 1.5rem; } }
+        .steps-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .step-row {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        .step-text h4 {
+            color: #111;
+            text-transform: uppercase;
+            font-size: 1rem;
+            font-weight: 800;
+        }
+
+        .step-text p {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: #333;
+            margin: 0;
+        }
+
+        .step-visual {
+            background: #000;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid #333;
+            position: relative;
+        }
+
+        .code-line {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+        }
+
+        @media(max-width: 768px) {
+            .step-row {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
 
         /* CTA */
-        .cta-section { background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #050505 70%); min-height: 100vh; }
-        .form-card {
-            background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 12px; padding: 2.5rem; backdrop-filter: blur(10px);
+        .cta-section {
+            background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #050505 70%);
+            min-height: 100vh;
         }
-        .input-group { margin-bottom: 1.5rem; }
-        .input-label { display: block; font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; margin-bottom: 0.75rem; }
-        .input-field {
-            width: 100%; background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #d4d4d8; padding: 1rem; border-radius: 4px; font-family: inherit;
-        }
-        .input-field:focus { outline: none; border-color: var(--c-yellow); background: rgba(0,0,0,0.5); }
-        .btn-submit {
-            width: 100%; background: var(--c-yellow); color: var(--c-black); padding: 1rem;
-            font-weight: 700; text-transform: uppercase; border-radius: 4px; transition: 0.2s;
-        }
-        .btn-submit:hover { transform: translateY(-2px); background-color: #eab308; }
 
+        .form-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 2.5rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-label {
+            display: block;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+        }
+
+        .input-field {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #d4d4d8;
+            padding: 1rem;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--c-yellow);
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: var(--c-yellow);
+            color: var(--c-black);
+            padding: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 4px;
+            transition: 0.2s;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            background-color: #eab308;
+        }
     </style>
 </head>
+
 <body>
     <nav class="navbar">
         <a href="#hero" class="nav-brand">
             <img src="lucid-logo.svg" alt="Lucid Computing Logo" class="nav-logo">
-            
+
             <div class="nav-text">
                 <span>Lucid</span>
                 <span>Computing</span>
@@ -443,8 +865,8 @@
         </a>
 
         <div class="nav-links">
-            <a href="#hero" class="nav-link">Home</a>
-            <a href="#audits" class="nav-link">Insights</a>
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="insights.html" class="nav-link">Insights</a>
             <a href="https://www.nopinkypromises.ai/" class="nav-link">Demo</a>
             <a href="https://app.lucidcomputing.ai/login" class="nav-link">Log In</a>
         </div>
@@ -464,36 +886,45 @@
                 <div class="logo-glow"></div>
                 <img src="lucid-logo.svg" alt="Lucid Computing Logo" width="300" height="300" class="hero-logo-img">
             </div>
-            
+
             <h1 class="hero-title animate-up delay-2">Lucid Computing</h1>
 
             <div class="hero-subtitle-box animate-up delay-2">
                 <p style="font-size: 1.125rem; color: #e4e4e7; font-weight: 400; margin: 0; line-height: 1.4;">
-                    The <span class="highlight" style="font-weight:600;">Verifiable Compute Platform</span> for 
+                    The <span class="highlight" style="font-weight:600;">Verifiable Compute Platform</span> for
                     <span style="border-bottom: 2px solid var(--c-yellow); color: white;">AI Cloud Providers</span>.
                 </p>
             </div>
-            
+
             <div class="animate-up delay-3" style="max-width: 650px; margin: 0 auto;">
                 <p style="font-size: 1.05rem; line-height: 1.7; color: #a1a1aa;">
-                    As humans, we build trust on <span style="color: white; font-weight: 500;">Identity</span> and <span style="color: white; font-weight: 500;">Reputation</span>. 
+                    As humans, we build trust on <span style="color: white; font-weight: 500;">Identity</span> and <span
+                        style="color: white; font-weight: 500;">Reputation</span>.
                     AI agents are flooding our world with neither. <span class="highlight">Until now.</span>
                     <br><br>
-                    Upgrade your infrastructure and turn verifiable trust into a competitive advantage, unlocking high-value AI workloads that commodity clouds can't touch.
+                    Upgrade your infrastructure and turn verifiable trust into a competitive advantage, unlocking
+                    high-value AI workloads that commodity clouds can't touch.
                 </p>
                 <a href="#cta" class="hero-btn">
                     Book a Demo
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <polyline points="19 12 12 19 5 12"></polyline>
+                    </svg>
                 </a>
             </div>
         </div>
-        <a href="#problem" class="arrow-next" aria-label="Scroll Down"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"></path></svg></a>
+        <a href="#problem" class="arrow-next" aria-label="Scroll Down"><svg width="32" height="32" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2">
+                <path d="m6 9 6 6 6-6"></path>
+            </svg></a>
     </section>
 
     <section id="problem" class="bg-yellow">
         <style>
             /* --- PROBLEM SECTION SPECIFIC CSS --- */
-            
+
             /* Stats Grid Layout */
             .problem-stats-grid {
                 display: grid;
@@ -501,7 +932,8 @@
                 gap: 2rem;
                 margin-top: 4rem;
                 padding-top: 3rem;
-                border-top: 1px solid rgba(0,0,0,0.1); /* Subtle divider line */
+                border-top: 1px solid rgba(0, 0, 0, 0.1);
+                /* Subtle divider line */
                 width: 100%;
                 text-align: center;
             }
@@ -511,7 +943,8 @@
                 font-family: var(--font-mono);
                 font-size: clamp(2.5rem, 4vw, 4rem);
                 font-weight: 800;
-                color: var(--c-red); /* Matches the 'Doubt' strikethrough */
+                color: var(--c-red);
+                /* Matches the 'Doubt' strikethrough */
                 line-height: 1;
                 margin-bottom: 0.5rem;
             }
@@ -535,9 +968,9 @@
 
             /* Mobile Stack */
             @media (max-width: 900px) {
-                .problem-stats-grid { 
-                    grid-template-columns: 1fr; 
-                    gap: 3rem; 
+                .problem-stats-grid {
+                    grid-template-columns: 1fr;
+                    gap: 3rem;
                     text-align: center;
                 }
             }
@@ -545,25 +978,43 @@
 
         <div class="container">
             <span class="pill pill-light">The AI Adoption Barrier</span>
-            
+
             <h2>
                 Enterprises Trust
-                <span style="text-decoration: line-through; color: var(--c-gray); text-decoration-color: var(--c-red); text-decoration-thickness: 3px;">Gap</span>
+                <span
+                    style="text-decoration: line-through; color: var(--c-gray); text-decoration-color: var(--c-red); text-decoration-thickness: 3px;">Gap</span>
             </h2>
-            
+
             <div class="grid-3">
                 <div class="card card-yellow">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"></path><path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"></path><path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"></path><path d="m2 2 20 20"></path></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49">
+                        </path>
+                        <path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"></path>
+                        <path
+                            d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143">
+                        </path>
+                        <path d="m2 2 20 20"></path>
+                    </svg>
                     <h3>Opaque Execution</h3>
                     <p>Enterprises can't verify if your cloud is running the model they paid for.</p>
                 </div>
                 <div class="card card-yellow">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                        <path d="M2 12h20"></path>
+                    </svg>
                     <h3>Data Sovereignty Risks</h3>
                     <p>Clients need physics-based proof of where their data is being processed.</p>
                 </div>
                 <div class="card card-yellow">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z">
+                        </path>
+                    </svg>
                     <h3>Compliance Blockers</h3>
                     <p>SLAs aren't enough. Regulated industries demand cryptographic attestations.</p>
                 </div>
@@ -575,7 +1026,7 @@
                     <div class="prob-stat-label">Adoption Barrier</div>
                     <div class="prob-stat-desc">Cite security & compliance<br>as top blocker</div>
                 </div>
-                
+
                 <div>
                     <div class="prob-stat-val">68%</div>
                     <div class="prob-stat-label">IP Risk</div>
@@ -590,45 +1041,68 @@
             </div>
 
         </div>
-        <a href="#solution" class="arrow-next" aria-label="Next Section"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"></path></svg></a>
+        <a href="#solution" class="arrow-next" aria-label="Next Section"><svg width="32" height="32" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2">
+                <path d="m6 9 6 6 6-6"></path>
+            </svg></a>
     </section>
 
     <section id="solution" class="bg-black">
         <div class="container">
             <span class="pill pill-dark">The Solution</span>
             <h2><span class="highlight">Verifiable</span> Compute</h2>
-            <div class="subtitle mono animate-up delay-2" style="font-size: 1.5rem; text-transform: uppercase; margin-bottom: 2rem;">
-                Never <span style="text-decoration: line-through; color: var(--c-gray); text-decoration-color: var(--c-red);">trust</span> 
+            <div class="subtitle mono animate-up delay-2"
+                style="font-size: 1.5rem; text-transform: uppercase; margin-bottom: 2rem;">
+                Never <span
+                    style="text-decoration: line-through; color: var(--c-gray); text-decoration-color: var(--c-red);">trust</span>
                 &nbsp;&mdash;&nbsp; Always <span class="highlight">verify</span>
             </div>
             <p class="subtitle">Upgrade your infrastructure with our Verifiable Compute technology.</p>
 
             <div class="grid-split">
                 <div class="tee-viz">
-                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#facc15" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="9" y="9" width="6" height="6"></rect><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 15h3M1 9h3M1 15h3"></path></svg>
-                    <div style="font-weight: 700; letter-spacing: 0.1em; font-size: 0.8rem; margin-top: 1rem;">TRUSTED EXECUTION ENVIRONMENT</div>
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#facc15" stroke-width="1.5">
+                        <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+                        <rect x="9" y="9" width="6" height="6"></rect>
+                        <path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 15h3M1 9h3M1 15h3"></path>
+                    </svg>
+                    <div style="font-weight: 700; letter-spacing: 0.1em; font-size: 0.8rem; margin-top: 1rem;">TRUSTED
+                        EXECUTION ENVIRONMENT</div>
                     <div class="tee-shield">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
                     </div>
                 </div>
 
                 <div class="feature-list">
                     <div class="feature-item">
-                        <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2"><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4ade80"
+                            stroke-width="2">
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
                         <div>
                             <h4>Hardware Isolation</h4>
                             <p>Process client data in encrypted memory that even you (the host) cannot access</p>
                         </div>
                     </div>
                     <div class="feature-item">
-                        <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2"><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4ade80"
+                            stroke-width="2">
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
                         <div>
                             <h4>Tamper-Proof Execution</h4>
                             <p>Guarantee code integrity to your clients using the CPU itself</p>
                         </div>
                     </div>
                     <div class="feature-item">
-                        <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2"><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4ade80"
+                            stroke-width="2">
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
                         <div>
                             <h4>Remote Attestation</h4>
                             <p>Provide cryptographic proof that the correct code is running</p>
@@ -637,13 +1111,17 @@
                 </div>
             </div>
         </div>
-        <a href="#proof" class="arrow-next" aria-label="Next Section"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"></path></svg></a>
+        <a href="#proof" class="arrow-next" aria-label="Next Section"><svg width="32" height="32" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2">
+                <path d="m6 9 6 6 6-6"></path>
+            </svg></a>
     </section>
     <section id="proof" class="bg-yellow">
         <style>
             /* --- PASSPORT CARD STYLES --- */
             .passport-card {
-                background: #0a0a0a; /* Deep black/gray */
+                background: #0a0a0a;
+                /* Deep black/gray */
                 max-width: 600px;
                 width: 100%;
                 margin: 2rem auto;
@@ -651,83 +1129,170 @@
                 box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
                 font-family: var(--font-sans);
                 overflow: hidden;
-                border: 1px solid rgba(255,255,255,0.05);
+                border: 1px solid rgba(255, 255, 255, 0.05);
             }
 
             /* Header */
             .passport-header {
                 padding: 1.5rem 2rem;
-                border-bottom: 1px solid rgba(255,255,255,0.08);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08);
                 display: flex;
                 align-items: center;
                 gap: 1rem;
             }
 
-            .header-logo { color: #4ade80; width: 28px; height: 28px; } /* Green Logo */
-            .header-sep { width: 1px; height: 20px; background: rgba(255,255,255,0.2); }
-            .header-title { 
-                color: var(--c-yellow); 
-                font-weight: 800; 
-                letter-spacing: 0.1em; 
-                text-transform: uppercase; 
+            .header-logo {
+                color: #4ade80;
+                width: 28px;
+                height: 28px;
+            }
+
+            /* Green Logo */
+            .header-sep {
+                width: 1px;
+                height: 20px;
+                background: rgba(255, 255, 255, 0.2);
+            }
+
+            .header-title {
+                color: var(--c-yellow);
+                font-weight: 800;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
                 font-size: 0.9rem;
             }
 
             /* List Rows (Top Half) */
-            .passport-list { padding: 0.5rem 2rem; }
-            
+            .passport-list {
+                padding: 0.5rem 2rem;
+            }
+
             .list-row {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
                 padding: 1.25rem 0;
-                border-bottom: 1px solid rgba(255,255,255,0.08);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             }
-            .list-row:last-child { border-bottom: none; }
 
-            .row-left { display: flex; align-items: center; gap: 1rem; }
-            .row-icon { color: var(--c-yellow); width: 20px; height: 20px; }
-            .row-label { color: #a1a1aa; font-weight: 600; font-size: 1rem; }
+            .list-row:last-child {
+                border-bottom: none;
+            }
 
-            .row-right { display: flex; align-items: center; gap: 0.5rem; color: var(--c-green); font-weight: 700; font-size: 0.95rem; }
-            .check-icon { width: 16px; height: 16px; }
+            .row-left {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .row-icon {
+                color: var(--c-yellow);
+                width: 20px;
+                height: 20px;
+            }
+
+            .row-label {
+                color: #a1a1aa;
+                font-weight: 600;
+                font-size: 1rem;
+            }
+
+            .row-right {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                color: var(--c-green);
+                font-weight: 700;
+                font-size: 0.95rem;
+            }
+
+            .check-icon {
+                width: 16px;
+                height: 16px;
+            }
 
             /* Inner Table (Bottom Half) */
             .table-container {
                 margin: 0 2rem 2rem 2rem;
-                background: #121212; /* Slightly lighter than card bg */
-                border: 1px solid rgba(255,255,255,0.05);
+                background: #121212;
+                /* Slightly lighter than card bg */
+                border: 1px solid rgba(255, 255, 255, 0.05);
                 border-radius: 8px;
                 padding: 0 1.5rem;
             }
 
             .score-row {
                 display: grid;
-                grid-template-columns: 2fr 1.5fr 0.5fr; /* Columns for Name, Score, Status */
+                grid-template-columns: 2fr 1.5fr 0.5fr;
+                /* Columns for Name, Score, Status */
                 align-items: center;
                 padding: 1rem 0;
-                border-bottom: 1px solid rgba(255,255,255,0.08);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             }
-            .score-row:last-child { border-bottom: none; }
-            .score-row.header { padding: 1.25rem 0 0.75rem 0; }
+
+            .score-row:last-child {
+                border-bottom: none;
+            }
+
+            .score-row.header {
+                padding: 1.25rem 0 0.75rem 0;
+            }
 
             /* Table Typography */
-            .th-text { 
-                font-size: 0.7rem; 
-                font-weight: 700; 
-                color: #666; 
-                letter-spacing: 0.1em; 
-                text-transform: uppercase; 
+            .th-text {
+                font-size: 0.7rem;
+                font-weight: 700;
+                color: #666;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
             }
-            
-            .bench-name { display: block; color: white; font-weight: 700; font-size: 0.95rem; margin-bottom: 0.2rem; }
-            .bench-desc { display: block; color: #666; font-size: 0.8rem; }
+
+            .bench-name {
+                display: block;
+                color: white;
+                font-weight: 700;
+                font-size: 0.95rem;
+                margin-bottom: 0.2rem;
+            }
+
+            .bench-desc {
+                display: block;
+                color: #666;
+                font-size: 0.8rem;
+            }
 
             /* Progress Bar */
-            .progress-wrap { display: flex; align-items: center; gap: 1rem; }
-            .progress-track { flex-grow: 1; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; position: relative; }
-            .progress-fill { height: 100%; background: var(--c-yellow); border-radius: 2px; position: absolute; left: 0; top: 0; }
-            .score-val { color: var(--c-yellow); font-family: var(--font-mono); font-weight: 700; font-size: 0.9rem; min-width: 45px; text-align: right; }
+            .progress-wrap {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .progress-track {
+                flex-grow: 1;
+                height: 4px;
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 2px;
+                position: relative;
+            }
+
+            .progress-fill {
+                height: 100%;
+                background: var(--c-yellow);
+                border-radius: 2px;
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+
+            .score-val {
+                color: var(--c-yellow);
+                font-family: var(--font-mono);
+                font-weight: 700;
+                font-size: 0.9rem;
+                min-width: 45px;
+                text-align: right;
+            }
 
             /* Pass Badge */
             .badge-pass {
@@ -743,20 +1308,37 @@
             }
 
             @media (max-width: 600px) {
-                .score-row { grid-template-columns: 1fr; gap: 0.5rem; text-align: left; }
-                .score-val { text-align: left; }
-                .progress-wrap { width: 100%; }
+                .score-row {
+                    grid-template-columns: 1fr;
+                    gap: 0.5rem;
+                    text-align: left;
+                }
+
+                .score-val {
+                    text-align: left;
+                }
+
+                .progress-wrap {
+                    width: 100%;
+                }
             }
         </style>
 
         <div class="container">
             <span class="pill pill-light">The Result</span>
             <h2>The AI Passport Standard</h2>
-            <p class="subtitle" style="color:#333;">Empower your customers with cryptographic evidence attached to every AI response</p>
+            <p class="subtitle" style="color:#333;">Empower your customers with cryptographic evidence attached to every
+                AI response</p>
 
             <div class="passport-card">
                 <div class="passport-header">
-                    <svg class="header-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"></path><path d="M20 12v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8"></path><path d="M4 12V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v6"></path><path d="M12 2v20"></path></svg>
+                    <svg class="header-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M2 12h20"></path>
+                        <path d="M20 12v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8"></path>
+                        <path d="M4 12V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v6"></path>
+                        <path d="M12 2v20"></path>
+                    </svg>
                     <div class="header-sep"></div>
                     <span class="header-title">AI PASSPORT</span>
                 </div>
@@ -764,41 +1346,81 @@
                 <div class="passport-list">
                     <div class="list-row">
                         <div class="row-left">
-                            <svg class="row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"></path><path d="M14 13.12c0 2.38 0 6.38-1 8.88"></path><path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"></path><path d="M2 12a10 10 0 0 1 18-6"></path><path d="M2 16h.01"></path><path d="M21.8 16c.2-2 .131-5.354 0-6"></path><path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2"></path><path d="M8.65 22c.21-.66.45-1.32.57-2"></path><path d="M9 6.8a6 6 0 0 1 9 5.2v2"></path></svg>
+                            <svg class="row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"></path>
+                                <path d="M14 13.12c0 2.38 0 6.38-1 8.88"></path>
+                                <path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"></path>
+                                <path d="M2 12a10 10 0 0 1 18-6"></path>
+                                <path d="M2 16h.01"></path>
+                                <path d="M21.8 16c.2-2 .131-5.354 0-6"></path>
+                                <path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2"></path>
+                                <path d="M8.65 22c.21-.66.45-1.32.57-2"></path>
+                                <path d="M9 6.8a6 6 0 0 1 9 5.2v2"></path>
+                            </svg>
                             <span class="row-label">Model Fingerprint</span>
                         </div>
                         <div class="row-right">
-                            Verified <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Verified <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
                         </div>
                     </div>
-                    
+
                     <div class="list-row">
                         <div class="row-left">
-                            <svg class="row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                            <svg class="row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0">
+                                </path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
                             <span class="row-label">Legal Juristiction</span>
                         </div>
                         <div class="row-right">
-                            Sweden <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Sweden <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
                         </div>
                     </div>
 
                     <div class="list-row">
                         <div class="row-left">
-                            <svg class="row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+                            <svg class="row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                <path d="m9 12 2 2 4-4"></path>
+                            </svg>
                             <span class="row-label">Hardware Attestation</span>
                         </div>
                         <div class="row-right">
-                            Valid <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Valid <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
                         </div>
                     </div>
 
                     <div class="list-row">
                         <div class="row-left">
-                            <svg class="row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><line x1="10" y1="9" x2="8" y2="9"></line></svg>
+                            <svg class="row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                                <line x1="10" y1="9" x2="8" y2="9"></line>
+                            </svg>
                             <span class="row-label">Behavioral Evaluation</span>
                         </div>
                         <div class="row-right">
-                            Passed <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Passed <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
                         </div>
                     </div>
                 </div>
@@ -816,7 +1438,9 @@
                             <span class="bench-desc">Hallucination resistance</span>
                         </div>
                         <div class="progress-wrap">
-                            <div class="progress-track"><div class="progress-fill" style="width: 95.4%;"></div></div>
+                            <div class="progress-track">
+                                <div class="progress-fill" style="width: 95.4%;"></div>
+                            </div>
                             <span class="score-val">95.4%</span>
                         </div>
                         <div style="text-align: right;">
@@ -830,7 +1454,9 @@
                             <span class="bench-desc">Toxicity prevention</span>
                         </div>
                         <div class="progress-wrap">
-                            <div class="progress-track"><div class="progress-fill" style="width: 99.9%;"></div></div>
+                            <div class="progress-track">
+                                <div class="progress-fill" style="width: 99.9%;"></div>
+                            </div>
                             <span class="score-val">99.9%</span>
                         </div>
                         <div style="text-align: right;">
@@ -844,7 +1470,9 @@
                             <span class="bench-desc">Security compliance</span>
                         </div>
                         <div class="progress-wrap">
-                            <div class="progress-track"><div class="progress-fill" style="width: 98.5%;"></div></div>
+                            <div class="progress-track">
+                                <div class="progress-fill" style="width: 98.5%;"></div>
+                            </div>
                             <span class="score-val">98.5%</span>
                         </div>
                         <div style="text-align: right;">
@@ -855,7 +1483,10 @@
 
             </div>
         </div>
-        <a href="#audits" class="arrow-next" aria-label="Next Section"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"></path></svg></a>
+        <a href="#audits" class="arrow-next" aria-label="Next Section"><svg width="32" height="32" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2">
+                <path d="m6 9 6 6 6-6"></path>
+            </svg></a>
     </section>
     <section id="audits" class="bg-black">
         <style>
@@ -863,7 +1494,7 @@
             .stats-divider {
                 width: 100%;
                 height: 1px;
-                background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
                 margin: 5rem 0 4rem;
             }
 
@@ -877,7 +1508,8 @@
 
             .risk-val {
                 font-family: var(--font-mono);
-                font-size: clamp(2.5rem, 4vw, 3.5rem); /* Responsive font size */
+                font-size: clamp(2.5rem, 4vw, 3.5rem);
+                /* Responsive font size */
                 font-weight: 700;
                 color: var(--c-yellow);
                 line-height: 1.1;
@@ -900,33 +1532,50 @@
 
             /* Stack stats on mobile */
             @media (max-width: 768px) {
-                .risk-grid { grid-template-columns: 1fr; gap: 4rem; }
+                .risk-grid {
+                    grid-template-columns: 1fr;
+                    gap: 4rem;
+                }
             }
         </style>
 
         <div class="container">
             <span class="pill pill-dark">Critical Use Cases</span>
             <h2><span class="highlight">Automate Compliance</span> for Your Clients</h2>
-            <p class="subtitle">Secure your most sensitive workloads in industries where compromise is not an option.</p>
-    
+            <p class="subtitle">Secure your most sensitive workloads in industries where compromise is not an option.
+            </p>
+
             <div class="grid-4">
                 <div class="card card-dark">
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
                     <h3>Defence</h3>
-                    <p style="margin:0">Deploy AI at the tactical edge with zero-trust execution for ITAR compliance.</p>
+                    <p style="margin:0">Deploy AI at the tactical edge with zero-trust execution for ITAR compliance.
+                    </p>
                 </div>
                 <div class="card card-dark">
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                    </svg>
                     <h3>Healthcare</h3>
                     <p style="margin:0">Train models on patient data without exposing PII. HIPAA-compliant enclaves.</p>
                 </div>
                 <div class="card card-dark">
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="1" x2="12" y2="23"></line>
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                    </svg>
                     <h3>Finance</h3>
-                    <p style="margin:0">Protect proprietary trading algorithms and sensitive customer financial records.</p>
+                    <p style="margin:0">Protect proprietary trading algorithms and sensitive customer financial records.
+                    </p>
                 </div>
                 <div class="card card-dark">
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="20" x2="18" y2="10"></line>
+                        <line x1="12" y1="20" x2="12" y2="4"></line>
+                        <line x1="6" y1="20" x2="6" y2="14"></line>
+                    </svg>
                     <h3>Government</h3>
                     <p style="margin:0">Sovereign clouds for citizen data with mathematical proof of residency.</p>
                 </div>
@@ -953,7 +1602,10 @@
             </div>
 
         </div>
-        <a href="#how-it-works" class="arrow-next" aria-label="Next Section"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"></path></svg></a>
+        <a href="#how-it-works" class="arrow-next" aria-label="Next Section"><svg width="32" height="32"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="m6 9 6 6 6-6"></path>
+            </svg></a>
     </section>
 
     <section id="how-it-works" class="bg-yellow">
@@ -966,9 +1618,12 @@
                         <h3>Step 1: The Hardware</h3>
                         <p>Install our tamper-proof verifier server in your datacenter or a connected facility.</p>
                     </div>
-                    <div class="step-visual" style="display: flex; align-items: center; justify-content: center; background: linear-gradient(to bottom, #2a2a2a, #111);">
+                    <div class="step-visual"
+                        style="display: flex; align-items: center; justify-content: center; background: linear-gradient(to bottom, #2a2a2a, #111);">
                         <span class="mono" style="color:#666; font-size:0.7rem; margin-right: 1rem;">LUCID SERVER</span>
-                        <div style="width:4px; height:4px; background:#22c55e; box-shadow:0 0 5px #22c55e; border-radius:50%;"></div>
+                        <div
+                            style="width:4px; height:4px; background:#22c55e; box-shadow:0 0 5px #22c55e; border-radius:50%;">
+                        </div>
                     </div>
                 </div>
                 <div class="step-row">
@@ -977,7 +1632,8 @@
                         <p>Seamlessly integrate our open source libraries into your existing workflows.</p>
                     </div>
                     <div class="step-visual">
-                        <span class="code-line" style="color:var(--c-green)">apt-get install</span> <span class="code-line" style="color:white">sovereign-core</span>
+                        <span class="code-line" style="color:var(--c-green)">apt-get install</span> <span
+                            class="code-line" style="color:white">sovereign-core</span>
                     </div>
                 </div>
                 <div class="step-row">
@@ -985,14 +1641,20 @@
                         <h3>Step 3: The Result</h3>
                         <p>Deliver 3rd-party cryptographic compliance receipts & AI passports to your customers.</p>
                     </div>
-                    <div class="step-visual" style="display:flex; align-items:center; justify-content:center; gap:1rem;">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="#facc15" stroke="none"><path d="M12 2l-9 4v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V6l-9-4z"></path></svg>
+                    <div class="step-visual"
+                        style="display:flex; align-items:center; justify-content:center; gap:1rem;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="#facc15" stroke="none">
+                            <path d="M12 2l-9 4v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V6l-9-4z"></path>
+                        </svg>
                         <span class="mono" style="color:var(--c-yellow); font-weight:700;">SECURED</span>
                     </div>
                 </div>
             </div>
         </div>
-        <a href="#cta" class="arrow-next" aria-label="Next Section"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"></path></svg></a>
+        <a href="#cta" class="arrow-next" aria-label="Next Section"><svg width="32" height="32" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2">
+                <path d="m6 9 6 6 6-6"></path>
+            </svg></a>
     </section>
 
     <section id="cta" class="cta-section">
@@ -1026,4 +1688,5 @@
     </section>
 
 </body>
+
 </html>
