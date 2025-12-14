@@ -44,7 +44,7 @@ The site uses **Jekyll** for static site generation and is configured for deploy
    tags:
      - Tag 1
      - Tag 2
-   image: /media/image-path.png
+   image: media/image-path.png
    description: Short description for preview
    publish: true  # Set to true to publish the post
    content: |-
@@ -67,6 +67,36 @@ make serve
 ```
 
 **Note:** The `make serve` command automatically processes blog posts before starting the server. The site will be available at `http://localhost:4000`
+
+## Syncing with CMS Changes
+
+### Why Divergent Branches Occur
+
+When working with a CMS (like Pages CMS), you may encounter a "divergent branches" error when trying to pull changes. This happens because:
+
+1. **CMS changes**: Someone edits content through the CMS, which commits directly to the `main` branch
+2. **Local changes**: You make changes locally (e.g., fixing image paths, updating code)
+3. **Divergence**: Both branches have different commits, creating a fork in the git history
+
+Git needs to know how to reconcile these differences, which is why you see the error:
+```
+fatal: Need to specify how to reconcile divergent branches.
+```
+
+### One-Command Solution
+
+Simply run:
+
+```bash
+make sync
+```
+
+This command does the following: 
+1. **Fetch**: Downloads the latest commits from `origin/main`
+2. **Merge**: Creates a merge commit combining CMS changes with your local work
+3. **Regenerate**: Updates `data/processed_posts.json` and `_data/processed_posts.json` to include all published posts
+
+If there are actual merge conflicts (same file edited in conflicting ways), Git will pause and ask you to resolve them manually. This is rare when CMS edits are separate from code changes.
 
 ## Blog Post Fields
 
