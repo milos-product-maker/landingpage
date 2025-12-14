@@ -540,6 +540,9 @@
                 const data = await response.json();
                 allPosts = data.posts || [];
 
+                // Sort posts by date (newest first)
+                allPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
                 renderPage();
             } catch (error) {
                 console.error('Error:', error);
