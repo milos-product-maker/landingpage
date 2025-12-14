@@ -533,7 +533,7 @@ layout: null
         </div>
     </div>
 
-    <!-- Jekyll-generated posts data -->
+    <!-- Jekyll-generated posts data (fallback for Jekyll builds) -->
     <script id="posts-data" type="application/json">
     {% assign posts_data = site.data.processed_posts %}
     {{ posts_data | jsonify }}
@@ -542,11 +542,38 @@ layout: null
     <script>
         let allPosts = [];
 
-        function init() {
+        async function init() {
             try {
-                // Get posts data from Jekyll-generated JSON
+                // Try to load from Jekyll-generated JSON first (if available via Liquid)
+                let data = null;
                 const postsDataScript = document.getElementById('posts-data');
-                const data = JSON.parse(postsDataScript.textContent);
+                
+                if (postsDataScript && postsDataScript.textContent.trim() && !postsDataScript.textContent.includes('{%')) {
+                    // Jekyll processed the Liquid template
+                    data = JSON.parse(postsDataScript.textContent);
+                } else {
+                    // Fallback: fetch JSON file directly (try multiple paths)
+                    let response = null;
+                    const paths = ['data/processed_posts.json', '_data/processed_posts.json'];
+                    
+                    for (const path of paths) {
+                        try {
+                            response = await fetch(path);
+                            if (response.ok) {
+                                break;
+                            }
+                        } catch (e) {
+                            // Try next path
+                            continue;
+                        }
+                    }
+                    
+                    if (!response || !response.ok) {
+                        throw new Error(`Unable to load posts data from any known location`);
+                    }
+                    data = await response.json();
+                }
+                
                 // Data is already an array
                 allPosts = Array.isArray(data) ? data : (data.posts || []);
                 
@@ -555,7 +582,9 @@ layout: null
 
                 renderPage();
             } catch (error) {
-                console.error('Error:', error);
+                console.error('Error loading posts:', error);
+                document.getElementById('hero-section').innerHTML =
+                    '<div class="loader">Unable to load latest insight.</div>';
                 document.getElementById('posts-grid').innerHTML =
                     '<div class="loader">Unable to load insights.</div>';
             }

@@ -5,20 +5,18 @@
 require 'yaml'
 require 'json'
 require 'fileutils'
+require 'date'
 
-# Load kramdown for markdown conversion
+# Load kramdown for markdown conversion (optional - only if available)
 # This should be available via bundler in GitHub Actions
+kramdown_available = false
 begin
   require 'kramdown'
+  kramdown_available = true
 rescue LoadError
-  begin
-    require 'bundler/setup'
-    require 'kramdown'
-  rescue LoadError => e
-    $stderr.puts "Error: kramdown gem not found. Please run 'bundle install' first."
-    $stderr.puts e.message
-    exit 1
-  end
+  # kramdown not available - we'll skip HTML conversion
+  # This is okay for the insights page which only needs metadata
+  puts "Note: kramdown not available, skipping HTML conversion (metadata only)"
 end
 
 posts_dir = File.join(__dir__, '..', 'blog', 'posts')
@@ -45,11 +43,17 @@ Dir.glob(File.join(posts_dir, '*.md')).each do |file_path|
   end
   
   begin
-    frontmatter = YAML.safe_load(frontmatter_text)
+    # Use safe_load with permitted classes to allow Date objects
+    frontmatter = YAML.safe_load(frontmatter_text, permitted_classes: [Date, Time])
     
     if frontmatter.nil?
       puts "Warning: Failed to parse YAML in #{file_path}"
       next
+    end
+    
+    # Convert Date objects to strings for JSON serialization
+    if frontmatter['date'].is_a?(Date) || frontmatter['date'].is_a?(Time)
+      frontmatter['date'] = frontmatter['date'].to_s
     end
     
     # Check if content is in frontmatter (CMS format)
@@ -84,14 +88,15 @@ Dir.glob(File.join(posts_dir, '*.md')).each do |file_path|
       next
     end
     
-    # Ensure we have content to convert
-    if markdown_content.nil? || markdown_content.strip.empty?
-      puts "Warning: No content found in #{file_path}"
-      next
+    # Convert markdown to HTML using kramdown (if available)
+    html_content = ''
+    if kramdown_available && markdown_content && !markdown_content.strip.empty?
+      html_content = Kramdown::Document.new(markdown_content, input: 'GFM', hard_wrap: false, auto_ids: true).to_html
+    elsif markdown_content && !markdown_content.strip.empty?
+      # If kramdown is not available, just use the markdown content as-is
+      # The insights page doesn't need HTML content anyway
+      html_content = markdown_content
     end
-    
-    # Convert markdown to HTML using kramdown
-    html_content = Kramdown::Document.new(markdown_content, input: 'GFM', hard_wrap: false, auto_ids: true).to_html
     
     # Ensure tags is an array
     tags = frontmatter['tags']
@@ -124,6 +129,14 @@ processed_posts.sort_by! { |p| p['date'] }.reverse!
 output_file = File.join(data_dir, 'processed_posts.json')
 File.write(output_file, JSON.pretty_generate(processed_posts))
 
+# Also copy to a served location for direct HTTP access
+# This allows the JavaScript to fetch it directly when Jekyll isn't running
+served_data_dir = File.join(__dir__, '..', 'data')
+FileUtils.mkdir_p(served_data_dir)
+served_output_file = File.join(served_data_dir, 'processed_posts.json')
+File.write(served_output_file, JSON.pretty_generate(processed_posts))
+
 puts "\nProcessed #{processed_posts.length} posts"
 puts "Output written to #{output_file}"
+puts "Also copied to #{served_output_file} for direct HTTP access"
 
