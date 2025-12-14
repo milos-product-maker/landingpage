@@ -1,4 +1,4 @@
-.PHONY: fetch-main merge-main push-main update-posts publish
+.PHONY: fetch-main merge-main push-main publish serve
 
 # Fetch latest changes from main branch
 fetch-main:
@@ -15,11 +15,13 @@ push-main:
 	@echo "Pushing current branch to main..."
 	git push origin HEAD:main
 
-# Update posts.json with published posts
-update-posts:
-	@echo "Updating blog/posts.json with published posts..."
-	python3 update_posts.py
+# Combined command: fetch from main, merge, and push to main
+# Note: Jekyll processes posts automatically on GitHub Pages - no update step needed!
+publish: fetch-main merge-main push-main
+	@echo "Publish workflow completed! GitHub Pages will build automatically."
 
-# Combined command: fetch from main, merge, update posts, and push to main
-publish: fetch-main merge-main update-posts push-main
-	@echo "Publish workflow completed!"
+# Serve Jekyll site locally for testing
+serve:
+	@echo "Starting Jekyll server..."
+	bundle exec jekyll serve
+

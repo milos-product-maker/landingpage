@@ -1,3 +1,6 @@
+---
+layout: null
+---
 <!DOCTYPE html>
 <html lang="en">
 
@@ -518,10 +521,31 @@
                 </article>
             </div>
 
+            <!-- Jekyll-generated posts data -->
+            <script id="all-posts-data" type="application/json">
+            {
+                "posts": [
+                {% assign sorted_posts = site.data.processed_posts | sort: 'date' | reverse %}
+                {% for post in sorted_posts %}
+                {
+                    "title": {{ post.title | jsonify }},
+                    "slug": {{ post.slug | jsonify }},
+                    "date": {{ post.date | jsonify }},
+                    "author": {{ post.author | jsonify }},
+                    "tags": {{ post.tags | jsonify }},
+                    "image": {{ post.image | jsonify }},
+                    "description": {{ post.description | jsonify }},
+                    "content": {{ post.content | jsonify }}
+                }{% unless forloop.last %},{% endunless %}
+                {% endfor %}
+                ]
+            }
+            </script>
+
             <script>
                 let currentPost = null;
 
-                async function loadArticle() {
+                function loadArticle() {
                     try {
                         // Get slug from URL
                         const urlParams = new URLSearchParams(window.location.search);
@@ -531,10 +555,9 @@
                             throw new Error('No article slug provided');
                         }
 
-                        // Fetch posts data
-                        const response = await fetch('blog/posts.json');
-                        if (!response.ok) throw new Error('Failed to load posts');
-                        const data = await response.json();
+                        // Get posts data from Jekyll-generated JSON
+                        const postsDataScript = document.getElementById('all-posts-data');
+                        const data = JSON.parse(postsDataScript.textContent);
 
                         // Find matching post
                         currentPost = data.posts.find(post => post.slug === slug);
@@ -547,7 +570,7 @@
                     } catch (error) {
                         console.error('Error:', error);
                         document.getElementById('article-body').innerHTML =
-                            '<div class="loader">Unable to load article. Please check the URL or start a local server.</div>';
+                            '<div class="loader">Unable to load article. Please check the URL.</div>';
                     }
                 }
 

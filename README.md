@@ -9,7 +9,7 @@ This repository contains the source code for the Lucid Computing website. The si
 - **Insights Blog** (`insights.html`) - Blog listing page displaying published articles
 - **Article Pages** (`article.html`) - Individual blog post template
 
-The site is configured for deployment on CloudCannon CMS, which allows non-technical users to edit content through a visual interface.
+The site uses **Jekyll** for static site generation and is configured for deployment on **GitHub Pages**. It also supports **CloudCannon CMS** for content editing.
 
 ## Write a Blog Post
 
@@ -62,9 +62,22 @@ The site is configured for deployment on CloudCannon CMS, which allows non-techn
 - **`make publish`** - Complete publishing workflow:
   1. Fetches latest from main
   2. Merges main into current branch
-  3. Updates `blog/posts.json` with any new published posts
-  4. Pushes everything to main
+  3. Pushes everything to main
+  4. GitHub Pages automatically builds the site with Jekyll
 
+**Note:** Jekyll processes markdown files automatically - no manual conversion step needed!
+
+## Local Development
+
+To test the site locally with Jekyll:
+
+```bash
+bundle install
+make serve
+# or: bundle exec jekyll serve
+```
+
+The site will be available at `http://localhost:4000`
 
 ## Blog Post Fields
 
@@ -77,12 +90,14 @@ Each blog post supports the following frontmatter fields:
 - **`tags`** (list) - Array of tag strings
 - **`image`** (image) - Cover image path
 - **`description`** (string) - Short description for previews
-- **`publish`** (boolean) - Whether the post should be published (default: false)
-- **`content`** (rich-text) - Post content (markdown)
+- **`publish`** (boolean) - Whether the post should be published (default: true)
+- **`content`** (rich-text) - Post content (markdown) - stored in frontmatter for CMS compatibility
 
-## Notes
+## How It Works
 
-- Blog posts are stored as markdown files but converted to HTML in `posts.json`
-- The `publish` field controls whether a post appears in `posts.json`
-- Posts in `posts.json` are what appear on the live site
-- Always run `make publish` (or `make update-posts`) before pushing to ensure `posts.json` is up to date
+- **Jekyll** processes markdown files in `blog/posts/` automatically
+- Posts with `publish: true` appear on the live site
+- Content is converted from markdown to HTML during build
+- GitHub Pages builds the site automatically on every push
+- No manual conversion scripts needed!
+
