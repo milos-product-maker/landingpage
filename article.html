@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Article - Lucid Computing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- VARIABLES & RESET --- */
+        :root {
+            --c-black: #050505;
+            --c-dark: #111111;
+            --c-card: #121212;
+            --c-white: #ffffff;
+            --c-gray: #a1a1aa;
+            --c-gray-dark: #52525b;
+            --c-border: rgba(255, 255, 255, 0.1);
+            --c-yellow: #facc15;
+            --c-yellow-dim: #baa536;
+
+            --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+            --font-mono: 'Roboto Mono', monospace;
+
+            --w-container: 1400px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--c-black);
+            color: var(--c-white);
+            line-height: 1.6;
+            min-height: 100vh;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- NAVIGATION --- */
+        .navbar {
+            position: fixed;
+            top: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 95%;
+            max-width: var(--w-container);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 0.75rem 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            z-index: 1000;
+            backdrop-filter: blur(12px);
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav-logo {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
+
+        .nav-text {
+            display: flex;
+            flex-direction: column;
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            line-height: 1.1;
+            font-weight: 400;
+            color: #d4d4d8;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            color: #a1a1aa;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            transition: color 0.2s;
+            font-weight: 500;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--c-white);
+        }
+
+        .nav-cta-btn {
+            background: var(--c-white);
+            color: var(--c-black);
+            padding: 0.6rem 1.5rem;
+            border-radius: 6px;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: none;
+            letter-spacing: 0.02em;
+            transition: all 0.2s;
+            border: 1px solid var(--c-white);
+        }
+
+        .nav-cta-btn:hover {
+            background: transparent;
+            color: var(--c-white);
+        }
+
+        /* --- BACK BUTTON --- */
+        .back-btn {
+            position: fixed;
+            top: 7rem;
+            left: 2rem;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--c-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: color 0.2s;
+            z-index: 100;
+            cursor: pointer;
+        }
+
+        .back-btn:hover {
+            color: var(--c-white);
+        }
+
+        /* --- HERO IMAGE --- */
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            margin-top: 6rem;
+            position: relative;
+        }
+
+        .hero-overlay {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            margin-top: 6rem;
+        }
+
+        .hero-overlay img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 150px;
+            background: linear-gradient(to top, var(--c-black), transparent);
+        }
+
+        /* --- ARTICLE CONTAINER --- */
+        .article-container {
+            max-width: var(--w-container);
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        /* --- TABLE OF CONTENTS --- */
+        .toc-sidebar {
+            position: sticky;
+            top: 8rem;
+            background: rgba(18, 18, 18, 0.6);
+            border: 1px solid var(--c-border);
+            padding: 2rem;
+            border-radius: 8px;
+            max-height: calc(100vh - 10rem);
+            overflow-y: auto;
+        }
+
+        .toc-title {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--c-yellow);
+            margin-bottom: 1.5rem;
+        }
+
+        .toc-list {
+            list-style: none;
+        }
+
+        .toc-item {
+            margin-bottom: 0.75rem;
+        }
+
+        .toc-item.toc-h3 {
+            margin-left: 1rem;
+            font-size: 0.85rem;
+        }
+
+        .toc-link {
+            color: var(--c-gray);
+            font-size: 0.9rem;
+            transition: color 0.2s;
+            display: block;
+            line-height: 1.4;
+        }
+
+        .toc-link:hover,
+        .toc-link.active {
+            color: var(--c-white);
+        }
+
+        /* --- ARTICLE CONTENT --- */
+        .article-content {
+            max-width: 800px;
+        }
+
+        .article-header {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--c-border);
+        }
+
+        .article-category {
+            display: inline-block;
+            color: var(--c-yellow);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .article-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .article-subtitle {
+            font-size: 1.25rem;
+            color: var(--c-gray);
+            line-height: 1.5;
+            margin-bottom: 2rem;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .author-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 2px solid var(--c-border);
+        }
+
+        .author-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .author-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .author-role {
+            font-size: 0.85rem;
+            color: var(--c-gray);
+        }
+
+        .article-date {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--c-gray);
+            text-transform: uppercase;
+        }
+
+        /* --- SOCIAL SHARING --- */
+        .social-share {
+            display: flex;
+            gap: 1rem;
+            margin-left: auto;
+        }
+
+        .share-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--c-border);
+            border-radius: 50%;
+            transition: all 0.2s;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .share-icon:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--c-gray-dark);
+        }
+
+        /* --- ARTICLE BODY --- */
+        .article-body {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--c-white);
+        }
+
+        .article-body h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 3rem 0 1.5rem;
+            letter-spacing: -0.01em;
+            scroll-margin-top: 8rem;
+        }
+
+        .article-body h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 2.5rem 0 1rem;
+            letter-spacing: -0.01em;
+            scroll-margin-top: 8rem;
+        }
+
+        .article-body p {
+            margin-bottom: 1.5rem;
+            color: var(--c-gray);
+        }
+
+        .article-body blockquote {
+            border-left: 3px solid var(--c-yellow);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: var(--c-gray);
+        }
+
+        .article-body code {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 0.9em;
+        }
+
+        .article-body pre {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 2rem 0;
+        }
+
+        .article-body pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .article-body ul,
+        .article-body ol {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+            color: var(--c-gray);
+        }
+
+        .article-body li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- LOADING STATE --- */
+        .loader {
+            padding: 4rem;
+            text-align: center;
+            color: var(--c-gray);
+            font-family: var(--font-mono);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 1024px) {
+            .article-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .toc-sidebar {
+                position: relative;
+                top: 0;
+                max-height: none;
+            }
+
+            .back-btn {
+                position: static;
+                margin: 2rem 2rem 0;
+                display: inline-block;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .navbar {
+                justify-content: center;
+            }
+
+            .hero-overlay {
+                height: 250px;
+            }
+
+            .social-share {
+                margin-left: 0;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">
+            <img src="lucid-logo.svg" alt="Lucid Computing Logo" class="nav-logo">
+            <div class="nav-text">
+                <span>Lucid</span>
+                <span>Computing</span>
+            </div>
+        </a>
+
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="insights.html" class="nav-link active">Insights</a>
+            <a href="https://www.nopinkypromises.ai/" class="nav-link">Demo</a>
+            <a href="https://app.lucidcomputing.ai/login" class="nav-link">Log In</a>
+            <a href="index.html#cta" class="nav-link nav-cta-btn">Book a Demo</a>
+        </div>
+    </nav>
+
+    <a href="insights.html" class="back-btn">
+        < BACK</a>
+
+            <!-- Hero Image -->
+            <div class="hero-overlay" id="hero-container">
+                <div class="loader">Loading article...</div>
+            </div>
+
+            <!-- Article Container -->
+            <div class="article-container">
+                <!-- Table of Contents -->
+                <aside class="toc-sidebar" id="toc-sidebar">
+                    <div class="toc-title">Table of Contents</div>
+                    <ul class="toc-list" id="toc-list">
+                        <!-- Generated dynamically -->
+                    </ul>
+                </aside>
+
+                <!-- Article Content -->
+                <article class="article-content">
+                    <header class="article-header" id="article-header">
+                        <!-- Generated dynamically -->
+                    </header>
+
+                    <div class="article-body" id="article-body">
+                        <!-- Generated dynamically -->
+                    </div>
+                </article>
+            </div>
+
+            <script>
+                let currentPost = null;
+
+                async function loadArticle() {
+                    try {
+                        // Get slug from URL
+                        const urlParams = new URLSearchParams(window.location.search);
+                        const slug = urlParams.get('slug');
+
+                        if (!slug) {
+                            throw new Error('No article slug provided');
+                        }
+
+                        // Fetch posts data
+                        const response = await fetch('blog/posts.json');
+                        if (!response.ok) throw new Error('Failed to load posts');
+                        const data = await response.json();
+
+                        // Find matching post
+                        currentPost = data.posts.find(post => post.slug === slug);
+                        if (!currentPost) {
+                            throw new Error('Article not found');
+                        }
+
+                        // Render article
+                        renderArticle();
+                    } catch (error) {
+                        console.error('Error:', error);
+                        document.getElementById('article-body').innerHTML =
+                            '<div class="loader">Unable to load article. Please check the URL or start a local server.</div>';
+                    }
+                }
+
+                function renderArticle() {
+                    // Update page title
+                    document.getElementById('page-title').textContent = `${currentPost.title} - Lucid Computing`;
+
+                    // Render hero image
+                    const heroContainer = document.getElementById('hero-container');
+                    heroContainer.innerHTML = `<img src="${currentPost.image}" alt="${currentPost.title}">`;
+
+                    // Render article header
+                    const primaryTag = currentPost.tags && currentPost.tags.length > 0 ? currentPost.tags[0] : 'Insight';
+                    const headerHtml = `
+                <span class="article-category">${primaryTag}</span>
+                <h1 class="article-title">${currentPost.title}</h1>
+                <p class="article-subtitle">${currentPost.description}</p>
+                <div class="article-meta">
+                    <div class="author-info">
+                        <img src="https://ui-avatars.com/api/?name=${encodeURIComponent(currentPost.author)}&background=facc15&color=000&size=96" 
+                             alt="${currentPost.author}" class="author-avatar">
+                        <div class="author-details">
+                            <div class="author-name">${currentPost.author}</div>
+                            <div class="author-role">CEO</div>
+                        </div>
+                    </div>
+                    <span class="article-date">${currentPost.date}</span>
+                    <div class="social-share">
+                        <a href="https://wa.me/?text=${encodeURIComponent(currentPost.title + ' ' + window.location.href)}" 
+                           target="_blank" class="share-icon" title="Share on WhatsApp">📱</a>
+                        <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent(currentPost.title)}&url=${encodeURIComponent(window.location.href)}" 
+                           target="_blank" class="share-icon" title="Share on X">𝕏</a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}" 
+                           target="_blank" class="share-icon" title="Share on Facebook">f</a>
+                        <button onclick="copyLink()" class="share-icon" title="Copy link">📋</button>
+                    </div>
+                </div>
+            `;
+                    document.getElementById('article-header').innerHTML = headerHtml;
+
+                    // Render article body
+                    document.getElementById('article-body').innerHTML = currentPost.content;
+
+                    // Generate TOC
+                    generateTOC();
+
+                    // Setup scroll spy
+                    setupScrollSpy();
+                }
+
+                function generateTOC() {
+                    const articleBody = document.getElementById('article-body');
+                    const headings = articleBody.querySelectorAll('h2, h3');
+                    const tocList = document.getElementById('toc-list');
+
+                    if (headings.length === 0) {
+                        tocList.innerHTML = '<li class="toc-item"><span class="toc-link">No sections available</span></li>';
+                        return;
+                    }
+
+                    const tocItems = Array.from(headings).map((heading, index) => {
+                        const id = `section-${index}`;
+                        heading.id = id;
+
+                        const level = heading.tagName.toLowerCase();
+                        const text = heading.textContent;
+
+                        return `
+                    <li class="toc-item toc-${level}">
+                        <a href="#${id}" class="toc-link">${text}</a>
+                    </li>
+                `;
+                    });
+
+                    tocList.innerHTML = tocItems.join('');
+
+                    // Add smooth scroll behavior
+                    document.querySelectorAll('.toc-link').forEach(link => {
+                        link.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const targetId = link.getAttribute('href').substring(1);
+                            const targetElement = document.getElementById(targetId);
+                            if (targetElement) {
+                                targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            }
+                        });
+                    });
+                }
+
+                function setupScrollSpy() {
+                    const headings = document.querySelectorAll('.article-body h2, .article-body h3');
+                    const tocLinks = document.querySelectorAll('.toc-link');
+
+                    if (headings.length === 0) return;
+
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                tocLinks.forEach(link => link.classList.remove('active'));
+                                const activeLink = document.querySelector(`.toc-link[href="#${entry.target.id}"]`);
+                                if (activeLink) {
+                                    activeLink.classList.add('active');
+                                }
+                            }
+                        });
+                    }, {
+                        rootMargin: '-100px 0px -66%',
+                        threshold: 0
+                    });
+
+                    headings.forEach(heading => observer.observe(heading));
+                }
+
+                function copyLink() {
+                    navigator.clipboard.writeText(window.location.href).then(() => {
+                        alert('Link copied to clipboard!');
+                    }).catch(err => {
+                        console.error('Failed to copy link:', err);
+                    });
+                }
+
+                // Initialize
+                document.addEventListener('DOMContentLoaded', loadArticle);
+            </script>
+</body>
+
+</html>
