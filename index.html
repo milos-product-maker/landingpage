@@ -523,6 +523,7 @@
         .hero-title {
             background: linear-gradient(to bottom, #ffffff 40%, #999999 100%);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-top: 1rem;
             letter-spacing: -0.04em;
@@ -879,22 +880,56 @@
 
         .form-message {
             margin-top: 1rem;
-            padding: 1rem;
-            border-radius: 4px;
-            font-size: 0.9rem;
+            padding: 1.25rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
             font-family: var(--font-sans);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            animation: slideIn 0.3s ease-out;
+            line-height: 1.5;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .form-message.success {
-            background: rgba(74, 222, 128, 0.15);
-            border: 1px solid rgba(74, 222, 128, 0.3);
+            background: rgba(74, 222, 128, 0.2);
+            border: 2px solid rgba(74, 222, 128, 0.5);
             color: var(--c-green);
+            box-shadow: 0 4px 12px rgba(74, 222, 128, 0.2);
+        }
+
+        .form-message.success::before {
+            content: "✓";
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--c-green);
+            flex-shrink: 0;
         }
 
         .form-message.error {
-            background: rgba(239, 68, 68, 0.15);
-            border: 1px solid rgba(239, 68, 68, 0.3);
+            background: rgba(239, 68, 68, 0.2);
+            border: 2px solid rgba(239, 68, 68, 0.5);
             color: var(--c-red);
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+        }
+
+        .form-message.error::before {
+            content: "✗";
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--c-red);
+            flex-shrink: 0;
         }
     </style>
 </head>
@@ -1771,11 +1806,22 @@
             .then(response => response.json())
             .then(data => {
                 if(data.result === "success") {
-                    // Success Message
+                    // Success Message with enhanced confirmation
                     msgDiv.className = 'form-message success';
-                    msgDiv.textContent = "Message sent securely via Google! We'll be in touch.";
+                    msgDiv.innerHTML = "<strong>Message sent successfully!</strong><br>We've received your request and will be in touch soon.";
                     msgDiv.style.display = 'block';
+                    
+                    // Scroll to message to ensure it's visible
+                    msgDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    
+                    // Reset form
                     form.reset();
+                    
+                    // Optional: Show a brief visual confirmation on the button
+                    btn.style.background = 'var(--c-green)';
+                    setTimeout(() => {
+                        btn.style.background = '';
+                    }, 2000);
                 } else {
                     throw new Error(data.error);
                 }
@@ -1784,8 +1830,11 @@
                 // Error Message
                 console.error('Error:', error);
                 msgDiv.className = 'form-message error';
-                msgDiv.textContent = "Something went wrong. Please email us directly at info@lucidcomputing.ai";
+                msgDiv.innerHTML = "<strong>Something went wrong.</strong><br>Please email us directly at <a href='mailto:info@lucidcomputing.ai' style='color: var(--c-red); text-decoration: underline;'>info@lucidcomputing.ai</a>";
                 msgDiv.style.display = 'block';
+                
+                // Scroll to message to ensure it's visible
+                msgDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             })
             .finally(() => {
                 btn.disabled = false;
