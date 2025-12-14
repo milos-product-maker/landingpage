@@ -9,6 +9,7 @@ tags:
   - AI Security
 image: media/TAgIxThuWHOm5a9n0FTDD5ddk.png
 description: Can hardware-rooted attestation provide a verifiable proof of compliance across EU regulations?
+publish: true
 content: |-
   # Navigating the Maze of AI and Data Sovereignty in the EU
 

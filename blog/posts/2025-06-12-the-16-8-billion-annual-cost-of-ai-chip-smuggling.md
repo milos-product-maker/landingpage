@@ -10,6 +10,7 @@ tags:
   - AI Security
 image: media/TEthdbacyS4UDO7PWYVxAsLXUlw.jpeg
 description: How Illicit Semiconductor Trade is Draining American Innovation and What Technology Can Do About It
+publish: true
 content: |-
   # The $16.8 Billion Annual Cost of AI Chip Smuggling
 

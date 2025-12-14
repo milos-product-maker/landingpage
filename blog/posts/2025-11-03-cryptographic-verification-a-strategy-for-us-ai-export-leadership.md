@@ -10,6 +10,7 @@ tags:
   - Export Controls
 image: media/pE4sNBZQBMDmfBnLeT4iNAVf9V0.png
 description: Turning Sovereign AI Requirements into U.S. Export Opportunities
+publish: true
 content: |-
   # Cryptographic Verification: A Strategy for U.S. AI Export Leadership
 

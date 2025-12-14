@@ -1,17 +1,5 @@
 [
   {
-    "title": "Test",
-    "slug": "test",
-    "date": "2025-12-13",
-    "author": "Test",
-    "tags": [
-      "Test"
-    ],
-    "image": "media/lucid-logo.svg",
-    "description": "Test",
-    "content": "*   Test\n  \n\n![](media/9TLw1bo4Wr6uKJLQz8lRX6bp8.jpeg)\n\n> ouefasf\n\n| asdsa |     |     |\n| --- | --- | --- |\n| asd |     |     |\n| sad |     |     |"
-  },
-  {
     "title": "Cryptographic Verification: A Strategy for U.S. AI Export Leadership",
     "slug": "cryptographic-verification-a-strategy-for-us-ai-export-leadership",
     "date": "2025-11-03",

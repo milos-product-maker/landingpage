@@ -10,6 +10,7 @@ tags:
   - Semiconductors
 image: media/oole08QnB2huPcp75s2WqGn8uMQ.png
 description: The Congressional roadmap for scaling American AI leadership globally—and the verification technologies needed to execute it
+publish: true
 content: |-
   # America First AI Policy in Action
 

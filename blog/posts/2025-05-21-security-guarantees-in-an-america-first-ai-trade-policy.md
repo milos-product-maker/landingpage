@@ -7,6 +7,7 @@ tags: National Security
 image: media/9TLw1bo4Wr6uKJLQz8lRX6bp8.jpeg
 description: Balancing bilateral dealmaking, semiconductor competitiveness, and
   national security in the age of artificial intelligence.
+publish: false
 content: |-
   ## Four Essential Properties of an America First AI Trade Policy
 
