@@ -1687,4 +1687,686 @@ p {
     text-transform: uppercase;
     border: 1px solid rgba(74, 222, 128, 0.2);
     display: inline-block;
+}/* --- HARDWARE ENCLAVE SECTION --- */
+.enclave-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-top: 4rem;
+}
+
+.enclave-card {
+    position: relative;
+    border: 1px solid var(--c-yellow);
+    border-radius: 2rem;
+    padding: 6rem 2rem;
+    background: radial-gradient(circle at center, rgba(250, 204, 21, 0.05) 0%, transparent 70%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 30px rgba(250, 204, 21, 0.1);
+}
+
+.enclave-lock-badge {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    width: 48px;
+    height: 48px;
+    background: var(--c-yellow);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--c-black);
+}
+
+.chip-icon {
+    width: 100px;
+    height: 100px;
+    color: var(--c-yellow);
+    margin-bottom: 2rem;
+}
+
+.enclave-title {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: 0.1em;
+    color: var(--c-white);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.enclave-subtitle {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    color: var(--c-gray);
+    text-transform: uppercase;
+}
+
+.enclave-features {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.enclave-feature-item {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.feature-icon-box {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--c-yellow);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.enclave-feature-text h4 {
+    color: var(--c-white);
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.enclave-feature-text p {
+    font-size: 0.95rem;
+    color: var(--c-gray);
+    line-height: 1.5;
+    margin: 0;
+}/* --- INTEGRATION WORKFLOW SECTION --- */
+.integration-header {
+    margin-bottom: 4rem;
+}
+
+.integration-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.workflow-step {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 3rem;
+}
+
+.workflow-step:last-child {
+    border-bottom: none;
+}
+
+.workflow-text {
+    text-align: left;
+}
+
+.workflow-number {
+    font-family: var(--font-mono);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--c-white);
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.workflow-title {
+    font-family: var(--font-sans);
+    /* Or mono, keeping variety */
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--c-white);
+    margin-bottom: 1rem;
+}
+
+.workflow-desc {
+    font-size: 1rem;
+    color: var(--c-gray);
+    line-height: 1.6;
+}
+
+.workflow-visual {
+    background: #000;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: #e5e5e5;
+    text-align: left;
+    height: 100%;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.code-prompt {
+    color: var(--c-gray);
+    margin-right: 0.5rem;
+}
+
+.code-cmd {
+    color: var(--c-white);
+}
+
+.code-keyword {
+    color: var(--c-yellow);
+}
+
+.code-string {
+    color: var(--c-green);
+}
+
+.verified-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    gap: 0.5rem;
+    border: 1px solid var(--c-yellow);
+    border-radius: 12px;
+    background: rgba(250, 204, 21, 0.05);
+    min-height: 120px;
+}
+
+.verified-text {
+    color: var(--c-yellow);
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.verified-check {
+    width: 32px;
+    height: 32px;
+    color: var(--c-white);
+}/* --- BLOCKED MAJORITY SECTION --- */
+
+.problem-header {
+    margin-bottom: 4rem;
+}
+
+.stats-row {
+    display: flex;
+    justify-content: center;
+    gap: 6rem;
+    margin-top: 5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 3rem;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-val {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--c-yellow);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    font-family: var(--font-mono);
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--c-white);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.stat-desc {
+    font-size: 0.9rem;
+    color: var(--c-gray);
+    line-height: 1.4;
+}/* --- CTA SECTION --- */
+
+.cta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+}
+
+.cta-left {
+    text-align: left;
+}
+
+.cta-title {
+    font-size: 3.5rem;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--c-white);
+    margin-bottom: 2rem;
+}
+
+.cta-subtitle {
+    font-size: 1.25rem;
+    color: var(--c-gray);
+    line-height: 1.6;
+    margin-bottom: 4rem;
+    max-width: 450px;
+}
+
+.cta-stats {
+    display: flex;
+    gap: 4rem;
+}
+
+.cta-stat-item {
+    text-align: left;
+}
+
+.cta-stat-val {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--c-yellow);
+    font-family: var(--font-mono);
+    margin-bottom: 0.25rem;
+}
+
+.cta-stat-label {
+    font-size: 0.8rem;
+    color: var(--c-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+/* Form Styles Override/Refinement if needed */
+.form-card {
+    border: 1px solid var(--c-yellow);
+    /* Update border color to match design hint if needed, or keep subtle */
+}/* --- LOGO BANNER SECTION --- */
+.logo-banner {
+    padding: 4rem 0;
+    background: var(--c-black);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+    position: relative;
+}
+
+.logo-header {
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--c-gray-dark);
+    margin-bottom: 3rem;
+    font-weight: 700;
+}
+
+.logo-marquee {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    /* Mask to fade edges */
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.logo-track {
+    display: flex;
+    gap: 4rem;
+    align-items: center;
+    white-space: nowrap;
+    animation: scroll-left 40s linear infinite;
+    /* Double the content to loop seamlessly */
+}
+
+/* Hover to pause */
+.logo-marquee:hover .logo-track {
+    animation-play-state: paused;
+}
+
+.logo-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    opacity: 0.5;
+    transition: opacity 0.3s, transform 0.3s;
+    cursor: default;
+}
+
+.logo-item:hover {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.logo-icon {
+    width: 24px;
+    height: 24px;
+    color: var(--c-white);
+}
+
+.logo-text {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--c-white);
+    letter-spacing: -0.02em;
+}
+
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}/* --- HERO LOGO BANNER INTEGRATION --- */
+
+/* Make arrow relative in hero so it stacks */
+#hero .arrow-next {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    transform: none;
+    margin: 2rem auto 1rem;
+    display: block;
+    width: fit-content;
+    animation: bounce 2s infinite;
+}
+
+/* Compact Logo Banner for Hero */
+#hero .logo-banner {
+    padding: 1.5rem 0;
+    background: transparent;
+    border-bottom: none;
+    width: 100%;
+    margin-top: auto;
+    /* Push to bottom */
+    mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+}
+
+#hero .logo-header {
+    margin-bottom: 1.5rem;
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+#hero .logo-track {
+    gap: 3rem;
+}
+
+#hero .logo-item {
+    opacity: 0.4;
+}
+
+#hero .logo-item:hover {
+    opacity: 1;
+}
+
+#hero {
+    padding-bottom: 0;
+    /* Removing bottom padding to let banner sit flush */
+    justify-content: flex-start;
+    /* Organize manually with margins */
+    padding-top: 6rem;
+    /* Ensure top space */
+}
+
+/* Center the main content */
+#hero .container {
+    margin-top: auto;
+    margin-bottom: auto;
+}/* --- SPACING OPTIMIZATION --- */
+
+/* Reduce generic section padding for these specific data-heavy sections */
+#problem,
+#solution {
+    padding: 2.5rem 2rem;
+    min-height: auto;
+    /* Allow them to be shorter than full viewport if content demands, or keep 100vh but tighter */
+}
+
+/* Blocked Majority Spacing */
+.problem-header {
+    margin-bottom: 2rem;
+    /* Reduced from 4rem */
+}
+
+#problem .subtitle {
+    margin-bottom: 2rem;
+    /* Ensure subtitle doesn't push too hard */
+}
+
+#problem .grid-3 {
+    margin-top: 1rem;
+    /* Reduced generic top margin */
+}
+
+/* Hardware Enclave Spacing */
+.solution-header-wrapper {
+    margin-bottom: 2rem !important;
+    /* Override inline style if I can't reach HTML, but better to fix HTML */
+}
+
+.enclave-grid {
+    margin-top: 1rem;
+    /* Reduced from 4rem */
+    gap: 2rem;
+    /* Slightly tighter gap */
+}
+
+.enclave-card {
+    padding: 3rem 2rem;
+    /* Slightly more compact card */
+}/* --- SPACING OPTIMIZATION: WORKFLOW --- */
+
+#how-it-works {
+    padding: 3rem 2rem;
+    /* Reduced from generic 4rem */
+}
+
+.integration-header {
+    margin-bottom: 2rem;
+    /* Reduced from 4rem */
+}
+
+.integration-steps {
+    gap: 1.5rem;
+    /* Reduced from 3rem */
+}
+
+.workflow-step {
+    gap: 2rem;
+    /* Reduced from 4rem */
+    padding-bottom: 1.5rem;
+    /* Reduced from 3rem */
+}
+
+.workflow-visual {
+    padding: 1rem 1.5rem;
+    /* Slightly more compact code box */
+}/* --- HERO LOGO BANNER: CENTERED --- */
+
+/* Reset/Update Hero Banner for middle placement */
+#hero .logo-banner {
+    padding: 0.5rem 0 2rem;
+    /* reduced top padding, keeping bottom space */
+    background: transparent;
+    border-bottom: none;
+    width: 100%;
+    margin: 0;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+#hero .logo-header {
+    margin-bottom: 1rem;
+    font-size: 0.75rem;
+    opacity: 0.6;
+    letter-spacing: 0.15em;
+}
+
+#hero .logo-track {
+    gap: 3rem;
+    /* Adjust animation speed if needed, but keeping same is fine */
+}
+
+#hero .logo-item {
+    opacity: 0.4;
+    transform: scale(0.9);
+    /* Slightly smaller logos for hero context */
+}
+
+#hero .logo-item:hover {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Ensure container allows banner to be visible */
+#hero .animate-up {
+    /* overflow: visible; - default */
+}/* --- TRUSTMARK BADGE --- */
+
+.trustmark-badge {
+    background-color: var(--c-yellow);
+    color: black;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 1.5rem;
+    font-family: 'Space Mono', monospace;
+    /* Ensure monospace */
+    box-shadow: 0 0 20px rgba(250, 204, 21, 0.2);
+    border: 2px solid var(--c-yellow);
+    /* Keep distinctive */
+}
+
+.trustmark-icon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+}
+
+.trustmark-text-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1.2;
+}
+
+.trustmark-label {
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    opacity: 0.9;
+}
+
+.trustmark-brand {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}/* --- WORKFLOW CODE COLORING --- */
+
+/* Specific overrides for the minimalist code style requested */
+.code-prompt .code-import {
+    color: #ffffff;
+    /* White for 'import' and standard text */
+}
+
+.code-prompt .code-module {
+    color: var(--c-yellow);
+    /* Yellow for 'lucid' */
+}
+
+.code-prompt .code-comment {
+    color: #6b7280;
+    /* Gray for comments */
+    font-style: italic;
+}
+
+.code-prompt .code-plain {
+    color: #ffffff;
+    /* White for standard code text */
+}
+
+.code-prompt .code-string-minimal {
+    color: #e2e8f0;
+    /* Slightly off-white for strings to differentiate subtly, or just white */
+}/* --- IDE BOX STYLING --- */
+
+.ide-box {
+    background-color: #0d1117;
+    /* GitHub Dark Mode bg or similar IDE dark */
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 1.5rem;
+    font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: left;
+    /* Ensure code is left aligned */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+    width: 100%;
+}
+
+.ide-box .code-import {
+    color: #ff7b72;
+}
+
+/* Red/Pink for import */
+.ide-box .code-module {
+    color: #d2a8ff;
+}
+
+/* Purple for modules */
+.ide-box .code-comment {
+    color: #8b949e;
+    font-style: italic;
+}
+
+/* Gray comment */
+.ide-box .code-plain {
+    color: #c9d1d9;
+}
+
+/* White/Gray text */
+.ide-box .code-string-minimal {
+    color: #a5d6ff;
+}
+
+/* Light blue string */
+.ide-box .code-function {
+    color: #79c0ff;
+}
+
+/* Blue function */
+
+/* Override workflow-visual if needed to let ide-box take over, or nested inside */
+.workflow-visual.ide-container {
+    padding: 0;
+    /* Remove padding from container to let IDE box fill it or just be the box */
+    border: none;
+    background: transparent;
 }
