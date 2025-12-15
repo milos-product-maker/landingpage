@@ -662,6 +662,41 @@ p {
     position: relative;
 }
 
+/* Trustmark Stamp Overlay */
+.trustmark-corner-stamp {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 80px;
+    height: 80px;
+    background: var(--c-yellow);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(250, 204, 21, 0.4);
+    z-index: 20;
+    animation: stamp-pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.trustmark-shield {
+    width: 44px;
+    height: 44px;
+    fill: black;
+}
+
+@keyframes stamp-pop {
+    0% {
+        transform: scale(0) rotate(-45deg);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
 .passport-header {
     padding: 1.5rem 2rem;
     display: flex;
@@ -2270,12 +2305,18 @@ p {
     transform: scale(1);
 }
 
-/* Ensure container allows banner to be visible */
-#hero .animate-up {
-    /* overflow: visible; - default */
-}
 
 /* --- TRUSTMARK BADGE --- */
+
+/* Special Override for Trustmark Step Container */
+.workflow-visual.visual-trustmark {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    justify-content: center;
+    /* Center the badge */
+}
 
 .trustmark-badge {
     background-color: var(--c-yellow);
@@ -2293,8 +2334,8 @@ p {
 }
 
 .trustmark-icon {
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
     flex-shrink: 0;
 }
 
