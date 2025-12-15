@@ -184,8 +184,8 @@
 
             <div class="problem-header">
                 <h2>Unlock The <span class="highlight">Blocked</span> Majority</h2>
-                <p class="subtitle">74% of enterprise AI pilots never reach production. The infrastructure gap between
-                    public cloud convenience and sovereign security is the bottleneck.</p>
+                <p class="subtitle">95% of enterprise AI pilots never reach production. The infrastructure gap
+                    between public cloud convenience and sovereign security is the bottleneck.</p>
             </div>
 
             <div class="grid-3">
@@ -257,7 +257,7 @@
                 As humans, we build trust on <span style="color: white; font-weight: 500;">Identity</span> and <span
                     style="color: white; font-weight: 500;">Reputation</span>.
                 AI agents are flooding our world with neither. AI Passports replace generic SLAs with cryptographic
-                verification
+                verification that creates customer confidence.
             </p>
             <div class="passport-card">
                 <div class="passport-header">
@@ -589,9 +589,9 @@
             <span class="pill pill-dark">Deployment</span>
             <div class="integration-header">
                 <h2>Integration Workflow</h2>
-                <div class="subtitle" style="margin-top: 1rem;">
+                <p class="subtitle">
                     Designed for minimal disruption. Integrate verifiable compute into your existing cloud stack.
-                </div>
+                </p>
             </div>
 
             <div class="integration-steps">
@@ -603,10 +603,10 @@
                         <p class="workflow-desc">Install the Lucid Verifier on your existing bare metal or cloud
                             instances (AWS, Azure, GCP, etc.).</p>
                     </div>
-                    <div class="workflow-visual">
+                    <div class="ide-box">
                         <div>
                             <span class="code-prompt">root@server:~#</span>
-                            <span class="code-cmd">./install_verifier.sh</span>
+                            <span class="code-cmd">apt-get install lucid-core</span>
                         </div>
                     </div>
                 </div>
@@ -618,18 +618,15 @@
                         <p class="workflow-desc">Wrap your existing PyTorch/TensorFlow models with our secure runtime
                             container.</p>
                     </div>
-                    <div class="workflow-visual ide-container">
-                        <div class="ide-box">
-                            <div><span class="code-import">import</span> <span class="code-module">lucid</span></div>
-                            <br>
-                            <div class="code-comment"># Deploy with AI Passport verification</div>
-                            <div>
-                                <span class="code-plain">certificate = </span><span
-                                    class="code-module">lucid</span><span class="code-plain">.</span><span
-                                    class="code-function">verify</span><span class="code-plain">(</span><span
-                                    class="code-string-minimal">"llama-3-70b-instruct"</span><span
-                                    class="code-plain">)</span>
-                            </div>
+                    <div class="ide-box">
+                        <div><span class="code-import">import</span> <span class="code-module">lucid</span></div>
+                        <div class="code-comment"># Deploy with AI Passport verification</div>
+                        <div>
+                            <span class="code-plain">certificate = </span><span class="code-module">lucid</span><span
+                                class="code-plain">.</span><span class="code-function">verify</span><span
+                                class="code-plain">(</span><span
+                                class="code-string-minimal">"llama-3-70b-instruct"</span><span
+                                class="code-plain">)</span>
                         </div>
                     </div>
                 </div>

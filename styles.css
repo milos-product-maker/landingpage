@@ -108,7 +108,8 @@ section {
 
 /* Background Variants (Home) */
 .bg-black {
-    background-color: var(--c-black);
+    /* background-color: var(--c-black); */
+    background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #050505 70%);
     color: var(--c-white);
     text-align: center;
 }
@@ -1687,7 +1688,9 @@ p {
     text-transform: uppercase;
     border: 1px solid rgba(74, 222, 128, 0.2);
     display: inline-block;
-}/* --- HARDWARE ENCLAVE SECTION --- */
+}
+
+/* --- HARDWARE ENCLAVE SECTION --- */
 .enclave-grid {
     display: grid;
     grid-template-columns: 1.2fr 1fr;
@@ -1786,7 +1789,9 @@ p {
     color: var(--c-gray);
     line-height: 1.5;
     margin: 0;
-}/* --- INTEGRATION WORKFLOW SECTION --- */
+}
+
+/* --- INTEGRATION WORKFLOW SECTION --- */
 .integration-header {
     margin-bottom: 4rem;
 }
@@ -1900,7 +1905,9 @@ p {
     width: 32px;
     height: 32px;
     color: var(--c-white);
-}/* --- BLOCKED MAJORITY SECTION --- */
+}
+
+/* --- BLOCKED MAJORITY SECTION --- */
 
 .problem-header {
     margin-bottom: 4rem;
@@ -1941,7 +1948,9 @@ p {
     font-size: 0.9rem;
     color: var(--c-gray);
     line-height: 1.4;
-}/* --- CTA SECTION --- */
+}
+
+/* --- CTA SECTION --- */
 
 .cta-grid {
     display: grid;
@@ -2000,7 +2009,9 @@ p {
 .form-card {
     border: 1px solid var(--c-yellow);
     /* Update border color to match design hint if needed, or keep subtle */
-}/* --- LOGO BANNER SECTION --- */
+}
+
+/* --- LOGO BANNER SECTION --- */
 .logo-banner {
     padding: 4rem 0;
     background: var(--c-black);
@@ -2063,6 +2074,15 @@ p {
     color: var(--c-white);
 }
 
+.logo-img {
+    height: 32px;
+    width: auto;
+    max-width: 150px;
+    filter: brightness(0) invert(1);
+    object-fit: contain;
+    display: block;
+}
+
 .logo-text {
     font-family: var(--font-sans);
     font-weight: 600;
@@ -2079,7 +2099,9 @@ p {
     100% {
         transform: translateX(-50%);
     }
-}/* --- HERO LOGO BANNER INTEGRATION --- */
+}
+
+/* --- HERO LOGO BANNER INTEGRATION --- */
 
 /* Make arrow relative in hero so it stacks */
 #hero .arrow-next {
@@ -2136,7 +2158,9 @@ p {
 #hero .container {
     margin-top: auto;
     margin-bottom: auto;
-}/* --- SPACING OPTIMIZATION --- */
+}
+
+/* --- SPACING OPTIMIZATION --- */
 
 /* Reduce generic section padding for these specific data-heavy sections */
 #problem,
@@ -2178,7 +2202,9 @@ p {
 .enclave-card {
     padding: 3rem 2rem;
     /* Slightly more compact card */
-}/* --- SPACING OPTIMIZATION: WORKFLOW --- */
+}
+
+/* --- SPACING OPTIMIZATION: WORKFLOW --- */
 
 #how-it-works {
     padding: 3rem 2rem;
@@ -2205,7 +2231,9 @@ p {
 .workflow-visual {
     padding: 1rem 1.5rem;
     /* Slightly more compact code box */
-}/* --- HERO LOGO BANNER: CENTERED --- */
+}
+
+/* --- HERO LOGO BANNER: CENTERED --- */
 
 /* Reset/Update Hero Banner for middle placement */
 #hero .logo-banner {
@@ -2245,7 +2273,9 @@ p {
 /* Ensure container allows banner to be visible */
 #hero .animate-up {
     /* overflow: visible; - default */
-}/* --- TRUSTMARK BADGE --- */
+}
+
+/* --- TRUSTMARK BADGE --- */
 
 .trustmark-badge {
     background-color: var(--c-yellow);
@@ -2287,7 +2317,9 @@ p {
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-}/* --- WORKFLOW CODE COLORING --- */
+}
+
+/* --- WORKFLOW CODE COLORING --- */
 
 /* Specific overrides for the minimalist code style requested */
 .code-prompt .code-import {
@@ -2314,7 +2346,9 @@ p {
 .code-prompt .code-string-minimal {
     color: #e2e8f0;
     /* Slightly off-white for strings to differentiate subtly, or just white */
-}/* --- IDE BOX STYLING --- */
+}
+
+/* --- IDE BOX STYLING --- */
 
 .ide-box {
     background-color: #0d1117;
@@ -2369,4 +2403,56 @@ p {
     /* Remove padding from container to let IDE box fill it or just be the box */
     border: none;
     background: transparent;
+}
+
+/* --- ARROW POSITIONING FIXES --- */
+
+/* New bounce animation for relative positioning (no horizontal shift needed) */
+@keyframes bounce-relative {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-10px);
+    }
+
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Fix overlaps in specific sections by making arrows relative */
+#problem .arrow-next,
+#solution .arrow-next,
+#how-it-works .arrow-next {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    transform: none;
+    margin: 3rem auto 1rem;
+    /* Space above and below */
+    display: block;
+    width: fit-content;
+    animation: bounce-relative 2s infinite;
+}
+
+/* Ensure container doesn't have excess padding if arrow is now taking space */
+#problem,
+#solution {
+    padding-bottom: 1rem;
+    /* Reduced from previous heavy padding since arrow adds its own margin */
+}
+
+/* --- ENCLAVE CARD RESIZE --- */
+/* User requested 30% less wide, so ~70% width */
+.enclave-card {
+    max-width: 70%;
+    margin: 0 auto;
+    /* Enhance centering */
 }
