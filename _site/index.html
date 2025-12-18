@@ -534,101 +534,148 @@
                 <path d="m6 9 6 6 6-6"></path>
             </svg></a>
     </section>
-    <section id="solution" class="bg-black">
+    <section id="solution" class="bg-black scrolly-section">
         <div class="container">
-            <!-- Hidden header/title for accessibility/structure if needed, but per design usually clean space. 
-                 Design doesn't show a big "Solution" header, just the card and list. 
-                 But let's keep it clean as per screenshot. -->
+            <!-- Sticky container for both diagram and text -->
+            <div class="scrolly-sticky-wrapper">
+                <div class="scrolly-sticky-content">
+                    <div class="solution-header-wrapper">
+                        <span class="pill pill-light">Technical Implementation</span>
+                        <h2>Verifiable Compute</h2>
+                        <div class="subtitle mono solution-subtitle">
+                            Never <span class="blocked-text">trust</span>
+                            &nbsp;&mdash;&nbsp; Always <span class="highlight">verify</span>
+                        </div>
+                        <p class="subtitle">Your code runs inside a secure enclave. The CPU itself prevents the OS,
+                            hypervisor,
+                            or cloud admin from accessing memory.</p>
+                    </div>
 
-            <div class="solution-header-wrapper">
-                <span class="pill pill-light">Technical Implementation</span>
-                <h2>Verifiable Compute</h2>
-                <div class="subtitle mono animate-up delay-2 solution-subtitle">
-                    Never <span class="blocked-text">trust</span>
-                    &nbsp;&mdash;&nbsp; Always <span class="highlight">verify</span>
+                    <div class="scrolly-main">
+                        <!-- Left: Architecture Diagram -->
+                        <div class="scrolly-diagram">
+                            <svg viewBox="0 0 800 500" class="architecture-diagram" id="arch-svg">
+                                <!-- Lucid Verifier Service (Top) -->
+                                <g id="verifier-box" class="arch-box">
+                                    <rect x="200" y="20" width="400" height="80" rx="10" />
+                                    <text x="400" y="65" text-anchor="middle" class="arch-text">Lucid Verifier
+                                        Service</text>
+                                </g>
+
+                                <!-- Arrows between Verifier and TEE -->
+                                <g class="arch-arrows">
+                                    <path d="M380 150 V 110" marker-end="url(#arrowhead)" />
+                                    <path d="M420 110 V 150" marker-end="url(#arrowhead)" />
+                                    <text x="430" y="130" class="arrow-text">Round trip</text>
+                                </g>
+
+                                <!-- Trusted Execution Environment (Big Box) -->
+                                <g id="tee-box" class="arch-box">
+                                    <rect x="150" y="160" width="500" height="250" rx="40" />
+                                    <text x="400" y="200" text-anchor="middle" class="arch-text-header">Trusted
+                                        Execution
+                                        Environment</text>
+
+                                    <!-- Evaluator (Middle Box) -->
+                                    <g id="evaluator-box" class="arch-box inner">
+                                        <rect x="200" y="230" width="400" height="150" rx="20" />
+                                        <text x="400" y="270" text-anchor="middle" class="arch-text">Evaluator</text>
+
+                                        <!-- Base Model (Smallest Box) -->
+                                        <g id="model-box" class="arch-box inner-model">
+                                            <rect x="250" y="295" width="300" height="70" rx="10" />
+                                            <text x="400" y="340" text-anchor="middle" class="arch-text">Base
+                                                Model</text>
+                                        </g>
+                                    </g>
+                                </g>
+
+                                <!-- External Labels & Arrows -->
+                                <g class="arch-external">
+                                    <path d="M20 280 H 140" marker-end="url(#arrowhead)" />
+                                    <text x="80" y="250" text-anchor="middle" class="arrow-text">User<tspan x="80"
+                                            dy="20">
+                                            Requests</tspan></text>
+
+                                    <path d="M660 280 H 780" marker-end="url(#arrowhead)" />
+                                    <text x="720" y="250" text-anchor="middle" class="arrow-text">Verified<tspan x="720"
+                                            dy="20">tokens</tspan></text>
+
+                                    <path d="M400 480 V 420" marker-end="url(#arrowhead)" />
+                                    <text x="400" y="495" text-anchor="middle" class="arrow-text">Sovereign
+                                        Container</text>
+                                </g>
+
+                                <defs>
+                                    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5"
+                                        orient="auto">
+                                        <polygon points="0 0, 10 3.5, 0 7" fill="currentColor" />
+                                    </marker>
+                                </defs>
+                            </svg>
+                        </div>
+
+                        <!-- Right: Text panels that fade in/out -->
+                        <div class="scrolly-text-area">
+                            <div class="text-panel" id="panel-tee">
+                                <div class="text-panel-header">
+                                    <span class="step-num">01</span>
+                                    <svg class="step-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                    </svg>
+                                </div>
+                                <h3>Confidentiality</h3>
+                                <p>Wrap existing PyTorch or TensorFlow workloads into Sovereign Containers to process data in encrypted memory. Using Intel SGX and AMD SEV, you ensure that even as the host, you remain blind to your client's sensitive data</p>
+                            </div>
+                            <div class="text-panel" id="panel-evaluator">
+                                <div class="text-panel-header">
+                                    <span class="step-num">02</span>
+                                    <svg class="step-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                    </svg>
+                                </div>
+                                <h3>Evaluations</h3>
+                                <p>Our TEE-based attestable audit layer allows for full-weight analysis and safety benchmarking, without compromise, while ensuring that proprietary model architecture remains cryptographically sealed.</p>
+                            </div>
+                            <div class="text-panel" id="panel-verifier">
+                                <div class="text-panel-header">
+                                    <span class="step-num">03</span>
+                                    <svg class="step-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                                        <path
+                                            d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <h3>Sovereignty</h3>
+                                <p>By measuring the round-trip time for cryptographically signed attestation records, we provide physics-based proof of the model's sovereign jurisdiction.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <p class="subtitle">Your code runs inside a secure enclave. The CPU itself prevents the OS, hypervisor,
-                    or cloud admin from accessing memory.</p>
+
+                <!-- Invisible scroll triggers -->
+                <div class="scroll-triggers">
+                    <div class="trigger" data-highlight="tee-box" data-panel="panel-tee"></div>
+                    <div class="trigger" data-highlight="evaluator-box" data-panel="panel-evaluator"></div>
+                    <div class="trigger" data-highlight="verifier-box" data-panel="panel-verifier"></div>
+                </div>
             </div>
-
-            <div class="enclave-grid">
-                <!-- Left: Enclave Card -->
-                <div class="enclave-card">
-                    <div class="enclave-lock-badge">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                        </svg>
-                    </div>
-
-                    <svg class="chip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <rect x="4" y="4" width="16" height="16" rx="2" />
-                        <rect x="9" y="9" width="6" height="6" />
-                        <path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 15h3M1 9h3M1 15h3" />
-                    </svg>
-
-                    <div class="enclave-title">Hardware Enclave</div>
-                    <div class="enclave-subtitle">Encrypted Memory Region</div>
-                </div>
-
-                <!-- Right: Feature List -->
-                <div class="enclave-features">
-                    <!-- Item 1 -->
-                    <div class="enclave-feature-item">
-                        <div class="feature-icon-box">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                            </svg>
-                        </div>
-                        <div class="enclave-feature-text">
-                            <h4>Hardware Isolation (TEE)</h4>
-                            <p>Process client data in encrypted memory that even you (the host) cannot read. Utilizing
-                                Intel SGX & AMD SEV.</p>
-                        </div>
-                    </div>
-
-                    <!-- Item 2 -->
-                    <div class="enclave-feature-item">
-                        <div class="feature-icon-box">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                            </svg>
-                        </div>
-                        <div class="enclave-feature-text">
-                            <h4>Tamper-Proof Execution</h4>
-                            <p>Cryptographically guarantee code integrity. If a single bit of the model changes, the CPU
-                                rejects execution.</p>
-                        </div>
-                    </div>
-
-                    <!-- Item 3 -->
-                    <div class="enclave-feature-item">
-                        <div class="feature-icon-box">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                            </svg>
-                        </div>
-                        <div class="enclave-feature-text">
-                            <h4>Remote Attestation</h4>
-                            <p>Generate a quote signed by the hardware manufacturer to prove to clients exactly what is
-                                running.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <a href="#audits" class="arrow-next" aria-label="Next Section"><svg width="32" height="32" viewBox="0 0 24 24"
-                fill="none" stroke="currentColor" stroke-width="2">
-                <path d="m6 9 6 6 6-6"></path>
-            </svg></a>
+            <a href="#audits" class="arrow-next" aria-label="Next Section"><svg width="32" height="32"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="m6 9 6 6 6-6"></path>
+                </svg></a>
     </section>
+
     <section id="audits" class="bg-black">
         <link rel="stylesheet" href="styles.css">
 
