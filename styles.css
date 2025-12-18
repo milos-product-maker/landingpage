@@ -115,7 +115,7 @@ section {
 }
 
 .bg-gradient {
-    background: radial-gradient(circle at 50% 50%, #575757 0%, var(--c-black) 50%);
+    background: radial-gradient(circle at 50% 50%, #2c2c2c 0%, var(--c-black) 50%);
     background-color: var(--c-black);
     color: var(--c-white);
     text-align: center;
@@ -2151,74 +2151,203 @@ p {
 
 .enclave-lock-badge {
     position: absolute;
+    padding: 2rem;
+}
+
+/* --- SCROLLYTELLING SECTION --- */
+.scrolly-section {
+    min-height: auto !important;
+    padding: 2rem 0 4rem 0 !important;
+    scroll-snap-align: none !important;
+    overflow: visible !important;
+    display: block !important;
+}
+
+
+.scrolly-section .container {
+    max-width: 1400px;
+    height: auto;
+    display: block;
+}
+
+
+/* Wrapper that creates scroll height */
+.scrolly-sticky-wrapper {
+    position: relative;
+    min-height: 250vh;
+    margin-top: 0;
+}
+
+/* Sticky content: header + (diagram & text side by side) */
+.scrolly-sticky-content {
+    position: sticky;
     top: 2rem;
-    right: 2rem;
-    width: 48px;
-    height: 48px;
-    background: var(--c-yellow);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--c-black);
-}
-
-.chip-icon {
-    width: 100px;
-    height: 100px;
-    color: var(--c-yellow);
-    margin-bottom: 2rem;
-}
-
-.enclave-title {
-    font-family: var(--font-mono);
-    font-weight: 700;
-    font-size: 1.25rem;
-    letter-spacing: 0.1em;
-    color: var(--c-white);
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
-}
-
-.enclave-subtitle {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    letter-spacing: 0.05em;
-    color: var(--c-gray);
-    text-transform: uppercase;
-}
-
-.enclave-features {
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
+    gap: 2rem;
+    padding: 1rem 0;
 }
 
-.enclave-feature-item {
-    display: flex;
-    gap: 1.5rem;
-    align-items: flex-start;
+.scrolly-main {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+
+
+
+.scrolly-diagram {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--c-border);
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+}
+
+/* Text area with stacked panels */
+.scrolly-text-area {
+    position: relative;
+    min-height: 300px;
+}
+
+.text-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    pointer-events: none;
+    background: var(--c-card);
+    border: 1px solid var(--c-border);
+    padding: 2.5rem;
+    border-radius: 1.5rem;
     text-align: left;
 }
 
-.feature-icon-box {
-    flex-shrink: 0;
-    width: 48px;
-    height: 48px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--c-yellow);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+.text-panel.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    border-color: var(--c-yellow);
 }
 
-.enclave-feature-text h4 {
+.text-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.text-panel .step-num {
+    display: block;
+    font-family: var(--font-mono);
+    color: var(--c-yellow);
+    font-size: 0.875rem;
+    margin: 0;
+    font-weight: 700;
+}
+
+.text-panel .step-icon {
+    color: var(--c-yellow);
+    opacity: 0.8;
+}
+
+.text-panel h3 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
     color: var(--c-white);
+}
+
+.text-panel p {
     font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--c-gray);
+    margin: 0;
+}
+
+/* Invisible scroll triggers */
+.scroll-triggers {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    pointer-events: none;
+}
+
+.trigger {
+    height: 33.33%;
+}
+
+
+
+/* --- ARCHITECTURE DIAGRAM (SVG) --- */
+.architecture-diagram {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    color: var(--c-white);
+}
+
+.arch-box rect {
+    fill: #1a1a1a;
+    stroke: var(--c-gray-dark);
+    stroke-width: 2;
+    transition: all 0.5s ease;
+}
+
+.arch-box.inner rect {
+    fill: #222;
+}
+
+.arch-box.inner-model rect {
+    fill: #2a2a2a;
+}
+
+.arch-text {
+    fill: var(--c-white);
+    font-family: var(--font-mono);
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.arch-text-header {
+    fill: var(--c-gray);
+    font-family: var(--font-mono);
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
     font-weight: 700;
     margin-bottom: 0.5rem;
+}
+
+.arrow-text {
+    fill: var(--c-gray);
+    font-family: var(--font-mono);
+    font-size: 14px;
+}
+
+.arch-arrows path,
+.arch-external path {
+    stroke: var(--c-gray-dark);
+    stroke-width: 2;
+    fill: none;
+}
+
+/* Highlight State for SVG boxes */
+.arch-box.highlighted>rect {
+    stroke: var(--c-yellow) !important;
+    stroke-width: 3 !important;
+    fill: rgba(250, 204, 21, 0.1) !important;
+    filter: drop-shadow(0 0 15px rgba(250, 204, 21, 0.4));
+}
+
+.arch-box.highlighted .arch-text,
+.arch-box.highlighted .arch-text-header {
+    fill: var(--c-yellow);
 }
 
 .enclave-feature-text p {
@@ -2228,7 +2357,7 @@ p {
     margin: 0;
 }
 
-/* --- INTEGRATION WORKFLOW SECTION --- */
+
 .integration-header {
     margin-bottom: 4rem;
 }

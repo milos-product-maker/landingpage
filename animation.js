@@ -1,66 +1,106 @@
 
 // animation.js
 document.addEventListener('DOMContentLoaded', () => {
+    // --- HERO ANIMATION (Three.js) ---
     const container = document.getElementById('hero-animation');
-    if (!container) return;
+    if (container) {
+        // SCENE
+        const scene = new THREE.Scene();
 
-    // SCENE
-    const scene = new THREE.Scene();
-    // scene.fog = new THREE.FogExp2(0x000000, 0.002); // Optional fog
+        // CAMERA
+        const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+        camera.position.z = 1.8;
 
-    // CAMERA
-    const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
-    camera.position.z = 1.8; // Zoom level
+        // RENDERER
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        container.appendChild(renderer.domElement);
 
-    // RENDERER
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-    renderer.setSize(container.clientWidth, container.clientHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
-    container.appendChild(renderer.domElement);
+        // GEOMETRY
+        const geometry = new THREE.IcosahedronGeometry(0.9, 4);
 
-    // GEOMETRY
-    // Increased detail level to 3 (or 4) for smoother/more polygons
-    // IcosahedronGeometry(radius, detail) - detail > 1 makes it rounder
-    const geometry = new THREE.IcosahedronGeometry(0.9, 4);
+        // MATERIAL
+        const material = new THREE.MeshBasicMaterial({
+            color: 0xffea00,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.8,
+            wireframeLinewidth: 2,
+        });
 
-    // MATERIAL
-    const material = new THREE.MeshBasicMaterial({
-        color: 0xffea00, // Brighter Vivid Yellow
-        wireframe: true,
-        transparent: true,
-        opacity: 0.8, // High opacity for brightness
-        wireframeLinewidth: 2, // Thicker lines
-    });
+        // MESH
+        const sphere = new THREE.Mesh(geometry, material);
+        sphere.position.x = -2;
+        scene.add(sphere);
 
-    // MESH
-    const sphere = new THREE.Mesh(geometry, material);
-    sphere.position.x = -2;
-    scene.add(sphere);
+        // ANIMATION LOOP
+        function animate() {
+            requestAnimationFrame(animate);
+            sphere.rotation.y += 0.0005;
+            sphere.rotation.x += 0.0002;
+            renderer.render(scene, camera);
+        }
+        animate();
 
-    // REMOVED SECONDARY SPHERE to fix the "two globes" look
-    // If you want a subtle glow effect instead, usage of shaders or post-processing would be better,
-    // but for now, a single high-poly wireframe is cleanest.
-
-
-    // ANIMATION LOOP
-    function animate() {
-        requestAnimationFrame(animate);
-
-        sphere.rotation.y += 0.0005;
-        sphere.rotation.x += 0.0002;
-
-        renderer.render(scene, camera);
+        // RESIZE HANDLE
+        window.addEventListener('resize', () => {
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+            renderer.setSize(width, height);
+        });
     }
-    animate();
 
-    // RESIZE HANDLE
-    window.addEventListener('resize', () => {
-        const width = container.clientWidth;
-        const height = container.clientHeight;
+    // --- SCROLLYTELLING LOGIC (always runs) ---
+    const triggers = document.querySelectorAll('.trigger');
+    const textPanels = document.querySelectorAll('.text-panel');
+    const svgElements = {
+        'tee-box': document.getElementById('tee-box'),
+        'evaluator-box': document.getElementById('evaluator-box'),
+        'verifier-box': document.getElementById('verifier-box')
+    };
 
-        camera.aspect = width / height;
-        camera.updateProjectionMatrix();
+    // Set first panel as active by default
+    if (textPanels.length > 0) {
+        textPanels[0].classList.add('active');
+    }
+    if (svgElements['tee-box']) {
+        svgElements['tee-box'].classList.add('highlighted');
+    }
 
-        renderer.setSize(width, height);
-    });
+    if (triggers.length > 0) {
+        const observerOptions = {
+            root: null,
+            rootMargin: '-40% 0px -40% 0px',
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const highlightId = entry.target.getAttribute('data-highlight');
+                    const panelId = entry.target.getAttribute('data-panel');
+
+                    // Update text panels
+                    textPanels.forEach(p => p.classList.remove('active'));
+                    const activePanel = document.getElementById(panelId);
+                    if (activePanel) {
+                        activePanel.classList.add('active');
+                    }
+
+                    // Update SVG highlights
+                    Object.values(svgElements).forEach(el => {
+                        if (el) el.classList.remove('highlighted');
+                    });
+                    if (svgElements[highlightId]) {
+                        svgElements[highlightId].classList.add('highlighted');
+                    }
+                }
+            });
+        }, observerOptions);
+
+        triggers.forEach(trigger => observer.observe(trigger));
+    }
 });
