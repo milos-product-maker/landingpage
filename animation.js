@@ -57,9 +57,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const triggers = document.querySelectorAll('.trigger');
     const textPanels = document.querySelectorAll('.text-panel');
     const svgElements = {
-        'tee-box': document.getElementById('tee-box'),
-        'evaluator-box': document.getElementById('evaluator-box'),
-        'verifier-box': document.getElementById('verifier-box')
+        'tee-box': [document.getElementById('tee-box'), document.getElementById('sovereign-container-group')],
+        'evaluator-box': [document.getElementById('evaluator-box')],
+        'verifier-box': [document.getElementById('verifier-box'), document.getElementById('verification-group')]
     };
 
     // Set first panel as active by default
@@ -67,7 +67,9 @@ document.addEventListener('DOMContentLoaded', () => {
         textPanels[0].classList.add('active');
     }
     if (svgElements['tee-box']) {
-        svgElements['tee-box'].classList.add('highlighted');
+        svgElements['tee-box'].forEach(el => {
+            if (el) el.classList.add('highlighted');
+        });
     }
 
     if (triggers.length > 0) {
@@ -91,11 +93,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
 
                     // Update SVG highlights
-                    Object.values(svgElements).forEach(el => {
-                        if (el) el.classList.remove('highlighted');
+                    Object.values(svgElements).forEach(els => {
+                        els.forEach(el => {
+                            if (el) el.classList.remove('highlighted');
+                        });
                     });
                     if (svgElements[highlightId]) {
-                        svgElements[highlightId].classList.add('highlighted');
+                        svgElements[highlightId].forEach(el => {
+                            if (el) el.classList.add('highlighted');
+                        });
                     }
                 }
             });

@@ -2350,6 +2350,18 @@ p {
     fill: var(--c-yellow);
 }
 
+/* Highlight arrows and their labels */
+#verification-group.highlighted path,
+#sovereign-container-group.highlighted path {
+    stroke: var(--c-yellow) !important;
+    marker-end: url(#arrowhead-yellow) !important;
+}
+
+#verification-group.highlighted .arrow-text,
+#sovereign-container-group.highlighted .arrow-text {
+    fill: var(--c-yellow) !important;
+}
+
 .enclave-feature-text p {
     font-size: 0.95rem;
     color: var(--c-gray);
