@@ -2111,9 +2111,6 @@ p {
 
 
 .scrolly-diagram {
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid var(--c-border);
-    border-radius: 1.5rem;
     padding: 1.5rem;
 }
 
@@ -2130,20 +2127,32 @@ p {
     right: 0;
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
+    transition: all 0.5s ease;
     pointer-events: none;
-    background: var(--c-card);
-    border: 1px solid var(--c-border);
+
+    background: linear-gradient(180deg, rgba(30, 29, 20, 1) 0%, rgba(10, 10, 10, 1) 100%);
+    background-image:
+        radial-gradient(circle at 50% 0%, rgba(250, 204, 21, 0.15) 0%, transparent 60%),
+        linear-gradient(180deg, #121212 0%, #000000 100%);
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 2.5rem;
-    border-radius: 1.5rem;
+    border-radius: 0;
+    /* Match sharp grid look of compliance cards */
     text-align: left;
+    overflow: hidden;
 }
 
 .text-panel.active {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
-    border-color: var(--c-yellow);
+    background: linear-gradient(180deg, rgba(40, 38, 25, 1) 0%, rgba(20, 20, 20, 1) 100%);
+    background-image:
+        radial-gradient(circle at 50% 0%, rgba(250, 204, 21, 0.25) 0%, transparent 70%),
+        linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
+    box-shadow: inset 0 0 0 1px rgba(250, 204, 21, 0.3);
+    border-color: rgba(250, 204, 21, 0.4);
 }
 
 .text-panel-header {
@@ -2168,15 +2177,18 @@ p {
 }
 
 .text-panel h3 {
-    font-size: 1.75rem;
-    margin-bottom: 1rem;
+    font-family: var(--font-mono);
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
     color: var(--c-white);
+    letter-spacing: -0.01em;
 }
 
 .text-panel p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: var(--c-gray);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #a1a1aa;
     margin: 0;
 }
 
@@ -2205,18 +2217,18 @@ p {
 }
 
 .arch-box rect {
-    fill: #1a1a1a;
+    fill: transparent;
     stroke: var(--c-gray-dark);
     stroke-width: 2;
     transition: all 0.5s ease;
 }
 
 .arch-box.inner rect {
-    fill: #222;
+    fill: transparent;
 }
 
 .arch-box.inner-model rect {
-    fill: #2a2a2a;
+    fill: transparent;
 }
 
 .arch-text {
