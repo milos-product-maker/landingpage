@@ -195,32 +195,30 @@
 
             <div class="grid-3">
                 <div class="card card-dark">
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <!-- Custom Bold Hexagon Cube -->
-                        <path
-                            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-                        <path d="M3.27 6.96L12 12.01L20.73 6.96" />
-                        <path d="M12 22.08V12" />
+                    <svg class="icon" viewBox="0 0 100 100" fill="none">
+                        <path d="M50 15 L85 32.5 V67.5 L50 85 L15 67.5 V32.5 L50 15 Z" stroke="white" stroke-width="4"
+                            stroke-linejoin="round" />
+                        <path d="M25 40 L50 55 L75 40 M50 55 V85" stroke="white" stroke-width="3" />
+                        <path d="M50 35 L70 45 L50 55 L30 45 Z" fill="#facc15" />
                     </svg>
                     <h3>Opaque Execution</h3>
                     <p>Enterprises cannot verify if your cloud is running the exact model and weights they paid for.</p>
                 </div>
                 <div class="card card-dark">
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <!-- Custom Bold Grid Globe -->
-                        <circle cx="12" cy="12" r="10" />
-                        <line x1="2" y1="12" x2="22" y2="12" />
-                        <path
-                            d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                        <line x1="12" y1="2" x2="12" y2="22" />
+                    <svg class="icon" viewBox="0 0 100 100" fill="none">
+                        <circle cx="50" cy="50" r="40" stroke="white" stroke-width="4" />
+                        <path d="M20 50 H80 M50 10 V90" stroke="white" stroke-width="2" opacity="0.5" />
+                        <circle cx="50" cy="50" r="25" fill="#facc15" />
                     </svg>
                     <h3>Data Sovereignty</h3>
                     <p>Clients need physics-based proof of where their data is processed, not just legal agreements.</p>
                 </div>
                 <div class="card card-dark">
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <!-- Custom Bold Shield -->
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    <svg class="icon" viewBox="0 0 100 100" fill="none">
+                        <path d="M50 15 L85 25 V55 C85 75 50 90 50 90 C 50 90 15 75 15 55 V25 L50 15 Z" stroke="white"
+                            stroke-width="4" stroke-linejoin="round" />
+                        <path d="M50 35 L65 45 V65 C65 75 50 82 50 82 C 50 82 35 75 35 65 V45 L50 35 Z"
+                            fill="#facc15" />
                     </svg>
                     <h3>Regulatory Paralysis</h3>
                     <p>GDPR, ITAR, and HIPAA compliance blocks high-value workloads from moving to commodity clouds.</p>
@@ -719,26 +717,10 @@
                     <div class="compliance-graphic">
                         <!-- Finance Graphic (Bars + Coins/Pie) -->
                         <svg viewBox="0 0 200 200" fill="none" class="graphic-svg">
-                            <!-- Background Graph Line -->
-                            <path d="M20 120 L60 90 L100 130 L160 50" stroke="white" stroke-width="2"
-                                stroke-opacity="0.5" />
-                            <path d="M20 125 L60 95 L100 135 L160 55" stroke="#facc15" stroke-width="2" />
-
-                            <!-- Bar Chart Columns -->
-                            <rect x="30" y="100" width="25" height="60" rx="2" fill="#facc15" />
-                            <rect x="70" y="70" width="25" height="90" rx="2" fill="#facc15" />
-                            <rect x="110" y="110" width="25" height="50" rx="2" fill="#facc15" />
-
-                            <!-- Stacked Coins Foreground -->
-                            <ellipse cx="150" cy="150" rx="25" ry="10" fill="white" stroke="#111" stroke-width="2" />
-                            <path d="M125 150 v20 c0 6 11 10 25 10 s25 -4 25 -10 v-20" fill="white" stroke="#111"
-                                stroke-width="2" />
-                            <ellipse cx="150" cy="170" rx="25" ry="10" fill="white" stroke="#111" stroke-width="2" />
-
-                            <ellipse cx="160" cy="130" rx="25" ry="10" fill="#facc15" stroke="#111" stroke-width="2" />
-                            <path d="M135 130 v20 c0 6 11 10 25 10 s25 -4 25 -10 v-20" fill="#facc15" stroke="#111"
-                                stroke-width="2" />
-                            <ellipse cx="160" cy="150" rx="25" ry="10" fill="#facc15" stroke="#111" stroke-width="2" />
+                            <path d="M40 140 L80 80 L120 110 L160 40" stroke="#facc15" stroke-width="6"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <rect x="140" y="120" width="30" height="40" rx="4" fill="#facc15" />
+                            <rect x="100" y="130" width="30" height="30" rx="4" fill="white" />
                         </svg>
                     </div>
                 </div>
@@ -752,16 +734,9 @@
                     <div class="compliance-graphic">
                         <!-- Healthcare Graphic (Cross + Stethoscope) -->
                         <svg viewBox="0 0 200 200" fill="none" class="graphic-svg">
-                            <!-- Stethoscope Cord -->
-                            <path d="M160 40 Q 190 60 180 100 T 140 160 Q 100 190 60 160" stroke="#facc15"
-                                stroke-width="3" fill="none" />
-                            <circle cx="50" cy="150" r="15" fill="#facc15" stroke="white" stroke-width="4" />
-
-                            <!-- Medical Cross -->
-                            <path d="M80 60 h40 v-40 h40 v40 h40 v40 h-40 v40 h-40 v-40 h-40 z" fill="white"
-                                stroke="white" stroke-width="4" transform="translate(-20, 20) scale(0.8)" />
-                            <path d="M80 60 h40 v-40 h40 v40 h40 v40 h-40 v40 h-40 v-40 h-40 z" fill="none"
-                                stroke="#111" stroke-width="2" transform="translate(-20, 20) scale(0.8)" />
+                            <circle cx="100" cy="100" r="70" stroke="white" stroke-width="4" />
+                            <path d="M100 60 V140 M60 100 H140" stroke="#facc15" stroke-width="12"
+                                stroke-linecap="round" />
                         </svg>
                     </div>
                 </div>
@@ -775,24 +750,9 @@
                     <div class="compliance-graphic">
                         <!-- Government Graphic (Capitol Dome) -->
                         <svg viewBox="0 0 200 200" fill="none" class="graphic-svg">
-                            <!-- Steps -->
-                            <rect x="20" y="150" width="160" height="10" fill="white" />
-                            <rect x="10" y="160" width="180" height="10" fill="white" />
-
-                            <!-- Columns -->
-                            <rect x="30" y="100" width="10" height="50" fill="white" />
-                            <rect x="50" y="100" width="10" height="50" fill="white" />
-                            <rect x="70" y="100" width="10" height="50" fill="white" />
-                            <rect x="90" y="100" width="10" height="50" fill="white" />
-                            <rect x="110" y="100" width="10" height="50" fill="white" />
-                            <rect x="130" y="100" width="10" height="50" fill="white" />
-                            <rect x="150" y="100" width="10" height="50" fill="white" />
-
-                            <!-- Dome -->
-                            <path d="M40 100 L160 100 L100 40 Z" fill="#facc15" /> <!-- Triangle Pediment -->
-                            <path d="M70 40 h60 v-10 q 0 -30 -30 -30 q -30 0 -30 30 z" fill="#facc15" stroke="white"
-                                stroke-width="2" /> <!-- Dome -->
-                            <line x1="100" y1="0" x2="100" y2="15" stroke="white" stroke-width="2" /> <!-- Spire -->
+                            <path d="M40 140 H160 M60 140 V90 M100 140 V90 M140 140 V90" stroke="white" stroke-width="6"
+                                stroke-linecap="round" />
+                            <path d="M100 30 C 70 30 50 60 50 90 H 150 C 150 60 130 30 100 30 Z" fill="#facc15" />
                         </svg>
                     </div>
                 </div>
@@ -806,17 +766,10 @@
                     <div class="compliance-graphic">
                         <!-- Defence Graphic (Shield + Globe) -->
                         <svg viewBox="0 0 200 200" fill="none" class="graphic-svg">
-                            <!-- Shield Outline -->
                             <path
-                                d="M100 20 C 100 20, 180 40, 180 100 C 180 160, 100 190, 100 190 C 100 190, 20 160, 20 100 C 20 40, 100 20, 100 20 Z"
-                                fill="none" stroke="white" stroke-width="8" />
-
-                            <!-- Globe Grid Inside -->
-                            <circle cx="100" cy="100" r="50" fill="#facc15" stroke="#111" stroke-width="2" />
-                            <ellipse cx="100" cy="100" rx="50" ry="20" fill="none" stroke="#111" stroke-width="2" />
-                            <ellipse cx="100" cy="100" rx="20" ry="50" fill="none" stroke="#111" stroke-width="2" />
-                            <line x1="50" y1="100" x2="150" y2="100" stroke="#111" stroke-width="2" />
-                            <line x1="100" y1="50" x2="100" y2="150" stroke="#111" stroke-width="2" />
+                                d="M100 30 L160 50 V110 C160 150 100 180 100 180 C 100 180 40 150 40 110 V50 L100 30 Z"
+                                stroke="white" stroke-width="4" stroke-linejoin="round" />
+                            <circle cx="100" cy="100" r="35" fill="#facc15" />
                         </svg>
                     </div>
                 </div>
