@@ -131,19 +131,24 @@ section {
 
 
 
-/* Grids (Home) */
+/* Grids (Home & General) */
 .grid-3,
 .grid-4 {
     display: grid;
     gap: 0;
-    /* No gaps for fused border look */
     width: 100%;
     margin-top: 3rem;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 1rem;
-    /* Match compliance-grid radius */
     background-color: transparent;
     overflow: hidden;
+}
+
+/* Subpage Specific Grid Adjustments (Avoid fused look if desired, or add internal breathing room) */
+.page-solution .grid-3,
+.page-solution .grid-4 {
+    gap: 1px;
+    /* Subtle line between cards */
 }
 
 .grid-3 {
@@ -160,6 +165,14 @@ section {
     gap: 6rem;
     align-items: center;
     margin-top: 2rem;
+}
+
+/* Subpage Grid Alignment Fix */
+.page-solution .industry-grid,
+.page-solution .solution-grid,
+.page-industry .industry-grid,
+.page-industry .solution-grid {
+    text-align: left;
 }
 
 /* --- TYPOGRAPHY --- */
@@ -241,6 +254,54 @@ p {
 .pill-light {
     background: rgba(255, 255, 255, 0.1);
     color: var(--c-white);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* --- UTILITY CLASSES: SPACING --- */
+.py-120 {
+    padding: 120px 0;
+}
+
+.py-160 {
+    padding: 160px 0;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.mt-40 {
+    margin-top: 40px;
+}
+
+.mt-60 {
+    margin-top: 60px;
+}
+
+.mt-80 {
+    margin-top: 80px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.mb-40 {
+    margin-bottom: 40px;
+}
+
+/* --- COMPONENTS: CHECKLISTS --- */
+.check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.check-icon {
+    color: var(--c-yellow);
+    flex-shrink: 0;
+    margin-top: 4px;
 }
 
 /* --- NAVIGATION --- */
@@ -360,6 +421,35 @@ p {
     /* Common card styles if any, Insights overrides below */
 }
 
+/* Premium Mechanism Card (Solutions/Industries) */
+.mechanism-card {
+    background: linear-gradient(180deg, rgba(30, 29, 20, 1) 0%, rgba(10, 10, 10, 1) 100%);
+    background-image:
+        radial-gradient(circle at 50% 0%, rgba(250, 204, 21, 0.1) 0%, transparent 70%),
+        linear-gradient(180deg, #121212 0%, #000000 100%);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-left: 4px solid var(--c-yellow);
+    padding: 2.5rem;
+    border-radius: 0 24px 24px 0;
+    text-align: left;
+    transition: all 0.3s ease;
+}
+
+.mechanism-card:hover {
+    background-image:
+        radial-gradient(circle at 50% 0%, rgba(250, 204, 21, 0.15) 0%, transparent 70%),
+        linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
+    border-color: rgba(250, 204, 21, 0.2);
+}
+
+.mechanism-card h4 {
+    color: var(--c-white);
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
 /* Home Page Cards (Redesigned) */
 .card-dark {
     background: linear-gradient(180deg, rgba(30, 29, 20, 1) 0%, rgba(10, 10, 10, 1) 100%);
@@ -377,9 +467,13 @@ p {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
     position: relative;
-    /* For z-index */
+}
+
+/* Padding fix for text-only cards */
+.card-dark:not(:has(.card-thumb)) {
+    padding: 4rem 3rem;
 }
 
 /* Remove right border from last item in the row */
@@ -2424,6 +2518,30 @@ p {
     padding-top: 3rem;
 }
 
+/* Compact version for compliance standards */
+.stats-row.is-compliance {
+    gap: 4rem;
+    margin-top: 4rem;
+    padding-top: 2.5rem;
+}
+
+.stats-row.is-compliance .stat-val {
+    font-size: 2rem;
+    margin-bottom: 0.25rem;
+}
+
+.stats-row.is-compliance .stat-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+}
+
+.stats-row.is-compliance .stat-desc {
+    font-size: 0.8rem;
+    line-height: 1.4;
+    max-width: 180px;
+    margin: 0 auto;
+}
+
 .stat-item {
     text-align: center;
 }
@@ -3970,4 +4088,159 @@ p {
     .cta-title {
         font-size: 2.5rem !important;
     }
+}
+
+/* --- SOLUTIONS & INDUSTRIES SECTIONS --- */
+.clickable-card {
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.clickable-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(250, 204, 21, 0.1);
+}
+
+.card-thumb {
+    width: calc(100% + 5rem);
+    height: 180px;
+    /* Slightly taller for better aspect ratio */
+    object-fit: cover;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 2rem;
+    margin-top: -3rem;
+    margin-left: -2.5rem;
+}
+
+/* If card-thumb is just a number/indicator (like on subpages) */
+.card-thumb:not(img) {
+    height: auto;
+    width: auto;
+    margin-top: 0;
+    margin-left: 0;
+    border-bottom: none;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--c-yellow);
+    opacity: 0.5;
+    margin-bottom: 1rem;
+}
+
+.graphic-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.compliance-card:hover .graphic-img {
+    opacity: 1;
+}
+
+.compliance-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.compliance-card {
+    background: #111;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: all 0.3s;
+}
+
+.compliance-card:hover {
+    border-color: var(--c-yellow);
+    background: #18181b;
+}
+
+.compliance-content {
+    padding: 2rem;
+    flex-grow: 1;
+}
+
+.compliance-graphic {
+    height: 200px;
+    background: #000;
+    position: relative;
+    overflow: hidden;
+}
+
+/* --- NAVIGATION DROPDOWNS --- */
+.nav-item-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: #0a0a0a;
+    border: 1px solid var(--c-border);
+    border-radius: 12px;
+    padding: 1rem 0;
+    min-width: 240px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+}
+
+.dropdown-menu::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 12px;
+    height: 12px;
+    background: #0a0a0a;
+    border-top: 1px solid var(--c-border);
+    border-left: 1px solid var(--c-border);
+}
+
+.nav-item-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.dropdown-link {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.85rem;
+    font-family: var(--font-mono);
+    color: var(--c-gray);
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.dropdown-link:hover {
+    color: var(--c-yellow);
+    background: rgba(250, 204, 21, 0.05);
+    padding-left: 1.75rem;
+}
+
+.nav-link.has-dropdown::after {
+    content: '▾';
+    margin-left: 6px;
+    font-size: 0.7rem;
+    opacity: 0.5;
+    transition: transform 0.3s ease;
+}
+
+.nav-item-dropdown:hover .nav-link.has-dropdown::after {
+    transform: rotate(180deg);
+    opacity: 1;
 }
