@@ -4134,45 +4134,6 @@ p {
     transition: opacity 0.3s;
 }
 
-.compliance-card:hover .graphic-img {
-    opacity: 1;
-}
-
-.compliance-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    width: 100%;
-}
-
-.compliance-card {
-    background: #111;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 1rem;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    transition: all 0.3s;
-}
-
-.compliance-card:hover {
-    border-color: var(--c-yellow);
-    background: #18181b;
-}
-
-.compliance-content {
-    padding: 2rem;
-    flex-grow: 1;
-}
-
-.compliance-graphic {
-    height: 200px;
-    background: #000;
-    position: relative;
-    overflow: hidden;
-}
-
 /* --- NAVIGATION DROPDOWNS --- */
 .nav-item-dropdown {
     position: relative;
