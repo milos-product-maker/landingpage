@@ -313,16 +313,17 @@
                 <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
                     <div class="text-xs font-bold text-lucid-accent uppercase tracking-wider mb-2">Pillar 1: Sovereignty
                     </div>
-                    <h3 class="text-xl font-bold text-lucid-900 mb-4">Network Triangulation</h3>
+                    <h3 class="text-xl font-bold text-lucid-900 mb-4">Location Attestation</h3>
                     <p class="text-sm text-gray-500 mb-4 h-12">
-                        We use secure ping-based delays from multiple TEE verifiers to prove the physical location of
+                        We use speed-of-light constraints (RTT) from multiple TEE verifiers to prove the physical
+                        location of
                         the workload, countering VPN spoofing.
                     </p>
                     <div class="chart-container h-48">
                         <canvas id="locationChart"></canvas>
                     </div>
                     <div class="mt-4 text-xs text-gray-400">
-                        Source: ICDC 2025 Submission. Proves location within country borders.
+                        Source: ICDC 2025. Proves hardware-rooted residency via network latency.
                     </div>
                 </div>
 
@@ -330,16 +331,16 @@
                 <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
                     <div class="text-xs font-bold text-lucid-accent uppercase tracking-wider mb-2">Pillar 2: Integrity
                     </div>
-                    <h3 class="text-xl font-bold text-lucid-900 mb-4">Attestable Audits</h3>
+                    <h3 class="text-xl font-bold text-lucid-900 mb-4">Model Fingerprinting</h3>
                     <p class="text-sm text-gray-500 mb-4 h-12">
-                        Safety benchmarks run inside the TEE. We verify the model's responses against standard datasets
-                        (MMLU) without leaking weights.
+                        Verify model identity via Input-Output Fingerprinting and run safety benchmarks (MMLU) inside
+                        the TEE without leaking weights.
                     </p>
                     <div class="chart-container h-48">
                         <canvas id="auditChart"></canvas>
                     </div>
                     <div class="mt-4 text-xs text-gray-400">
-                        Source: arXiv:2506.23706v1. Verified accuracy & toxicity scores.
+                        Source: ICDC 2025. Cryptographic seal of governance for AI model integrity.
                     </div>
                 </div>
 

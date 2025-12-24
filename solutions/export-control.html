@@ -83,15 +83,15 @@
             <div class="solution-grid">
                 <div class="solution-content">
                     <span class="pill pill-dark">The Strategic Context</span>
-                    <h2>Immutable Compliance Monitoring</h2>
-                    <p class="text-white-50">Advanced AI chips (e.g., Nvidia H100s) face increasingly strict export
-                        controls. The current licensing process is slow and manual, requiring intrusive on-site
-                        inspections and "end-use" promises that are difficult to verify. This regulatory friction kills
-                        international deals and creates multi-month delays.</p>
-                    <p class="text-white-50 mt-20">Lucid replaces manual inspections with immutable, hardware-rooted
-                        compliance monitoring. By tying chip usage to specific authorized workloads and geographic
-                        coordinates via TEEs, we provide regulators (like BIS) with the technical assurance they need to
-                        fast-track licenses.</p>
+                    <h2>Zero-Overhead Compliance</h2>
+                    <p class="text-white-50">Advanced AI clusters face strict export controls, but current audit methods
+                        are failing. Manual "pen and paper" inspections are too slow for 100,000+ chip sites, while
+                        hardware-heavy solutions like GPS are expensive and easy to spoof. This regulatory friction
+                        stalls deployments and creates massive operational overhead.</p>
+                    <p class="text-white-50 mt-20">Lucid replaces disruptive audits with real-time, network-rooted
+                        compliance. By leveraging existing infrastructure for cryptographic verification, we provide
+                        continuous proof of location and end-use for large-scale clusters—with zero impact on
+                        performance.</p>
                 </div>
                 <div class="mechanism-card">
                     <h4>The Technical Mechanism</h4>
@@ -102,10 +102,10 @@
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
                             <div>
-                                <strong>Silicon Geo-Locking:</strong>
-                                <p class="small text-white-50">Silicon-rooted location verification ensures that
-                                    hardware
-                                    only functions within authorized jurisdictions.</p>
+                                <strong>Network-Rooted Truth:</strong>
+                                <p class="small text-white-50">Continuous verification via existing network
+                                    infrastructure, providing spoof-proof location and identity without new hardware.
+                                </p>
                             </div>
                         </div>
                         <div class="check-item">
@@ -114,9 +114,9 @@
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
                             <div>
-                                <strong>Workload Hashing:</strong>
-                                <p class="small text-white-50">The chip only executes workloads with pre-authorized
-                                    cryptographic hashes, preventing prohibited training.</p>
+                                <strong>Workload Identity:</strong>
+                                <p class="small text-white-50">Cryptographic assurance that only approved model
+                                    architectures are being trained or served, satisfying end-use requirements.</p>
                             </div>
                         </div>
                         <div class="check-item">
@@ -125,9 +125,9 @@
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
                             <div>
-                                <strong>Cryptographic Kill Switch:</strong>
-                                <p class="small text-white-50">Instant data and key wipe upon detection of tampering or
-                                    geographic violations.</p>
+                                <strong>Zero-Overhead Monitoring:</strong>
+                                <p class="small text-white-50">Real-time compliance monitoring for clusters of 100,000+
+                                    chips with zero impact on compute performance.</p>
                             </div>
                         </div>
                     </div>
@@ -146,22 +146,21 @@
             <div class="grid-3 mt-60">
                 <div class="card card-dark">
                     <div class="stat-val">Zero</div>
-                    <div class="stat-label">Inspection Friction</div>
-                    <p class="text-white-50 small">Replace intrusive on-site physical inspections with continuous,
-                        hardware-rooted cryptographic proof of use.</p>
+                    <div class="stat-label">Performance Overhead</div>
+                    <p class="text-white-50 small">Continuous compliance monitoring that runs alongside workloads
+                        without consuming compute cycles or increasing latency.</p>
                 </div>
                 <div class="card card-dark">
-                    <div class="stat-val">Real-Time</div>
-                    <div class="stat-label">End-Use Verification</div>
-                    <p class="text-white-50 small">Gain continuous visibility into workload execution and model
-                        identity,
-                        satisfying end-use requirements of BIS and OFAC automatically.</p>
+                    <div class="stat-val">100k+</div>
+                    <div class="stat-label">Chip Scalability</div>
+                    <p class="text-white-50 small">Designed for massive AI clusters, replacing manual inspections with
+                        automated, network-rooted verification at scale.</p>
                 </div>
                 <div class="card card-dark">
                     <div class="stat-val">100%</div>
-                    <div class="stat-label">Policy Enforcement</div>
-                    <p class="text-white-50 small">Convert legal export policies into technical hardware restrictions
-                        that cannot be bypassed.</p>
+                    <div class="stat-label">Audit Accuracy</div>
+                    <p class="text-white-50 small">Eliminate the risk of spoofing or human error with immutable,
+                        hardware-rooted logs of all chip activity.</p>
                 </div>
             </div>
 
@@ -173,8 +172,8 @@
                 </div>
                 <div class="stat-item">
                     <div class="stat-val">ITAR</div>
-                    <div class="stat-label">Arms Trafficking</div>
-                    <div class="stat-desc">Control for military and <br>defense technologies.</div>
+                    <div class="stat-label">Safe Harbor</div>
+                    <div class="stat-desc">End-to-end encryption with <br>TEE-protected processing (§ 120.54).</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-val">OFAC</div>
