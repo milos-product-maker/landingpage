@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lucid Computing | Developer Onboarding & Verification SDK</title>
+    <title>Lucid Computing | Verification Tutorial</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link
@@ -103,42 +103,27 @@
             animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
     </style>
-    <!-- Chosen Palette: "Warm Logic" - Grounded in #fdfbf7 (Paper) for the background to denote documentation/research roots, with #111827 (Dark Charcoal) for strong contrast in typography and terminal elements, and #2563eb (Royal Blue) as the trusted accent. -->
-    <!-- Application Structure Plan:
-         1. Hero Section: Value Prop ("Hardware-Rooted Trust").
-         2. Interactive "Happy Path" Pipeline (Left Col: Steps, Right Col: Terminal/Visualizer):
-            - Step 1: Install (One-Liner).
-            - Step 2: Lucid Doctor (Environment Diagnosis).
-            - Step 3: Auth (Device Attestation).
-            - Step 4: Verification Loop (Action).
-            - Step 5: The Passport (Artifact).
-         3. Technical Deep Dive Dashboard (Bottom): 
-            - Charts visualizing the data behind the "Passport" (e.g., Latency Triangulation, Model Accuracy).
-    -->
-    <!-- Visualization & Content Choices:
-         - Terminal Emulator: Best way to show "Developer Experience" and CLI simplicity.
-         - Radar Chart (Chart.js): Visualizing the "Model Fingerprint" (Accuracy vs Toxicity vs Latency).
-         - Bar Chart (Chart.js): Visualizing "Location Proof" via network latency triangulation.
-         - Interactive Passport Card: The goal artifact.
-    -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
 </head>
 
 <body class="font-sans antialiased text-gray-800">
 
-    <!-- Navigation -->
     <nav class="border-b border-gray-200 bg-white/50 backdrop-blur-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex items-center gap-3">
-                    <img src="../lucid-logo.svg" alt="Lucid Logo" class="w-8 h-8">
-                    <span class="font-bold text-xl tracking-tight text-lucid-900">Lucid Computing <span
-                            class="font-normal text-lucid-500">Docs</span></span>
+                    <a href="../index.html" class="flex items-center gap-3">
+                        <div
+                            class="w-8 h-8 bg-lucid-900 rounded-lg flex items-center justify-center text-white font-mono font-bold">
+                            L</div>
+                        <span class="font-bold text-xl tracking-tight text-lucid-900">Lucid Computing <span
+                                class="font-normal text-lucid-500">Docs</span></span>
+                    </a>
                 </div>
                 <div class="flex items-center gap-6 text-sm font-medium text-gray-600">
-                    <a href="#" class="text-lucid-accent font-semibold">AI Passports</a>
-                    <a href="cluster-verification.html" class="hover:text-lucid-accent transition-colors">Cluster
-                        Verification</a>
+                    <a href="verification-tutorial.html" class="text-lucid-accent font-semibold">Verification
+                        Tutorial</a>
+                    <a href="configure-hardware.html" class="hover:text-lucid-accent transition-colors">Configure
+                        Hardware</a>
                     <button
                         class="bg-lucid-900 text-white px-4 py-2 rounded-md hover:bg-lucid-800 transition-colors">Log
                         In</button>
@@ -147,20 +132,20 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <header class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         <div class="max-w-3xl">
             <div
                 class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-semibold uppercase tracking-wide mb-6">
                 <span class="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
-                v2.1: Hardware-Rooted Trust Anchors
+                v2.1: Zero Trust Hardware Assurance
             </div>
             <h1 class="text-4xl sm:text-5xl font-bold text-lucid-900 leading-tight mb-6">
                 Create your <span class="text-lucid-accent">AI Passport</span> in 5 minutes.
             </h1>
             <p class="text-xl text-gray-600 mb-8 leading-relaxed">
-                Integrate cryptographic verification for location, identity, and model confidentiality.
-                Zero API keys. Zero complex config. Powered by Confidential Computing.
+                Move from soft observability to <span class="font-semibold text-lucid-900">Hard Assurance</span>.
+                Anchor your agent's Mandate, Identity, and Sustainability metrics to the immutable laws of physics and
+                silicon.
             </p>
             <div class="flex gap-4">
                 <button onclick="scrollToGuide()"
@@ -176,15 +161,24 @@
         </div>
     </header>
 
-    <!-- Interactive Onboarding Flow -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24" id="guide-section">
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
 
-            <!-- Left Column: The Narrative Steps -->
             <div class="lg:col-span-4 space-y-2">
 
-                <!-- Step 1 -->
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-8">
+                    <div class="flex items-start gap-2">
+                        <div class="text-blue-600 text-lg leading-none">ⓘ</div>
+                        <div>
+                            <p class="text-[11px] text-blue-800 leading-relaxed">
+                                <strong>Requirement:</strong> Ensure your cluster supports Confidential Computing
+                                (NVIDIA H100 or Intel TDX/SGX) before beginning.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
                 <div id="step-1-trigger"
                     class="step-card group cursor-pointer border-l-4 p-6 rounded-r-lg transition-all duration-300 step-active"
                     onclick="activateStep(1)">
@@ -194,79 +188,98 @@
                         Install CLI
                     </h3>
                     <p class="text-sm text-gray-600 leading-relaxed">
-                        One-line setup. The CLI is your bridge between local model artifacts and the Lucid Verifier
-                        Enclave.
+                        One-line setup. The CLI bridges your local model artifacts with the Lucid Verifier Enclave.
                     </p>
                 </div>
 
-                <!-- Step 2 -->
                 <div id="step-2-trigger"
                     class="step-card group cursor-pointer border-l-4 border-transparent hover:bg-gray-50 p-6 rounded-r-lg transition-all duration-300"
                     onclick="activateStep(2)">
                     <h3 class="font-semibold text-lg text-lucid-900 mb-2 flex items-center gap-2">
                         <span
                             class="w-6 h-6 rounded-full bg-gray-200 text-gray-600 text-xs flex items-center justify-center group-hover:bg-lucid-accent group-hover:text-white transition-colors">2</span>
-                        Lucid Doctor
+                        Define Mandate
                     </h3>
                     <p class="text-sm text-gray-600 leading-relaxed">
-                        We detect TEE capabilities (Nvidia H100/AMD SEV). If CC Mode is disabled, we'll configure it for
-                        you automatically.
+                        Create the "Power of Attorney". This registers the legal limits (e.g., "$1M Cap") and generates
+                        the Mandate ID.
                     </p>
                 </div>
 
-                <!-- Step 3 -->
                 <div id="step-3-trigger"
                     class="step-card group cursor-pointer border-l-4 border-transparent hover:bg-gray-50 p-6 rounded-r-lg transition-all duration-300"
                     onclick="activateStep(3)">
                     <h3 class="font-semibold text-lg text-lucid-900 mb-2 flex items-center gap-2">
                         <span
                             class="w-6 h-6 rounded-full bg-gray-200 text-gray-600 text-xs flex items-center justify-center group-hover:bg-lucid-accent group-hover:text-white transition-colors">3</span>
-                        Device Auth
+                        Link Mandate
                     </h3>
                     <p class="text-sm text-gray-600 leading-relaxed">
-                        <strong>No API keys.</strong> We use the TEE's hardware-signed attestation report to
-                        authenticate your session cryptographically.
+                        Bind the generated Mandate ID (`man_...`) to this specific hardware session.
                     </p>
                 </div>
 
-                <!-- Step 4 -->
                 <div id="step-4-trigger"
                     class="step-card group cursor-pointer border-l-4 border-transparent hover:bg-gray-50 p-6 rounded-r-lg transition-all duration-300"
                     onclick="activateStep(4)">
                     <h3 class="font-semibold text-lg text-lucid-900 mb-2 flex items-center gap-2">
                         <span
                             class="w-6 h-6 rounded-full bg-gray-200 text-gray-600 text-xs flex items-center justify-center group-hover:bg-lucid-accent group-hover:text-white transition-colors">4</span>
-                        Verify Model
+                        Config Sidecar
                     </h3>
                     <p class="text-sm text-gray-600 leading-relaxed">
-                        The core loop: Fingerprint weights, run performance audits (MMLU), and triangulate location via
-                        network delay.
+                        Configure the sidecar with the Mandate ID, governance profiles, and energy accounting.
                     </p>
                 </div>
 
-                <!-- Step 5 -->
                 <div id="step-5-trigger"
                     class="step-card group cursor-pointer border-l-4 border-transparent hover:bg-gray-50 p-6 rounded-r-lg transition-all duration-300"
                     onclick="activateStep(5)">
                     <h3 class="font-semibold text-lg text-lucid-900 mb-2 flex items-center gap-2">
                         <span
                             class="w-6 h-6 rounded-full bg-gray-200 text-gray-600 text-xs flex items-center justify-center group-hover:bg-lucid-accent group-hover:text-white transition-colors">5</span>
-                        Get Passport
+                        Deploy Agent
                     </h3>
                     <p class="text-sm text-gray-600 leading-relaxed">
-                        Receive a signed JSON artifact. Embed this verifiable badge in your UI to prove sovereignty to
-                        end-users.
+                        Deploy the Pod to your cluster. This triggers the TEE Cold Boot, loading the weights and
+                        generating the attestation quote.
+                    </p>
+                </div>
+
+                <div id="step-6-trigger"
+                    class="step-card group cursor-pointer border-l-4 border-transparent hover:bg-gray-50 p-6 rounded-r-lg transition-all duration-300"
+                    onclick="activateStep(6)">
+                    <h3 class="font-semibold text-lg text-lucid-900 mb-2 flex items-center gap-2">
+                        <span
+                            class="w-6 h-6 rounded-full bg-gray-200 text-gray-600 text-xs flex items-center justify-center group-hover:bg-lucid-accent group-hover:text-white transition-colors">6</span>
+                        Monitor Logs
+                    </h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        Stream live <strong>Signed Audit Events</strong>. Verify that policy checks and TEE evidence are
+                        correct.
+                    </p>
+                </div>
+
+                <div id="step-7-trigger"
+                    class="step-card group cursor-pointer border-l-4 border-transparent hover:bg-gray-50 p-6 rounded-r-lg transition-all duration-300"
+                    onclick="activateStep(7)">
+                    <h3 class="font-semibold text-lg text-lucid-900 mb-2 flex items-center gap-2">
+                        <span
+                            class="w-6 h-6 rounded-full bg-gray-200 text-gray-600 text-xs flex items-center justify-center group-hover:bg-lucid-accent group-hover:text-white transition-colors">7</span>
+                        Issue Passport
+                    </h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        Generate the final <strong>AI Passport</strong> artifact. This anchors the agent's identity and
+                        provenance to the ledger.
                     </p>
                 </div>
 
             </div>
 
-            <!-- Right Column: The "Machine" (Terminal & Visuals) -->
             <div class="lg:col-span-8">
                 <div
                     class="bg-lucid-900 rounded-xl shadow-2xl overflow-hidden flex flex-col h-[600px] border border-gray-700 relative">
 
-                    <!-- Window Controls -->
                     <div class="bg-gray-800 px-4 py-3 flex items-center gap-2 border-b border-gray-700 shrink-0">
                         <div class="w-3 h-3 rounded-full bg-red-500"></div>
                         <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
@@ -274,18 +287,14 @@
                         <div class="ml-4 text-xs text-gray-400 font-mono">dev@gpu-cluster-01:~</div>
                     </div>
 
-                    <!-- Content Area (Scrollable) -->
                     <div class="flex-1 overflow-y-auto p-6 font-mono text-sm terminal-scroll relative"
                         id="terminal-content">
 
-                        <!-- Dynamic Content Injected Here via JS -->
                         <div id="step-content-container" class="space-y-4">
-                            <!-- Initial State: Step 1 -->
                         </div>
 
                     </div>
 
-                    <!-- Floating Action Button (Simulates "Next") -->
                     <div class="absolute bottom-6 right-6">
                         <button id="next-btn" onclick="nextStep()"
                             class="bg-white text-lucid-900 hover:bg-gray-100 px-6 py-2 rounded-full font-bold shadow-lg transition-all flex items-center gap-2 transform hover:scale-105 active:scale-95">
@@ -297,79 +306,75 @@
             </div>
         </div>
 
-        <!-- Technical Deep Dive Section -->
         <div id="technical-deep-dive" class="mt-24 pt-16 border-t border-gray-200">
             <div class="mb-12">
-                <h2 class="text-3xl font-bold text-lucid-900 mb-4">Behind the Verification</h2>
+                <h2 class="text-3xl font-bold text-lucid-900 mb-4">The Four Pillars of Assurance</h2>
                 <p class="text-gray-600 max-w-2xl">
-                    Lucid's architecture rests on three pillars described in our research.
-                    Explore the data we collect to generate the Passport.
+                    Lucid’s platform validates the full stack, from the physics of the grid to the semantics of the law.
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 
-                <!-- Pillar 1: Location -->
-                <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
                     <div class="text-xs font-bold text-lucid-accent uppercase tracking-wider mb-2">Pillar 1: Sovereignty
                     </div>
-                    <h3 class="text-xl font-bold text-lucid-900 mb-4">Location Attestation</h3>
-                    <p class="text-sm text-gray-500 mb-4 h-12">
-                        We use speed-of-light constraints (RTT) from multiple TEE verifiers to prove the physical
-                        location of
-                        the workload, countering VPN spoofing.
+                    <h3 class="text-lg font-bold text-lucid-900 mb-2">Proof of Location</h3>
+                    <p class="text-xs text-gray-500 mb-4 h-10">
+                        Speed-of-light (RTT) triangulation proves physical residency, satisfying data export laws.
                     </p>
-                    <div class="chart-container h-48">
+                    <div class="chart-container h-32">
                         <canvas id="locationChart"></canvas>
                     </div>
-                    <div class="mt-4 text-xs text-gray-400">
-                        Source: ICDC 2025. Proves hardware-rooted residency via network latency.
-                    </div>
                 </div>
 
-                <!-- Pillar 2: Integrity -->
-                <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
                     <div class="text-xs font-bold text-lucid-accent uppercase tracking-wider mb-2">Pillar 2: Integrity
                     </div>
-                    <h3 class="text-xl font-bold text-lucid-900 mb-4">Model Fingerprinting</h3>
-                    <p class="text-sm text-gray-500 mb-4 h-12">
-                        Verify model identity via Input-Output Fingerprinting and run safety benchmarks (MMLU) inside
-                        the TEE without leaking weights.
+                    <h3 class="text-lg font-bold text-lucid-900 mb-2">Model Provenance</h3>
+                    <p class="text-xs text-gray-500 mb-4 h-10">
+                        Cryptographic hashes of weights and adapters prevent model downgrades or tampering.
                     </p>
-                    <div class="chart-container h-48">
+                    <div class="chart-container h-32">
                         <canvas id="auditChart"></canvas>
-                    </div>
-                    <div class="mt-4 text-xs text-gray-400">
-                        Source: ICDC 2025. Cryptographic seal of governance for AI model integrity.
                     </div>
                 </div>
 
-                <!-- Pillar 3: Confidentiality -->
-                <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
                     <div class="text-xs font-bold text-lucid-accent uppercase tracking-wider mb-2">Pillar 3:
                         Confidentiality</div>
-                    <h3 class="text-xl font-bold text-lucid-900 mb-4">Pod-as-TEE Architecture</h3>
-                    <p class="text-sm text-gray-500 mb-4">
-                        The workload runs in a Confidential Container. Memory is encrypted by the CPU. The "Passport" is
-                        only issued if the TEE report is valid.
+                    <h3 class="text-lg font-bold text-lucid-900 mb-2">Secure Enclaves</h3>
+                    <p class="text-xs text-gray-500 mb-4 h-10">
+                        Code executes in TEEs (TDX/SNP), invisible even to the host cloud provider.
                     </p>
                     <div
-                        class="bg-gray-50 rounded-lg p-4 border border-gray-200 h-48 flex flex-col justify-center items-center space-y-2">
-                        <div class="flex items-center gap-2 text-sm font-mono text-gray-600">
-                            <span class="px-2 py-1 bg-white border border-gray-300 rounded shadow-sm">App</span>
+                        class="bg-gray-50 rounded-lg p-2 border border-gray-200 h-32 flex flex-col justify-center items-center space-y-1">
+                        <div class="flex items-center gap-1 text-[10px] font-mono text-gray-600">
+                            <span class="px-1 py-0.5 bg-white border border-gray-300 rounded shadow-sm">Agent</span>
                             <span class="text-gray-400">↔</span>
-                            <span class="px-2 py-1 bg-lucid-900 text-white rounded shadow-sm">Shim</span>
+                            <span class="px-1 py-0.5 bg-lucid-900 text-white rounded shadow-sm">Sidecar</span>
                         </div>
-                        <div class="h-4 w-0.5 bg-gray-300"></div>
+                        <div class="h-2 w-0.5 bg-gray-300"></div>
                         <div
-                            class="px-3 py-2 bg-white border border-gray-300 rounded-lg shadow-sm text-sm font-mono text-center w-full max-w-[200px]">
-                            <div class="text-xs text-gray-400 mb-1">Guest Kernel</div>
-                            <div class="font-bold text-lucid-accent">Encrypted Memory</div>
+                            class="px-2 py-1 bg-white border border-gray-300 rounded shadow-sm text-[10px] font-mono w-full max-w-[150px] text-center">
+                            <span class="text-lucid-accent font-bold">Encrypted (vsock)</span>
                         </div>
-                        <div class="h-4 w-0.5 bg-gray-300"></div>
-                        <div class="px-3 py-1 bg-gray-200 text-gray-600 rounded text-xs font-mono">
-                            Hardware (AMD SEV/Intel TDX)
+                        <div class="h-2 w-0.5 bg-gray-300"></div>
+                        <div class="px-2 py-0.5 bg-gray-200 text-gray-600 rounded text-[9px] font-mono">
+                            Hardware Root (TPM/PCR)
                         </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="text-xs font-bold text-green-600 uppercase tracking-wider mb-2">Pillar 4:
+                        Sustainability</div>
+                    <h3 class="text-lg font-bold text-lucid-900 mb-2">Energy Accounting</h3>
+                    <p class="text-xs text-gray-500 mb-4 h-10">
+                        Real-time joule counting via hardware interfaces (RAPL) for Green AI certification.
+                    </p>
+                    <div class="chart-container h-32">
+                        <canvas id="energyChart"></canvas>
                     </div>
                 </div>
 
@@ -378,7 +383,6 @@
 
     </main>
 
-    <!-- Footer -->
     <footer class="bg-white border-t border-gray-200 py-12">
         <div
             class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
@@ -389,7 +393,7 @@
                 <span class="font-bold text-gray-900">Lucid Computing</span>
             </div>
             <div class="text-sm text-gray-500">
-                &copy; 2025 Lucid Computing Inc. Building the trust layer for AI.
+                &copy; 2025 Lucid Computing Inc. Building the Chain of Custody for the Intelligence Age.
             </div>
             <div class="flex gap-4">
                 <a href="#" class="text-gray-400 hover:text-gray-900">Github</a>
@@ -402,7 +406,7 @@
     <script>
         // --- State Management ---
         let currentStep = 1;
-        const totalSteps = 5;
+        const totalSteps = 7;
 
         // --- Data & Content ---
         const stepContent = {
@@ -420,135 +424,184 @@
                     <div class="mt-2 text-gray-300">Downloading lucid-v2.1.0-linux-amd64...</div>
                     <div class="w-full bg-gray-700 h-1 mt-1 rounded"><div class="bg-blue-500 h-1 rounded" style="width: 100%"></div></div>
                     <div class="mt-2 text-green-400">✔ Installed to /usr/local/bin/lucid</div>
-                    <div class="mt-1 text-gray-400">Type 'lucid doctor' to verify environment.</div>
                 `
             },
             2: {
-                title: "Lucid Doctor",
-                buttonText: "Run Doctor",
+                title: "Define Mandate",
+                buttonText: "Create Policy",
                 terminalHTML: `
-                    <div class="text-gray-400 mb-2"># Verify TEE hardware & configuration</div>
+                    <div class="text-gray-400 mb-2"># finance_policy.json - The AI's Power of Attorney</div>
+                    <div class="text-blue-300 overflow-hidden text-[10px] leading-tight mb-4">
+<pre>
+{
+  "version": "2.1",
+  "principal": "Alpha Bank Corp",
+  "mandate": "High-Freq Trading",
+  "constraints": {
+    "max_trade_amount": 1000000,
+    "currency": "USD",
+    "required_attestation": "hardware_enclave"
+  },
+  "governance": {
+    "pii_redaction": true,
+    "audit_trail": "immutable"
+  }
+}
+</pre>
+                    </div>
                     <div class="flex items-center gap-2">
                         <span class="text-blue-400">➜</span>
-                        <span class="text-white">lucid doctor</span>
+                        <span class="text-white">lucid mandate create --file=./finance_policy.json --signer="Root_Principal"</span>
                     </div>
                 `,
                 successHTML: `
-                    <div class="mt-2 text-gray-300">Checking host capabilities...</div>
-                    <div class="grid grid-cols-[120px_1fr] gap-1 mt-2 text-sm">
-                        <div class="text-gray-500">Kernel:</div><div class="text-white">Linux 6.5.0-nvidia</div>
-                        <div class="text-gray-500">Hardware:</div><div class="text-white font-bold">Nvidia H100 (Hopper)</div>
-                        <div class="text-gray-500">IOMMU:</div><div class="text-green-400">Enabled</div>
-                        <div class="text-gray-500">CC Mode:</div><div class="text-red-500 font-bold">DISABLED</div>
+                    <div class="mt-2 text-gray-300">Parsing policy rules...</div>
+                    <div class="mt-1 text-gray-300">Verifying Signer (Root_Principal)... <span class="text-green-400">OK</span></div>
+                    <div class="mt-3 border border-gray-600 rounded p-2">
+                        <div class="text-xs text-gray-400">SUCCESS: Mandate Registered</div>
+                        <div class="text-white font-bold mt-1">ID: man_finance_001</div>
+                        <div class="text-xs text-blue-400">Scope: "High-Freq Trading"</div>
                     </div>
-                `,
-                promptHTML: `
-                    <div class="mt-4 border-t border-gray-700 pt-2">
-                         <div class="text-yellow-400">⚠ Confidential Computing is DISABLED on GPU 0.</div>
-                        <div class="text-white mt-1">? Enable CC Mode (requires reset)? [Y/n] <span id="prompt-cursor" class="animate-pulse">_</span></div>
-                    </div>
-                `,
-                resolutionHTML: `
-                    <div class="mt-2 text-gray-400">$ nvidia-smi conf-compute --set-state 1</div>
-                    <div class="text-gray-400">CC Mode enabled for GPU 0.</div>
-                    <div class="mt-1 text-gray-400">$ nvidia-smi --gpu-reset -i 0</div>
-                    <div class="text-gray-400">Resetting GPU... <span class="text-green-400">OK</span></div>
-                    <div class="mt-2 text-green-400">✔ TEE Environment Ready.</div>
-                    <div class="text-gray-500 text-xs">Device node /dev/nvidia-cc is now active.</div>
                 `
             },
             3: {
-                title: "Device Auth",
-                buttonText: "Authenticate",
+                title: "Link Mandate",
+                buttonText: "Link Mandate",
                 terminalHTML: `
-                    <div class="text-gray-400 mb-2"># Authenticate using Hardware Attestation (No API Keys)</div>
+                    <div class="text-gray-400 mb-2"># Link the new Mandate to this Hardware Session</div>
                     <div class="flex items-center gap-2">
                         <span class="text-blue-400">➜</span>
-                        <span class="text-white">lucid auth login --device</span>
+                        <span class="text-white">lucid mandate link --id=man_finance_001</span>
                     </div>
                 `,
                 successHTML: `
-                    <div class="mt-2 text-gray-300">Generating Attestation Report (/dev/nvidia-cc)...</div>
-                    <div class="text-gray-300">Verifying signature against Nvidia Root of Trust...</div>
-                    <div class="mt-2 text-green-400">✔ Identity Verified</div>
-                    <div class="text-gray-400 ml-4">GPU UUID: GPU-76a02b1...9f21</div>
-                    <div class="text-gray-400 ml-4">Measurement: E4B2...88CA (Matches 'Lucid-Base-Image-v2')</div>
-                    <div class="mt-2 text-blue-300">Session Token Issued (Valid for 1h)</div>
+                    <div class="mt-2 text-gray-300">Verifying Mandate Signature...</div>
+                    <div class="mt-1 text-green-400">✔ Mandate Validated.</div>
+                    <div class="grid grid-cols-[100px_1fr] gap-x-2 text-xs text-gray-400 mt-2 border border-gray-700 p-2 rounded">
+                        <span>Principal:</span><span class="text-white">Alpha Bank Corp</span>
+                        <span>Scope:</span><span class="text-white">Trade Exec < $1M</span>
+                        <span>Status:</span><span class="text-green-500">ACTIVE</span>
+                    </div>
                 `
             },
             4: {
-                title: "Verify Model",
-                buttonText: "Start Verify",
+                title: "Config Sidecar",
+                buttonText: "Validate YAML",
                 terminalHTML: `
-                    <div class="text-gray-400 mb-2"># Run Verification Suite (Location + Audit + Integrity)</div>
-                    <div class="flex items-center gap-2">
-                        <span class="text-blue-400">➜</span>
-                        <span class="text-white">lucid verify ./llama-3-8b.pt --proof location,audit</span>
+                    <div class="text-gray-400 mb-2"># sovereign-pod.yaml - Configuration</div>
+                    <div class="text-blue-300 overflow-hidden text-[10px] leading-tight">
+<pre>
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-sovereign-agent
+spec:
+  containers:
+    - name: ai-agent
+      image: myorg/llama-3:latest
+    - name: lucid-sidecar
+      image: lucid/sidecar:1.2.0
+      env:
+        - name: AGENT_MANDATE_ID
+          value: "man_finance_001"
+        - name: GOVERNANCE_PROFILE
+          value: "pol_strict_financial_compliance"
+        - name: PASSPORT_PROPS
+          value: "location,fingerprint,energy"
+</pre>
                     </div>
                 `,
                 successHTML: `
-                    <div class="mt-2">
-                        <span class="text-yellow-400">⟳ Phase 1: Fingerprinting Weights...</span>
-                        <div class="text-xs text-gray-500 ml-4">SHA-256: e3b0c442... | Size: 14.2GB</div>
-                    </div>
-                    <div class="mt-2">
-                        <span class="text-yellow-400">⟳ Phase 2: Triangulating Location...</span>
-                        <div class="text-xs text-gray-500 ml-4">Ping (London): 4ms | Ping (NYC): 76ms | Ping (Tokyo): 210ms</div>
-                        <div class="text-green-400 text-xs ml-4">✔ Confirmed Region: EU-WEST (UK)</div>
-                    </div>
-                    <div class="mt-2">
-                        <span class="text-yellow-400">⟳ Phase 3: Attestable Audit (MMLU)...</span>
-                        <div class="text-xs text-gray-500 ml-4">Running 50 sample queries inside TEE...</div>
-                        <div class="text-green-400 text-xs ml-4">✔ Score: 68.4% (Passing > 60%)</div>
-                    </div>
-                    <div class="mt-4 text-green-400 font-bold text-lg">VERIFICATION COMPLETE</div>
+                    <div class="mt-2 text-gray-300">Validating configuration against Schema v1.0...</div>
+                    <div class="text-gray-400 ml-4">> Governance: pol_strict_financial (Loaded)</div>
+                    <div class="text-gray-400 ml-4">> Energy Acct: RAPL Interface (Detected)</div>
+                    <div class="mt-2 text-green-400">✔ Configuration Validated. Ready for Deployment.</div>
                 `
             },
             5: {
-                title: "Passport",
-                buttonText: "Show Passport",
+                title: "Deploy Agent",
+                buttonText: "Apply Manifest",
                 terminalHTML: `
-                    <div class="text-gray-400 mb-2"># View the cryptographic passport artifact</div>
+                    <div class="text-gray-400 mb-2"># Deploying Pod to trigger TEE Attestation</div>
                     <div class="flex items-center gap-2">
                         <span class="text-blue-400">➜</span>
-                        <span class="text-white">lucid passport show --json</span>
+                        <span class="text-white">kubectl apply -f sovereign-pod.yaml</span>
                     </div>
                 `,
                 successHTML: `
-                    <!-- The Visual Passport Artifact -->
-                    <div class="mt-4 bg-white rounded-lg p-4 shadow-lg border-l-4 border-green-500 max-w-sm mx-auto animate-pulse-slow">
+                    <div class="mt-2 text-gray-300">pod/my-sovereign-agent created</div>
+                    <div class="mt-1 text-gray-400">Waiting for Enclave Cold Boot...</div>
+                    <div class="mt-2 text-green-400">✔ TEE Initialized (TDX Measured).</div>
+                `
+            },
+            6: {
+                title: "Monitor Logs",
+                buttonText: "Start Stream",
+                terminalHTML: `
+                    <div class="text-gray-400 mb-2"># Streaming Signed Audit Events (JSON)</div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-blue-400">➜</span>
+                        <span class="text-white">lucid monitor --format=json --tail</span>
+                    </div>
+                `,
+                successHTML: `
+                    <div class="mt-2 font-mono text-[10px] leading-relaxed space-y-1">
+                        <div class="text-gray-500 border-l-2 border-green-500 pl-2">
+                            <span class="text-green-400">GOVERNANCE</span> <span class="text-gray-400">{ "policy_id": "pol_strict", "outcome": "ALLOWED", "check": "pii_scrub" }</span>
+                        </div>
+                        <div class="text-gray-500 border-l-2 border-blue-500 pl-2">
+                            <span class="text-blue-400">ASSURANCE</span>  <span class="text-gray-400">{ "pcr0": "sha384:6b86...", "tee_type": "aws_nitro", "nonce": "8f9a..." }</span>
+                        </div>
+                        <div class="text-gray-500 border-l-2 border-yellow-500 pl-2">
+                            <span class="text-yellow-400">ENERGY</span>     <span class="text-gray-400">{ "joules_per_inference": 450.2, "carbon_g": 0.34 }</span>
+                        </div>
+                        <div class="text-gray-500 border-l-2 border-purple-500 pl-2">
+                            <span class="text-purple-400">DATA</span>       <span class="text-gray-400">{ "input_tokens": 1200, "model_hash": "e3b0c44..." }</span>
+                        </div>
+                         <div class="text-green-400 mt-2 font-bold animate-pulse">>>> LOG ANCHORING ACTIVE. READY FOR ISSUANCE.</div>
+                    </div>
+                `
+            },
+            7: {
+                title: "Issue Passport",
+                buttonText: "Issue Passport",
+                terminalHTML: `
+                    <div class="text-gray-400 mb-2"># Consolidate evidence into AI Passport</div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-blue-400">➜</span>
+                        <span class="text-white">lucid passport issue --mandate=man_finance_001</span>
+                    </div>
+                `,
+                successHTML: `
+                    <div class="mt-4 bg-white rounded-lg p-4 shadow-lg border-l-4 border-blue-500 max-w-sm mx-auto">
                         <div class="flex justify-between items-start mb-2">
                             <div>
-                                <h4 class="text-gray-900 font-bold text-sm">Lucid AI Passport</h4>
-                                <div class="text-xs text-gray-500">ID: #LC-9928-XA</div>
+                                <h4 class="text-gray-900 font-bold text-sm">AI Passport: Identity & Provenance</h4>
+                                <div class="text-[10px] text-gray-500">DID: <span class="text-blue-600 font-bold">did:lucid:agent:1a2b...</span></div>
                             </div>
-                            <div class="text-green-600 bg-green-100 px-2 py-0.5 rounded text-xs font-bold uppercase">Verified</div>
+                            <div class="text-green-600 bg-green-100 px-2 py-0.5 rounded text-[10px] font-bold uppercase">Valid</div>
                         </div>
-                        <div class="space-y-2 text-xs font-mono text-gray-600 border-t border-gray-100 pt-2">
+                        <div class="space-y-1.5 text-[11px] font-mono text-gray-600 border-t border-gray-100 pt-2">
                             <div class="flex justify-between">
-                                <span>Hardware:</span>
-                                <span class="font-bold">Nvidia H100 CC</span>
+                                <span>Mandate:</span>
+                                <span class="font-bold text-gray-900">Finance Exec V2</span>
                             </div>
                             <div class="flex justify-between">
-                                <span>Location:</span>
-                                <span class="font-bold">London, UK</span>
+                                <span>Hardware Root:</span>
+                                <span class="font-bold text-gray-900">Nvidia H100 (Verified)</span>
                             </div>
-                            <div class="flex justify-between">
-                                <span>Model Hash:</span>
-                                <span class="font-bold" title="e3b0c442...">e3b0...88CA</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span>Safety Audit:</span>
-                                <span class="text-green-600 font-bold">PASS (MMLU 68%)</span>
+                             <div class="flex justify-between border-b border-gray-50 pb-1 mb-1">
+                                <span class="text-[10px] text-gray-400">Model Hash:</span>
+                                <span class="text-[10px] font-bold text-green-600">sha256:e3b0...</span>
                             </div>
                         </div>
                         <div class="mt-3 pt-2 border-t border-gray-100 text-[10px] text-gray-400 flex justify-between items-center">
-                            <span>Signed by Lucid Root CA</span>
-                            <span class="w-16 h-4 bg-gray-200 rounded"></span>
+                            <span>Artifact: passport_v1.json</span>
+                            <div class="flex gap-1">
+                                <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                                <span class="text-green-600 font-bold uppercase">Signed</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="mt-4 text-center">
-                        <a href="#" class="text-blue-400 text-xs underline">Download Certificate (.pem)</a>
                     </div>
                 `
             }
@@ -563,8 +616,7 @@
             renderTerminal(step);
         }
 
-        // Helper to track sub-state within a step
-        let stepPhase = 0; // 0: Start, 1: Prompted (Step 2 only), 2: Complete (Ready to Advance)
+        let stepPhase = 0; // 0: Start, 2: Complete
 
         function nextStep() {
             const container = document.getElementById('step-content-container');
@@ -582,81 +634,14 @@
                 return;
             }
 
-            // --- Step 2 Special Logic (Doctor w/ Interaction) ---
-            if (currentStep === 2) {
-                if (stepPhase === 0) {
-                    // Phase 0: Run initial check
-                    btn.disabled = true;
-                    btn.innerHTML = `<span class="animate-spin">⟳</span> Diagnosing...`;
-                    btn.classList.add('opacity-75');
-
-                    // Clear previous content if restarting
-                    container.innerHTML = data.terminalHTML;
-
-                    setTimeout(() => {
-                        const successDiv = document.createElement('div');
-                        successDiv.innerHTML = data.successHTML; // The "DISABLED" output
-                        successDiv.classList.add('animate-fade-in');
-                        container.appendChild(successDiv);
-
-                        // Show Prompt
-                        setTimeout(() => {
-                            const promptDiv = document.createElement('div');
-                            promptDiv.innerHTML = data.promptHTML;
-                            container.appendChild(promptDiv);
-                            document.getElementById('terminal-content').scrollTop = document.getElementById('terminal-content').scrollHeight;
-
-                            // Change Button to Interaction Mode (Prompt)
-                            stepPhase = 1; // Now waiting for Y/N
-                            btn.disabled = false;
-                            btn.innerHTML = `Confirm (Y)`;
-                            btn.classList.remove('opacity-75');
-                            btn.classList.add('bg-blue-600', 'text-white', 'hover:bg-blue-500');
-                            btn.classList.remove('bg-white', 'text-lucid-900');
-                        }, 1000);
-
-                    }, 1000);
-                    return;
-                } else if (stepPhase === 1) {
-                    // Phase 1: User clicked "Confirm (Y)" -> Run Fix
-                    btn.disabled = true;
-                    document.getElementById('prompt-cursor').innerText = 'Y';
-                    document.getElementById('prompt-cursor').classList.remove('animate-pulse');
-
-                    setTimeout(() => {
-                        const resDiv = document.createElement('div');
-                        resDiv.innerHTML = data.resolutionHTML;
-                        resDiv.classList.add('animate-fade-in');
-                        container.appendChild(resDiv);
-                        document.getElementById('terminal-content').scrollTop = document.getElementById('terminal-content').scrollHeight;
-
-                        // Transition to Phase 2 (Complete)
-                        setTimeout(() => {
-                            stepPhase = 2; // Ready to advance
-
-                            // Update Button to "Proceed"
-                            const nextStepNum = currentStep + 1;
-                            const nextStepName = stepContent[nextStepNum] ? stepContent[nextStepNum].title : "Finish";
-
-                            btn.disabled = false;
-                            btn.classList.remove('opacity-75', 'bg-blue-600', 'hover:bg-blue-500');
-                            btn.classList.add('bg-white', 'text-lucid-900', 'hover:bg-gray-100');
-                            btn.innerHTML = `Proceed to ${nextStepName} <span>→</span>`;
-                        }, 2000);
-
-                    }, 500);
-                    return;
-                }
-            }
-
-            // --- Standard Logic (Steps 1, 3, 4, 5) ---
+            // --- Standard Logic (Steps 1-7) ---
 
             // 1. Disable Button & Show Running State
             btn.disabled = true;
             btn.innerHTML = `<span class="animate-spin">⟳</span> Running...`;
             btn.classList.add('opacity-75');
 
-            // 2. Simulate Typing the Command (Clear specific content first to be safe or re-set)
+            // 2. Simulate Typing the Command
             container.innerHTML = data.terminalHTML;
 
             // 3. Wait, then show success, then prepare for advancement
@@ -674,7 +659,7 @@
                 // 4. Transition to Complete State
                 setTimeout(() => {
                     if (currentStep < totalSteps) {
-                        stepPhase = 2; // Mark as complete, waiting for user to click next
+                        stepPhase = 2; // Mark as complete
 
                         const nextStepNum = currentStep + 1;
                         const nextStepName = stepContent[nextStepNum].title;
@@ -682,8 +667,6 @@
                         btn.disabled = false;
                         btn.classList.remove('opacity-75');
                         btn.innerHTML = `Proceed to ${nextStepName} <span>→</span>`;
-
-                        // Optional: Highlight the button implies "Next" is ready
                         btn.classList.add('ring-2', 'ring-lucid-accent', 'ring-offset-2', 'ring-offset-lucid-900');
 
                     } else {
@@ -691,7 +674,6 @@
                         btn.innerHTML = "Integration Complete";
                         btn.classList.remove('bg-white', 'text-lucid-900');
                         btn.classList.add('bg-green-500', 'text-white');
-                        // Optional: Disable or link somewhere else
                     }
                 }, 1000);
 
@@ -736,94 +718,71 @@
 
         // --- Chart.js Implementations ---
         function initCharts() {
-            // 1. Location Triangulation Chart (Bar Chart for Latency)
+            // 1. Location Triangulation Chart
             const ctxLoc = document.getElementById('locationChart').getContext('2d');
             new Chart(ctxLoc, {
                 type: 'bar',
                 data: {
-                    labels: ['London (Verifier A)', 'Frankfurt (Verifier B)', 'NYC (Verifier C)', 'Tokyo (Verifier D)'],
+                    labels: ['Verifier A', 'Verifier B', 'Verifier C', 'Verifier D'],
                     datasets: [{
-                        label: 'Round-Trip Time (ms)',
+                        label: 'Latency (ms)',
                         data: [4, 12, 76, 210],
-                        backgroundColor: [
-                            '#059669', // Green (Local)
-                            '#34d399', // Green-ish (Near)
-                            '#fbbf24', // Yellow (Far)
-                            '#ef4444'  // Red (Very Far)
-                        ],
+                        backgroundColor: ['#059669', '#34d399', '#fbbf24', '#ef4444'],
                         borderRadius: 4
                     }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: {
-                            callbacks: {
-                                label: function (context) {
-                                    return `Ping: ${context.raw}ms`;
-                                }
-                            }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            title: { display: true, text: 'Latency (ms)' }
-                        },
-                        x: {
-                            grid: { display: false }
-                        }
-                    }
+                    plugins: { legend: { display: false } },
+                    scales: { y: { display: false }, x: { grid: { display: false }, ticks: { font: { size: 9 } } } }
                 }
             });
 
-            // 2. Attestable Audit Chart (Radar/Bar for Scores)
+            // 2. Audit Chart (Radar)
             const ctxAudit = document.getElementById('auditChart').getContext('2d');
             new Chart(ctxAudit, {
                 type: 'radar',
                 data: {
-                    labels: ['MMLU (Knowledge)', 'Toxicity (Safety)', 'Reasoning', 'Coding', 'Memory'],
+                    labels: ['MMLU', 'Safety', 'Logic', 'Code', 'Mem'],
                     datasets: [{
-                        label: 'Verified Model',
+                        label: 'Model',
                         data: [68, 92, 75, 60, 85],
                         fill: true,
                         backgroundColor: 'rgba(37, 99, 235, 0.2)',
                         borderColor: '#2563eb',
-                        pointBackgroundColor: '#2563eb',
-                        pointBorderColor: '#fff',
-                        pointHoverBackgroundColor: '#fff',
-                        pointHoverBorderColor: '#2563eb'
-                    }, {
-                        label: 'Baseline (Llama 3)',
-                        data: [65, 88, 70, 58, 80],
-                        fill: true,
-                        backgroundColor: 'rgba(156, 163, 175, 0.2)',
-                        borderColor: '#9ca3af',
-                        pointBackgroundColor: '#9ca3af',
-                        pointBorderColor: '#fff',
-                        borderDash: [5, 5]
+                        pointRadius: 0
                     }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    scales: {
-                        r: {
-                            angleLines: {
-                                color: '#e5e7eb'
-                            },
-                            grid: {
-                                color: '#e5e7eb'
-                            },
-                            suggestedMin: 0,
-                            suggestedMax: 100
-                        }
-                    },
-                    plugins: {
-                        legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } }
-                    }
+                    scales: { r: { ticks: { display: false }, pointLabels: { font: { size: 9 } } } },
+                    plugins: { legend: { display: false } }
+                }
+            });
+
+            // 3. Energy Chart (Line)
+            const ctxEnergy = document.getElementById('energyChart').getContext('2d');
+            new Chart(ctxEnergy, {
+                type: 'line',
+                data: {
+                    labels: ['10:00', '10:05', '10:10', '10:15', '10:20'],
+                    datasets: [{
+                        label: 'Watts',
+                        data: [240, 450, 420, 260, 240],
+                        borderColor: '#059669',
+                        backgroundColor: 'rgba(5, 150, 105, 0.1)',
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { y: { display: false }, x: { grid: { display: false }, ticks: { display: false } } }
                 }
             });
         }

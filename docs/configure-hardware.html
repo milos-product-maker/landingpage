@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lucid Computing | Verifiable AI Infrastructure</title>
+    <title>Lucid Computing | Configure Hardware</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link
@@ -98,33 +98,42 @@
             animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
 
-        .json-key {
-            color: #9cdcfe;
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
         }
 
-        .json-string {
-            color: #ce9178;
-        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
 
-        .json-number {
-            color: #b5cea8;
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
 
-<body class="font-sans antialiased text-gray-800">
+<body class="font-sans antialiased">
 
     <nav class="border-b border-gray-200 bg-white/50 backdrop-blur-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex items-center gap-3">
-                    <img src="../lucid-logo.svg" alt="Lucid Logo" class="w-8 h-8">
-                    <span class="font-bold text-xl tracking-tight text-lucid-900">Lucid Computing <span
-                            class="font-normal text-lucid-500">Docs</span></span>
+                    <a href="../index.html" class="flex items-center gap-3">
+                        <div
+                            class="w-8 h-8 bg-lucid-900 rounded-lg flex items-center justify-center text-white font-mono font-bold">
+                            L</div>
+                        <span class="font-bold text-xl tracking-tight text-lucid-900">Lucid Computing <span
+                                class="font-normal text-lucid-500">Docs</span></span>
+                    </a>
                 </div>
                 <div class="flex items-center gap-6 text-sm font-medium text-gray-600">
-                    <a href="ai-passports.html" class="hover:text-lucid-accent transition-colors">AI Passports</a>
-                    <a href="#" class="text-lucid-accent font-semibold">Cluster Verification</a>
+                    <a href="verification-tutorial.html" class="hover:text-lucid-accent transition-colors">Verification
+                        Tutorial</a>
+                    <a href="configure-hardware.html" class="text-lucid-accent font-semibold">Configure Hardware</a>
                     <button
                         class="bg-lucid-900 text-white px-4 py-2 rounded-md hover:bg-lucid-800 transition-colors">Log
                         In</button>
@@ -133,20 +142,26 @@
         </div>
     </nav>
 
-    <header class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-        <div class="max-w-3xl">
+    <!-- Header Section -->
+    <header class="bg-paper py-20 border-b border-gray-100">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div
-                class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 text-purple-700 text-xs font-semibold uppercase tracking-wide mb-6">
-                <span class="w-2 h-2 rounded-full bg-purple-600 animate-pulse"></span>
-                Pillar Architecture v1.0
+                class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-lucid-102 border border-purple-100 text-lucid-accent text-xs font-bold mb-6">
+                <span class="relative flex h-2 w-2">
+                    <span
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
+                </span>
+                VERIFIABLE TRAINING PROTOCOL V2.1
             </div>
-            <h1 class="text-4xl sm:text-5xl font-bold text-lucid-900 leading-tight mb-6">
-                <span class="text-lucid-accent">Cluster Verification</span> in 5 steps
+            <h1 class="text-4xl md:text-5xl font-bold text-lucid-900 mb-6 tracking-tight">
+                Configure Hardware <span class="text-lucid-accent">Playbook</span>
             </h1>
-            <p class="text-xl text-gray-600 mb-8 leading-relaxed">
-                Walk through the complete lifecycle of verifying a cluster. Hardware-rooted verification from
-                the VJM flight plan to the cryptographic receipt.
+            <p class="text-lg text-gray-600 mb-10 leading-relaxed max-w-3xl mx-auto">
+                Establish a mathematical chain of trust from raw silicon to trained model weights.
+                This guide walks through the physical and logical verification of a 1,024-node GPU cluster.
             </p>
+
             <!-- Prerequisite Info Box -->
             <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
                 <div class="flex items-start gap-2">
@@ -161,7 +176,7 @@
                     </div>
                 </div>
             </div>
-            <div class="flex gap-4">
+            <div class="flex gap-4 justify-center">
                 <button onclick="scrollToGuide()"
                     class="bg-lucid-900 text-white px-6 py-3 rounded-lg font-semibold hover:bg-lucid-800 transition-all shadow-lg shadow-gray-200 flex items-center gap-2">
                     Start Integration
@@ -177,7 +192,7 @@
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24" id="guide-section">
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mt-12">
 
             <div class="lg:col-span-4 space-y-4">
 
@@ -215,10 +230,11 @@
                     <h3 class="font-semibold text-base text-lucid-900 mb-1 flex items-center gap-2">
                         <span
                             class="w-5 h-5 rounded-full bg-gray-200 text-gray-600 text-[10px] flex items-center justify-center font-bold">3</span>
-                        Step 3: Hardware Integrity
+                        Step 3: Hardware Doctor
                     </h3>
                     <p class="text-xs text-gray-600 leading-relaxed">
-                        The "Hardware Truth". Caliptra Root-of-Trust and SPDM attestation of all firmware.
+                        Verify TEE hardware & configuration for a specific GPU. Orchestrate secure enclave configuration
+                        if discordant.
                     </p>
                 </div>
 
@@ -228,11 +244,10 @@
                     <h3 class="font-semibold text-base text-lucid-900 mb-1 flex items-center gap-2">
                         <span
                             class="w-5 h-5 rounded-full bg-gray-200 text-gray-600 text-[10px] flex items-center justify-center font-bold">4</span>
-                        Step 4: Verifiable Job Manifest
+                        Step 4: Hardware Integrity
                     </h3>
                     <p class="text-xs text-gray-600 leading-relaxed">
-                        Automatic generation of the "Flight Plan" (VJM) and proactive static analysis of Pytorch code
-                        inside a TEE.
+                        The "Hardware Truth". Caliptra Root-of-Trust and SPDM attestation of all firmware.
                     </p>
                 </div>
 
@@ -242,7 +257,21 @@
                     <h3 class="font-semibold text-base text-lucid-900 mb-1 flex items-center gap-2">
                         <span
                             class="w-5 h-5 rounded-full bg-gray-200 text-gray-600 text-[10px] flex items-center justify-center font-bold">5</span>
-                        Step 5: Runtime Verification
+                        Step 5: Verifiable Job Manifest
+                    </h3>
+                    <p class="text-xs text-gray-600 leading-relaxed">
+                        Automatic generation of the "Flight Plan" (VJM) and proactive static analysis of Pytorch code
+                        inside a TEE.
+                    </p>
+                </div>
+
+                <div id="step-6-trigger"
+                    class="step-card group cursor-pointer border-l-4 border-transparent hover:bg-gray-50 p-5 rounded-r-lg transition-all duration-300"
+                    onclick="activateStep(6)">
+                    <h3 class="font-semibold text-base text-lucid-900 mb-1 flex items-center gap-2">
+                        <span
+                            class="w-5 h-5 rounded-full bg-gray-200 text-gray-600 text-[10px] flex items-center justify-center font-bold">6</span>
+                        Step 6: Runtime Verification
                     </h3>
                     <p class="text-xs text-gray-600 leading-relaxed">
                         Correlate physical evidence against the VJM, then automatically issue the cryptographic receipt
@@ -284,78 +313,72 @@
 
         <div id="pillars" class="mt-24 pt-16 border-t border-gray-200">
             <div class="mb-12">
-                <h2 class="text-3xl font-bold text-lucid-900 mb-4">The Pillars of Verification</h2>
-                <p class="text-gray-600 max-w-2xl">
-                    Our architecture relies on three distinct pillars to ensure that physical reality matches the
-                    claimed intent.
+                <h2 class="text-3xl font-bold text-lucid-900 mb-4 tracking-tight">The Three Pillars of Verifiable AI
+                </h2>
+                <p class="text-gray-600 max-w-3xl">
+                    Our architecture establishes a mathematical chain of custody across every layer of the stack,
+                    relying on three independent planes of verification.
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-                <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                    <div class="text-xs font-bold text-lucid-accent uppercase tracking-wider mb-2">Pillar 1 (Assurance)
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Pillar 1 -->
+                <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex flex-col">
+                    <div class="mb-4">
+                        <span
+                            class="px-2 py-1 rounded text-[10px] font-bold bg-red-100 text-red-600 uppercase tracking-wider">Pillar
+                            1</span>
                     </div>
-                    <h3 class="text-xl font-bold text-lucid-900 mb-4">DC-SCM Power Verification</h3>
-                    <p class="text-sm text-gray-500 mb-4 h-12">
-                        Software counters are ignored. We integrate power draw over time (Pillar 1) to derive "Real
-                        FLOPs", correlated against network flows (Pillar 2).
+                    <h3 class="font-bold text-lucid-900 mb-3 flex items-center gap-2">
+                        The Assurance Plane
+                    </h3>
+                    <p class="text-xs text-gray-600 mb-6 leading-relaxed">
+                        <strong>The "Hardware Truth"</strong>: Anchored in raw silicon. The DC-SCM acts as a
+                        tamper-proof "inspector," attesting firmware integrity and generating signed telemetry for
+                        physical parameters like real-time GPU power draw.
                     </p>
-                    <div class="chart-container h-64">
+                    <div class="chart-container mt-auto">
                         <canvas id="flopsChart"></canvas>
                     </div>
-                    <div class="mt-4 text-xs text-gray-400">
-                        Top Line: Physical Power (DC-SCM). Bottom: Derived FLOPs (Verified).
-                    </div>
                 </div>
 
-                <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                    <div class="text-xs font-bold text-lucid-accent uppercase tracking-wider mb-2">Pillar 2: Network
-                        Plane</div>
-                    <h3 class="text-xl font-bold text-lucid-900 mb-4">The smartNIC Network Detective</h3>
-                    <p class="text-sm text-gray-500 mb-4 h-12">
-                        Operating in "Shadow Mode", the programmable NIC verifies that data only moves to locations
-                        approved in the VJM Flight Plan.
+                <!-- Pillar 2 -->
+                <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex flex-col">
+                    <div class="mb-4">
+                        <span
+                            class="px-2 py-1 rounded text-[10px] font-bold bg-blue-100 text-blue-600 uppercase tracking-wider">Pillar
+                            2</span>
+                    </div>
+                    <h3 class="font-bold text-lucid-900 mb-3 flex items-center gap-2">
+                        The Network Plane
+                    </h3>
+                    <p class="text-xs text-gray-600 mb-6 leading-relaxed">
+                        <strong>The "Network Truth"</strong>: The "FlexNIC" acts as an independent "detective" in
+                        "shadow mode," passively observing traffic without latency. It logs the communication truth:
+                        "Who is this server actually talking to?"
                     </p>
-                    <div class="chart-container h-64">
+                    <div class="chart-container mt-auto">
                         <canvas id="trafficChart"></canvas>
                     </div>
-                    <div class="mt-4 text-xs text-gray-400">
-                        Green: VJM Authorized. Red: Blocked/Logged (Policy Violation).
-                    </div>
                 </div>
 
-                <!-- Pillar 3: Software & Compute Plane -->
-                <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                    <div class="text-xs font-bold text-lucid-accent uppercase tracking-wider mb-2">Pillar 3: Software
-                        Plane</div>
-                    <h3 class="text-xl font-bold text-lucid-900 mb-4">The "Flight Plan" (VJM)</h3>
-                    <p class="text-sm text-gray-500 mb-4">
-                        This is the <strong>Verifiable Job Manifest (VJM)</strong>. Before any work starts, hooks in the
-                        training script automatically generate and submit this
-                        "flight plan" to the Assurance Runtime.T
-                    </p>
-                    <div
-                        class="bg-gray-50 rounded-lg p-4 border border-gray-200 h-64 flex flex-col justify-center items-center space-y-2">
-                        <div class="text-center space-y-1 w-full">
-                            <div class="bg-white border border-gray-300 rounded-lg p-2 shadow-sm">
-                                <div class="text-xs text-gray-400 mb-1">User Intent</div>
-                                <div class="font-mono text-sm text-lucid-900 font-bold">VJM Submission</div>
-                            </div>
-                            <div class="text-gray-400 text-xs">↓</div>
-                            <div class="bg-lucid-900 text-white rounded-lg p-2 shadow-sm">
-                                <div class="text-xs text-gray-300 mb-1">Pre-Run Validation</div>
-                                <div class="font-mono text-sm font-bold">Static Analysis</div>
-                            </div>
-                            <div class="text-gray-400 text-xs">↓</div>
-                            <div class="bg-green-600 text-white rounded-lg p-2 shadow-sm">
-                                <div class="text-xs text-green-100 mb-1">Runtime Enforcement</div>
-                                <div class="font-mono text-sm font-bold">VJM Correlation</div>
-                            </div>
-                        </div>
+                <!-- Pillar 3 -->
+                <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex flex-col">
+                    <div class="mb-4">
+                        <span
+                            class="px-2 py-1 rounded text-[10px] font-bold bg-purple-100 text-purple-600 uppercase tracking-wider">Pillar
+                            3</span>
                     </div>
-                    <div class="mt-4 text-xs text-gray-400">
-                        The VJM is the contract between user intent and physical execution.
+                    <h3 class="font-bold text-lucid-900 mb-3 flex items-center gap-2">
+                        The Software Plane
+                    </h3>
+                    <p class="text-xs text-gray-600 mb-6 leading-relaxed">
+                        <strong>The "Flight Plan"</strong>: The Verifiable Job Manifest (VJM) is a prior declaration of
+                        intent. It binds Job #501 to specific models, datasets, and resource constraints (e.g., "Only
+                        talk to Internal Logging").
+                    </p>
+                    <div class="chart-container mt-auto">
+                        <canvas id="vjmChart"></canvas>
                     </div>
                 </div>
             </div>
@@ -363,25 +386,47 @@
 
     </main>
 
-    <footer class="bg-white border-t border-gray-200 py-12">
-        <div
-            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="flex items-center gap-2">
-                <div
-                    class="w-6 h-6 bg-gray-900 rounded flex items-center justify-center text-white text-xs font-bold font-mono">
-                    L</div>
-                <span class="font-bold text-gray-900">Lucid Computing</span>
+    <footer class="bg-lucid-900 text-white py-12 mt-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div class="col-span-2">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-6 h-6 bg-white rounded flex items-center justify-center">
+                            <span class="text-lucid-900 font-bold text-sm">L</span>
+                        </div>
+                        <span class="text-lg font-bold tracking-tight pt-0.5">LUCID</span>
+                    </div>
+                    <p class="text-gray-400 text-sm max-w-xs leading-relaxed">
+                        Building the hardware and software foundations for verifiable AI.
+                        Based in London & San Francisco.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-sm mb-4 uppercase tracking-widest text-gray-500">Product</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Assurance Runtime</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Sovereign Sidecar</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">FlexNIC P4</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-sm mb-4 uppercase tracking-widest text-gray-500">Legal</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">License Agreement</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Attestations</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Security Repo</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="text-sm text-gray-500">
+            <div class="border-t border-gray-800 pt-8 text-center text-xs text-gray-500 font-mono">
                 &copy; 2025 Lucid Computing Inc.
             </div>
         </div>
     </footer>
 
     <script>
-        // --- State Management ---
         let currentStep = 1;
-        const totalSteps = 5;
+        const totalSteps = 6;
 
         // --- Data & Content ---
         const stepContent = {
@@ -412,26 +457,64 @@
                 title: "Step 2: Hardware Scan",
                 buttonText: "Scan Hardware",
                 terminalHTML: `
-                    <div class="text-gray-400 mb-2"># Step 2: Discover nodes and verify physical rack placement</div>
+                    <div class="text-gray-400 mb-2"># Step 2: Discover architecture and find CC-enabled GPUs</div>
                     <div class="flex items-center gap-2">
                         <span class="text-purple-400">➜</span>
-                        <span class="text-white">lucid hardware scan --verify-racks</span>
+                        <span class="text-white">lucid hardware scan</span>
                     </div>
                 `,
                 successHTML: `
-                    <div class="mt-2 text-gray-300">Scanning Rack 01-10...</div>
-                    <div class="text-gray-300">Detecting Nodes via BMC...</div>
-                    <div class="mt-2 text-yellow-400">⚠ Warning: Node-12-Rack-04 detected in Wrong Rack (Found in Rack-05)</div>
-                    <div class="text-gray-400">Re-assigning logical map...</div>
-                    <div class="mt-2 text-green-400">✔ Topology Converged: 1024 Nodes Mapped.</div>
-                    <div class="text-gray-300">All hardware physically located.</div>
+                    <div class="mt-2 text-gray-300">Scanning cluster nodes...</div>
+                    <div class="mt-1 text-gray-300">Found 8,192 total GPUs in the cluster.</div>
+                    <div class="grid grid-cols-[140px_1fr] gap-1 mt-2 text-sm">
+                        <div class="text-gray-500">CC-enabled:</div><div class="text-green-400">8,180 / 8,192</div>
+                        <div class="text-gray-500">Non CC-enabled:</div><div class="text-red-500 font-bold">12</div>
+                    </div>
+                    <div class="mt-4 text-gray-400">Listing Cluster Assets (Snippet):</div>
+                    <div class="text-xs text-gray-500 grid grid-cols-4 gap-2 mt-1">
+                        <div>GPU-0000: CC</div><div>GPU-0001: CC</div><div>GPU-0002: CC</div><div>GPU-0000: CC</div>
+                        <div>GPU-1234: CC</div><div>GPU-5678: CC</div><div>GPU-8191: CC</div><div class="text-red-400 animate-pulse">GPU-0042: !CC</div>
+                    </div>
+                    <div class="mt-2 text-gray-500 text-[10px]">Total hardware mapped in 14.2s.</div>
                 `
             },
             3: {
-                title: "Step 3: Check Integrity",
+                title: "Step 3: Hardware Doctor",
+                buttonText: "Run Doctor",
+                terminalHTML: `
+                    <div class="text-gray-400 mb-2"># Step 3: Verify TEE hardware & configuration for a specific GPU</div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-purple-400">➜</span>
+                        <span class="text-white">lucid doctor --gpu GPU-0000</span>
+                    </div>
+                `,
+                successHTML: `
+                    <div class="mt-2 text-gray-300">Checking GPU-0000 for TEE capabilities...</div>
+                    <div class="grid grid-cols-[140px_1fr] gap-1 mt-2 text-sm">
+                        <div class="text-gray-500">Node ID:</div><div class="text-white">Node-12-Rack-04</div>
+                        <div class="text-gray-500">IOMMU Status:</div><div class="text-green-400">Enabled</div>
+                        <div class="text-gray-500">CC Mode:</div><div class="text-red-500 font-bold">DISABLED</div>
+                    </div>
+                `,
+                promptHTML: `
+                    <div class="mt-4 border-t border-gray-700 pt-2">
+                         <div class="text-yellow-400">⚠ Confidential Computing is DISABLED on GPU-0000.</div>
+                        <div class="text-white mt-1">? Synchronize CC Mode for this node? [Y/n] <span id="prompt-cursor" class="animate-pulse">_</span></div>
+                    </div>
+                `,
+                resolutionHTML: `
+                    <div class="mt-2 text-gray-400">➜ RPC: node-manager enable-cc --gpu=GPU-0000</div>
+                    <div class="text-gray-400">Broadcasting TEE configuration to Node-12-Rack-04...</div>
+                    <div class="mt-1 text-gray-400">Resetting GPU on target node... <span class="text-green-400">OK</span></div>
+                    <div class="mt-2 text-green-400">✔ GPU-0000 TEE Environment Synchronized.</div>
+                    <div class="text-gray-500 text-xs">GPU-0000 now reporting CC Mode: ACTIVE.</div>
+                `
+            },
+            4: {
+                title: "Step 4: Check Integrity",
                 buttonText: "Verify Integrity",
                 terminalHTML: `
-                    <div class="text-gray-400 mb-2"># Step 3: Establish Foundation of Trust (SPDM)</div>
+                    <div class="text-gray-400 mb-2"># Step 4: Establish Foundation of Trust (SPDM)</div>
                     <div class="flex items-center gap-2">
                         <span class="text-purple-400">➜</span>
                         <span class="text-white">lucid integrity --verify-roots --protocol=spdm-1.2</span>
@@ -453,13 +536,16 @@
                     <div class="text-green-400">✔ COMPONENT INTEGRITY VERIFIED: Slot 0 (GPU-0)</div>
                     <div class="text-green-400">✔ COMPONENT INTEGRITY VERIFIED: Slot 1 (GPU-1)</div>
                     <div class="text-gray-400 italic">... (1022 more)</div>
+                    <div class="mt-4 text-center animate-fade-in delay-100">
+                        <a href="#" class="text-purple-400 text-xs underline hover:text-purple-300 transition-colors">Download Certificate (.pem)</a>
+                    </div>
                 `
             },
-            4: {
-                title: "Step 4: Generate Verifiable Job Manifest (JVM)",
+            5: {
+                title: "Step 5: Generate Verifiable Job Manifest (VJM)",
                 buttonText: "Plan & Inspect",
                 terminalHTML: `
-                    <div class="text-gray-400 mb-2"># Step 4: Auto-generate VJM and run Static Analysis</div>
+                    <div class="text-gray-400 mb-2"># Step 5: Auto-generate VJM and run Static Analysis</div>
                     <div class="flex items-center gap-2">
                         <span class="text-purple-400">➜</span>
                         <span class="text-white">python train_aura70b.py --dry-run --verify-manifest</span>
@@ -519,16 +605,13 @@
                             <div class="w-8 h-2 bg-gray-600 rounded"></div>
                         </div>
                     </div>
-                    <div class="mt-4 text-center animate-fade-in delay-100">
-                        <a href="#" class="text-purple-400 text-xs underline hover:text-purple-300 transition-colors">Download Certificate (.pem)</a>
-                    </div>
                 `
             },
-            5: {
-                title: "Step 5: Runtime Verification",
+            6: {
+                title: "Step 6: Runtime Verification",
                 buttonText: "Verify & Issue",
                 terminalHTML: `
-                    <div class="text-gray-400 mb-2"># Step 5: Runtime Correlation & Receipt Issuance</div>
+                    <div class="text-gray-400 mb-2"># Step 6: Runtime Correlation & Receipt Issuance</div>
                     <div class="flex items-center gap-2">
                         <span class="text-purple-400">➜</span>
                         <span class="text-white">lucid runtime-watch --duration=240h --issue-receipt</span>
@@ -551,7 +634,7 @@
                     <div class="mt-4 border-t border-dashed border-gray-600 pt-4">
                         <div class="text-blue-300 font-bold mb-1">>> Correlation Successful. Generating Proof...</div>
                         
-                        <div class="mt-4 bg-gray-700 rounded-lg p-4 shadow-lg border-l-4 border-green-500 max-w-sm mx-auto font-mono text-xs animate-fade-in relative">
+                        <div class="mt-4 bg-gray-700 rounded-lg p-4 shadow-lg border-l-4 border-green-500 max-sm mx-auto font-mono text-xs animate-fade-in relative">
                             <div class="absolute top-0 right-0 p-2 opacity-10">
                                 <svg width="60" height="60" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
                             </div>
@@ -598,7 +681,7 @@
 
         // --- Core Interaction Logic ---
 
-        let stepPhase = 0; // 0: Start (Ready to Run), 1: Complete (Ready to Proceed)
+        let stepPhase = 0; // 0: Start, 1: Prompted (Step 2 only), 2: Complete
 
         function activateStep(step) {
             currentStep = step;
@@ -612,24 +695,76 @@
             const btn = document.getElementById('next-btn');
             const data = stepContent[currentStep];
 
-            // --- Phase 1: Complete -> Advance to Next Step ---
-            if (stepPhase === 1) {
+            // --- Phase 2: Complete -> Advance to Next Step ---
+            if (stepPhase === 2) {
                 if (currentStep < totalSteps) {
                     currentStep++;
                     stepPhase = 0; // Reset for next step
                     renderSidebar();
-
-                    // Setup for new step
-                    const nextData = stepContent[currentStep];
-                    btn.innerHTML = `${nextData.buttonText} <span>→</span>`;
-                    btn.classList.remove('ring-2', 'ring-lucid-accent', 'ring-offset-2', 'ring-offset-lucid-900'); // Remove highlight
-                    container.innerHTML = stepContent[currentStep].terminalHTML;
+                    renderTerminal(currentStep);
                 }
                 return;
             }
 
-            // --- Phase 0: Run Action ---
+            // --- Step 3 Special Logic (Doctor w/ Interaction) ---
+            if (currentStep === 3) {
+                if (stepPhase === 0) {
+                    btn.disabled = true;
+                    btn.innerHTML = `<span class="animate-spin">⟳</span> Diagnosing...`;
+                    btn.classList.add('opacity-75');
 
+                    container.innerHTML = data.terminalHTML;
+
+                    setTimeout(() => {
+                        const successDiv = document.createElement('div');
+                        successDiv.innerHTML = data.successHTML;
+                        successDiv.classList.add('animate-fade-in');
+                        container.appendChild(successDiv);
+
+                        setTimeout(() => {
+                            const promptDiv = document.createElement('div');
+                            promptDiv.innerHTML = data.promptHTML;
+                            container.appendChild(promptDiv);
+                            document.getElementById('terminal-content').scrollTop = document.getElementById('terminal-content').scrollHeight;
+
+                            stepPhase = 1;
+                            btn.disabled = false;
+                            btn.innerHTML = `Confirm (Y)`;
+                            btn.classList.remove('opacity-75');
+                            btn.classList.add('bg-purple-600', 'text-white', 'hover:bg-purple-500');
+                            btn.classList.remove('bg-white', 'text-lucid-900');
+                        }, 1000);
+
+                    }, 1000);
+                    return;
+                } else if (stepPhase === 1) {
+                    btn.disabled = true;
+                    document.getElementById('prompt-cursor').innerText = 'Y';
+                    document.getElementById('prompt-cursor').classList.remove('animate-pulse');
+
+                    setTimeout(() => {
+                        const resDiv = document.createElement('div');
+                        resDiv.innerHTML = data.resolutionHTML;
+                        resDiv.classList.add('animate-fade-in');
+                        container.appendChild(resDiv);
+                        document.getElementById('terminal-content').scrollTop = document.getElementById('terminal-content').scrollHeight;
+
+                        setTimeout(() => {
+                            stepPhase = 2;
+
+                            const nextStepNum = currentStep + 1;
+                            const nextStepName = stepContent[nextStepNum] ? stepContent[nextStepNum].title : "Finish";
+
+                            btn.disabled = false;
+                            btn.classList.remove('opacity-75', 'bg-purple-600', 'hover:bg-purple-500');
+                            btn.classList.add('bg-white', 'text-lucid-900', 'hover:bg-gray-100');
+                            btn.innerHTML = `Proceed to ${nextStepName} <span>→</span>`;
+                        }, 2000);
+
+                    }, 500);
+                    return;
+                }
+            }
             // 1. Disable Button & Show Running State
             btn.disabled = true;
             btn.innerHTML = `<span class="animate-spin">⟳</span> Processing...`;
@@ -653,15 +788,14 @@
                 // 4. Transition to Complete State
                 setTimeout(() => {
                     if (currentStep < totalSteps) {
-                        stepPhase = 1; // Mark as ready to proceed
+                        stepPhase = 2; // Mark as ready to proceed
 
                         const nextStepNum = currentStep + 1;
-                        const nextStepName = stepContent[nextStepNum].title; // e.g. "Step 2: Integrity"
+                        const nextStepName = stepContent[nextStepNum].title;
 
                         btn.disabled = false;
                         btn.classList.remove('opacity-75');
                         btn.innerHTML = `Proceed to Next Step <span>→</span>`;
-                        // Optional: Highlight
                         btn.classList.add('ring-2', 'ring-lucid-accent', 'ring-offset-2', 'ring-offset-lucid-900');
 
                     } else {
@@ -670,20 +804,22 @@
                         btn.classList.remove('bg-white', 'text-lucid-900');
                         btn.classList.add('bg-green-500', 'text-white');
                     }
-                }, 1500); // Short pause before enabling "Proceed"
+                }, 1500);
 
-            }, 1000); // Simulation time
+            }, 1000);
         }
 
         function renderSidebar() {
             for (let i = 1; i <= totalSteps; i++) {
                 const el = document.getElementById(`step-${i}-trigger`);
-                if (i === currentStep) {
-                    el.className = "step-card group cursor-pointer border-l-4 border-lucid-accent bg-purple-50 p-5 rounded-r-lg transition-all duration-300";
-                } else if (i < currentStep) {
-                    el.className = "step-card group cursor-pointer border-l-4 border-green-500 bg-green-50/30 p-5 rounded-r-lg transition-all duration-300 opacity-70 hover:opacity-100";
-                } else {
-                    el.className = "step-card group cursor-pointer border-l-4 border-transparent hover:bg-gray-50 p-5 rounded-r-lg transition-all duration-300 opacity-60";
+                if (el) {
+                    if (i === currentStep) {
+                        el.className = "step-card group cursor-pointer border-l-4 border-lucid-accent bg-purple-50 p-5 rounded-r-lg transition-all duration-300";
+                    } else if (i < currentStep) {
+                        el.className = "step-card group cursor-pointer border-l-4 border-green-500 bg-green-50/30 p-5 rounded-r-lg transition-all duration-300 opacity-70 hover:opacity-100";
+                    } else {
+                        el.className = "step-card group cursor-pointer border-l-4 border-transparent hover:bg-gray-50 p-5 rounded-r-lg transition-all duration-300 opacity-60";
+                    }
                 }
             }
         }
@@ -696,12 +832,110 @@
             container.innerHTML = data.terminalHTML;
             btn.innerHTML = `${data.buttonText} <span>→</span>`;
             btn.disabled = false;
-            btn.classList.remove('opacity-75', 'bg-green-500', 'text-white');
+            btn.classList.remove('opacity-75', 'bg-green-500', 'text-white', 'bg-purple-600');
             btn.classList.add('bg-white', 'text-lucid-900');
         }
 
         function scrollToGuide() {
-            document.getElementById('guide-section').scrollIntoView({ behavior: 'smooth' });
+            const el = document.getElementById('guide-section');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // --- Chart.js Implementations ---
+        function initCharts() {
+            const elFlops = document.getElementById('flopsChart');
+            const elTraffic = document.getElementById('trafficChart');
+            const elVjm = document.getElementById('vjmChart');
+            if (!elFlops || !elTraffic || !elVjm) return;
+
+            // 1. FLOPs vs Power (Line Chart)
+            const ctxFlops = elFlops.getContext('2d');
+            new Chart(ctxFlops, {
+                type: 'line',
+                data: {
+                    labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00', '24:00'],
+                    datasets: [
+                        {
+                            label: 'Power Draw (W)',
+                            data: [300, 450, 700, 702.5, 710, 680, 500],
+                            borderColor: '#ef4444',
+                            yAxisID: 'y',
+                            tension: 0.4,
+                            borderWidth: 2,
+                            pointRadius: 0
+                        },
+                        {
+                            label: 'Verified FLOPs',
+                            data: [0.4, 0.6, 1.1, 1.15, 1.1, 1.0, 0.8],
+                            borderColor: '#7c3aed',
+                            yAxisID: 'y1',
+                            tension: 0.4,
+                            borderDash: [5, 5],
+                            borderWidth: 2,
+                            pointRadius: 0
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { display: false },
+                        y1: { display: false },
+                        x: { grid: { display: false }, ticks: { font: { size: 10 } } }
+                    }
+                }
+            });
+
+            // 2. Traffic Flow (Doughnut)
+            const ctxTraffic = elTraffic.getContext('2d');
+            new Chart(ctxTraffic, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Internal', 'Egress', 'Blocked'],
+                    datasets: [{
+                        data: [85, 14, 1],
+                        backgroundColor: ['#10b981', '#3b82f6', '#ef4444'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: { legend: { display: false } }
+                }
+            });
+
+            // 3. VJM Policy Compliance (Horizontal Bar)
+            const ctxVjm = elVjm.getContext('2d');
+            new Chart(ctxVjm, {
+                type: 'bar',
+                data: {
+                    labels: ['Model X', 'Dataset Y', 'GPU Limit', 'Net Policy'],
+                    datasets: [{
+                        label: 'Match Confidence',
+                        data: [100, 100, 100, 100],
+                        backgroundColor: '#7c3aed',
+                        borderRadius: 4,
+                        barThickness: 12
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { display: false, max: 100 },
+                        y: {
+                            grid: { display: false },
+                            ticks: { font: { size: 10, family: 'Space Mono' } }
+                        }
+                    }
+                }
+            });
         }
 
         // --- Initialization ---
@@ -710,86 +944,6 @@
             renderTerminal(1);
             initCharts();
         });
-
-        // --- Chart.js Implementations ---
-        function initCharts() {
-            // 1. FLOPs vs Power (Line Chart)
-            const ctxFlops = document.getElementById('flopsChart').getContext('2d');
-            new Chart(ctxFlops, {
-                type: 'line',
-                data: {
-                    labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00', '24:00'],
-                    datasets: [
-                        {
-                            label: 'Power Draw (Watts)',
-                            data: [300, 450, 700, 702.5, 710, 680, 500],
-                            borderColor: '#ef4444',
-                            yAxisID: 'y',
-                            tension: 0.4
-                        },
-                        {
-                            label: 'Verified FLOPs (1e25)',
-                            data: [0.4, 0.6, 1.1, 1.15, 1.1, 1.0, 0.8],
-                            borderColor: '#7c3aed',
-                            yAxisID: 'y1',
-                            tension: 0.4,
-                            borderDash: [5, 5]
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    interaction: {
-                        mode: 'index',
-                        intersect: false,
-                    },
-                    scales: {
-                        y: {
-                            type: 'linear',
-                            display: true,
-                            position: 'left',
-                            title: { display: true, text: 'Power (W)' }
-                        },
-                        y1: {
-                            type: 'linear',
-                            display: true,
-                            position: 'right',
-                            title: { display: true, text: 'Compute (FLOPs)' },
-                            grid: {
-                                drawOnChartArea: false,
-                            },
-                        },
-                    }
-                }
-            });
-
-            // 2. Traffic Flow (Doughnut)
-            const ctxTraffic = document.getElementById('trafficChart').getContext('2d');
-            new Chart(ctxTraffic, {
-                type: 'doughnut',
-                data: {
-                    labels: ['VJM Authorized (Internal)', 'VJM Authorized (Egress)', 'Blocked (Unauthorized)'],
-                    datasets: [{
-                        data: [85, 14, 1],
-                        backgroundColor: [
-                            '#059669', // Green
-                            '#3b82f6', // Blue
-                            '#ef4444'  // Red
-                        ],
-                        hoverOffset: 4
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { position: 'right' }
-                    }
-                }
-            });
-        }
-
     </script>
 </body>
 
