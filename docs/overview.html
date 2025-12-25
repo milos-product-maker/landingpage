@@ -4,259 +4,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lucid Computing | System Overview</title>
+    <title>Secure Vault | Lucid Computing</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
         rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['Space Mono', 'monospace'],
-                    },
-                    colors: {
-                        lucid: {
-                            50: '#f9fafb',
-                            100: '#f3f4f6',
-                            200: '#e5e7eb',
-                            300: '#d1d5db',
-                            500: '#6b7280',
-                            600: '#4b5563',
-                            800: '#1f2937',
-                            900: '#111827',
-                            accent: '#2563eb', // Technical Blue
-                            success: '#059669', // Verified Green
-                            warning: '#d97706',
-                        },
-                        paper: '#fdfbf7',
-                    }
-                }
-            }
-        }
-    </script>
     <style>
         body {
-            background-color: #fdfbf7;
-            color: #1f2937;
+            background-color: #05070a;
+            color: #e5e7eb;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
         }
 
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            font-family: 'Space Mono', monospace;
+        .vault-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 30%, rgba(37, 99, 235, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(5, 150, 105, 0.1) 0%, transparent 40%);
+            z-index: -1;
         }
 
-        .architecture-grid {
-            background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
-            background-size: 20px 20px;
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
         }
 
-        .glass-card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(229, 231, 235, 0.5);
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        .input-focus:focus {
+            box-shadow: 0 0 20px rgba(37, 99, 235, 0.3);
+            border-color: rgba(37, 99, 235, 0.5);
         }
     </style>
 </head>
 
-<body class="font-sans antialiased text-gray-800">
+<body class="flex items-center justify-center min-h-screen p-4">
+    <div class="vault-bg"></div>
+    <div class="grid-overlay"></div>
 
-    <nav class="border-b border-gray-200 bg-white/50 backdrop-blur-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center gap-3">
-                    <a href="../index.html" class="flex items-center gap-3">
-                        <div
-                            class="w-8 h-8 bg-lucid-900 rounded-lg flex items-center justify-center text-white font-mono font-bold">
-                            L</div>
-                        <span class="font-bold text-xl tracking-tight text-lucid-900">Lucid Computing <span
-                                class="font-normal text-lucid-500">Docs</span></span>
-                    </a>
-                </div>
-                <div class="flex items-center gap-6 text-sm font-medium text-gray-600">
-                    <a href="overview.html" class="text-lucid-accent font-semibold">Overview</a>
-                    <a href="configure-hardware.html"
-                        class="hover:text-lucid-accent transition-colors text-sm font-medium">1. Configure Hardware</a>
-                    <a href="create-auditor.html"
-                        class="hover:text-lucid-accent transition-colors text-sm font-medium">2. Create Auditor</a>
-                    <a href="verify-agents.html"
-                        class="hover:text-lucid-accent transition-colors text-sm font-medium">3. Verify Agents</a>
-                    <a href="api-docs.html" class="hover:text-lucid-accent transition-colors">API Docs</a>
-                    <button
-                        class="bg-lucid-900 text-white px-4 py-2 rounded-md hover:bg-lucid-800 transition-colors">Log
-                        In</button>
-                </div>
+    <div id="lock-screen" class="w-full max-w-md glass-panel rounded-3xl p-8 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-1 shimmer"></div>
+
+        <div class="flex flex-col items-center text-center space-y-6">
+            <div
+                class="w-16 h-16 bg-gradient-to-br from-blue-600 to-emerald-500 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-900/20">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 00-2 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
             </div>
-        </div>
-    </nav>
 
-    <header class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
-        <h1 class="text-4xl md:text-5xl font-bold text-lucid-900 mb-6">System Architecture</h1>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            The Lucid platform establishes a multi-party chain of custody.
-            Because Auditors are just standard containers, you can <span class="font-semibold text-lucid-900">compose
-                any chain</span> to fit your specific governance needs.
-        </p>
-    </header>
+            <div>
+                <h1 class="text-2xl font-bold font-mono tracking-tight text-white mb-2">RESTRICTED ACCESS</h1>
+                <p class="text-gray-400 text-sm">This documentation is encrypted with <span class="text-blue-400">Lucid
+                        Lockbox</span>. Enter your security credentials to decrypt.</p>
+            </div>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
-
-        <div class="flex flex-col lg:flex-row gap-12 items-start mb-12">
-            <div class="flex-1 w-full relative overflow-hidden py-8">
-                <div class="absolute inset-0 architecture-grid opacity-20"></div>
-                <div class="relative z-10">
-                    <svg viewBox="0 0 800 500" class="w-full h-auto font-mono text-[12px]" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6"
-                                orient="auto-start-reverse">
-                                <path d="M 0 0 L 10 5 L 0 10 z" fill="#111827" />
-                            </marker>
-                            <marker id="arrow-black" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6"
-                                markerHeight="6" orient="auto-start-reverse">
-                                <path d="M 0 0 L 10 5 L 0 10 z" fill="#111827" />
-                            </marker>
-                        </defs>
-
-                        <rect x="250" y="20" width="300" height="80" rx="4" stroke="#111827" stroke-width="2"
-                            fill="white" />
-                        <g transform="translate(400, 60)">
-                            <image href="../lucid-logo.svg" x="-112" y="-20" width="40" height="40" />
-                            <text x="-62" y="5" fill="#111827" class="text-sm font-bold" text-anchor="start">Lucid
-                                Verifier Service</text>
-                        </g>
-                        <circle cx="250" cy="20" r="12" fill="#2563eb" />
-                        <text x="250" y="24" fill="white" text-anchor="middle" class="text-[10px] font-bold">03</text>
-
-                        <rect x="200" y="180" width="400" height="260" rx="40" stroke="#111827" stroke-width="2"
-                            fill="none" />
-                        <text x="320" y="210" fill="#111827" class="font-bold text-sm normal-case">Trusted Execution
-                            Environment</text>
-                        <circle cx="200" cy="180" r="12" fill="#2563eb" />
-                        <text x="200" y="184" fill="white" text-anchor="middle" class="text-[10px] font-bold">01</text>
-                        <g transform="translate(240, 190) scale(0.8)">
-                            <rect x="0" y="12" width="24" height="18" rx="2" fill="#111827" />
-                            <path d="M6 12 V8 a6 6 0 1 1 12 0 v4" stroke="#111827" stroke-width="3" />
-                        </g>
-
-                        <g transform="translate(240, 240)">
-                            <rect x="-10" y="-10" width="340" height="130" rx="8" fill="#f3f4f6" stroke="none" />
-
-                            <rect x="0" y="20" width="90" height="70" rx="4" stroke="#4b5563" stroke-width="1.5"
-                                fill="white" />
-                            <text x="45" y="50" fill="#4b5563" text-anchor="middle"
-                                class="font-bold text-[10px]">Dev</text>
-                            <text x="45" y="65" fill="#6b7280" text-anchor="middle" class="text-[9px]">Debug</text>
-
-                            <path d="M 90 55 L 110 55" stroke="#9ca3af" stroke-width="1.5" marker-end="url(#arrow)" />
-
-                            <rect x="110" y="10" width="100" height="90" rx="4" stroke="#d97706" stroke-width="2"
-                                fill="white" />
-                            <text x="160" y="45" fill="#d97706" text-anchor="middle"
-                                class="font-bold text-[10px]">Security</text>
-                            <text x="160" y="60" fill="#6b7280" text-anchor="middle" class="text-[9px]">Firewall</text>
-                            <circle cx="160" cy="10" r="10" fill="#2563eb" />
-                            <text x="160" y="13" fill="white" text-anchor="middle"
-                                class="text-[8px] font-bold">02</text>
-
-                            <path d="M 210 55 L 230 55" stroke="#9ca3af" stroke-width="1.5" marker-end="url(#arrow)" />
-
-                            <rect x="230" y="20" width="90" height="70" rx="4" stroke="#059669" stroke-width="1.5"
-                                fill="white" />
-                            <text x="275" y="50" fill="#059669" text-anchor="middle"
-                                class="font-bold text-[10px]">Gov</text>
-                            <text x="275" y="65" fill="#6b7280" text-anchor="middle" class="text-[9px]">Log</text>
-                        </g>
-
-                        <rect x="280" y="370" width="240" height="50" rx="8" stroke="#111827" stroke-width="1.5"
-                            fill="none" />
-                        <text x="400" y="400" fill="#111827" text-anchor="middle" class="font-bold">Base Model</text>
-
-                        <path d="M 50 295 L 230 295" stroke="#111827" stroke-width="2" marker-end="url(#arrow)" />
-                        <text x="70" y="280" fill="#111827" text-anchor="middle" class="font-bold">User</text>
-                        <text x="70" y="295" fill="#111827" text-anchor="middle" class="font-bold">Req</text>
-
-                        <path d="M 570 295 L 750 295" stroke="#111827" stroke-width="2" marker-end="url(#arrow)" />
-                        <text x="710" y="280" fill="#111827" text-anchor="middle" class="font-bold">Verified</text>
-                        <text x="710" y="295" fill="#111827" text-anchor="middle" class="font-bold">Action</text>
-
-                        <text x="400" y="360" fill="#111827" text-anchor="middle"
-                            class="font-bold text-[10px] text-gray-400">Auditor Chain (Example: Regulated
-                            Industry)</text>
-
-                        <path d="M 380 170 L 380 110" stroke="#111827" stroke-width="1.5" marker-end="url(#arrow)" />
-                        <path d="M 420 110 L 420 170" stroke="#111827" stroke-width="1.5" marker-end="url(#arrow)" />
-                        <text x="490" y="145" fill="#111827" text-anchor="middle" class="font-bold">Verification</text>
+            <form id="unlock-form" class="w-full space-y-4">
+                <div class="relative">
+                    <input type="password" id="password" placeholder="Enter security key..."
+                        class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-4 text-white placeholder-gray-600 focus:outline-none input-focus transition-all">
+                </div>
+                <button type="submit"
+                    class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-xl transition-all active:scale-[0.98] flex items-center justify-center gap-2">
+                    <span>Unlock Documentation</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                            clip-rule="evenodd" />
                     </svg>
-                    <p class="text-center text-gray-400 mt-8 text-sm font-mono lowercase tracking-wide">
-                        Fig 1.0: An example of a "Regulated Industry" chain. <br>
-                        (You define the stakeholders and the order of operations)
-                    </p>
-                </div>
-            </div>
+                </button>
+                <p id="error-msg" class="text-red-400 text-xs font-mono hidden">INVALID ACCESS KEY // DECRYPTION FAILED
+                </p>
+            </form>
 
-            <div class="lg:w-1/3">
-                <h2 class="text-2xl font-bold text-lucid-900 mb-8 border-b border-gray-100 pb-4">How it fits together
-                </h2>
-                <div class="space-y-8">
-                    <div class="flex gap-4">
-                        <div class="font-mono text-lucid-accent font-bold">01.</div>
-                        <div>
-                            <h4 class="font-bold text-lucid-900 mb-1">Configure Hardware</h4>
-                            <p class="text-sm text-gray-600 leading-relaxed">
-                                Establish the <strong>Hardware Root of Trust</strong>. This TEE acts as a neutral
-                                territory where multiple parties can safely operate without trusting each other.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="flex gap-4">
-                        <div class="font-mono text-lucid-accent font-bold">02.</div>
-                        <div>
-                            <h4 class="font-bold text-lucid-900 mb-1">Compose Chain</h4>
-                            <p class="text-sm text-gray-600 leading-relaxed">
-                                Stakeholders push standard containers. The example to the left shows a 3-stage chain,
-                                but you can build simpler or more complex pipelines.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="flex gap-4">
-                        <div class="font-mono text-lucid-accent font-bold">03.</div>
-                        <div>
-                            <h4 class="font-bold text-lucid-900 mb-1">Verify Agents</h4>
-                            <p class="text-sm text-gray-600 leading-relaxed">
-                                The <strong>Verifier Service</strong> validates the integrity of the entire chain. If
-                                <em>any</em> auditor container is tampered with, the chain breaks and the Agent's
-                                identity is revoked.
-                            </p>
-                        </div>
-                    </div>
-                </div>
+            <div
+                class="pt-4 border-t border-white/5 w-full flex justify-between items-center text-[10px] font-mono text-gray-500 uppercase tracking-widest">
+                <span>Security Level: Alpha</span>
+                <span>Node: Lucid-Mainnet</span>
             </div>
         </div>
+    </div>
 
-    </main>
+    <!-- The encrypted content will be stored here -->
+    <script id="encrypted-data" type="text/plain">oC25Oi79FWoVhemLwezk4Q==:JryM3M73JQ68Xjz1gAVAZg==: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</script>
 
-    <footer class="bg-white border-t border-gray-200 py-12">
-        <div
-            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="flex items-center gap-2">
-                <div
-                    class="w-6 h-6 bg-gray-900 rounded flex items-center justify-center text-white text-xs font-bold font-mono">
-                    L</div>
-                <span class="font-bold text-gray-900">Lucid Computing</span>
-            </div>
-            <div class="text-sm text-gray-500">
-                &copy; 2025 Lucid Computing Inc. Building the Chain of Custody for the Intelligence Age.
-            </div>
-        </div>
-    </footer>
+    <script>
+        const form = document.getElementById('unlock-form');
+        const passwordInput = document.getElementById('password');
+        const errorMsg = document.getElementById('error-msg');
+        const encryptedData = document.getElementById('encrypted-data').textContent.trim();
 
+        
+        form.onsubmit = async (e) => {
+            e.preventDefault();
+            const password = passwordInput.value;
+            const dataParts = encryptedData.split(':');
+            
+            if (dataParts.length !== 3) {
+                showError();
+                return;
+            }
+
+            try {
+                const [saltBase64, ivBase64, cipherTextBase64] = dataParts;
+                const salt = strToUint8Array(atob(saltBase64));
+                const iv = strToUint8Array(atob(ivBase64));
+                const cipherText = strToUint8Array(atob(cipherTextBase64));
+
+                // Derive key
+                const baseKey = await crypto.subtle.importKey(
+                    "raw", 
+                    new TextEncoder().encode(password), 
+                    "PBKDF2", 
+                    false, 
+                    ["deriveKey"]
+                );
+                
+                const key = await crypto.subtle.deriveKey(
+                    {
+                        name: "PBKDF2",
+                        salt: salt,
+                        iterations: 100000,
+                        hash: "SHA-256"
+                    },
+                    baseKey,
+                    { name: "AES-CBC", length: 256 },
+                    false,
+                    ["decrypt"]
+                );
+
+                const decryptedBuffer = await crypto.subtle.decrypt(
+                    { name: "AES-CBC", iv: iv },
+                    key,
+                    cipherText
+                );
+
+                const decrypted = new TextDecoder().decode(decryptedBuffer);
+                
+                document.open();
+                document.write(decrypted);
+                document.close();
+            } catch (err) {
+                console.error(err);
+                showError();
+            }
+        };
+
+        function strToUint8Array(str) {
+            const arr = new Uint8Array(str.length);
+            for (let i = 0; i < str.length; i++) arr[i] = str.charCodeAt(i);
+            return arr;
+        }
+
+        function showError() {
+            errorMsg.classList.remove('hidden');
+            passwordInput.classList.add('border-red-500/50');
+            passwordInput.value = '';
+            setTimeout(() => {
+                errorMsg.classList.add('hidden');
+                passwordInput.classList.remove('border-red-500/50');
+            }, 3000);
+        }
+
+    </script>
 </body>
 
 </html>

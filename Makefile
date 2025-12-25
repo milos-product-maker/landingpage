@@ -29,9 +29,25 @@ push-main:
 	@echo "Pushing local changes to origin/main..."
 	git push origin main
 
-# Full publish workflow: sync, commit regenerated files if changed, and push
-publish: sync
+# Documentation Security
+encrypt-docs:
+	@echo "Locking documentation..."
+	@node _scripts/encrypt_docs.js
+	@echo "Documentation secured in /docs"
+
+decrypt-docs:
+	@echo "Unlocking documentation..."
+	@node _scripts/encrypt_docs.js --decrypt
+	@echo "Source files restored in _docs_src"
+
+# Update publish to ensure docs are locked
+publish: sync encrypt-docs
 	@echo "Publishing to origin/main..."
+	@if [ -n "$$(git status --porcelain docs/)" ]; then \
+		echo "Committing locked documentation..."; \
+		git add docs/; \
+		git commit -m "Secure documentation update"; \
+	fi
 	@if ! git diff --quiet _data/processed_posts.json data/processed_posts.json 2>/dev/null; then \
 		echo "Committing regenerated processed_posts.json..."; \
 		git add _data/processed_posts.json data/processed_posts.json; \

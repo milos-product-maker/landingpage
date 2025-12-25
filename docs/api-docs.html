@@ -4,350 +4,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lucid Computing API | The Assurance Horizon</title>
+    <title>Secure Vault | Lucid Computing</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
     <style>
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #05070a;
+            color: #e5e7eb;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
         }
 
-        .sidebar {
-            width: 280px;
+        .vault-bg {
             position: fixed;
-            height: 100vh;
-            overflow-y: auto;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 30%, rgba(37, 99, 235, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(5, 150, 105, 0.1) 0%, transparent 40%);
+            z-index: -1;
         }
 
-        .content {
-            margin-left: 280px;
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
         }
 
-        h1,
-        h2,
-        h3 {
-            color: #111827;
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
 
-        code {
-            color: #ec4899;
-            font-size: 0.9em;
+        .shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 3s infinite;
         }
 
-        pre {
-            border-radius: 0.5rem;
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        .input-focus:focus {
+            box-shadow: 0 0 20px rgba(37, 99, 235, 0.3);
+            border-color: rgba(37, 99, 235, 0.5);
         }
     </style>
 </head>
 
-<body class="bg-gray-50 text-gray-800">
-    <nav class="border-b border-gray-200 bg-white/50 backdrop-blur-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center gap-3">
-                    <a href="../index.html" class="flex items-center gap-3">
-                        <div
-                            class="w-8 h-8 bg-lucid-900 rounded-lg flex items-center justify-center text-white font-mono font-bold">
-                            L</div>
-                        <span class="font-bold text-xl tracking-tight text-lucid-900">Lucid Computing <span
-                                class="font-normal text-lucid-500">Docs</span></span>
-                    </a>
+<body class="flex items-center justify-center min-h-screen p-4">
+    <div class="vault-bg"></div>
+    <div class="grid-overlay"></div>
+
+    <div id="lock-screen" class="w-full max-w-md glass-panel rounded-3xl p-8 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-1 shimmer"></div>
+
+        <div class="flex flex-col items-center text-center space-y-6">
+            <div
+                class="w-16 h-16 bg-gradient-to-br from-blue-600 to-emerald-500 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-900/20">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 00-2 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+            </div>
+
+            <div>
+                <h1 class="text-2xl font-bold font-mono tracking-tight text-white mb-2">RESTRICTED ACCESS</h1>
+                <p class="text-gray-400 text-sm">This documentation is encrypted with <span class="text-blue-400">Lucid
+                        Lockbox</span>. Enter your security credentials to decrypt.</p>
+            </div>
+
+            <form id="unlock-form" class="w-full space-y-4">
+                <div class="relative">
+                    <input type="password" id="password" placeholder="Enter security key..."
+                        class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-4 text-white placeholder-gray-600 focus:outline-none input-focus transition-all">
                 </div>
-                <div class="flex items-center gap-6 text-sm font-medium text-gray-600">
-                    <a href="overview.html" class="hover:text-lucid-accent transition-colors">Overview</a>
-                    <a href="configure-hardware.html"
-                        class="hover:text-lucid-accent transition-colors text-sm font-medium">1. Configure Hardware</a>
-                    <a href="create-auditor.html"
-                        class="hover:text-lucid-accent transition-colors text-sm font-medium">2. Create Auditor</a>
-                    <a href="verify-agents.html"
-                        class="hover:text-lucid-accent transition-colors text-sm font-medium">3. Verify Agents</a>
-                    <a href="api-docs.html" class="text-lucid-accent font-semibold">API Docs</a>
-                    <button
-                        class="bg-lucid-900 text-white px-4 py-2 rounded-md hover:bg-lucid-800 transition-colors">Log
-                        In</button>
-                </div>
+                <button type="submit"
+                    class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-xl transition-all active:scale-[0.98] flex items-center justify-center gap-2">
+                    <span>Unlock Documentation</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </button>
+                <p id="error-msg" class="text-red-400 text-xs font-mono hidden">INVALID ACCESS KEY // DECRYPTION FAILED
+                </p>
+            </form>
+
+            <div
+                class="pt-4 border-t border-white/5 w-full flex justify-between items-center text-[10px] font-mono text-gray-500 uppercase tracking-widest">
+                <span>Security Level: Alpha</span>
+                <span>Node: Lucid-Mainnet</span>
             </div>
         </div>
-    </nav>
-
-    <div class="flex">
-        <nav class="sidebar bg-white border-r border-gray-200 p-6 top-16 scrollbar-hide">
-            <div class="mb-8">
-                <h1 class="text-2xl font-bold text-indigo-600 tracking-tight">Lucid API</h1>
-                <p class="text-xs text-gray-500 uppercase tracking-widest mt-1">Hard Assurance Protocol</p>
-            </div>
-            <ul class="space-y-3 text-sm">
-                <li><a href="#overview" class="block text-gray-600 hover:text-indigo-600 font-medium">Overview</a></li>
-                <li><a href="#authentication" class="block text-gray-600 hover:text-indigo-600">Authentication (DID)</a>
-                </li>
-                <li><a href="#log-model" class="block text-gray-600 hover:text-indigo-600">The Signed Audit Event</a>
-                </li>
-                <li>
-                    <span class="block text-gray-400 text-xs uppercase mt-4 mb-2">Schema Objects</span>
-                    <ul class="space-y-2 ml-4 border-l-2 border-gray-100 pl-4">
-                        <li><a href="#assurance-layer" class="block text-gray-600 hover:text-indigo-600">Assurance
-                                Layer</a>
-                        </li>
-                        <li><a href="#tee-evidence" class="block text-gray-600 hover:text-indigo-600">TEE Evidence</a>
-                        </li>
-                        <li><a href="#location-proof" class="block text-gray-600 hover:text-indigo-600">Location
-                                Proof</a>
-                        </li>
-                        <li><a href="#provenance" class="block text-gray-600 hover:text-indigo-600">Model Provenance</a>
-                        </li>
-                        <li><a href="#governance" class="block text-gray-600 hover:text-indigo-600">Governance
-                                Results</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-
-        <main class="content p-12 max-w-5xl">
-
-            <section id="overview" class="mb-16">
-                <h1 class="text-4xl font-extrabold mb-4">API Reference</h1>
-                <p class="text-lg leading-relaxed text-gray-600 mb-6">
-                    The Lucid Computing API allows for the ingestion and verification of <strong>Signed Audit
-                        Events</strong>.
-                    Unlike traditional APM tools that rely on "soft metrics," this platform operates on a "Zero Trust"
-                    hardware model.
-                    It anchors trust in the immutable laws of physics and the cryptographic certainties of silicon.
-                </p>
-                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded mb-6">
-                    <p class="text-sm text-blue-700">
-                        <strong>Note:</strong> This API facilitates the transition from "Soft Observability" to "Hard
-                        Assurance".
-                        Events submitted here act as a "Digital Notary" for the AI Passport.
-                    </p>
-                </div>
-            </section>
-
-            <section id="authentication" class="mb-16">
-                <h2 class="text-3xl font-bold mb-4 border-b pb-2">Identity & Authentication</h2>
-                <p class="text-gray-600 mb-4">
-                    Lucid does not use API keys that can be stolen and replayed.
-                    Identity is rooted in a key pair generated inside a Trusted Execution Environment (TEE), where the
-                    private key never leaves the secure enclave.
-                </p>
-                <ul class="list-disc ml-6 space-y-2 text-gray-600">
-                    <li><strong>DID (Decentralized Identifier):</strong> The agent must possess a DID mathematically
-                        linked
-                        to its creation.</li>
-                    <li><strong>Mandate:</strong> A digital Power of Attorney signed by a root principal (e.g., a
-                        corporate
-                        entity).</li>
-                </ul>
-            </section>
-
-            <section id="log-model" class="mb-16">
-                <h2 class="text-3xl font-bold mb-6 border-b pb-2">The Signed Audit Event</h2>
-                <p class="text-gray-600 mb-6">
-                    The core data model hybridizes three standards: <strong>CloudEvents v1.0</strong> (metadata),
-                    <strong>OpenTelemetry</strong> (application context), and <strong>TEE Attestation Formats</strong>
-                    (hardware assurance). The event carries the proof of its own validity.
-                </p>
-
-                <h3 class="text-xl font-bold mb-3">JSON Schema Structure</h3>
-                <p class="text-gray-600 mb-4">The log is divided into three primary blocks:
-                    <code>source & subject</code>
-                    (Identity), <code>assurance</code> (Hardware Proofs), and <code>data</code> (Application Activity).
-                </p>
-
-                <div class="rounded-lg overflow-hidden shadow-lg">
-                    <pre><code class="language-json">{
-  "specversion": "1.0",
-  "id": "evt_88394857-ae84-4f2b-8a1a-982374625b12",
-  "type": "ai.lucid.assurance.checkpoint",
-  "source": "did:lucid:agent:1a2b3c4d5e6f", 
-  "subject": "mandate:man_finance_v2",
-  "time": "2025-10-27T14:30:00.123Z",
-  "datacontenttype": "application/json",
-  "assurance": {
-    "platform": {
-      "provider": "aws_nitro",
-      "region": "us-east-1",
-      "instance_id": "i-0123456789abcdef0"
-    },
-    "tee_evidence": {
-       "type": "aws_nitro_attestation_doc",
-       "payload": "base64_encoded_cose_object..."
-    },
-    "location_proof": {
-       "mechanism": "lucid_triangulation_v1",
-       "confidence_score": 0.998
-    }
-  },
-  "data": {
-    "otel_trace_context": {
-       "trace_id": "0af7651916cd43dd8448eb211c80319c",
-       "span_id": "b53027874a492727"
-    },
-    "model_provenance": {
-       "name": "Llama-3-70b-Instruct",
-       "provenance": {
-          "weights_hash": "sha256:e3b0c44..."
-       }
-    },
-    "governance_results": {
-       "policy_id": "pol_mcp_financial_v1",
-       "outcome": "ALLOWED",
-       "checks": [
-         { "check": "mcp_tool_allow", "target": "weather_api", "passed": true }
-       ]
-    }
-  },
-  "signature": {
-    "type": "ecdsa_p384_sha384",
-    "key_id": "did:lucid:agent:1a2b3c4d5e6f#key-1",
-    "value": "base64_signature_of_entire_json_structure..."
-  }
-}</code></pre>
-                </div>
-            </section>
-
-            <section id="assurance-layer" class="mb-16">
-                <h2 class="text-3xl font-bold mb-6 border-b pb-2">Object: Assurance Layer</h2>
-                <p class="text-gray-600 mb-4">
-                    This layer contains metrics derived from the physical and infrastructure layers (Hard Assurance).
-                </p>
-
-                <div id="tee-evidence" class="mb-8">
-                    <h3 class="text-xl font-bold text-indigo-700 mb-2">tee_evidence</h3>
-                    <p class="text-gray-600 mb-4">
-                        The core of Hard Assurance. It captures the Attestation Quote, a binary blob signed by the
-                        processor's secret key.
-                    </p>
-                    <table class="w-full text-left border-collapse">
-                        <thead>
-                            <tr class="bg-gray-100 border-b border-gray-200">
-                                <th class="p-3 font-semibold text-sm text-gray-700">Field</th>
-                                <th class="p-3 font-semibold text-sm text-gray-700">Description</th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-sm">
-                            <tr class="border-b border-gray-100">
-                                <td class="p-3 font-mono text-pink-600">payload</td>
-                                <td class="p-3 text-gray-600">The raw attestation document (e.g., COSE object for Nitro,
-                                    TD
-                                    Quote for Intel) allowing for "Late Binding Verification".</td>
-                            </tr>
-                            <tr class="border-b border-gray-100">
-                                <td class="p-3 font-mono text-pink-600">decoded_measurements</td>
-                                <td class="p-3 text-gray-600">Parsed PCRs for searching. E.g., <code>pcr0</code>
-                                    (filesystem
-                                    integrity), <code>pcr8</code> (signing certificate).</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3 font-mono text-pink-600">pcr0 - pcr8</td>
-                                <td class="p-3 text-gray-600">
-                                    <strong>AWS Nitro:</strong> Hashes of the Enclave Image File (Kernel + Ramdisk).<br>
-                                    <strong>Intel TDX:</strong> RTMR0 (Firmware), RTMR1 (OS Kernel), RTMR2 (App Binary).
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div id="location-proof" class="mb-8">
-                    <h3 class="text-xl font-bold text-indigo-700 mb-2">location_proof</h3>
-                    <p class="text-gray-600 mb-4">
-                        Verifies location via physical properties rather than IP addresses. Uses Speed-of-Light
-                        Triangulation Logs.
-                    </p>
-                    <ul class="list-disc ml-6 space-y-1 text-gray-600 text-sm">
-                        <li><code>landmarks</code>: A list of trusted nodes that "pinged" the agent.</li>
-                        <li><code>rtt_ms</code>: Challenge-response Round Trip Times.</li>
-                        <li><code>confidence_score</code>: Geometric proof that the agent is within the geofence.</li>
-                    </ul>
-                </div>
-
-                <div id="sustainability" class="mb-8">
-                    <h3 class="text-xl font-bold text-indigo-700 mb-2">sustainability</h3>
-                    <p class="text-gray-600 mb-4">
-                        Hardware-rooted energy accounting used to generate "Green AI" certificates.
-                    </p>
-                    <ul class="list-disc ml-6 space-y-1 text-gray-600 text-sm">
-                        <li><code>gpu_joules_per_inference</code>: Precise energy usage from hardware interfaces (e.g.,
-                            Intel RAPL).</li>
-                        <li><code>carbon_intensity_gCO2_kWh</code>: Carbon cost of the computation.</li>
-                    </ul>
-                </div>
-            </section>
-
-            <section id="data-layer" class="mb-16">
-                <h2 class="text-3xl font-bold mb-6 border-b pb-2">Object: Data Layer</h2>
-                <p class="text-gray-600 mb-4">
-                    The Data Layer encapsulates the "Mind" of the agent. It includes an <code>otel_trace_context</code>
-                    block which is <strong>compatible with OpenTelemetry Trace/Span ID standards</strong>, allowing for
-                    seamless correlation across the observability stack.
-                </p>
-
-                <div id="provenance" class="mb-8">
-                    <h3 class="text-xl font-bold text-indigo-700 mb-2">model_provenance</h3>
-                    <p class="text-gray-600 mb-4">
-                        Prevents "Model Downgrade Attacks" by logging the cryptographic hash of the model weights and
-                        adapters.
-                    </p>
-                    <table class="w-full text-left border-collapse">
-                        <thead>
-                            <tr class="bg-gray-100 border-b border-gray-200">
-                                <th class="p-3 font-semibold text-sm text-gray-700">Field</th>
-                                <th class="p-3 font-semibold text-sm text-gray-700">Description</th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-sm">
-                            <tr class="border-b border-gray-100">
-                                <td class="p-3 font-mono text-pink-600">weights_hash</td>
-                                <td class="p-3 text-gray-600">The SHA-384/256 hash of the weights loaded into the secure
-                                    enclave.</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3 font-mono text-pink-600">adapter_hash</td>
-                                <td class="p-3 text-gray-600">Hashes of dynamic Low-Rank Adapters (LoRA) for specialized
-                                    tasks.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div id="governance" class="mb-8">
-                    <h3 class="text-xl font-bold text-indigo-700 mb-2">governance_results</h3>
-                    <p class="text-gray-600 mb-4">
-                        Logs the active "Governance Profile" and real-time control checks (e.g., PII scrubbers or MCP
-                        tool authorizations) to ensure insurability.
-                    </p>
-                    <div class="bg-gray-800 text-gray-200 p-4 rounded-md text-sm font-mono overflow-x-auto">
-                        "governance_results": {<br>
-                        &nbsp;&nbsp;"policy_id": "pol_mcp_financial_v1",<br>
-                        &nbsp;&nbsp;"outcome": "ALLOWED",<br>
-                        &nbsp;&nbsp;"checks": [<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;{ "check": "mcp_tool_allow", "target": "weather_api", "passed": true
-                        }<br>
-                        &nbsp;&nbsp;]<br>
-                        }
-                    </div>
-                </div>
-
-                <div id="privacy" class="mb-8">
-                    <h3 class="text-xl font-bold text-indigo-700 mb-2">privacy_preserved_payload</h3>
-                    <p class="text-gray-600 mb-4">
-                        Supports "selective disclosure" by encrypting the full snapshot with the Auditor's Public Key.
-                    </p>
-                    <ul class="list-disc ml-6 space-y-1 text-gray-600 text-sm">
-                        <li><code>encrypted_snapshot</code>: Decryptable only by the Auditor if an investigation is
-                            triggered.</li>
-                        <li><code>input_hash</code> / <code>output_hash</code>: Proves the plaintext matches the
-                            historical
-                            record without revealing data.</li>
-                    </ul>
-                </div>
-            </section>
-
-        </main>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+
+    <!-- The encrypted content will be stored here -->
+    <script id="encrypted-data" type="text/plain">fnSV4c4IR731WoAJhW7/xA==:set2ZUFpvK9sIiXY/Ak5Yg==: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</script>
+
+    <script>
+        const form = document.getElementById('unlock-form');
+        const passwordInput = document.getElementById('password');
+        const errorMsg = document.getElementById('error-msg');
+        const encryptedData = document.getElementById('encrypted-data').textContent.trim();
+
+        
+        form.onsubmit = async (e) => {
+            e.preventDefault();
+            const password = passwordInput.value;
+            const dataParts = encryptedData.split(':');
+            
+            if (dataParts.length !== 3) {
+                showError();
+                return;
+            }
+
+            try {
+                const [saltBase64, ivBase64, cipherTextBase64] = dataParts;
+                const salt = strToUint8Array(atob(saltBase64));
+                const iv = strToUint8Array(atob(ivBase64));
+                const cipherText = strToUint8Array(atob(cipherTextBase64));
+
+                // Derive key
+                const baseKey = await crypto.subtle.importKey(
+                    "raw", 
+                    new TextEncoder().encode(password), 
+                    "PBKDF2", 
+                    false, 
+                    ["deriveKey"]
+                );
+                
+                const key = await crypto.subtle.deriveKey(
+                    {
+                        name: "PBKDF2",
+                        salt: salt,
+                        iterations: 100000,
+                        hash: "SHA-256"
+                    },
+                    baseKey,
+                    { name: "AES-CBC", length: 256 },
+                    false,
+                    ["decrypt"]
+                );
+
+                const decryptedBuffer = await crypto.subtle.decrypt(
+                    { name: "AES-CBC", iv: iv },
+                    key,
+                    cipherText
+                );
+
+                const decrypted = new TextDecoder().decode(decryptedBuffer);
+                
+                document.open();
+                document.write(decrypted);
+                document.close();
+            } catch (err) {
+                console.error(err);
+                showError();
+            }
+        };
+
+        function strToUint8Array(str) {
+            const arr = new Uint8Array(str.length);
+            for (let i = 0; i < str.length; i++) arr[i] = str.charCodeAt(i);
+            return arr;
+        }
+
+        function showError() {
+            errorMsg.classList.remove('hidden');
+            passwordInput.classList.add('border-red-500/50');
+            passwordInput.value = '';
+            setTimeout(() => {
+                errorMsg.classList.add('hidden');
+                passwordInput.classList.remove('border-red-500/50');
+            }, 3000);
+        }
+
+    </script>
 </body>
 
 </html>

@@ -1,0 +1,40 @@
+name: Secure Docs Deployment
+
+on:
+  push:
+    branches:
+      - 'source' # Workflow: Push decrypted files to 'source' branch, GA locks them to 'main'
+
+jobs:
+  secure-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source code
+        uses: actions/checkout@v3
+        with:
+          ref: source
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Encrypt Documentation
+        env:
+          DOCS_PASSWORD: ${{ secrets.DOCS_PASSWORD }}
+        run: |
+          node _scripts/encrypt_docs.js
+
+      - name: Commit and Push to Main
+        run: |
+          git config --global user.name "Lucid Lockbox [Bot]"
+          git config --global user.email "bot@lucid-computing.com"
+          
+          # Move encrypted docs and other assets if needed
+          # Then switch to main branch
+          git checkout main
+          cp -r docs/*.html docs/
+          
+          git add docs/
+          git commit -m "Automated secure documentation update" || echo "No changes to commit"
+          git push origin main
