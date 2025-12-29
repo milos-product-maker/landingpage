@@ -259,12 +259,12 @@ p {
 /* Pills */
 .pill {
     text-transform: uppercase;
-    font-size: 0.75rem;
+    font-size: 0.9rem;
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     margin-bottom: 1rem;
     display: inline-block;
-    padding: 0.5rem 1.25rem;
+    padding: 0.6rem 1.5rem;
     border-radius: 99px;
     align-self: center;
 }
@@ -4816,6 +4816,9 @@ p {
     display: flex;
     justify-content: center;
     perspective: 1000px;
+    pointer-events: none;
+    user-select: none;
+    cursor: default;
 }
 
 .glass-card {
@@ -7318,4 +7321,56 @@ p {
 
 .dashboard-lite .dashboard-main {
     padding: 1.5rem 2rem !important;
+}
+
+/* --- SECTION CONNECTORS (YELLOW LINE) --- */
+.line-alignment-wrapper {
+    position: relative;
+}
+
+.line-alignment-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: var(--w-container);
+    pointer-events: none;
+    z-index: 5;
+}
+
+.v-line-accent {
+    position: absolute;
+    left: 0.5rem;
+    top: 5rem;
+    bottom: 5rem;
+    width: 2px;
+    background-color: var(--c-gray-dark);
+    box-shadow: none;
+}
+
+.section-header .pill-dark {
+    position: relative;
+    align-self: flex-start;
+}
+
+.section-header .pill-dark::before {
+    content: '';
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    width: 1.5rem;
+    height: 2px;
+    background-color: var(--c-gray-dark);
+    transform: translateY(-50%);
+}
+
+
+@media (max-width: 1400px) {
+    .line-alignment-container {
+        left: 0;
+        transform: none;
+        width: 100%;
+    }
 }

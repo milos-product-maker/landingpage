@@ -70,10 +70,13 @@ function run() {
         if (!fs.existsSync(TARGET_DIR)) return;
         if (!fs.existsSync(SOURCE_DIR)) fs.mkdirSync(SOURCE_DIR, { recursive: true });
 
-        const files = fs.readdirSync(TARGET_DIR).filter(f => f.endsWith('.html'));
-        console.log(`Decrypting ${files.length} files from ${TARGET_DIR} to ${SOURCE_DIR}...`);
+        const allFiles = fs.readdirSync(TARGET_DIR);
+        const htmlFiles = allFiles.filter(f => f.endsWith('.html'));
+        const assets = allFiles.filter(f => !f.endsWith('.html') && !f.startsWith('.') && fs.statSync(path.join(TARGET_DIR, f)).isFile());
 
-        files.forEach(file => {
+        console.log(`Decrypting ${htmlFiles.length} files from ${TARGET_DIR} to ${SOURCE_DIR}...`);
+
+        htmlFiles.forEach(file => {
             try {
                 const content = fs.readFileSync(path.join(TARGET_DIR, file), 'utf8');
                 const encryptedData = extractEncryptedData(content);
@@ -86,6 +89,16 @@ function run() {
                 console.error(`  [FAILED] ${file}: ${e.message}`);
             }
         });
+
+        if (assets.length > 0) {
+            console.log(`\nRestoring ${assets.length} assets to ${SOURCE_DIR}...`);
+            assets.forEach(file => {
+                const srcPath = path.join(TARGET_DIR, file);
+                const destPath = path.join(SOURCE_DIR, file);
+                fs.copyFileSync(srcPath, destPath);
+                console.log(`  [RESTORED] ${file}`);
+            });
+        }
     } else {
         if (!fs.existsSync(SOURCE_DIR)) {
             console.log(`Source directory ${SOURCE_DIR} empty. No files to encrypt.`);
@@ -94,11 +107,13 @@ function run() {
         if (!fs.existsSync(TARGET_DIR)) fs.mkdirSync(TARGET_DIR, { recursive: true });
 
         const template = fs.readFileSync(TEMPLATE_PATH, 'utf8');
-        const files = fs.readdirSync(SOURCE_DIR).filter(f => f.endsWith('.html'));
+        const allFiles = fs.readdirSync(SOURCE_DIR);
+        const htmlFiles = allFiles.filter(f => f.endsWith('.html'));
+        const assets = allFiles.filter(f => !f.endsWith('.html') && !f.startsWith('.') && fs.statSync(path.join(SOURCE_DIR, f)).isFile());
 
-        console.log(`Encrypting ${files.length} files to ${TARGET_DIR}...`);
+        console.log(`Encrypting ${htmlFiles.length} files to ${TARGET_DIR}...`);
 
-        files.forEach(file => {
+        htmlFiles.forEach(file => {
             const filePath = path.join(SOURCE_DIR, file);
             const content = fs.readFileSync(filePath, 'utf8');
             const encryptedContent = encrypt(content, PASSWORD);
@@ -108,6 +123,16 @@ function run() {
             fs.writeFileSync(path.join(TARGET_DIR, file), output);
             console.log(`  [LOCKED] ${file}`);
         });
+
+        if (assets.length > 0) {
+            console.log(`\nCopying ${assets.length} assets to ${TARGET_DIR}...`);
+            assets.forEach(file => {
+                const srcPath = path.join(SOURCE_DIR, file);
+                const destPath = path.join(TARGET_DIR, file);
+                fs.copyFileSync(srcPath, destPath);
+                console.log(`  [COPIED] ${file}`);
+            });
+        }
     }
     console.log(`\nUsing password: ${PASSWORD}`);
 }
