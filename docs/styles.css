@@ -4832,14 +4832,28 @@ p {
 }
 
 .hero-flight-deck {
-    width: 100%;
-    max-width: 720px;
+    width: 680px; /* Base width */
+    max-width: 95vw; /* Never wider than viewport */
     aspect-ratio: 1.2 / 1;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    transform: none;
+    transform-origin: center top;
     transition: transform 0.5s ease;
+}
+
+@media (max-width: 768px) {
+    .hero-flight-deck {
+        transform: scale(0.85);
+        margin-bottom: -100px; /* Compensate for scale shrinkage */
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-flight-deck {
+        transform: scale(0.65);
+        margin-bottom: -180px; /* Compensate for scale shrinkage */
+    }
 }
 
 /* New: Hero Split Layout (Desktop) */
