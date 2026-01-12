@@ -1,0 +1,190 @@
+/* Custom CSS for Lucid Developer Platform */
+
+/* Force black header and tabs */
+.md-header {
+    background-color: #000000 !important;
+}
+
+.md-tabs {
+    background-color: #000000 !important;
+}
+
+.md-header__button.md-logo img {
+    height: 1.5rem;
+}
+
+/* Termynal Overrides - Match Material code blocks */
+[data-termynal] {
+    background-color: var(--md-code-bg-color) !important;
+    color: var(--md-code-fg-color) !important;
+    --color-bg: var(--md-code-bg-color);
+    --color-text: var(--md-code-fg-color);
+    border: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Align prompt and title colors */
+[data-termynal]:after {
+    color: var(--md-code-fg-color);
+    opacity: 0.5;
+}
+
+[data-ty="input"]:before,
+[data-ty-prompt]:before {
+    color: var(--md-code-fg-color);
+    opacity: 0.7;
+}
+
+.termynal-comment {
+    color: #757575 !important;
+    /* Material-style comment color */
+    opacity: 0.8;
+}
+
+
+/* Image styling for premium look */
+.screenshot-card {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    margin: 24px 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.screenshot-card:hover {
+    transform: translateY(-5px);
+}
+
+.screenshot-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.screenshot-card.small {
+    max-width: 500px;
+}
+
+.centered-card {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+/* Admonition customization */
+.md-typeset .admonition.tip {
+    border-left-color: #fab387;
+}
+
+.md-typeset .admonition.tip>.admonition-title {
+    background-color: rgba(250, 179, 135, 0.1);
+    border-left-color: #fab387;
+}
+
+.md-typeset .admonition.tip>.admonition-title::before {
+    background-color: #fab387;
+}
+
+/* Auditor Phase Card Styling */
+.auditor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.auditor-phase-card {
+    background-color: var(--md-code-bg-color);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.auditor-phase-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--md-accent-fg-color);
+}
+
+.auditor-phase-card h4 {
+    margin-top: 0 !important;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.9rem !important;
+    color: var(--md-accent-fg-color);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.auditor-phase-card p {
+    font-size: 0.85rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+}
+
+.auditor-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    margin-right: 4px;
+    margin-bottom: 4px;
+}
+
+/* Full-width API Reference page */
+.md-content[data-md-component="content"]:has(#redoc-container) {
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.md-content[data-md-component="content"]:has(#redoc-container) .md-content__inner {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Hide sidebar and TOC on API page */
+body:has(#redoc-container) .md-sidebar {
+    display: none;
+}
+
+body:has(#redoc-container) .md-main__inner {
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+}
+
+body:has(#redoc-container) .md-content {
+    margin: 0;
+    max-width: 100%;
+    padding: 0;
+}
+
+body:has(#redoc-container) .md-main {
+    padding: 0;
+}
+
+body:has(#redoc-container) .md-container {
+    max-width: 100%;
+}
+
+/* Make Redoc take full width */
+#redoc-container {
+    display: block;
+    width: 100%;
+    min-height: calc(100vh - 96px);
+}
+
+/* Hide the page title on API page */
+body:has(#redoc-container) .md-content h1:first-of-type {
+    display: none;
+}
+
+body:has(#redoc-container) article.md-content__inner {
+    padding-top: 0;
+    margin-top: 0;
+}

@@ -1,0 +1,1647 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Lucid Verifier Service",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/auth/jwt/login": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Auth:Jwt.Login",
+        "operationId": "auth_jwt_login_auth_jwt_login_post",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_auth_jwt_login_auth_jwt_login_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BearerResponse"
+                },
+                "example": {
+                  "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiOTIyMWZmYzktNjQwZi00MzcyLTg2ZDMtY2U2NDJjYmE1NjAzIiwiYXVkIjoiZmFzdGFwaS11c2VyczphdXRoIiwiZXhwIjoxNTcxNTA0MTkzfQ.M10bjOe45I5Ncu_uXvOmVV8QxnL-nZfcH96U90JaocI",
+                  "token_type": "bearer"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorModel"
+                },
+                "examples": {
+                  "LOGIN_BAD_CREDENTIALS": {
+                    "summary": "Bad credentials or the user is inactive.",
+                    "value": {
+                      "detail": "LOGIN_BAD_CREDENTIALS"
+                    }
+                  },
+                  "LOGIN_USER_NOT_VERIFIED": {
+                    "summary": "The user is not verified.",
+                    "value": {
+                      "detail": "LOGIN_USER_NOT_VERIFIED"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/jwt/logout": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Auth:Jwt.Logout",
+        "operationId": "auth_jwt_logout_auth_jwt_logout_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Missing token or inactive user."
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      }
+    },
+    "/auth/register": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Register:Register",
+        "operationId": "register_register_auth_register_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserRead"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorModel"
+                },
+                "examples": {
+                  "REGISTER_USER_ALREADY_EXISTS": {
+                    "summary": "A user with this email already exists.",
+                    "value": {
+                      "detail": "REGISTER_USER_ALREADY_EXISTS"
+                    }
+                  },
+                  "REGISTER_INVALID_PASSWORD": {
+                    "summary": "Password validation failed.",
+                    "value": {
+                      "detail": {
+                        "code": "REGISTER_INVALID_PASSWORD",
+                        "reason": "Password should beat least 3 characters"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/me": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Users:Current User",
+        "operationId": "users_current_user_users_me_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserRead"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing token or inactive user."
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Users:Patch Current User",
+        "operationId": "users_patch_current_user_users_me_patch",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserRead"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing token or inactive user."
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorModel"
+                },
+                "examples": {
+                  "UPDATE_USER_EMAIL_ALREADY_EXISTS": {
+                    "summary": "A user with this email already exists.",
+                    "value": {
+                      "detail": "UPDATE_USER_EMAIL_ALREADY_EXISTS"
+                    }
+                  },
+                  "UPDATE_USER_INVALID_PASSWORD": {
+                    "summary": "Password validation failed.",
+                    "value": {
+                      "detail": {
+                        "code": "UPDATE_USER_INVALID_PASSWORD",
+                        "reason": "Password should beat least 3 characters"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Users:User",
+        "operationId": "users_user_users__id__get",
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserRead"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing token or inactive user."
+          },
+          "403": {
+            "description": "Not a superuser."
+          },
+          "404": {
+            "description": "The user does not exist."
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Users:Patch User",
+        "operationId": "users_patch_user_users__id__patch",
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserRead"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing token or inactive user."
+          },
+          "403": {
+            "description": "Not a superuser."
+          },
+          "404": {
+            "description": "The user does not exist."
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "UPDATE_USER_EMAIL_ALREADY_EXISTS": {
+                    "summary": "A user with this email already exists.",
+                    "value": {
+                      "detail": "UPDATE_USER_EMAIL_ALREADY_EXISTS"
+                    }
+                  },
+                  "UPDATE_USER_INVALID_PASSWORD": {
+                    "summary": "Password validation failed.",
+                    "value": {
+                      "detail": {
+                        "code": "UPDATE_USER_INVALID_PASSWORD",
+                        "reason": "Password should beat least 3 characters"
+                      }
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorModel"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Users:Delete User",
+        "operationId": "users_delete_user_users__id__delete",
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "401": {
+            "description": "Missing token or inactive user."
+          },
+          "403": {
+            "description": "Not a superuser."
+          },
+          "404": {
+            "description": "The user does not exist."
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "summary": "Health Check",
+        "operationId": "health_check__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/notarize": {
+      "post": {
+        "summary": "Notarize Image",
+        "description": "Register a notarized auditor image.\n\nThis endpoint records the cryptographic signature of an Auditor image, linking\nit to a verified identity. This forms the basis of the 'Chain of Trust'.\n\nArgs:\n    request: The notarization payload containing digest and signature.\n    user: The authenticated user performing the notarization.\n    db: Database session.\n\nReturns:\n    Status object containing the registered digest.",
+        "operationId": "notarize_image_notarize_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotarizeRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      }
+    },
+    "/notarize/api": {
+      "post": {
+        "summary": "Notarize Image With Api Key",
+        "description": "Register a notarized auditor image using API Key authentication.\n\nThis endpoint is identical to /notarize but accepts X-API-Key header\ninstead of JWT Bearer token. Intended for CI/CD pipelines and CLI usage.\n\nArgs:\n    request: The notarization payload containing digest and signature.\n    user: The user associated with the API key.\n    db: Database session.\n\nReturns:\n    Status object containing the registered digest.",
+        "operationId": "notarize_image_with_api_key_notarize_api_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotarizeRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ]
+      }
+    },
+    "/registry/check": {
+      "get": {
+        "summary": "Check Registry",
+        "description": "Check if an image digest is notarized in the Lucid Registry.\n\nUsed by the Operator and other components to verify if a deployed container\nis a trusted Auditor.\n\nArgs:\n    digest: The SHA256 digest of the container image.\n    db: Database session.\n\nReturns:\n    Dictionary indicating if the digest is 'notarized'.",
+        "operationId": "check_registry_registry_check_get",
+        "parameters": [
+          {
+            "name": "digest",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Digest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/me/api-key": {
+      "post": {
+        "summary": "Create Api Key",
+        "description": "Generate a new API key for the current user.\n\nAPI keys are used for programmatic access, such as signing auditor images\nin CI/CD pipelines.\n\nArgs:\n    alias: A human-readable name for the key.\n    user: The currently authenticated user.\n    db: Database session.\n\nReturns:\n    Object containing the raw API key secret (shown only once).",
+        "operationId": "create_api_key_users_me_api_key_post",
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "alias",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "default",
+              "title": "Alias"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/evidence": {
+      "post": {
+        "summary": "Submit Evidence",
+        "description": "Receive evidence and update/issue an AI Passport.\n\nThis is the core Verifier function. It accepts evidence from Auditors:\n1.  Verifies the cryptographic signatures of all measurements.\n2.  Validates that the submitting Auditors are trusted (notarized).\n3.  Aggregates the evidence into an 'AI Passport'.\n4.  Evaluates policies (e.g., location verification, PII checks).\n5.  Signs the updated Passport with the Verifier's Root of Trust.\n\nArgs:\n    request: Batch of measurements and session context.\n    db: Database session.\n\nReturns:\n    The updated, cryptographically signed AI Passport.",
+        "operationId": "submit_evidence_evidence_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EvidenceRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AIPassport"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/passport/{model_id}": {
+      "get": {
+        "summary": "Get Passport",
+        "description": "Retrieve the current AI Passport for a specific model context.\n\nArgs:\n    model_id: The unique identifier of the model session.\n    db: Database session.\n\nReturns:\n    The AIPassport object, if found.",
+        "operationId": "get_passport_passport__model_id__get",
+        "parameters": [
+          {
+            "name": "model_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Model Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AIPassport"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AIPassport": {
+        "properties": {
+          "iss": {
+            "type": "string",
+            "title": "Iss",
+            "description": "Issuer ID (e.g. 'lucid-verifier')."
+          },
+          "iat": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Iat",
+            "description": "Issued-at timestamp."
+          },
+          "exp": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Exp",
+            "description": "Expiration timestamp."
+          },
+          "passport_id": {
+            "type": "string",
+            "title": "Passport Id",
+            "description": "Unique ID for this passport."
+          },
+          "model_id": {
+            "type": "string",
+            "title": "Model Id",
+            "description": "Target model identifier."
+          },
+          "model_hash": {
+            "type": "string",
+            "title": "Model Hash",
+            "description": "Reference hash of the model."
+          },
+          "hardware_attestation": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/HardwareAttestation"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "evaluations": {
+            "items": {
+              "$ref": "#/components/schemas/EvaluationResult"
+            },
+            "type": "array",
+            "title": "Evaluations",
+            "description": "Pre-deployment safety evaluation results."
+          },
+          "measurements": {
+            "items": {
+              "$ref": "#/components/schemas/Measurement"
+            },
+            "type": "array",
+            "title": "Measurements",
+            "description": "Collection of all signed evidence across all phases."
+          },
+          "runtime_status": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RuntimeStatus"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "deployment_authorized": {
+            "type": "boolean",
+            "title": "Deployment Authorized",
+            "description": "Overall safety authorization status.",
+            "default": false
+          },
+          "authorization_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Authorization Reason",
+            "description": "Detailed reason for final status."
+          },
+          "risk_score": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Risk Score",
+            "description": "Overall risk score across the chain (0.0=safe, 1.0=danger).",
+            "default": 0.0
+          },
+          "verifier_signature": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Verifier Signature",
+            "description": "Verifier's signature over the entitre passport."
+          },
+          "is_mock": {
+            "type": "boolean",
+            "title": "Is Mock",
+            "description": "True if attestation came from mock/dev environment (no real TEE hardware).",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "iss",
+          "iat",
+          "passport_id",
+          "model_id",
+          "model_hash"
+        ],
+        "title": "AIPassport",
+        "description": "Alias for AttestationResult for external API compatibility."
+      },
+      "BearerResponse": {
+        "properties": {
+          "access_token": {
+            "type": "string",
+            "title": "Access Token"
+          },
+          "token_type": {
+            "type": "string",
+            "title": "Token Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "access_token",
+          "token_type"
+        ],
+        "title": "BearerResponse"
+      },
+      "Body_auth_jwt_login_auth_jwt_login_post": {
+        "properties": {
+          "grant_type": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^password$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Grant Type"
+          },
+          "username": {
+            "type": "string",
+            "title": "Username"
+          },
+          "password": {
+            "type": "string",
+            "format": "password",
+            "title": "Password"
+          },
+          "scope": {
+            "type": "string",
+            "title": "Scope",
+            "default": ""
+          },
+          "client_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Client Id"
+          },
+          "client_secret": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "format": "password",
+            "title": "Client Secret"
+          }
+        },
+        "type": "object",
+        "required": [
+          "username",
+          "password"
+        ],
+        "title": "Body_auth_jwt_login_auth_jwt_login_post"
+      },
+      "ComplianceFramework": {
+        "type": "string",
+        "enum": [
+          "hipaa",
+          "gdpr",
+          "itar",
+          "soc2",
+          "nist_800_53",
+          "eu_ai_act",
+          "export_control"
+        ],
+        "title": "ComplianceFramework",
+        "description": "Standardized compliance frameworks for policy mapping."
+      },
+      "ErrorModel": {
+        "properties": {
+          "detail": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "type": "object"
+              }
+            ],
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "required": [
+          "detail"
+        ],
+        "title": "ErrorModel"
+      },
+      "EvaluationResult": {
+        "properties": {
+          "evaluation_id": {
+            "type": "string",
+            "title": "Evaluation Id",
+            "description": "Unique ID for this evaluation."
+          },
+          "evaluator": {
+            "type": "string",
+            "title": "Evaluator",
+            "description": "Name of the evaluation tool (e.g., 'petri')."
+          },
+          "evaluator_version": {
+            "type": "string",
+            "title": "Evaluator Version",
+            "description": "Version of the evaluator."
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Timestamp",
+            "description": "Time of evaluation."
+          },
+          "model_id": {
+            "type": "string",
+            "title": "Model Id",
+            "description": "Identifier of the model being evaluated."
+          },
+          "model_hash": {
+            "type": "string",
+            "title": "Model Hash",
+            "description": "Cryptographic hash of the model weights."
+          },
+          "passed": {
+            "type": "boolean",
+            "title": "Passed",
+            "description": "Whether the evaluation passed its safety thresholds."
+          },
+          "scores": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "type": "object",
+            "title": "Scores",
+            "description": "Detailed safety scores."
+          },
+          "findings": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Findings",
+            "description": "Specific safety violations found."
+          },
+          "tee_quote": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tee Quote",
+            "description": "Hardware-signed proof of the evaluation run."
+          }
+        },
+        "type": "object",
+        "required": [
+          "evaluation_id",
+          "evaluator",
+          "evaluator_version",
+          "timestamp",
+          "model_id",
+          "model_hash",
+          "passed"
+        ],
+        "title": "EvaluationResult",
+        "description": "Result from a pre-deployment evaluation (e.g., Petri)"
+      },
+      "EvidenceRequest": {
+        "properties": {
+          "session_id": {
+            "type": "string",
+            "title": "Session Id"
+          },
+          "model_id": {
+            "type": "string",
+            "title": "Model Id"
+          },
+          "measurements": {
+            "items": {
+              "$ref": "#/components/schemas/Measurement"
+            },
+            "type": "array",
+            "title": "Measurements",
+            "default": []
+          },
+          "evaluations": {
+            "items": {
+              "$ref": "#/components/schemas/EvaluationResult"
+            },
+            "type": "array",
+            "title": "Evaluations",
+            "default": []
+          }
+        },
+        "type": "object",
+        "required": [
+          "session_id",
+          "model_id"
+        ],
+        "title": "EvidenceRequest"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "HardwareAttestation": {
+        "properties": {
+          "attestation_id": {
+            "type": "string",
+            "title": "Attestation Id",
+            "description": "Unique ID for this attestation report."
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Timestamp",
+            "description": "Time report was generated."
+          },
+          "provider": {
+            "$ref": "#/components/schemas/HardwareProvider",
+            "description": "TEE hardware vendor."
+          },
+          "tee_type": {
+            "type": "string",
+            "title": "Tee Type",
+            "description": "Specific TEE technology (e.g., 'SEV-SNP', 'TDX')."
+          },
+          "gpu_tee_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Gpu Tee Type",
+            "description": "Optional GPU TEE info."
+          },
+          "quote": {
+            "type": "string",
+            "title": "Quote",
+            "description": "The raw hardware quote/evidence."
+          },
+          "verified": {
+            "type": "boolean",
+            "title": "Verified",
+            "description": "Whether the quote has been verified by the Appraiser.",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "attestation_id",
+          "timestamp",
+          "provider",
+          "tee_type",
+          "quote"
+        ],
+        "title": "HardwareAttestation",
+        "description": "Hardware integrity and platform attestation."
+      },
+      "HardwareProvider": {
+        "type": "string",
+        "enum": [
+          "aws_nitro",
+          "intel_tdx",
+          "amd_sev",
+          "nvidia_h100"
+        ],
+        "title": "HardwareProvider",
+        "description": "Supported Trusted Execution Environment (TEE) hardware providers."
+      },
+      "Measurement": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name",
+            "description": "Unique label for the metric (e.g. 'pii_score').",
+            "examples": [
+              "pii_score"
+            ]
+          },
+          "type": {
+            "$ref": "#/components/schemas/MeasurementType",
+            "description": "The type/category of measurement.",
+            "examples": [
+              "quantity"
+            ]
+          },
+          "phase": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Phase",
+            "description": "The execution phase (static, pre, runtime, post).",
+            "examples": [
+              "pre"
+            ]
+          },
+          "value": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "additionalProperties": true,
+                "type": "object"
+              }
+            ],
+            "title": "Value",
+            "description": "The actual data captured.",
+            "examples": [
+              0.85
+            ]
+          },
+          "compliance_framework": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ComplianceFramework"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Optional mapping to a regulatory framework.",
+            "examples": [
+              "gdpr"
+            ]
+          },
+          "control_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Control Id",
+            "description": "Specific section ID in the mapped framework.",
+            "examples": [
+              "Article 5(1)(f)"
+            ]
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Timestamp",
+            "description": "Time of capture (UTC).",
+            "examples": [
+              "2025-12-30T20:00:00Z"
+            ]
+          },
+          "nonce": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Nonce",
+            "description": "Optional freshness nonce from the relying party."
+          },
+          "auditor_signature": {
+            "type": "string",
+            "title": "Auditor Signature",
+            "description": "Cryptographic signature of the measurement blob.",
+            "examples": [
+              "rsa-signature-base64"
+            ]
+          },
+          "confidence": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Confidence",
+            "description": "Confidence score from 0.0 (low) to 1.0 (high).",
+            "default": 1.0,
+            "examples": [
+              0.95
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "type",
+          "value",
+          "timestamp",
+          "auditor_signature"
+        ],
+        "title": "Measurement",
+        "description": "The primary evidence unit produced by an Auditor."
+      },
+      "MeasurementType": {
+        "type": "string",
+        "enum": [
+          "quantity",
+          "benchmark",
+          "policy_violation",
+          "conformity",
+          "hash",
+          "telemetry",
+          "audit_pass",
+          "other"
+        ],
+        "title": "MeasurementType",
+        "description": "The data type/intent of a measurement."
+      },
+      "NotarizeRequest": {
+        "properties": {
+          "image_digest": {
+            "type": "string",
+            "title": "Image Digest"
+          },
+          "image_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image Url"
+          },
+          "signature": {
+            "type": "string",
+            "title": "Signature"
+          },
+          "signer_subject": {
+            "type": "string",
+            "title": "Signer Subject"
+          }
+        },
+        "type": "object",
+        "required": [
+          "image_digest",
+          "signature",
+          "signer_subject"
+        ],
+        "title": "NotarizeRequest"
+      },
+      "RuntimeStatus": {
+        "properties": {
+          "active_auditors": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Active Auditors",
+            "description": "List of IDs for currently running auditors."
+          },
+          "requests_processed": {
+            "type": "integer",
+            "title": "Requests Processed",
+            "description": "Total AI requests intercepted.",
+            "default": 0
+          },
+          "requests_blocked": {
+            "type": "integer",
+            "title": "Requests Blocked",
+            "description": "Total requests denied by auditors.",
+            "default": 0
+          },
+          "requests_redacted": {
+            "type": "integer",
+            "title": "Requests Redacted",
+            "description": "Total requests modified by auditors.",
+            "default": 0
+          },
+          "signature_digest": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Signature Digest",
+            "description": "SHA-256 hash of the signed passport data for verification."
+          }
+        },
+        "type": "object",
+        "required": [
+          "active_auditors"
+        ],
+        "title": "RuntimeStatus",
+        "description": "Live status of the auditor chain."
+      },
+      "UserCreate": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "title": "Email"
+          },
+          "password": {
+            "type": "string",
+            "title": "Password"
+          },
+          "is_active": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Active",
+            "default": true
+          },
+          "is_superuser": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Superuser",
+            "default": false
+          },
+          "is_verified": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Verified",
+            "default": false
+          },
+          "organization_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Organization Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "email",
+          "password"
+        ],
+        "title": "UserCreate"
+      },
+      "UserRead": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "title": "Email"
+          },
+          "is_active": {
+            "type": "boolean",
+            "title": "Is Active",
+            "default": true
+          },
+          "is_superuser": {
+            "type": "boolean",
+            "title": "Is Superuser",
+            "default": false
+          },
+          "is_verified": {
+            "type": "boolean",
+            "title": "Is Verified",
+            "default": false
+          },
+          "organization_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Organization Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "email"
+        ],
+        "title": "UserRead"
+      },
+      "UserUpdate": {
+        "properties": {
+          "password": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Password"
+          },
+          "email": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "email"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Email"
+          },
+          "is_active": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Active"
+          },
+          "is_superuser": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Superuser"
+          },
+          "is_verified": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Verified"
+          },
+          "organization_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Organization Id"
+          }
+        },
+        "type": "object",
+        "title": "UserUpdate"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    },
+    "securitySchemes": {
+      "OAuth2PasswordBearer": {
+        "type": "oauth2",
+        "flows": {
+          "password": {
+            "scopes": {},
+            "tokenUrl": "auth/jwt/login"
+          }
+        }
+      },
+      "APIKeyHeader": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-Key"
+      }
+    }
+  }
+}

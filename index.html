@@ -12,6 +12,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="animation.js"></script>
 </head>
 
 <body class="page-home">
@@ -26,7 +29,6 @@
         </a>
 
         <div class="nav-links">
-            <a href="index.html" class="nav-link">Home</a>
             <div class="nav-item-dropdown">
                 <a href="#" class="nav-link has-dropdown">Solutions</a>
                 <div class="dropdown-menu">
@@ -51,524 +53,917 @@
             </div>
             <a href="insights.html" class="nav-link">Insights</a>
             <a href="https://nopinkypromises-996531410483.us-east4.run.app/" class="nav-link">Live Preview</a>
+            <a href="site/index.html" class="nav-link">Docs</a>
             <a href="https://app.lucidcomputing.ai/login" class="nav-link">Log In</a>
             <a href="#cta" class="nav-link nav-cta-btn">Book a Demo</a>
         </div>
+
     </nav>
-    <nav class="nav-dots">
-        <a href="#hero" class="nav-dot" aria-label="Go to Hero"></a>
-        <a href="#problem" class="nav-dot" aria-label="Go to Problem"></a>
-        <a href="#proof" class="nav-dot" aria-label="Go to Proof"></a>
-        <a href="#solution" class="nav-dot" aria-label="Go to Solution"></a>
-        <a href="#audits" class="nav-dot" aria-label="Go to Audits"></a>
-        <a href="#how-it-works" class="nav-dot" aria-label="Go to How It Works"></a>
-        <a href="#insights" class="nav-dot" aria-label="Go to Insights"></a>
-        <a href="#cta" class="nav-dot" aria-label="Go to Contact"></a>
-    </nav>
+
     <section id="hero" class="bg-black">
         <div id="hero-animation"></div>
-        <div class="container">
-            <div class="hero-logo-container animate-up delay-1">
-                <div class="logo-glow"></div>
-                <img src="lucid-logo.svg" alt="Lucid Computing Logo" width="300" height="300" class="hero-logo-img">
+        <div class="container hero-split">
+            <div class="hero-content animate-up delay-1">
+                <h1 class="hero-title">
+                    Verifiable AI
+                    <span class="rotator-wrapper">
+                        <span id="rotator-suffix" class="rotator-text"> for sovereignty</span>
+                    </span>
+                </h1>
+                <p class="subtitle" style="text-align: left; margin-left: 0;">
+                    Accelerate compliance with Auditor Chains. Wrap existing AI agents in a hardware-secured Trusted
+                    Execution Environment with zero code changes.
+                </p>
+                <div class="hero-btns" style="display:flex; gap:1rem; margin-top:2rem;">
+                    <a href="#cta" class="btn-white-hero">
+                        Book a Demo
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </a>
+                </div>
             </div>
 
-            <h1 class="hero-title animate-up delay-2">Verifiable AI sovereignty <br> beyond empty promises</h1>
 
-            <h3 class="animate-up delay-2">
-                The <span class="highlight">Verifiable Compute Platform</span> for
-                <span class="dynamic-wrapper"><span id="dynamic-text" class="dynamic-text-style">Cloud
-                        Providers</span></span>
-            </h3>
+            <div class="hero-dashboard-container animate-up delay-2">
+                <div class="glass-card hero-flight-deck">
+                    <!-- Header -->
+                    <div class="deck-header">
+                        <!-- Attestations (Header Right) -->
+                        <div class="header-agent-name"
+                            style="font-family: var(--font-mono); font-size: 0.8rem; color: #fff; letter-spacing: 0.1em; text-transform: uppercase;">
+                            Agent: Model X67
+                        </div>
+                    </div>
 
-            <div class="animate-up delay-3 hero-desc-container">
-                <p class="subtitle">
-                    <br>
-                    Upgrade your infrastructure and turn trust into a competitive advantage, unlocking
-                    high-value workloads that commodity clouds can't touch.
-                </p>
+                    <!-- Body (2-Column Grid) -->
+                    <div class="hero-grid-body two-col">
+                        <!-- A) Compliance: Radar Chart -->
+                        <div class="dash-section section-compliance">
+                            <div class="auditor-chain-header">Compliance</div>
+                            <div class="radar-container-mini">
+                                <canvas id="complianceChart"></canvas>
+                            </div>
+                        </div>
 
-                <!-- Logo Banner (Moved) -->
-                <div class="logo-banner">
-                    <div class="logo-header">Partners Defining the Future of Security</div>
-                    <div class="logo-marquee">
-                        <div class="logo-track">
-                            <!-- Set 1 -->
-                            <div class="logo-item">
-                                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                                </svg>
-                                <span class="logo-text">Confidential Computing Consortium</span>
-                            </div>
-                            <div class="logo-item">
-                                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <rect x="3" y="3" width="18" height="18" rx="2"></rect>
-                                    <path d="M9 3v18"></path>
-                                    <path d="M15 3v18"></path>
-                                </svg>
-                                <span class="logo-text">SL5 Taskforce</span>
-                            </div>
-                            <div class="logo-item">
-                                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <rect x="4" y="4" width="16" height="16" rx="2"></rect>
-                                    <path d="M9 9h6v6H9z"></path>
-                                    <path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 15h3M1 9h3M1 15h3"></path>
-                                </svg>
-                                <span class="logo-text">Intel Trust Authority</span>
-                            </div>
-                            <div class="logo-item">
-                                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <path d="M5 12h14"></path>
-                                    <path d="M12 5v14"></path>
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                </svg>
-                                <span class="logo-text">Nvidia NRAS</span>
-                            </div>
-                            <div class="logo-item">
-                                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                                    <polyline points="2 17 12 22 22 17"></polyline>
-                                    <polyline points="2 12 12 17 22 12"></polyline>
-                                </svg>
-                                <span class="logo-text">AMD SEV-SNP</span>
+                        <!-- B) Guardrails: Manifest -->
+                        <!-- B) Auditors: Vertical Chain -->
+                        <div class="dash-section section-auditors-vertical">
+                            <div class="auditor-chain-header">
+                                Auditor Chain</div>
+                            <div class="auditor-stack">
+                                <div class="auditor-node-mini">
+                                    <div class="node-dot"
+                                        style="background-color: #4ade80; box-shadow: 0 0 8px rgba(74, 222, 128, 0.6);">
+                                    </div>
+                                    <span class="auditor-name">Auditor 1</span>
+                                </div>
+                                <div class="auditor-node-mini">
+                                    <div class="node-dot"
+                                        style="background-color: #60a5fa; box-shadow: 0 0 8px rgba(96, 165, 250, 0.6);">
+                                    </div>
+                                    <span class="auditor-name">Auditor 2</span>
+                                </div>
+                                <div class="auditor-node-mini">
+                                    <div class="node-dot"
+                                        style="background-color: #f87171; box-shadow: 0 0 8px rgba(248, 113, 113, 0.6);">
+                                    </div>
+                                    <span class="auditor-name">Auditor 3</span>
+                                </div>
                             </div>
 
-                            <!-- Duplicate for infinite scroll -->
-                            <div class="logo-item">
-                                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                                </svg>
-                                <span class="logo-text">Confidential Computing Consortium</span>
+                            <!-- Attestations Headline & List -->
+                            <div class="auditor-chain-header" style="margin-top: 1rem;">Attestations</div>
+                            <div class="auditor-stack" style="margin-top: 0.5rem;">
+                                <div class="auditor-node-mini">
+                                    <div class="node-dot"
+                                        style="background-color: #4ade80; box-shadow: 0 0 8px rgba(74, 222, 128, 0.6);">
+                                    </div>
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--c-green)"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        style="flex-shrink:0;">
+                                        <rect x="3" y="11" width="18" height="10" rx="2"></rect>
+                                        <circle cx="12" cy="5" r="2"></circle>
+                                        <path d="M12 7v4"></path>
+                                        <line x1="8" y1="16" x2="8.01" y2="16"></line>
+                                        <line x1="16" y1="16" x2="16.01" y2="16"></line>
+                                    </svg>
+                                    <span class="auditor-name">Llama-3-70b</span>
+                                </div>
+                                <div class="auditor-node-mini">
+                                    <div class="node-dot"
+                                        style="background-color: #4ade80; box-shadow: 0 0 8px rgba(74, 222, 128, 0.6);">
+                                    </div>
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--c-green)"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        style="flex-shrink:0;">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                        <circle cx="12" cy="10" r="3"></circle>
+                                    </svg>
+                                    <span class="auditor-name">Sweden</span>
+                                </div>
+                                <div class="auditor-node-mini">
+                                    <div class="node-dot"
+                                        style="background-color: #4ade80; box-shadow: 0 0 8px rgba(74, 222, 128, 0.6);">
+                                    </div>
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--c-green)"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        style="flex-shrink:0;">
+                                        <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+                                        <rect x="9" y="9" width="6" height="6"></rect>
+                                        <line x1="9" y1="1" x2="9" y2="4"></line>
+                                        <line x1="15" y1="1" x2="15" y2="4"></line>
+                                        <line x1="9" y1="20" x2="9" y2="23"></line>
+                                        <line x1="15" y1="20" x2="15" y2="23"></line>
+                                        <line x1="20" y1="9" x2="23" y2="9"></line>
+                                        <line x1="20" y1="14" x2="23" y2="14"></line>
+                                        <line x1="1" y1="9" x2="4" y2="9"></line>
+                                        <line x1="1" y1="14" x2="4" y2="14"></line>
+                                    </svg>
+                                    <span class="auditor-name">Nvidia H100</span>
+                                </div>
                             </div>
-                            <div class="logo-item">
-                                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <rect x="3" y="3" width="18" height="18" rx="2"></rect>
-                                    <path d="M9 3v18"></path>
-                                    <path d="M15 3v18"></path>
-                                </svg>
-                                <span class="logo-text">SL5 Taskforce</span>
+                        </div>
+                    </div>
+
+                    <!-- Footer: Horizontal Stats -->
+                    <div class="deck-footer footer-stats">
+                        <div class="stat-item">
+                            <span class="label">REQUESTS</span>
+                            <span class="val">12,405</span>
+                        </div>
+                        <div class="stat-item border-left">
+                            <span class="label">TOKENS</span>
+                            <span class="val">4.8M</span>
+                        </div>
+                        <div class="stat-item border-left">
+                            <span class="label">COST (EST)</span>
+                            <span class="val">$4.32</span>
+                        </div>
+                        <div class="stat-item border-left">
+                            <span class="label">REFUSALS</span>
+                            <span class="val badge-ghost-red">12</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <div class="line-alignment-wrapper">
+        <div class="line-alignment-container">
+            <div class="v-line-accent"></div>
+        </div>
+
+        <section id="auditors" class="bg-black">
+            <div class="container text-left">
+                <div class="section-header animate-up">
+                    <span class="pill pill-dark">01 — NO-CODE AUDITS</span>
+                    <h2 style="margin-top: 1rem;">Compose Your Audit Chain</h2>
+                </div>
+
+                <div class="auditor-chain-container animate-up delay-1">
+                    <div class="chain-viz">
+                        <!-- Node 1: Build-Time -->
+                        <div class="auditor-node">
+                            <div class="node-header">
+                                <div class="node-icon">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                    </svg>
+                                </div>
+                                <div class="node-title">Phase 1: Build</div>
                             </div>
-                            <div class="logo-item">
-                                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <rect x="4" y="4" width="16" height="16" rx="2"></rect>
-                                    <path d="M9 9h6v6H9z"></path>
-                                    <path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 15h3M1 9h3M1 15h3"></path>
-                                </svg>
-                                <span class="logo-text">Intel Trust Authority</span>
+                            <div class="node-tags">
+                                <span class="node-tag">Evals</span>
+                                <span class="node-tag">Integrity</span>
+                                <span class="node-tag">SBOM</span>
                             </div>
-                            <div class="logo-item">
-                                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <path d="M5 12h14"></path>
-                                    <path d="M12 5v14"></path>
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                </svg>
-                                <span class="logo-text">Nvidia NRAS</span>
+                        </div>
+
+                        <div class="flow-arrow-mini"></div>
+
+                        <!-- Node 2: Input Gate -->
+                        <div class="auditor-node">
+                            <div class="node-header">
+                                <div class="node-icon">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                    </svg>
+                                </div>
+                                <div class="node-title">Phase 2: Input</div>
                             </div>
-                            <div class="logo-item">
-                                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                                    <polyline points="2 17 12 22 22 17"></polyline>
-                                    <polyline points="2 12 12 17 22 12"></polyline>
-                                </svg>
-                                <span class="logo-text">AMD SEV-SNP</span>
+                            <div class="node-tags">
+                                <span class="node-tag">PII</span>
+                                <span class="node-tag">Injection</span>
+                                <span class="node-tag">Filter</span>
+                            </div>
+                        </div>
+
+                        <div class="flow-arrow-mini"></div>
+
+                        <!-- Node 3: Runtime -->
+                        <div class="auditor-node">
+                            <div class="node-header">
+                                <div class="node-icon">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+                                        <polyline points="13 2 13 9 20 9"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="node-title">Phase 3: Runtime</div>
+                            </div>
+                            <div class="node-tags">
+                                <span class="node-tag">GPU</span>
+                                <span class="node-tag">Interpret</span>
+                                <span class="node-tag">Metrics</span>
+                            </div>
+                        </div>
+
+                        <div class="flow-arrow-mini"></div>
+
+                        <!-- Node 4: Post-Inference -->
+                        <div class="auditor-node">
+                            <div class="node-header">
+                                <div class="node-icon">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <div class="node-title">Phase 4: Output</div>
+                            </div>
+                            <div class="node-tags">
+                                <span class="node-tag">RAG</span>
+                                <span class="node-tag">Bias</span>
+                                <span class="node-tag">Toxicity</span>
+                                <span class="node-tag">Quality</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid-33-66 mt-20">
+                    <!-- Left Panel: Check Items -->
+                    <div class="animate-up delay-2" style="text-align: left;">
+                        <div class="check-item">
+                            <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                                </path>
+                                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                            </svg>
+                            <div>
+                                <h4 style="margin-bottom: 0.5rem; font-size: 1.1rem;">Zero Code Injection</h4>
+                                <p style="font-size: 0.95rem; opacity: 0.8;">An "Auditor" is simply a standard OCI
+                                    container. We inject these auditors as sidecars into your Pod for seamless,
+                                    standards-based integration.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="check-item">
+                            <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="4 17 10 11 4 5"></polyline>
+                                <line x1="12" y1="19" x2="20" y2="19"></line>
+                            </svg>
+                            <div>
+                                <h4 style="margin-bottom: 0.5rem; font-size: 1.1rem;">Build with Ease</h4>
+                                <p style="font-size: 0.95rem; opacity: 0.8;">Use our SDK to transform scripts into
+                                    compliant Auditors that fit your policies.</p>
+                            </div>
+                        </div>
+
+                        <div class="check-item">
+                            <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            <div>
+                                <h4 style="margin-bottom: 0.5rem; font-size: 1.1rem;">Marketplace Approach</h4>
+                                <p style="font-size: 0.95rem; opacity: 0.8;">Pull pre-built auditors for frameworks like
+                                    ITAR, GDPR, HIPAA,
+                                    SOC 2, or EU AI Act, from our marketplace.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Panel: Code Editor -->
+                    <div class="animate-up delay-2">
+                        <div class="code-editor">
+                            <div class="code-header">
+                                <span class="mono"
+                                    style="font-size:0.7rem; opacity:0.5; margin-left:1rem;">manifest.yaml</span>
+                            </div>
+                            <div class="code-content">
+                                <pre><code><span class="key">apiVersion</span>: <span class="val">lucid.sh/v1</span>
+<span class="key">kind</span>: <span class="val">VerifiableJobManifest</span>
+<span class="key">metadata</span>:
+  <span class="key">name</span>: <span class="val">finance-chain-v1</span>
+<span class="key">spec</span>:
+  <span class="key">auditors</span>:
+  <span class="comment"># Developer Logic (Custom via SDK)</span>
+  - <span class="key">name</span>: <span class="val">"dev-crash-catcher"</span>
+    <span class="key">image</span>: <span class="val">internal/debugger:v1</span>
+  <span class="comment"># Security Policy (MCP Compatible)</span>
+  - <span class="key">name</span>: <span class="val">"sec-firewall"</span>
+    <span class="key">image</span>: <span class="val">lucid-standard-v2:mcp-safe</span>
+  <span class="comment"># Regulatory Logging</span>
+  - <span class="key">name</span>: <span class="val">"gov-logger"</span>
+    <span class="key">image</span>: <span class="val">gov-registry.eu/logger:v4</span></code></pre>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <a href="#cta" class="hero-btn">
-                    Book a Demo
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="12" y1="5" x2="12" y2="19"></line>
-                        <polyline points="19 12 12 19 5 12"></polyline>
-                    </svg>
-                </a>
-            </div>
-        </div>
-        <a href="#problem" class="arrow-next" aria-label="Scroll Down"><svg width="32" height="32" viewBox="0 0 24 24"
-                fill="none" stroke="currentColor" stroke-width="2">
-                <path d="m6 9 6 6 6-6"></path>
-            </svg></a>
-        <!-- Three.js Library -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-        <!-- Custom Animation Script -->
-        <script src="animation.js"></script>
-    </section>
+        </section>
 
-    <section id="problem" class="bg-black">
-        <div class="container">
-            <span class="pill pill-dark">The AI Adoption Barrier</span>
-
-            <div class="problem-header">
-                <h2>Unlock The <span class="blocked-text">Blocked</span> Majority</h2>
-                <p class="subtitle">95% of enterprise AI pilots never reach production. The infrastructure gap
-                    between public cloud convenience and sovereign security is the bottleneck.</p>
-            </div>
-
-            <div class="grid-3">
-                <div class="card card-dark">
-                    <svg class="icon" viewBox="0 0 100 100" fill="none">
-                        <path d="M50 15 L85 32.5 V67.5 L50 85 L15 67.5 V32.5 L50 15 Z" stroke="white" stroke-width="4"
-                            stroke-linejoin="round" />
-                        <path d="M25 40 L50 55 L75 40 M50 55 V85" stroke="white" stroke-width="3" />
-                        <path d="M50 35 L70 45 L50 55 L30 45 Z" fill="#facc15" />
-                    </svg>
-                    <h3>Opaque Execution</h3>
-                    <p>Enterprises cannot verify if your cloud is running the exact model and weights they paid for.</p>
+        <section id="observability" class="bg-black">
+            <div class="container text-left">
+                <div class="section-header animate-up">
+                    <span class="pill pill-dark">02 — REAL-TIME OBSERVABILITY</span>
+                    <h2 style="margin-top: 1rem;">Sovereign Insight & Live Compliance</h2>
                 </div>
-                <div class="card card-dark">
-                    <svg class="icon" viewBox="0 0 100 100" fill="none">
-                        <circle cx="50" cy="50" r="40" stroke="white" stroke-width="4" />
-                        <path d="M20 50 H80 M50 10 V90" stroke="white" stroke-width="2" opacity="0.5" />
-                        <circle cx="50" cy="50" r="25" fill="#facc15" />
-                    </svg>
-                    <h3>Data Sovereignty</h3>
-                    <p>Clients need physics-based proof of where their data is processed, not just legal agreements.</p>
-                </div>
-                <div class="card card-dark">
-                    <svg class="icon" viewBox="0 0 100 100" fill="none">
-                        <path d="M50 15 L85 25 V55 C85 75 50 90 50 90 C 50 90 15 75 15 55 V25 L50 15 Z" stroke="white"
-                            stroke-width="4" stroke-linejoin="round" />
-                        <path d="M50 35 L65 45 V65 C65 75 50 82 50 82 C 50 82 35 75 35 65 V45 L50 35 Z"
-                            fill="#facc15" />
-                    </svg>
-                    <h3>Regulatory Paralysis</h3>
-                    <p>GDPR, ITAR, and HIPAA compliance blocks high-value workloads from moving to commodity clouds.</p>
-                </div>
-            </div>
-
-            <div class="stats-row">
-                <div class="stat-item">
-                    <div class="stat-val">74%</div>
-                    <div class="stat-label">Adoption Barrier</div>
-                    <div class="stat-desc">Cite security & compliance<br>as top blocker</div>
-                </div>
-
-                <div class="stat-item">
-                    <div class="stat-val">68%</div>
-                    <div class="stat-label">IP Risk</div>
-                    <div class="stat-desc">Fear intellectual property<br>loss in cloud</div>
-                </div>
-
-                <div class="stat-item">
-                    <div class="stat-val">27%</div>
-                    <div class="stat-label">Active Bans</div>
-                    <div class="stat-desc">Have banned GenAI<br>due to privacy breaches</div>
-                </div>
-
-                <div class="stat-item">
-                    <div class="stat-val">$1M+</div>
-                    <div class="stat-label">Per Violation</div>
-                    <div class="stat-desc">ITAR, HIPAA, GDPR Compliance Failures</div>
-                </div>
-            </div>
-
-        </div>
-        <a href="#proof" class="arrow-next" aria-label="Next Section"><svg width="32" height="32" viewBox="0 0 24 24"
-                fill="none" stroke="currentColor" stroke-width="2">
-                <path d="m6 9 6 6 6-6"></path>
-            </svg></a>
-    </section>
-
-    <section id="proof" class="bg-gradient">
-        <link rel="stylesheet" href="styles.css">
-
-        <div class="container">
-            <span class="pill pill-dark">Solution</span>
-            <h2>AI Passports</h2>
-            <p class="subtitle">
-                As humans, we build trust on <span class="text-white-500">Identity</span> and <span
-                    class="text-white-500">Reputation</span>.
-                AI agents are flooding our world with neither. AI Passports replace generic SLAs with cryptographic
-                verification that creates customer confidence.
-            </p>
-            <!-- Sovereign Chat Interface (New) -->
-            <div class="chat-container-wrapper">
-
-                <!-- The Main Chat UI -->
-                <div class="sovereign-chat-card">
-                    <div class="chat-header">
-                        <div class="chat-header-brand">
-                            <img src="lucid-logo.svg" alt="Lucid" width="24" height="24" class="chat-logo-spin">
-                            <div>
-                                <div class="chat-title">Sovereign Chat</div>
-                                <div class="chat-subtitle">Powered by Lucid</div>
+                <!-- Unified Portkey-Style Dashboard Overlay -->
+                <div class="animate-up delay-1 compliance-map-container">
+                    <div class="dashboard-wrapper dashboard-lite">
+                        <!-- Sidebar -->
+                        <aside class="dashboard-sidebar">
+                            <div class="sidebar-logo">
+                                <img src="lucid-logo.svg" alt="Lucid" class="sidebar-logo-img">
+                                <span>Lucid Observer</span>
                             </div>
-                        </div>
-                        <div class="chat-actions">
-                            <!-- Trustmark Badge Moved Here -->
-                            <div class="trustmark-wrapper">
-                                <!-- Tooltip Arrow -->
-                                <div class="trustmark-tooltip animate-slide-up">
-                                    <svg class="tooltip-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                                        stroke="currentColor" stroke-width="2">
-                                        <path d="M19 12l-7 7-7-7M12 19V5" />
+
+                            <div class="sidebar-workspace">
+                                <div class="workspace-pill">
+                                    <div class="workspace-dot"></div>
+                                    <span>Main Workspace</span>
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="m6 9 6 6 6-6" />
                                     </svg>
-                                    <span>Click Me</span>
+                                </div>
+                            </div>
+
+                            <nav class="sidebar-nav">
+                                <div class="nav-section">
+                                    <span class="nav-section-title">Observability</span>
+                                    <a href="#" class="nav-item active">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <line x1="18" y1="20" x2="18" y2="10" />
+                                            <line x1="12" y1="20" x2="12" y2="4" />
+                                            <line x1="6" y1="20" x2="6" y2="14" />
+                                        </svg>
+                                        Analytics
+                                    </a>
+                                    <a href="#" class="nav-item">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                                        </svg>
+                                        Logs
+                                    </a>
                                 </div>
 
-                                <button class="trustmark-btn" id="trustmark-trigger">
-                                    <svg class="trustmark-shield-icon" viewBox="0 0 24 24" fill="black" stroke="none">
-                                        <path
-                                            d="M12 2L3 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5zm0 14c-1.1 0-2-.9-2-2 0-.46.17-.88.45-1.2L10 10h4l-.45 2.8c.28.32.45.74.45 1.2 0 1.1-.9 2-2 2z">
-                                        </path>
-                                    </svg>
-                                    <div>
-                                        <div class="tm-label">SECURED BY</div>
-                                        <div class="tm-brand">LUCID COMPUTING</div>
+                                <div class="nav-section">
+                                    <span class="nav-section-title">Sovereignty</span>
+                                    <a href="#" class="nav-item">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                                            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                                        </svg>
+                                        Audit Chains
+                                    </a>
+                                    <a href="#" class="nav-item">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                                        </svg>
+                                        TEE Modules
+                                    </a>
+                                </div>
+
+                                <div class="nav-section">
+                                    <span class="nav-section-title">Certificates</span>
+                                    <a href="#" class="nav-item">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                            <polyline points="14 2 14 8 20 8" />
+                                            <line x1="16" y1="13" x2="8" y2="13" />
+                                            <line x1="16" y1="17" x2="8" y2="17" />
+                                            <line x1="10" y1="9" x2="8" y2="9" />
+                                        </svg>
+                                        Passports
+                                    </a>
+                                </div>
+                            </nav>
+                        </aside>
+
+                        <!-- Main Content -->
+                        <main class="dashboard-main">
+                            <header class="dashboard-header">
+                                <div class="header-top">
+                                    <h3 class="dash-title">Analytics</h3>
+                                    <div class="dash-tabs">
+                                        <button class="dash-tab active">Overview</button>
+                                        <button class="dash-tab">Agents</button>
+                                        <button class="dash-tab">Policies</button>
                                     </div>
-                                </button>
+                                </div>
+
+                                <div class="header-filters">
+                                    <div class="search-bar">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <circle cx="11" cy="11" r="8" />
+                                            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                                        </svg>
+                                        <input type="text" placeholder="Search filters...">
+                                    </div>
+                                    <div class="date-picker">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                                            <line x1="16" y1="2" x2="16" y2="6" />
+                                            <line x1="8" y1="2" x2="8" y2="6" />
+                                            <line x1="3" y1="10" x2="21" y2="10" />
+                                        </svg>
+                                        <span>2024-12-01 - 2024-12-28</span>
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path d="m6 9 6 6 6-6" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </header>
+
+                            <div class="dashboard-grid">
+                                <!-- Stats Row -->
+                                <div class="dash-card stat-card">
+                                    <div class="card-label">Total Verifications</div>
+                                    <div class="card-value">124,852 <span class="trend-up">+12.4%</span></div>
+                                    <div class="card-chart-mini">
+                                        <div class="bar-mini" style="height: 40%"></div>
+                                        <div class="bar-mini" style="height: 60%"></div>
+                                        <div class="bar-mini" style="height: 50%"></div>
+                                        <div class="bar-mini" style="height: 80%"></div>
+                                        <div class="bar-mini" style="height: 70%"></div>
+                                        <div class="bar-mini" style="height: 90%"></div>
+                                    </div>
+                                </div>
+                                <div class="dash-card stat-card">
+                                    <div class="card-label">Average Latency</div>
+                                    <div class="card-value">142ms <span class="trend-down">+0.34%</span></div>
+                                    <div class="card-chart-mini">
+                                        <svg width="100%" height="40" viewBox="0 0 100 40">
+                                            <path d="M0,35 Q20,10 40,25 T80,15 T100,20" fill="none"
+                                                stroke="var(--c-yellow)" stroke-width="2" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="dash-card stat-card">
+                                    <div class="card-label">Trust Score</div>
+                                    <div class="card-value">99.43% <span class="trend-up">+1.24%</span></div>
+                                    <div class="card-chart-mini">
+                                        <div class="heart-pulse"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Map Section (Spans 2 columns) -->
+                                <div class="dash-card span-2 map-card">
+                                    <div class="card-header">
+                                        <span class="card-title">Global Agent Distribution</span>
+                                        <div class="card-actions-mini">
+                                            <span class="status-indicator live"></span>
+                                            <span class="status-text">LIVE</span>
+                                        </div>
+                                    </div>
+                                    <div class="map-viz-container">
+                                        <img src="world_map.svg" alt="World Map" class="world-map-img">
+                                        <!-- Agent Dots -->
+                                        <div class="map-dot" style="top: 35%; left: 22%;" data-label="US-EAST-1"></div>
+                                        <div class="map-dot" style="top: 32%; left: 48%;" data-label="EU-NORTH-1"></div>
+                                        <div class="map-dot" style="top: 65%; left: 78%;" data-label="AU-SYD-2"></div>
+                                        <div class="map-dot" style="top: 42%; left: 72%;" data-label="ASIA-SOUTH-1">
+                                        </div>
+                                        <div class="map-dot" style="top: 55%; left: 32%;" data-label="SA-EAST-1"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Histogram Section (Refusals by Auditor) -->
+                                <div class="dash-card histogram-card">
+                                    <div class="card-header">
+                                        <span class="card-title">Refusals by Auditor</span>
+                                    </div>
+                                    <div class="histogram-container">
+                                        <div class="histogram-item">
+                                            <div class="hist-label">PII Auditor</div>
+                                            <div class="hist-bar-wrapper">
+                                                <div class="hist-bar" style="width: 85%; background: var(--c-red);">
+                                                </div>
+                                                <span class="hist-val">124</span>
+                                            </div>
+                                        </div>
+                                        <div class="histogram-item">
+                                            <div class="hist-label">Toxicity Auditor</div>
+                                            <div class="hist-bar-wrapper">
+                                                <div class="hist-bar" style="width: 45%; background: var(--c-yellow);">
+                                                </div>
+                                                <span class="hist-val">68</span>
+                                            </div>
+                                        </div>
+                                        <div class="histogram-item">
+                                            <div class="hist-label">Fairness Auditor</div>
+                                            <div class="hist-bar-wrapper">
+                                                <div class="hist-bar" style="width: 30%; background: var(--c-yellow);">
+                                                </div>
+                                                <span class="hist-val">42</span>
+                                            </div>
+                                        </div>
+                                        <div class="histogram-item">
+                                            <div class="hist-label">Injection Auditor</div>
+                                            <div class="hist-bar-wrapper">
+                                                <div class="hist-bar" style="width: 92%; background: var(--c-red);">
+                                                </div>
+                                                <span class="hist-val">148</span>
+                                            </div>
+                                        </div>
+                                        <div class="histogram-item">
+                                            <div class="hist-label">RAG Auditor</div>
+                                            <div class="hist-bar-wrapper">
+                                                <div class="hist-bar" style="width: 15%; background: var(--c-green);">
+                                                </div>
+                                                <span class="hist-val">12</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </main>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+
+        <section id="passports" class="bg-black">
+            <div class="container text-left">
+                <div class="section-header animate-up">
+                    <span class="pill pill-dark">03 — ISSUE CERTIFICATES</span>
+                    <h2 style="margin-top: 1rem;">Verifiable Trust With AI Passports</h2>
+                </div>
+                <div class="grid-33-66">
+                    <!-- Left Panel -->
+                    <div class="animate-up delay-1" style="text-align: left;">
+
+                        <div class="check-item mt-40">
+                            <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <path d="M12 18v-6"></path>
+                                <circle cx="12" cy="18" r="1"></circle>
+                            </svg>
+                            <div>
+                                <h4 style="margin-bottom: 0.5rem; font-size: 1rem;">Receipts, Not Promises</h4>
+                                <p style="font-size: 0.9rem;">Passports are cryptographically verified Shareable Audit
+                                    Records that works if our Auditors is running in a TEE.</p>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="chat-controls-row">
-                        <!-- Fake Model Selector -->
-                        <div class="model-select">
-                            <span>llama3.1:70b</span>
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path d="M6 9l6 6 6-6" />
+                        <div class="check-item">
+                            <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                             </svg>
+                            <div>
+                                <h4 style="margin-bottom: 0.5rem; font-size: 1rem;">Unlock High-Value Workloads</h4>
+                                <p style="font-size: 0.9rem;">Bridge the infrastructure gap between convenience and
+                                    security
+                                    to move the 95% of enterprise AI pilots into production.</p>
+                            </div>
                         </div>
 
-
-                    </div>
-
-                    <div class="chat-body">
-                        <!-- Static Text (Typewriter removed) -->
-                        <div class="chat-message ai-message">
-                            Hello! I'm running inside a hardware-secured Trusted Execution Environment with Intel TDX
-                            and NVIDIA H100 confidential computing. My model weights have been cryptographically
-                            verified, and I have a valid safety receipt proving I passed evaluation. Click the AI
-                            Passport icon to view the attestation details and safety receipt.
-                            <div class="msg-meta">13:39</div>
-                        </div>
-                    </div>
-
-                    <div class="chat-input-area">
-                        <input type="text" class="chat-input" placeholder="Start typing...">
-                        <button class="chat-send-btn">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <line x1="22" y1="2" x2="11" y2="13"></line>
-                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                            </svg>
-                        </button>
-                    </div>
-
-                    <div class="chat-footer">
-                        <div class="footer-badge">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--c-green)"
-                                stroke-width="2">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <line x1="2" y1="12" x2="22" y2="12"></line>
-                                <path
-                                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
-                                </path>
-                            </svg>
-                            US Jurisdiction Verified
-                        </div>
-                        <div class="footer-badge">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--c-green)"
-                                stroke-width="2">
+                        <div class="check-item">
+                            <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                                 <path d="m9 12 2 2 4-4"></path>
                             </svg>
-                            Secure Chat
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Passport Overlay (Hidden by default) -->
-                <div class="passport-overlay" id="passport-popup">
-                    <div class="passport-card-popup">
-                        <button class="close-passport" id="close-passport">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <line x1="18" y1="6" x2="6" y2="18"></line>
-                                <line x1="6" y1="6" x2="18" y2="18"></line>
-                            </svg>
-                        </button>
-
-                        <div class="passport-header">
-                            <svg class="header-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M2 12h20"></path>
-                                <path d="M20 12v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8"></path>
-                                <path d="M4 12V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v6"></path>
-                                <path d="M12 2v20"></path>
-                            </svg>
-                            <div class="header-sep"></div>
-                            <span class="header-title">AI PASSPORT</span>
-                        </div>
-
-                        <div class="passport-list">
-                            <div class="list-row">
-                                <div class="row-left">
-                                    <svg class="row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2">
-                                        <path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"></path>
-                                        <path d="M14 13.12c0 2.38 0 6.38-1 8.88"></path>
-                                        <path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"></path>
-                                        <path d="M2 12a10 10 0 0 1 18-6"></path>
-                                        <path d="M2 16h.01"></path>
-                                        <path d="M21.8 16c.2-2 .131-5.354 0-6"></path>
-                                        <path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2"></path>
-                                        <path d="M8.65 22c.21-.66.45-1.32.57-2"></path>
-                                        <path d="M9 6.8a6 6 0 0 1 9 5.2v2"></path>
-                                    </svg>
-                                    <span class="row-label">Model Fingerprint</span>
-                                </div>
-                                <div class="row-right">
-                                    Verified <svg class="check-icon" viewBox="0 0 24 24" fill="none"
-                                        stroke="currentColor" stroke-width="3" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <polyline points="20 6 9 17 4 12"></polyline>
-                                    </svg>
-                                </div>
-                            </div>
-
-                            <div class="list-row">
-                                <div class="row-left">
-                                    <svg class="row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2">
-                                        <path
-                                            d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0">
-                                        </path>
-                                        <circle cx="12" cy="10" r="3"></circle>
-                                    </svg>
-                                    <span class="row-label">Legal Juristiction</span>
-                                </div>
-                                <div class="row-right">
-                                    Sweden <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                        <polyline points="20 6 9 17 4 12"></polyline>
-                                    </svg>
-                                </div>
-                            </div>
-
-                            <div class="list-row">
-                                <div class="row-left">
-                                    <svg class="row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2">
-                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                                        <path d="m9 12 2 2 4-4"></path>
-                                    </svg>
-                                    <span class="row-label">Hardware Attestation</span>
-                                </div>
-                                <div class="row-right">
-                                    Valid <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                        <polyline points="20 6 9 17 4 12"></polyline>
-                                    </svg>
-                                </div>
-                            </div>
-
-                            <div class="list-row">
-                                <div class="row-left">
-                                    <svg class="row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2">
-                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                        <polyline points="14 2 14 8 20 8"></polyline>
-                                        <line x1="16" y1="13" x2="8" y2="13"></line>
-                                        <line x1="16" y1="17" x2="8" y2="17"></line>
-                                        <line x1="10" y1="9" x2="8" y2="9"></line>
-                                    </svg>
-                                    <span class="row-label">Behavioral Evaluation</span>
-                                </div>
-                                <div class="row-right">
-                                    Passed <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                        <polyline points="20 6 9 17 4 12"></polyline>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="table-container">
-                            <div class="score-row header">
-                                <span class="th-text">Benchmark</span>
-                                <span class="th-text">Score</span>
-                                <span class="th-text text-right">Status</span>
-                            </div>
-
-                            <div class="score-row">
-                                <div>
-                                    <span class="bench-name">TruthfulQA</span>
-                                    <span class="bench-desc">Hallucination resistance</span>
-                                </div>
-                                <div class="progress-wrap">
-                                    <div class="progress-track">
-                                        <div class="progress-fill" style="width: 95.4%;"></div>
-                                    </div>
-                                    <span class="score-val">95.4%</span>
-                                </div>
-                                <div style="text-align: right;">
-                                    <span class="badge-pass">Pass</span>
-                                </div>
-                            </div>
-
-                            <div class="score-row">
-                                <div>
-                                    <span class="bench-name">RealToxicityPrompts</span>
-                                    <span class="bench-desc">Toxicity prevention</span>
-                                </div>
-                                <div class="progress-wrap">
-                                    <div class="progress-track">
-                                        <div class="progress-fill" style="width: 99.9%;"></div>
-                                    </div>
-                                    <span class="score-val">99.9%</span>
-                                </div>
-                                <div style="text-align: right;">
-                                    <span class="badge-pass">Pass</span>
-                                </div>
-                            </div>
-
-                            <div class="score-row">
-                                <div>
-                                    <span class="bench-name">CyberSecEval</span>
-                                    <span class="bench-desc">Security compliance</span>
-                                </div>
-                                <div class="progress-wrap">
-                                    <div class="progress-track">
-                                        <div class="progress-fill" style="width: 98.5%;"></div>
-                                    </div>
-                                    <span class="score-val">98.5%</span>
-                                </div>
-                                <div style="text-align: right;">
-                                    <span class="badge-pass">Pass</span>
-                                </div>
+                            <div>
+                                <h4 style="margin-bottom: 0.5rem; font-size: 1rem;">Verifiable Sovereignty</h4>
+                                <p style="font-size: 0.9rem;">Eliminate opaque execution and replace generic SLAs with
+                                    physics-based proof of where and how your data is processed.</p>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <a href="#solution" class="arrow-next" aria-label="Next Section"><svg width="32" height="32" viewBox="0 0 24 24"
-                fill="none" stroke="currentColor" stroke-width="2">
-                <path d="m6 9 6 6 6-6"></path>
-            </svg></a>
+
+                    <!-- Right Panel: Existing Chat Visual -->
+                    <div class="animate-up delay-2">
+                        <!-- Sovereign Chat Interface (New) -->
+                        <div class="chat-container-wrapper">
+
+                            <!-- The Main Chat UI -->
+                            <div class="sovereign-chat-card">
+                                <div class="chat-header">
+                                    <div class="chat-header-brand">
+                                        <img src="lucid-logo.svg" alt="Lucid" width="24" height="24"
+                                            class="chat-logo-spin">
+                                        <div>
+                                            <div class="chat-title">Sovereign Chat</div>
+                                            <div class="chat-subtitle">Powered by Lucid</div>
+                                        </div>
+                                    </div>
+                                    <div class="chat-actions">
+                                        <!-- Trustmark Badge Moved Here -->
+                                        <div class="trustmark-wrapper">
+                                            <!-- Tooltip Arrow -->
+                                            <div class="trustmark-tooltip animate-slide-up">
+                                                <svg class="tooltip-arrow" width="20" height="20" viewBox="0 0 24 24"
+                                                    fill="none" stroke="currentColor" stroke-width="2">
+                                                    <path d="M19 12l-7 7-7-7M12 19V5" />
+                                                </svg>
+                                                <span>Click Me</span>
+                                            </div>
+
+                                            <button class="trustmark-btn" id="trustmark-trigger">
+                                                <svg class="trustmark-shield-icon" viewBox="0 0 24 24" fill="black"
+                                                    stroke="none">
+                                                    <path
+                                                        d="M12 2L3 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5zm0 14c-1.1 0-2-.9-2-2 0-.46.17-.88.45-1.2L10 10h4l-.45 2.8c.28.32.45.74.45 1.2 0 1.1-.9 2-2 2z">
+                                                    </path>
+                                                </svg>
+                                                <div>
+                                                    <div class="tm-label">SECURED BY</div>
+                                                    <div class="tm-brand">LUCID COMPUTING</div>
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="chat-controls-row">
+                                    <!-- Fake Model Selector -->
+                                    <div class="model-select">
+                                        <span>llama3.1:70b</span>
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path d="M6 9l6 6 6-6" />
+                                        </svg>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="chat-body">
+                                    <!-- Static Text (Typewriter removed) -->
+                                    <div class="chat-message ai-message">
+                                        Hello! I'm running inside a hardware-secured Trusted Execution Environment with
+                                        Intel TDX
+                                        and NVIDIA H100 confidential computing. My model weights have been
+                                        cryptographically
+                                        verified, and I have a valid safety receipt proving I passed evaluation. Click
+                                        the
+                                        AI
+                                        Passport icon to view the attestation details and safety receipt.
+                                        <div class="msg-meta">13:39</div>
+                                    </div>
+                                </div>
+
+                                <div class="chat-input-area disabled">
+                                    <input type="text" class="chat-input" placeholder="Interaction disabled in demo..."
+                                        disabled>
+                                    <button class="chat-send-btn" disabled>
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                        </svg>
+                                    </button>
+                                </div>
+
+                                <div class="chat-footer">
+                                    <div class="footer-badge">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                            stroke="var(--c-green)" stroke-width="2">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                                            <path
+                                                d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                                            </path>
+                                        </svg>
+                                        US Jurisdiction Verified
+                                    </div>
+                                    <div class="footer-badge">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                            stroke="var(--c-green)" stroke-width="2">
+                                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                            <path d="m9 12 2 2 4-4"></path>
+                                        </svg>
+                                        Secure Chat
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Passport Overlay (Hidden by default) -->
+                            <div class="passport-overlay" id="passport-popup">
+                                <div class="passport-card-popup">
+                                    <button class="close-passport" id="close-passport">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                                        </svg>
+                                    </button>
+
+                                    <div class="passport-header">
+                                        <svg class="header-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M2 12h20"></path>
+                                            <path d="M20 12v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8"></path>
+                                            <path d="M4 12V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v6"></path>
+                                            <path d="M12 2v20"></path>
+                                        </svg>
+                                        <div class="header-sep"></div>
+                                        <span class="header-title">AI PASSPORT</span>
+                                    </div>
+
+                                    <div class="passport-list">
+                                        <div class="list-row">
+                                            <div class="row-left">
+                                                <svg class="row-icon" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2">
+                                                    <path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"></path>
+                                                    <path d="M14 13.12c0 2.38 0 6.38-1 8.88"></path>
+                                                    <path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"></path>
+                                                    <path d="M2 12a10 10 0 0 1 18-6"></path>
+                                                    <path d="M2 16h.01"></path>
+                                                    <path d="M21.8 16c.2-2 .131-5.354 0-6"></path>
+                                                    <path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2"></path>
+                                                    <path d="M8.65 22c.21-.66.45-1.32.57-2"></path>
+                                                    <path d="M9 6.8a6 6 0 0 1 9 5.2v2"></path>
+                                                </svg>
+                                                <span class="row-label">Confidentiality</span>
+                                            </div>
+                                            <div class="row-right">
+                                                Verified <svg class="check-icon" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                                                    stroke-linejoin="round">
+                                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                                </svg>
+                                            </div>
+                                        </div>
+
+                                        <div class="list-row">
+                                            <div class="row-left">
+                                                <svg class="row-icon" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2">
+                                                    <path
+                                                        d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0">
+                                                    </path>
+                                                    <circle cx="12" cy="10" r="3"></circle>
+                                                </svg>
+                                                <span class="row-label">Legal Juristiction</span>
+                                            </div>
+                                            <div class="row-right">
+                                                Sweden <svg class="check-icon" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                                                    stroke-linejoin="round">
+                                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                                </svg>
+                                            </div>
+                                        </div>
+
+                                        <div class="list-row">
+                                            <div class="row-left">
+                                                <svg class="row-icon" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2">
+                                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                                    <path d="m9 12 2 2 4-4"></path>
+                                                </svg>
+                                                <span class="row-label">Hardware Attestation</span>
+                                            </div>
+                                            <div class="row-right">
+                                                Valid <svg class="check-icon" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                                                    stroke-linejoin="round">
+                                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                                </svg>
+                                            </div>
+                                        </div>
+
+                                        <div class="list-row">
+                                            <div class="row-left">
+                                                <svg class="row-icon" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2">
+                                                    <path
+                                                        d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z">
+                                                    </path>
+                                                    <polyline points="14 2 14 8 20 8"></polyline>
+                                                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                                                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                                                    <line x1="10" y1="9" x2="8" y2="9"></line>
+                                                </svg>
+                                                <span class="row-label">Behavioral Evaluation</span>
+                                            </div>
+                                            <div class="row-right">
+                                                Passed <svg class="check-icon" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                                                    stroke-linejoin="round">
+                                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="table-container">
+                                        <div class="score-row header">
+                                            <span class="th-text">Benchmark</span>
+                                            <span class="th-text">Score</span>
+                                            <span class="th-text text-right">Status</span>
+                                        </div>
+
+                                        <div class="score-row">
+                                            <div>
+                                                <span class="bench-name">TruthfulQA</span>
+                                                <span class="bench-desc">Hallucination resistance</span>
+                                            </div>
+                                            <div class="progress-wrap">
+                                                <div class="progress-track">
+                                                    <div class="progress-fill" style="width: 95.4%;"></div>
+                                                </div>
+                                                <span class="score-val">95.4%</span>
+                                            </div>
+                                            <div style="text-align: right;">
+                                                <span class="badge-pass">Pass</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="score-row">
+                                            <div>
+                                                <span class="bench-name">RealToxicityPrompts</span>
+                                                <span class="bench-desc">Toxicity prevention</span>
+                                            </div>
+                                            <div class="progress-wrap">
+                                                <div class="progress-track">
+                                                    <div class="progress-fill" style="width: 99.9%;"></div>
+                                                </div>
+                                                <span class="score-val">99.9%</span>
+                                            </div>
+                                            <div style="text-align: right;">
+                                                <span class="badge-pass">Pass</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="score-row">
+                                            <div>
+                                                <span class="bench-name">CyberSecEval</span>
+                                                <span class="bench-desc">Security compliance</span>
+                                            </div>
+                                            <div class="progress-wrap">
+                                                <div class="progress-track">
+                                                    <div class="progress-fill" style="width: 98.5%;"></div>
+                                                </div>
+                                                <span class="score-val">98.5%</span>
+                                            </div>
+                                            <div style="text-align: right;">
+                                                <span class="badge-pass">Pass</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div> <!-- closing the 66% column from grid-33-66 -->
+            </div> <!-- closing grid-33-66 -->
+    </div> <!-- closing container -->
     </section>
+    </div>
+
     <section id="solution" class="bg-black scrolly-section">
         <div class="container">
             <!-- Sticky container for both diagram and text -->
             <div class="scrolly-sticky-wrapper">
                 <div class="scrolly-sticky-content">
                     <div class="solution-header-wrapper">
-                        <span class="pill pill-light">Technical Implementation</span>
-                        <h2>Verifiable Compute</h2>
+                        <h2>Technical Implementation</h2>
                         <div class="subtitle mono solution-subtitle">
                             Never <span class="blocked-text">trust</span>
                             &nbsp;&mdash;&nbsp; Always <span class="highlight">verify</span>
@@ -719,339 +1114,326 @@
                     <div class="trigger" data-highlight="verifier-box" data-panel="panel-verifier"></div>
                 </div>
             </div>
-            <a href="#audits" class="arrow-next" aria-label="Next Section"><svg width="32" height="32"
+            <a href="#publish-auditor" class="arrow-next" aria-label="Next Section"><svg width="32" height="32"
                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="m6 9 6 6 6-6"></path>
                 </svg></a>
-    </section>
-
-    <section id="audits" class="bg-black">
-        <link rel="stylesheet" href="styles.css">
-
-        <div class="container">
-            <span class="pill pill-dark">Critical Use Cases</span>
-            <h2>Automate Compliance</h2>
-            <p class="subtitle">Secure your sensitive workloads in industries where compromise is not optional.
-            </p>
-
-            <!-- New Compliance Grid Layout (2x2) -->
-            <div class="compliance-grid">
-
-                <!-- Card 1: Finance -->
-                <div class="compliance-card">
-                    <div class="compliance-content">
-                        <h3>Finance</h3>
-                        <p>Protect proprietary trading algorithms and customer portfolios in isolated, encrypted
-                            environments. Accelerate risk modeling and fraud detection while ensuring PCI-DSS/SOX
-                            compliance and the ultra-low latency performance critical for high-frequency markets.</p>
-                    </div>
-                    <div class="compliance-graphic">
-                        <!-- Finance Graphic (Bars + Coins/Pie) -->
-                        <svg viewBox="0 0 200 200" fill="none" class="graphic-svg">
-                            <path d="M40 140 L80 80 L120 110 L160 40" stroke="#facc15" stroke-width="6"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                            <rect x="140" y="120" width="30" height="40" rx="4" fill="#facc15" />
-                            <rect x="100" y="130" width="30" height="30" rx="4" fill="white" />
-                        </svg>
-                    </div>
-                </div>
-
-                <!-- Card 2: Healthcare -->
-                <div class="compliance-card">
-                    <div class="compliance-content">
-                        <h3>Healthcare</h3>
-                        <p>Accelerate drug discovery and genomic research by training AI on patient datasets without
-                            compromising privacy. Securely analyze multi-institutional EHRs to improve diagnostics while
-                            maintaining strict HIPAA/GDPR compliance and end-to-end data encryption.</p>
-                    </div>
-                    <div class="compliance-graphic">
-                        <!-- Healthcare Graphic (Cross + Stethoscope) -->
-                        <svg viewBox="0 0 200 200" fill="none" class="graphic-svg">
-                            <circle cx="100" cy="100" r="70" stroke="white" stroke-width="4" />
-                            <path d="M100 60 V140 M60 100 H140" stroke="#facc15" stroke-width="12"
-                                stroke-linecap="round" />
-                        </svg>
-                    </div>
-                </div>
-
-                <!-- Card 3: Export Controls -->
-                <div class="compliance-card">
-                    <div class="compliance-content">
-                        <h3>Export Controls</h3>
-                        <p>Accelerate license acquisition by providing BIS with immutable compliance monitoring and
-                            audit trails. Eliminate multi-month licensing delays and avoid intrusive inspections with
-                            verifiable proof of use, reducing operational overhead while securing high-value
-                            international chip deals.</p>
-                    </div>
-                    <div class="compliance-graphic">
-                        <!-- Export Controls Graphic (Chip/Processor) -->
-                        <svg viewBox="0 0 200 200" fill="none" class="graphic-svg">
-                            <rect x="60" y="60" width="80" height="80" rx="4" stroke="white" stroke-width="6" />
-                            <path d="M60 80 H40 M60 100 H40 M60 120 H40" stroke="white" stroke-width="4"
-                                stroke-linecap="round" />
-                            <path d="M140 80 H160 M140 100 H160 M140 120 H160" stroke="white" stroke-width="4"
-                                stroke-linecap="round" />
-                            <path d="M80 60 V40 M100 60 V40 M120 60 V40" stroke="white" stroke-width="4"
-                                stroke-linecap="round" />
-                            <path d="M80 140 V160 M100 140 V160 M120 140 V160" stroke="white" stroke-width="4"
-                                stroke-linecap="round" />
-                            <rect x="85" y="85" width="30" height="30" rx="2" fill="#facc15" />
-                        </svg>
-                    </div>
-                </div>
-
-                <!-- Card 4: Defence -->
-                <div class="compliance-card">
-                    <div class="compliance-content">
-                        <h3>Defence</h3>
-                        <p>Deploy mission-critical AI to the tactical edge for real-time decisions in austere
-                            environments. Securely execute threat detection and autonomous coordination using zero-trust
-                            architecture, protecting operational data while ensuring interoperability across allied
-                            systems.</p>
-                    </div>
-                    <div class="compliance-graphic">
-                        <!-- Defence Graphic (Shield + Globe) -->
-                        <svg viewBox="0 0 200 200" fill="none" class="graphic-svg">
-                            <path
-                                d="M100 30 L160 50 V110 C160 150 100 180 100 180 C 100 180 40 150 40 110 V50 L100 30 Z"
-                                stroke="white" stroke-width="4" stroke-linejoin="round" />
-                            <circle cx="100" cy="100" r="35" fill="#facc15" />
-                        </svg>
-                    </div>
-                </div>
-
-            </div>
-
         </div>
-        <a href="#how-it-works" class="arrow-next" aria-label="Next Section"><svg width="32" height="32"
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="m6 9 6 6 6-6"></path>
-            </svg></a>
     </section>
 
-    <section id="how-it-works" class="bg-black">
+    <section id="publish-auditor" class="bg-black">
         <div class="container">
-            <span class="pill pill-dark">Deployment</span>
-            <div class="integration-header">
-                <h2>Integration Workflow</h2>
-                <p class="subtitle">
-                    Designed for minimal disruption. Integrate verifiable compute into your existing cloud stack.
+            <div class="section-header animate-up text-center">
+                <h2>Publish Your Own Auditor in Minutes</h2>
+                <p class="subtitle" style="margin: 0 auto 1rem;">
+                    An Auditor is just a standard OCI container. Write your logic in Python, push to our marketplace,
+                    and it's ready to be chained.
+                    <a href="site/index.html" class="nav-link"
+                        style="color:var(--c-yellow); text-decoration: underline; display: inline-block; margin-left: 0.5rem;">View
+                        SDK Documentation →</a>
                 </p>
             </div>
 
-            <div class="integration-steps">
-                <!-- Step 1 -->
-                <div class="workflow-step">
-                    <div class="workflow-text">
-                        <span class="workflow-number">01. Infrastructure Header</span>
-                        <!-- <h3 class="workflow-title">Infrastructure Header</h3> seems redundant with number line in design -->
-                        <p class="workflow-desc">Install the Lucid's verification layer on your existing bare metal or
-                            cloud
-                            instances (AWS, Azure, GCP, etc.).</p>
-                    </div>
-                    <div class="ide-box">
-                        <div>
-                            <span class="code-prompt">root@server:~#</span>
-                            <span class="code-cmd">apt-get install lucid-core</span>
+            <div class="publish-grid">
+                <!-- Left: Terminal (Centered in its col) -->
+                <div class="animate-up delay-1">
+                    <h3 class="mono"
+                        style="font-size: 0.75rem; letter-spacing: 0.2em; opacity: 0.5; margin: 0; text-transform: uppercase; text-align: center;">
+                        Example Auditor</h3>
+                    <div class="code-editor" style="margin-top: 2.5rem;">
+                        <div class="code-header">
+                            <span class="mono"
+                                style="font-size:0.7rem; opacity:0.5; margin-left:1rem;">sovereignty_auditor.py</span>
+                        </div>
+                        <div class="code-content" style="text-align: left;">
+                            <pre><code><span class="kw">import</span> <span class="val">lucid.auditor</span> <span class="kw">as</span> <span class="val">auditor</span>
+
+<span class="comment"># Pin execution to Swedish nodes</span>
+<span class="kw">@auditor.on_request</span>
+<span class="kw">def</span> <span class="func">enforce_sovereignty</span>(request):
+    <span class="kw">if</span> request.node.country != <span class="str">"SE"</span>:
+        <span class="kw">return</span> auditor.Deny(<span class="str">"Sovereignty Breach"</span>)
+    <span class="kw">return</span> auditor.Proceed()
+
+<span class="comment"># Redact sensitive data from responses</span>
+<span class="kw">@auditor.on_response</span>
+<span class="kw">def</span> <span class="func">clean_output</span>(response):
+    <span class="kw">if</span> response.contains_pii():
+        <span class="kw">return</span> auditor.Redact()
+    <span class="kw">return</span> auditor.Proceed()</code></pre>
                         </div>
                     </div>
                 </div>
 
-                <!-- Step 2 -->
-                <div class="workflow-step">
-                    <div class="workflow-text">
-                        <span class="workflow-number">02. Sovereign Containers</span>
-                        <p class="workflow-desc">Wrap your existing PyTorch/TensorFlow models and issue verifiable
-                            receipts in minutes.
-                            No code refactoring required.</p>
-                    </div>
-                    <div class="enclave-anim-box">
-                        <div class="anim-track">
-                            <!-- Enclave Target (Now the Lucid Logo) -->
-                            <div class="enclave-target">
-                                <img src="lucid-logo.svg" alt="Lucid Enclave" class="target-logo-img">
-                            </div>
+                <!-- Right: Vertical Marketplace -->
+                <div class="animate-up delay-2">
+                    <h3 class="mono"
+                        style="font-size: 0.75rem; letter-spacing: 0.2em; opacity: 0.5; margin: 0; text-transform: uppercase;">
+                        Auditors In Our Marketplace</h3>
 
-                            <!-- Conveyor Belt Packets (Multiple for continuous flow) -->
-                            <div class="model-packet">
-                                <!-- Status: Verified -->
-                                <svg class="status-icon icon-verified" viewBox="0 0 24 24" fill="none"
-                                    stroke="currentColor" stroke-width="3">
-                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                                </svg>
-                            </div>
-                            <div class="model-packet">
-                                <svg class="status-icon icon-verified" viewBox="0 0 24 24" fill="none"
-                                    stroke="currentColor" stroke-width="3">
-                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                                </svg>
-                            </div>
-                            <div class="model-packet">
-                                <svg class="status-icon icon-verified" viewBox="0 0 24 24" fill="none"
-                                    stroke="currentColor" stroke-width="3">
-                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Step 3 -->
-                <div class="workflow-step">
-                    <div class="workflow-text">
-                        <span class="workflow-number">03. Issue Passports</span>
-                        <p class="workflow-desc">Automatically generate AI Passports with cryptographic receipts
-                            for every inference request.</p>
-                    </div>
-                    <!-- This one has a special gold verified box -->
-                    <div class="workflow-visual visual-trustmark">
-                        <div class="trustmark-badge">
-                            <svg class="trustmark-icon" viewBox="0 0 24 24" fill="black" stroke="none">
-                                <path
-                                    d="M12 2L3 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5zm0 14c-1.1 0-2-.9-2-2 0-.46.17-.88.45-1.2L10 10h4l-.45 2.8c.28.32.45.74.45 1.2 0 1.1-.9 2-2 2z">
-                                </path>
+                    <div class="marketplace-vertical-wrapper">
+                        <button class="vertical-control up" onclick="scrollVertical(-1)">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="18 15 12 9 6 15"></polyline>
                             </svg>
-                            <div class="trustmark-text-col">
-                                <div class="trustmark-label">SECURED BY</div>
-                                <div class="trustmark-brand">LUCID COMPUTING</div>
+                        </button>
+
+                        <div class="marketplace-vertical-container" id="market-vertical">
+                            <div class="vertical-track" id="v-track">
+                                <!-- Card 1: AI Sovereignty -->
+                                <div class="glass-card auditor-market-card vertical">
+                                    <div class="card-header-horizontal">
+                                        <div class="market-icon">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <circle cx="12" cy="12" r="10"></circle>
+                                                <line x1="2" y1="12" x2="22" y2="12"></line>
+                                                <path
+                                                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                        <h4>AI Sovereignty</h4>
+                                    </div>
+                                    <p>Enforce data residency by pinning agents to hardware.</p>
+                                    <button class="btn-market-deploy"
+                                        style="padding: 0.3rem 0.6rem; font-size: 0.65rem; width: fit-content; margin-top: 0.25rem;">Deploy</button>
+                                </div>
+
+                                <!-- Card 2: PII Sanitizer -->
+                                <div class="glass-card auditor-market-card vertical">
+                                    <div class="card-header-horizontal">
+                                        <div class="market-icon">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                            </svg>
+                                        </div>
+                                        <h4>PII Sanitizer</h4>
+                                    </div>
+                                    <p>Real-time redaction of identifiers (SSN, Email).</p>
+                                    <button class="btn-market-deploy"
+                                        style="padding: 0.3rem 0.6rem; font-size: 0.65rem; width: fit-content; margin-top: 0.25rem;">Deploy</button>
+                                </div>
+
+                                <!-- Card 3: MCP Firewall -->
+                                <div class="glass-card auditor-market-card vertical">
+                                    <div class="card-header-horizontal">
+                                        <div class="market-icon">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                                <path d="M12 8v4"></path>
+                                            </svg>
+                                        </div>
+                                        <h4>MCP Firewall</h4>
+                                    </div>
+                                    <p>Restrict MCP tool usage to approved domains.</p>
+                                    <button class="btn-market-deploy"
+                                        style="padding: 0.3rem 0.6rem; font-size: 0.65rem; width: fit-content; margin-top: 0.25rem;">Deploy</button>
+                                </div>
+
+                                <!-- Card 4: GDPR Shield -->
+                                <div class="glass-card auditor-market-card vertical">
+                                    <div class="card-header-horizontal">
+                                        <div class="market-icon">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z">
+                                                </path>
+                                                <polyline points="14 2 14 8 20 8"></polyline>
+                                                <path d="M9 15h6"></path>
+                                            </svg>
+                                        </div>
+                                        <h4>GDPR Shield</h4>
+                                    </div>
+                                    <p>Automated right-to-forget policy enforcement.</p>
+                                    <button class="btn-market-deploy"
+                                        style="padding: 0.3rem 0.6rem; font-size: 0.65rem; width: fit-content; margin-top: 0.25rem;">Deploy</button>
+                                </div>
+
+                                <!-- Card 5: Export Control -->
+                                <div class="glass-card auditor-market-card vertical">
+                                    <div class="card-header-horizontal">
+                                        <div class="market-icon">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <circle cx="12" cy="12" r="10"></circle>
+                                                <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                                                <path d="M2 12h20"></path>
+                                            </svg>
+                                        </div>
+                                        <h4>Export Control</h4>
+                                    </div>
+                                    <p>Restrict model weights and data export to non-OECD regions.</p>
+                                    <button class="btn-market-deploy"
+                                        style="padding: 0.3rem 0.6rem; font-size: 0.65rem; width: fit-content; margin-top: 0.25rem;">Deploy</button>
+                                </div>
+
+                                <!-- Card 6: Injection Guard -->
+                                <div class="glass-card auditor-market-card vertical">
+                                    <div class="card-header-horizontal">
+                                        <div class="market-icon">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <path
+                                                    d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                        <h4>Injection Guard</h4>
+                                    </div>
+                                    <p>Block prompt and indirect injection attacks.</p>
+                                    <button class="btn-market-deploy"
+                                        style="padding: 0.3rem 0.6rem; font-size: 0.65rem; width: fit-content; margin-top: 0.25rem;">Deploy</button>
+                                </div>
+
+                                <!-- Card 7: Truth Proxy -->
+                                <div class="glass-card auditor-market-card vertical">
+                                    <div class="card-header-horizontal">
+                                        <div class="market-icon">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                                            </svg>
+                                        </div>
+                                        <h4>Truth Proxy</h4>
+                                    </div>
+                                    <p>Validates output against verified RAG sources.</p>
+                                    <button class="btn-market-deploy"
+                                        style="padding: 0.3rem 0.6rem; font-size: 0.65rem; width: fit-content; margin-top: 0.25rem;">Deploy</button>
+                                </div>
                             </div>
                         </div>
+
+                        <button class="vertical-control down" onclick="scrollVertical(1)">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
                     </div>
                 </div>
-
             </div>
         </div>
-        <a href="#insights" class="arrow-next" aria-label="Next Section"><svg width="32" height="32" viewBox="0 0 24 24"
-                fill="none" stroke="currentColor" stroke-width="2">
-                <path d="m6 9 6 6 6-6"></path>
-            </svg></a>
     </section>
 
-    <section id="insights" class="bg-black">
+    <section id="unlock" class="bg-black">
         <div class="container">
-            <div class="insights-top animate-up">
-                <h2 class="mono">Insights</h2>
-                <a href="insights.html" class="view-all-btn">
-                    VIEW ALL
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <div class="problem-header">
+                <h2>Unlock The <span class="blocked-text">Blocked</span> Majority</h2>
+            </div>
+
+            <div class="grid-3">
+                <div class="card card-dark">
+                    <div class="card-header-row">
+                        <svg class="icon-mini" viewBox="0 0 100 100" fill="none">
+                            <path d="M50 15 L85 32.5 V67.5 L50 85 L15 67.5 V32.5 L50 15 Z" stroke="white"
+                                stroke-width="4" stroke-linejoin="round" />
+                            <path d="M25 40 L50 55 L75 40 M50 55 V85" stroke="white" stroke-width="3" />
+                            <path d="M50 35 L70 45 L50 55 L30 45 Z" fill="#facc15" />
+                        </svg>
+                        <h3>Opaque Execution</h3>
+                    </div>
+                    <p>Enterprises cannot verify if your cloud is running the exact model and weights they paid for.</p>
+                </div>
+                <div class="card card-dark">
+                    <div class="card-header-row">
+                        <svg class="icon-mini" viewBox="0 0 100 100" fill="none">
+                            <circle cx="50" cy="50" r="40" stroke="white" stroke-width="4" />
+                            <path d="M20 50 H80 M50 10 V90" stroke="white" stroke-width="2" opacity="0.5" />
+                            <circle cx="50" cy="50" r="25" fill="#facc15" />
+                        </svg>
+                        <h3>Data Sovereignty</h3>
+                    </div>
+                    <p>Clients need physics-based proof of where their data is processed, not just legal agreements.</p>
+                </div>
+                <div class="card card-dark">
+                    <div class="card-header-row">
+                        <svg class="icon-mini" viewBox="0 0 100 100" fill="none">
+                            <path d="M50 15 L85 25 V55 C85 75 50 90 50 90 C 50 90 15 75 15 55 V25 L50 15 Z"
+                                stroke="white" stroke-width="4" stroke-linejoin="round" />
+                            <path d="M50 35 L65 45 V65 C65 75 50 82 50 82 C 50 82 35 75 35 65 V45 L50 35 Z"
+                                fill="#facc15" />
+                        </svg>
+                        <h3>Regulatory Paralysis</h3>
+                    </div>
+                    <p>GDPR, ITAR, and HIPAA compliance blocks high-value workloads from moving to commodity clouds.</p>
+                </div>
+            </div>
+
+            <div class="stats-row">
+                <div class="stat-item">
+                    <div class="stat-val">74%</div>
+                    <div class="stat-label">Adoption Barrier</div>
+                    <div class="stat-desc">Cite security & compliance<br>as top blocker</div>
+                </div>
+
+                <div class="stat-item">
+                    <div class="stat-val">68%</div>
+                    <div class="stat-label">IP Risk</div>
+                    <div class="stat-desc">Fear intellectual property<br>loss in cloud</div>
+                </div>
+
+                <div class="stat-item">
+                    <div class="stat-val">27%</div>
+                    <div class="stat-label">Active Bans</div>
+                    <div class="stat-desc">Have banned GenAI<br>due to privacy breaches</div>
+                </div>
+
+                <div class="stat-item">
+                    <div class="stat-val">$1M+</div>
+                    <div class="stat-label">Per Violation</div>
+                    <div class="stat-desc">ITAR, HIPAA, GDPR Compliance Failures</div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Insights Carousel Section -->
+    <section id="insights-preview" class="bg-black">
+        <div class="container text-left">
+            <div class="section-header animate-up">
+                <span class="pill pill-dark">LATEST INSIGHTS</span>
+                <h2 style="margin-top: 1rem;">Thought Leadership</h2>
+            </div>
+
+            <div class="insights-carousel-wrapper animate-up delay-1">
+                <button class="carousel-arrow carousel-prev" onclick="scrollInsightsCarousel(-1)" aria-label="Previous">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+
+                <div class="insights-carousel" id="insights-carousel">
+                    <!-- Posts will be loaded dynamically -->
+                    <div class="loader">Loading insights...</div>
+                </div>
+
+                <button class="carousel-arrow carousel-next" onclick="scrollInsightsCarousel(1)" aria-label="Next">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="insights-cta-row animate-up delay-2">
+                <a href="insights.html" class="btn-outline-light">
+                    View All Insights
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <line x1="5" y1="12" x2="19" y2="12"></line>
                         <polyline points="12 5 19 12 12 19"></polyline>
                     </svg>
                 </a>
             </div>
-
-            <div class="grid-3 insights-grid animate-up delay-1">
-                <!-- Card 1 -->
-                <a href="article.html?slug=cryptographic-verification-a-strategy-for-us-ai-export-leadership"
-                    class="insight-card-link">
-                    <article class="insight-card">
-                        <div class="insight-thumb-container">
-                            <img src="media/pE4sNBZQBMDmfBnLeT4iNAVf9V0.png" alt="Cryptographic Verification"
-                                class="insight-img">
-                            <div class="insight-chip-overlay">
-                                <svg class="chip-icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="1">
-                                    <rect x="7" y="7" width="10" height="10" rx="1" />
-                                    <rect x="10" y="10" width="4" height="4" />
-                                    <path d="M8 1v6M10 1v6M12 1v6M14 1v6M16 1v6" />
-                                    <path d="M8 17v6M10 17v6M12 17v6" />
-                                    <path d="M14 17v6M16 17v6" />
-                                    <path d="M1 8h6M1 10h6M1 12h6M1 14h6M1 16h6" />
-                                    <path d="M17 8h6M17 10h6M17 12h6M17 14h6M17 16h6" />
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="insight-content">
-                            <div class="insight-meta">
-                                <span class="insight-tag">National Security</span>
-                                <span class="sep">|</span>
-                                <span class="insight-date">NOV 3, 2025</span>
-                            </div>
-                            <h3 class="insight-title">Cryptographic Verification: A Strategy for U.S. AI Export
-                                Leadership</h3>
-                            <p class="insight-desc">Turning Sovereign AI Requirements into U.S. Export Opportunities</p>
-                            <span class="read-more">READ MORE</span>
-                        </div>
-                    </article>
-                </a>
-
-                <!-- Card 2 -->
-                <a href="article.html?slug=navigating-the-maze-of-ai-and-data-sovereignty-in-the-eu"
-                    class="insight-card-link">
-                    <article class="insight-card">
-                        <div class="insight-thumb-container">
-                            <img src="media/TAgIxThuWHOm5a9n0FTDD5ddk.png" alt="Sovereignty in the EU"
-                                class="insight-img">
-                            <div class="insight-chip-overlay">
-                                <svg class="chip-icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="1">
-                                    <rect x="7" y="7" width="10" height="10" rx="1" />
-                                    <rect x="10" y="10" width="4" height="4" />
-                                    <path d="M8 1v6M10 1v6M12 1v6M14 1v6M16 1v6" />
-                                    <path d="M8 17v6M10 17v6M12 17v6M14 17v6M16 17v6" />
-                                    <path d="M1 8h6M1 10h6M1 12h6M1 14h6M1 16h6" />
-                                    <path d="M17 8h6M17 10h6M17 12h6M17 14h6M17 16h6" />
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="insight-content">
-                            <div class="insight-meta">
-                                <span class="insight-tag">Data Sovereignty</span>
-                                <span class="sep">|</span>
-                                <span class="insight-date">AUG 29, 2025</span>
-                            </div>
-                            <h3 class="insight-title">Navigating the Maze of AI and Data Sovereignty in the EU</h3>
-                            <p class="insight-desc">Can hardware-rooted attestation provide a verifiable proof of
-                                compliance across EU regulations?</p>
-                            <span class="read-more">READ MORE</span>
-                        </div>
-                    </article>
-                </a>
-
-                <!-- Card 3 -->
-                <a href="article.html?slug=ai-exports-at-scale-require-verification-not-just-counting"
-                    class="insight-card-link">
-                    <article class="insight-card">
-                        <div class="insight-thumb-container">
-                            <img src="media/wbfAO30etTdjdRF5oESER55KaA.png" alt="AI Exports at Scale"
-                                class="insight-img">
-                            <div class="insight-chip-overlay">
-                                <svg class="chip-icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="1">
-                                    <rect x="7" y="7" width="10" height="10" rx="1" />
-                                    <rect x="10" y="10" width="4" height="4" />
-                                    <path d="M8 1v6M10 1v6M12 1v6M14 1v6M16 1v6" />
-                                    <path d="M8 17v6M10 17v6M12 17v6M14 17v6M16 17v6" />
-                                    <path d="M1 8h6M1 10h6M1 12h6M1 14h6M1 16h6" />
-                                    <path d="M17 8h6M17 10h6M17 12h6M17 14h6M17 16h6" />
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="insight-content">
-                            <div class="insight-meta">
-                                <span class="insight-tag">Export Controls</span>
-                                <span class="sep">|</span>
-                                <span class="insight-date">AUG 8, 2025</span>
-                            </div>
-                            <h3 class="insight-title">AI Exports at Scale Require Verification, Not Just Counting</h3>
-                            <p class="insight-desc">To fulfill the promise of the AI Action Plan, export controls must
-                                evolve beyond physical counting.</p>
-                            <span class="read-more">READ MORE</span>
-                        </div>
-                    </article>
-                </a>
-            </div>
         </div>
-        <a href="#cta" class="arrow-next" aria-label="Next Section"><svg width="32" height="32" viewBox="0 0 24 24"
-                fill="none" stroke="currentColor" stroke-width="2">
-                <path d="m6 9 6 6 6-6"></path>
-            </svg></a>
     </section>
 
     <section id="cta" class="cta-section">
+
         <div class="container">
             <div class="cta-grid">
                 <div class="cta-left">
@@ -1092,30 +1474,113 @@
     </section>
 
     <script>
-        // Dynamic Text Animation
-        const textOptions = ["Cloud Providers", "AI Companies", "Enterprises", "Defense", "Finance", "Government", "Hyperscalers", "Neoclouds"];
-        let textIndex = 0;
-        const dynamicText = document.getElementById('dynamic-text');
+        // Insights Carousel
+        async function loadInsightsCarousel() {
+            const carousel = document.getElementById('insights-carousel');
+            if (!carousel) return;
 
-        if (dynamicText) {
+            try {
+                // Try to fetch posts data
+                let data = null;
+                const paths = ['data/processed_posts.json', '_data/processed_posts.json'];
+
+                for (const path of paths) {
+                    try {
+                        const response = await fetch(path);
+                        if (response.ok) {
+                            data = await response.json();
+                            break;
+                        }
+                    } catch (e) {
+                        continue;
+                    }
+                }
+
+                if (!data || data.length === 0) {
+                    carousel.innerHTML = '<div class="loader">No insights available.</div>';
+                    return;
+                }
+
+                // Sort by date (newest first) and take first 4
+                const posts = data.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 4);
+
+                // Render carousel cards
+                carousel.innerHTML = posts.map(post => {
+                    const tag = post.tags && post.tags.length > 0 ?
+                        (Array.isArray(post.tags[0]) ? post.tags[0][0] : post.tags[0].split(',')[0].trim()) : 'Insight';
+                    return `
+                        <a href="article.html?slug=${post.slug}" class="insight-card">
+                            <img src="${post.image}" alt="${post.title}" class="insight-card-img">
+                            <div class="insight-card-content">
+                                <div class="insight-card-meta">
+                                    <span class="insight-card-tag">${tag}</span>
+                                    <span>${post.date}</span>
+                                </div>
+                                <h4 class="insight-card-title">${post.title}</h4>
+                                <p class="insight-card-desc">${post.description}</p>
+                            </div>
+                        </a>
+                    `;
+                }).join('');
+            } catch (error) {
+                console.error('Error loading insights:', error);
+                carousel.innerHTML = '<div class="loader">Unable to load insights.</div>';
+            }
+        }
+
+        function scrollInsightsCarousel(direction) {
+            const carousel = document.getElementById('insights-carousel');
+            if (!carousel) return;
+            const scrollAmount = 340;
+            carousel.scrollBy({
+                left: direction * scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+
+        // Load insights on page load
+        document.addEventListener('DOMContentLoaded', loadInsightsCarousel);
+
+        // Dynamic Text Animation (Rotator)
+
+        const rotatorOptions = [" for sovereignty", " for compliance", " for privacy", " for trust", " for security"];
+        let rotatorIndex = 0;
+        const rotatorSuffix = document.getElementById('rotator-suffix');
+
+        if (rotatorSuffix) {
             setInterval(() => {
-                // Trigger exit animation
-                dynamicText.classList.add('text-flip-out');
-
+                rotatorIndex = (rotatorIndex + 1) % rotatorOptions.length;
+                rotatorSuffix.style.opacity = '0';
                 setTimeout(() => {
-                    // Update text
-                    textIndex = (textIndex + 1) % textOptions.length;
-                    dynamicText.textContent = textOptions[textIndex];
+                    rotatorSuffix.textContent = rotatorOptions[rotatorIndex];
+                    rotatorSuffix.style.opacity = '1';
+                }, 500);
+            }, 3000);
+        }
 
-                    // Reset to enter state and trigger enter animation
-                    dynamicText.classList.remove('text-flip-out');
-                    dynamicText.classList.add('text-flip-in');
-
-                    setTimeout(() => {
-                        dynamicText.classList.remove('text-flip-in');
-                    }, 500); // Wait for enter animation to finish
-                }, 500); // Wait for exit animation to finish
-            }, 3000); // Cycle every 3 seconds
+        // Hero Terminal Animation
+        const heroTerminal = document.getElementById('hero-terminal');
+        if (heroTerminal) {
+            const logs = [
+                "[SEC_OPS] Blocked connection to 192.168.x.x",
+                "[GOV_OPS] Logged interaction ID: #8821a",
+                "[DEV_OPS] Memory integrity check: PASS",
+                "[NET_OPS] RTT validation: 12.4ms",
+                "[SEC_OPS] Policy enforcing: strict-egress",
+                "[GOV_OPS] Audit stream: ACTIVE"
+            ];
+            let logIndex = 0;
+            setInterval(() => {
+                const line = document.createElement('div');
+                line.className = 'terminal-line';
+                line.textContent = logs[logIndex % logs.length];
+                heroTerminal.appendChild(line);
+                heroTerminal.scrollTop = heroTerminal.scrollHeight;
+                if (heroTerminal.children.length > 5) {
+                    heroTerminal.removeChild(heroTerminal.children[0]);
+                }
+                logIndex++;
+            }, 2000);
         }
 
         // PASTE YOUR GOOGLE WEB APP URL HERE
@@ -1218,9 +1683,358 @@
             }
         });
     </script>
+    <script>
+        // Chart.js Initialization for Compliance Radar
+        document.addEventListener('DOMContentLoaded', () => {
+            const ctx = document.getElementById('complianceChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['HIPAA', 'ITAR', 'GDPR', 'SOC2', 'MCP Firewall', 'TruthfulQA', 'CyberSecEval'],
+                    datasets: [
+                        {
+                            label: 'Sovereignty',
+                            data: [91, 43, 88, 32, 75, 95, 60],
+                            fill: true,
+                            backgroundColor: 'rgba(74, 222, 128, 0.2)',
+                            borderColor: '#4ade80',
+                            pointBackgroundColor: '#4ade80',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: '#4ade80'
+                        },
+                        {
+                            label: 'Integrity',
+                            data: [26, 94, 38, 82, 55, 40, 90],
+                            fill: true,
+                            backgroundColor: 'rgba(96, 165, 250, 0.2)',
+                            borderColor: '#60a5fa',
+                            pointBackgroundColor: '#60a5fa',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: '#60a5fa'
+                        },
+                        {
+                            label: 'Policy',
+                            data: [58, 72, 90, 45, 85, 30, 70],
+                            fill: true,
+                            backgroundColor: 'rgba(248, 113, 113, 0.2)',
+                            borderColor: '#f87171',
+                            pointBackgroundColor: '#f87171',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: '#f87171'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    layout: {
+                        padding: {
+                            top: 10,
+                            bottom: 10,
+                            left: 10,
+                            right: 10
+                        }
+                    },
+                    elements: {
+                        line: {
+                            borderWidth: 2
+                        }
+                    },
+                    scales: {
+                        r: {
+                            angleLines: {
+                                display: true,
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            grid: {
+                                display: true,
+                                color: 'rgba(255, 255, 255, 0.1)',
+                                circular: false
+                            },
+                            pointLabels: {
+                                color: '#a1a1aa',
+                                font: {
+                                    family: '"Space Mono", monospace',
+                                    size: 10
+                                }
+                            },
+                            ticks: {
+                                display: false,
+                                backdropColor: 'transparent'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            enabled: true,
+                            backgroundColor: 'rgba(0,0,0,0.8)',
+                            titleColor: '#fff',
+                            bodyColor: '#fff',
+                            borderColor: 'rgba(255,255,255,0.1)',
+                            borderWidth: 1
+                        }
+                    }
+                }
+            });
+        });
+    </script>
 
+    <script>
+        // --- OBSERVABILITY DASHBOARD LOGIC ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const agents = [{
+                id: 'a1',
+                name: 'Agent-Alpha',
+                did: 'did:key:z6MkhaXgw...',
+                provider: 'NVIDIA H100',
+                region: 'us-east-1',
+                coords: { top: '35%', left: '25%' },
+                rtt: 12,
+                status: 'verified',
+                scores: [95, 88, 92, 100, 85, 90],
+                telemetry: { power: 420, flops: 88, temp: 65 },
+                logs: [
+                    { time: '14:30', msg: 'Verified TEE Attestation (TDX)' },
+                    { time: '14:28', msg: 'Handshake: us-east-gateway' }
+                ]
+            }, {
+                id: 'a2',
+                name: 'Agent-Beta',
+                did: 'did:key:z6Mkrm5...',
+                provider: 'Intel TDX',
+                region: 'eu-central-1',
+                coords: { top: '30%', left: '52%' },
+                rtt: 45,
+                status: 'warning',
+                scores: [80, 100, 60, 95, 90, 75],
+                telemetry: { power: 300, flops: 92, temp: 72 },
+                logs: [
+                    { time: '14:32', msg: 'WARN: High memory usage' },
+                    { time: '14:30', msg: 'Blocked Request: Invalid Region' }
+                ]
+            }, {
+                id: 'a3',
+                name: 'Agent-Gamma',
+                did: 'did:key:z6Mkf9a...',
+                provider: 'NVIDIA A100',
+                region: 'ap-northeast-1',
+                coords: { top: '40%', left: '80%' },
+                rtt: 120,
+                status: 'failed',
+                scores: [40, 60, 30, 50, 45, 20],
+                telemetry: { power: 150, flops: 12, temp: 40 },
+                logs: [
+                    { time: '14:33', msg: 'CRITICAL: Attestation Failed' }
+                ]
+            }, {
+                id: 'a4',
+                name: 'Agent-Delta',
+                did: 'did:key:z6Mkq2w...',
+                provider: 'AMD SEV',
+                region: 'us-west-2',
+                coords: { top: '45%', left: '15%' },
+                rtt: 22,
+                status: 'verified',
+                scores: [98, 95, 99, 90, 92, 96],
+                telemetry: { power: 380, flops: 75, temp: 58 },
+                logs: [
+                    { time: '14:34', msg: 'Verified TEE Attestation (SEV)' }
+                ]
+            }, {
+                id: 'a5',
+                name: 'Agent-Epsilon',
+                did: 'did:key:z6Mkj7x...',
+                provider: 'NVIDIA H100',
+                region: 'sa-east-1',
+                coords: { top: '70%', left: '32%' },
+                rtt: 85,
+                status: 'verified',
+                scores: [88, 85, 90, 95, 80, 85],
+                telemetry: { power: 450, flops: 60, temp: 62 },
+                logs: [
+                    { time: '14:35', msg: 'Audit Log Synced' }
+                ]
+            }];
+
+            let activeAgentId = agents[0].id;
+            let radarChart = null;
+            let throughputChart = null;
+
+            // Elements
+            const agentTableBody = document.getElementById('agent-table-body');
+            const chipContainer = document.getElementById('chip-container');
+            const agentCountVal = document.getElementById('agent-count');
+            const rttVal = document.getElementById('rtt-val');
+
+            const inspName = document.getElementById('insp-name');
+            const inspDid = document.getElementById('insp-did');
+            const valPower = document.getElementById('val-power');
+            const valFlops = document.getElementById('val-flops');
+            const valTemp = document.getElementById('val-temp');
+            const barPower = document.getElementById('bar-power');
+            const barFlops = document.getElementById('bar-flops');
+            const barTemp = document.getElementById('bar-temp');
+
+            function init() {
+                if (agentCountVal) agentCountVal.textContent = agents.length;
+                renderAgentTable();
+                renderMap();
+                initThroughputChart();
+                selectAgent(agents[0]);
+            }
+
+            function renderAgentTable() {
+                if (!agentTableBody) return;
+                agentTableBody.innerHTML = '';
+                agents.forEach(agent => {
+                    const tr = document.createElement('tr');
+                    tr.className = agent.id === activeAgentId ? 'active' : '';
+                    tr.onclick = () => selectAgent(agent);
+
+                    const latColor = agent.rtt < 30 ? 'var(--c-green)' : (agent.rtt < 100 ? 'var(--c-yellow)' : 'var(--c-red)');
+                    const avgScore = Math.round(agent.scores.reduce((a, b) => a + b) / agent.scores.length);
+
+                    tr.innerHTML = `
+                        <td>
+                            <div class="table-identity">
+                                <div class="table-status-indicator ${agent.status}"></div>
+                                <div>
+                                    <div style="color:var(--c-white); font-weight:600;">${agent.name}</div>
+                                    <div class="table-did-small" style="font-size:0.6rem; opacity:0.5;">${agent.did.substring(0, 16)}...</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="provider-badge">${agent.provider}</span></td>
+                        <td>${agent.region}</td>
+                        <td><span style="color:${latColor};">${agent.rtt}ms</span></td>
+                        <td><span class="compliance-pill">${avgScore}%</span></td>
+                        <td><span style="color:${agent.status === 'verified' ? 'var(--c-green)' : (agent.status === 'warning' ? 'var(--c-yellow)' : 'var(--c-red)')}; font-size:0.6rem; font-weight:700;">${agent.status.toUpperCase()}</span></td>
+                    `;
+                    agentTableBody.appendChild(tr);
+                });
+            }
+
+            function renderMap() {
+                if (!chipContainer) return;
+                chipContainer.innerHTML = '';
+                agents.forEach(agent => {
+                    const chip = document.createElement('div');
+                    chip.className = `chip-marker ${agent.id === activeAgentId ? 'active' : ''}`;
+                    chip.style.top = agent.coords.top;
+                    chip.style.left = agent.coords.left;
+                    chip.innerHTML = `<div class="chip-inner"></div><div class="chip-pulse"></div>`;
+                    chip.onclick = (e) => { e.stopPropagation(); selectAgent(agent); };
+                    chipContainer.appendChild(chip);
+                });
+            }
+
+            function selectAgent(agent) {
+                activeAgentId = agent.id;
+                renderAgentTable();
+                renderMap();
+
+                if (inspName) inspName.textContent = agent.name;
+                if (inspDid) inspDid.textContent = agent.did;
+                if (rttVal) rttVal.textContent = agent.rtt;
+                if (valPower) valPower.textContent = agent.telemetry.power + 'W';
+                if (barPower) barPower.style.width = (agent.telemetry.power / 500 * 100) + '%';
+                if (valFlops) valFlops.textContent = agent.telemetry.flops + '%';
+                if (barFlops) barFlops.style.width = agent.telemetry.flops + '%';
+                if (valTemp) valTemp.textContent = agent.telemetry.temp + '°C';
+                if (barTemp) barTemp.style.width = (agent.telemetry.temp / 100 * 100) + '%';
+
+                updateRadarChart(agent);
+            }
+
+            function updateRadarChart(agent) {
+                const ctx = document.getElementById('complianceRadar');
+                if (!ctx) return;
+                if (radarChart) radarChart.destroy();
+                radarChart = new Chart(ctx, {
+                    type: 'radar',
+                    data: {
+                        labels: ['HIPAA', 'SOC2', 'ITAR', 'GDPR', 'AI Act', 'EXP'],
+                        datasets: [{
+                            data: agent.scores,
+                            backgroundColor: 'rgba(250, 204, 21, 0.1)',
+                            borderColor: 'var(--c-yellow)',
+                            pointBackgroundColor: 'var(--c-yellow)',
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            r: {
+                                min: 0, max: 100,
+                                grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                                angleLines: { color: 'rgba(255, 255, 255, 0.05)' },
+                                pointLabels: { color: '#666', font: { family: 'Space Mono', size: 8 } },
+                                ticks: { display: false }
+                            }
+                        },
+                        plugins: { legend: { display: false } }
+                    }
+                });
+            }
+
+            function initThroughputChart() {
+                const ctx = document.getElementById('throughputChart');
+                if (!ctx) return;
+                throughputChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: Array.from({ length: 30 }, (_, i) => ''),
+                        datasets: [{
+                            data: Array.from({ length: 30 }, () => Math.floor(Math.random() * 40) + 80),
+                            borderColor: '#4ECDC4',
+                            backgroundColor: 'rgba(78, 205, 196, 0.1)',
+                            borderWidth: 2,
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            x: { display: false },
+                            y: { display: true, grid: { color: 'rgba(255,255,255,0.03)' }, ticks: { color: '#444', font: { size: 9 } } }
+                        },
+                        plugins: { legend: { display: false } },
+                        animation: { duration: 0 }
+                    }
+                });
+                setInterval(() => {
+                    const newData = throughputChart.data.datasets[0].data;
+                    newData.shift();
+                    newData.push(Math.floor(Math.random() * 40) + 80);
+                    throughputChart.update();
+                }, 1000);
+            }
+
+            init();
+        });
+
+        // Vertical Scroll Logic
+        function scrollVertical(direction) {
+            const container = document.getElementById('market-vertical');
+            if (!container) return;
+            const scrollAmount = 150;
+            container.scrollBy({
+                top: direction * scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+    </script>
 </body>
-
-</html>
 
 </html>
