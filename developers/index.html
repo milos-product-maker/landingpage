@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucid Computing - For Developers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="page-solution">
+    <nav class="navbar">
+        <a href="../index.html" class="nav-brand">
+            <img src="../lucid-logo.svg" alt="Lucid Computing Logo" class="nav-logo">
+            <div class="nav-text">
+                <span>Lucid</span>
+                <span>Computing</span>
+            </div>
+        </a>
+
+        <div class="nav-links">
+            <a href="../index.html" class="nav-link">For Business</a>
+            <a href="../site/index.html" class="nav-link">Docs</a>
+            <a href="https://app.lucidcomputing.ai/login" class="nav-link">Log In</a>
+            <a href="../index.html#cta" class="nav-link nav-cta-btn">Book a Demo</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="page-hero" style="padding-top: 160px; padding-bottom: 80px;">
+        <div class="container">
+            <span class="pill pill-dark">FOR DEVELOPERS</span>
+            <h1 style="margin-top: 1.5rem;">Compliance as Code</h1>
+            <p class="subtitle" style="max-width: 700px; text-align: left; margin-left: 0;">
+                Don't let legal slow you down. One line of code generates your AI-BOM and audit trail automatically.
+                Ship compliant AI without the compliance overhead.
+            </p>
+            <div class="hero-btns" style="display:flex; gap:1rem; margin-top:2rem;">
+                <a href="../site/index.html" class="btn-white-hero">
+                    View SDK Documentation
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- What is an Auditor? -->
+    <section class="py-120" style="background-color: var(--c-black);">
+        <div class="container">
+            <div class="section-header animate-up text-left">
+                <span class="pill pill-dark">01 — CORE CONCEPT</span>
+                <h2 style="margin-top: 1rem;">What is an Auditor?</h2>
+            </div>
+            <div class="grid-split" style="margin-top: 3rem;">
+                <div class="animate-up delay-1" style="text-align: left;">
+                    <p style="font-size: 1.1rem; line-height: 1.8;">
+                        An <strong style="color: var(--c-yellow);">Auditor</strong> is simply a standard <strong>OCI Container</strong>. 
+                        You write your validation logic in Python, package it, and push it to the Lucid Marketplace.
+                    </p>
+                    <p style="font-size: 1.1rem; line-height: 1.8; margin-top: 1.5rem;">
+                        Lucid injects your Auditor as a sidecar into the AI agent's Pod. This means zero code changes
+                        to your existing models. The Auditor intercepts requests and responses, applying your
+                        custom policies in real-time.
+                    </p>
+                    <div class="check-item" style="margin-top: 2rem;">
+                        <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                        </svg>
+                        <div>
+                            <h4 style="margin-bottom: 0.5rem; font-size: 1.1rem;">Infrastructure as Code</h4>
+                            <p style="font-size: 0.95rem; opacity: 0.8;">Define compliance policies in declarative manifests, version control them, and deploy with `kubectl apply`.</p>
+                        </div>
+                    </div>
+                    <div class="check-item">
+                        <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="4 17 10 11 4 5"></polyline>
+                            <line x1="12" y1="19" x2="20" y2="19"></line>
+                        </svg>
+                        <div>
+                            <h4 style="margin-bottom: 0.5rem; font-size: 1.1rem;">Familiar Tools</h4>
+                            <p style="font-size: 0.95rem; opacity: 0.8;">Use Python, Docker, and Kubernetes. No new languages or frameworks to learn.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="animate-up delay-2">
+                    <div class="code-editor">
+                        <div class="code-header">
+                            <span class="mono" style="font-size:0.7rem; opacity:0.5; margin-left:1rem;">sovereignty_auditor.py</span>
+                        </div>
+                        <div class="code-content" style="text-align: left;">
+                            <pre><code><span class="kw">import</span> <span class="val">lucid.auditor</span> <span class="kw">as</span> <span class="val">auditor</span>
+
+<span class="comment"># Pin execution to Swedish nodes</span>
+<span class="kw">@auditor.on_request</span>
+<span class="kw">def</span> <span class="func">enforce_sovereignty</span>(request):
+    <span class="kw">if</span> request.node.country != <span class="str">"SE"</span>:
+        <span class="kw">return</span> auditor.Deny(<span class="str">"Sovereignty Breach"</span>)
+    <span class="kw">return</span> auditor.Proceed()
+
+<span class="comment"># Redact sensitive data from responses</span>
+<span class="kw">@auditor.on_response</span>
+<span class="kw">def</span> <span class="func">clean_output</span>(response):
+    <span class="kw">if</span> response.contains_pii():
+        <span class="kw">return</span> auditor.Redact()
+    <span class="kw">return</span> auditor.Proceed()</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publish Your Own Auditor -->
+    <section class="py-120" style="background-color: var(--c-dark);">
+        <div class="container">
+            <div class="section-header animate-up text-left">
+                <span class="pill pill-dark">02 — BUILD & DEPLOY</span>
+                <h2 style="margin-top: 1rem;">Publish Your Own Auditor in Minutes</h2>
+            </div>
+
+            <div class="grid-split" style="margin-top: 3rem;">
+                <div class="animate-up delay-1" style="text-align: left;">
+                    <h3 style="margin-bottom: 1.5rem;">Step 1: Write Your Logic</h3>
+                    <p>Use our Python SDK to define request/response interceptors. The SDK provides helper methods for common tasks like PII detection, geo-fencing, and content filtering.</p>
+                    
+                    <h3 style="margin-bottom: 1.5rem; margin-top: 2rem;">Step 2: Package as OCI Container</h3>
+                    <p>Standard Docker build. Your auditor runs as a lightweight sidecar container alongside the AI model.</p>
+                    
+                    <h3 style="margin-bottom: 1.5rem; margin-top: 2rem;">Step 3: Push to Marketplace</h3>
+                    <p>Deploy to our registry. Your auditor is now available to be chained into any Lucid-powered AI deployment.</p>
+                </div>
+
+                <div class="animate-up delay-2">
+                    <div class="code-editor">
+                        <div class="code-header">
+                            <span class="mono" style="font-size:0.7rem; opacity:0.5; margin-left:1rem;">Dockerfile</span>
+                        </div>
+                        <div class="code-content" style="text-align: left;">
+                            <pre><code><span class="kw">FROM</span> lucid/auditor-base:latest
+
+<span class="kw">COPY</span> sovereignty_auditor.py /app/auditor.py
+
+<span class="kw">ENTRYPOINT</span> ["python", "/app/auditor.py"]</code></pre>
+                        </div>
+                    </div>
+                    <div class="code-editor" style="margin-top: 1.5rem;">
+                        <div class="code-header">
+                            <span class="mono" style="font-size:0.7rem; opacity:0.5; margin-left:1rem;">terminal</span>
+                        </div>
+                        <div class="code-content" style="text-align: left;">
+                            <pre><code><span class="comment"># Build and push</span>
+$ docker build -t my-sovereignty-auditor .
+$ lucid push my-sovereignty-auditor
+
+<span class="val">✓ Auditor published to marketplace</span></code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Manifest Example -->
+    <section class="py-120" style="background-color: var(--c-black);">
+        <div class="container">
+            <div class="section-header animate-up text-left">
+                <span class="pill pill-dark">03 — CHAIN AUDITORS</span>
+                <h2 style="margin-top: 1rem;">Compose Your Audit Chain</h2>
+                <p class="subtitle" style="max-width: 700px; text-align: left; margin-left: 0;">
+                    Declare your compliance policy in a simple YAML manifest. Mix and match pre-built auditors from the marketplace with your custom logic.
+                </p>
+            </div>
+
+            <div class="animate-up delay-1" style="max-width: 700px;">
+                <div class="code-editor" style="margin-top: 2rem;">
+                    <div class="code-header">
+                        <span class="mono" style="font-size:0.7rem; opacity:0.5; margin-left:1rem;">manifest.yaml</span>
+                    </div>
+                    <div class="code-content">
+                        <pre><code><span class="key">apiVersion</span>: <span class="val">lucid.sh/v1</span>
+<span class="key">kind</span>: <span class="val">VerifiableJobManifest</span>
+<span class="key">metadata</span>:
+  <span class="key">name</span>: <span class="val">finance-chain-v1</span>
+<span class="key">spec</span>:
+  <span class="key">auditors</span>:
+  <span class="comment"># Developer Logic (Custom via SDK)</span>
+  - <span class="key">name</span>: <span class="val">"dev-crash-catcher"</span>
+    <span class="key">image</span>: <span class="val">internal/debugger:v1</span>
+  <span class="comment"># Security Policy (MCP Compatible)</span>
+  - <span class="key">name</span>: <span class="val">"sec-firewall"</span>
+    <span class="key">image</span>: <span class="val">lucid-standard-v2:mcp-safe</span>
+  <span class="comment"># Regulatory Logging</span>
+  - <span class="key">name</span>: <span class="val">"gov-logger"</span>
+    <span class="key">image</span>: <span class="val">gov-registry.eu/logger:v4</span></code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-120" style="background-color: var(--c-dark);">
+        <div class="container text-center">
+            <h2>Ready to Build?</h2>
+            <p class="subtitle" style="margin: 1rem auto 2rem;">
+                Explore the full SDK documentation or get started with our quickstart guide.
+            </p>
+            <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+                <a href="../site/index.html" class="btn-white-hero">
+                    SDK Docs
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </a>
+                <a href="../index.html#cta" class="btn-outline-light">
+                    Contact Sales
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer" style="background-color: var(--c-black); padding: 3rem 0; border-top: 1px solid var(--c-border);">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <img src="../lucid-logo.svg" alt="Lucid" style="width: 24px; height: 24px; filter: brightness(0) invert(1);">
+                <span style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--c-gray);">© 2026 Lucid Computing</span>
+            </div>
+            <div style="display: flex; gap: 2rem;">
+                <a href="../index.html" style="font-size: 0.85rem; color: var(--c-gray);">Home</a>
+                <a href="../site/index.html" style="font-size: 0.85rem; color: var(--c-gray);">Docs</a>
+                <a href="../insights.html" style="font-size: 0.85rem; color: var(--c-gray);">Insights</a>
+            </div>
+        </div>
+    </footer>//
+
+</body>
+
+</html>
+</code></pre>
+</CodeContent>
+<parameter name="Complexity">5

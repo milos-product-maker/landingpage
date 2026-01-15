@@ -7,31 +7,41 @@ document.addEventListener('DOMContentLoaded', () => {
         // SCENE
         const scene = new THREE.Scene();
 
-        // CAMERA
-        const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+        // Use a fixed square aspect ratio for the camera to keep sphere circular
+        const size = Math.min(container.clientWidth, container.clientHeight);
+
+        // CAMERA - Fixed 1:1 aspect ratio
+        const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
         camera.position.z = 1.8;
 
-        // RENDERER
+        // RENDERER - Square canvas
         const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-        renderer.setSize(container.clientWidth, container.clientHeight);
+        renderer.setSize(size, size);
         renderer.setPixelRatio(window.devicePixelRatio);
+
+        // Position canvas at left edge, vertically centered
+        renderer.domElement.style.position = 'absolute';
+        renderer.domElement.style.left = '0';
+        renderer.domElement.style.top = '50%';
+        renderer.domElement.style.transform = 'translateY(-50%)';
+
         container.appendChild(renderer.domElement);
 
-        // GEOMETRY
-        const geometry = new THREE.IcosahedronGeometry(0.9, 4);
+        // GEOMETRY - increased size
+        const geometry = new THREE.IcosahedronGeometry(1.2, 4);
 
         // MATERIAL
         const material = new THREE.MeshBasicMaterial({
-            color: 0xffea00,
+            color: 0xf8d648,
             wireframe: true,
             transparent: true,
             opacity: 0.8,
             wireframeLinewidth: 2,
         });
 
-        // MESH
+        // MESH - No scaling needed now!
         const sphere = new THREE.Mesh(geometry, material);
-        sphere.position.x = -2;
+        sphere.position.x = -1.2; // Moved right to show ~50-60% of sphere
         scene.add(sphere);
 
         // ANIMATION LOOP
@@ -45,11 +55,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // RESIZE HANDLE
         window.addEventListener('resize', () => {
-            const width = container.clientWidth;
-            const height = container.clientHeight;
-            camera.aspect = width / height;
-            camera.updateProjectionMatrix();
-            renderer.setSize(width, height);
+            const newSize = Math.min(container.clientWidth, container.clientHeight);
+            renderer.setSize(newSize, newSize);
+            // Camera aspect stays 1:1, no update needed
         });
     }
 
