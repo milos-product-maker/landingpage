@@ -5,11 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lucid Computing - For Developers</title>
+    <!-- Lucid Computing Design System Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
         rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
 </head>
 
@@ -23,8 +25,13 @@
             </div>
         </a>
 
+        <!-- Hamburger Menu Toggle -->
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+            <span class="nav-toggle-icon"></span>
+        </button>
+
         <div class="nav-links">
-            <a href="../index.html" class="nav-link">For Business</a>
+            <a href="../index.html" class="nav-link nav-link-highlight">For Business</a>
             <a href="../site/index.html" class="nav-link">Docs</a>
             <a href="https://app.lucidcomputing.ai/login" class="nav-link">Log In</a>
             <a href="../index.html#cta" class="nav-link nav-cta-btn">Book a Demo</a>
@@ -250,11 +257,61 @@ $ lucid push my-sovereignty-auditor
                 <a href="../insights.html" style="font-size: 0.85rem; color: var(--c-gray);">Insights</a>
             </div>
         </div>
-    </footer>//
+    </footer>
 
+    <!-- Mobile Navigation Script -->
+    <script>
+        (function() {
+            const navToggle = document.querySelector('.nav-toggle');
+            const navLinks = document.querySelector('.nav-links');
+
+            if (!navToggle || !navLinks) return;
+
+            // Create overlay element
+            const overlay = document.createElement('div');
+            overlay.className = 'nav-overlay';
+            document.body.appendChild(overlay);
+
+            // Toggle menu
+            navToggle.addEventListener('click', function() {
+                const isOpen = navToggle.getAttribute('aria-expanded') === 'true';
+                navToggle.setAttribute('aria-expanded', !isOpen);
+                navLinks.classList.toggle('is-open');
+                overlay.classList.toggle('is-visible');
+                document.body.style.overflow = !isOpen ? 'hidden' : '';
+            });
+
+            // Close menu when clicking overlay
+            overlay.addEventListener('click', function() {
+                navToggle.setAttribute('aria-expanded', 'false');
+                navLinks.classList.remove('is-open');
+                overlay.classList.remove('is-visible');
+                document.body.style.overflow = '';
+            });
+
+            // Close menu on window resize if open
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 968) {
+                    navToggle.setAttribute('aria-expanded', 'false');
+                    navLinks.classList.remove('is-open');
+                    overlay.classList.remove('is-visible');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            // Close menu when clicking a link
+            navLinks.querySelectorAll('a').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 968) {
+                        navToggle.setAttribute('aria-expanded', 'false');
+                        navLinks.classList.remove('is-open');
+                        overlay.classList.remove('is-visible');
+                        document.body.style.overflow = '';
+                    }
+                });
+            });
+        })();
+    </script>
 </body>
 
 </html>
-</code></pre>
-</CodeContent>
-<parameter name="Complexity">5

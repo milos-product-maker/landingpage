@@ -5,11 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lucid Computing - Sovereign Infrastructure</title>
+    <!-- Lucid Computing Design System Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Space+Grotesk:wght@300;700&display=swap" rel="stylesheet">
+    <!-- Space Mono: Headings, code, technical text -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <!-- Inter: Body text, UI elements -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Space Grotesk: Accent/display text -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
 
     <link rel="stylesheet" href="styles.css">
@@ -22,20 +26,23 @@
     <nav class="navbar">
         <a href="#hero" class="nav-brand">
             <img src="lucid-logo.svg" alt="Lucid Computing Logo" class="nav-logo">
-
             <div class="nav-text">
                 <span>Lucid</span>
                 <span>Computing</span>
             </div>
         </a>
 
+        <!-- Hamburger Menu Toggle -->
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+            <span class="nav-toggle-icon"></span>
+        </button>
+
         <div class="nav-links">
             <div class="nav-item-dropdown">
                 <a href="#" class="nav-link has-dropdown">Solutions</a>
                 <div class="dropdown-menu">
                     <a href="solutions/digital-embassies.html" class="dropdown-link">Digital Embassies</a>
-                    <a href="solutions/confidential-model-audits.html" class="dropdown-link">Confidential Model
-                        Audits</a>
+                    <a href="solutions/confidential-model-audits.html" class="dropdown-link">Confidential Model Audits</a>
                     <a href="solutions/legacy-to-cloud.html" class="dropdown-link">Legacy-to-Cloud</a>
                     <a href="solutions/sovereign-ai.html" class="dropdown-link">Sovereign AI</a>
                     <a href="solutions/datacenter-observability.html" class="dropdown-link">Datacenter Observability</a>
@@ -53,12 +60,10 @@
                 </div>
             </div>
             <a href="insights.html" class="nav-link">Insights</a>
-            <a href="developers/index.html" class="nav-link" style="color: var(--c-yellow);">For Developers</a>
-            <a href="site/index.html" class="nav-link">Docs</a>
+            <a href="developers/index.html" class="nav-link nav-link-highlight">For Developers</a>
             <a href="https://app.lucidcomputing.ai/login" class="nav-link">Log In</a>
             <a href="#cta" class="nav-link nav-cta-btn">Book a Demo</a>
         </div>
-
     </nav>
 
     <section id="hero" class="bg-black">
@@ -2132,6 +2137,74 @@
                 behavior: 'smooth'
             });
         }
+
+        // Mobile Navigation Toggle
+        (function() {
+            const navToggle = document.querySelector('.nav-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            const navbar = document.querySelector('.navbar');
+
+            if (!navToggle || !navLinks) return;
+
+            // Create overlay element
+            const overlay = document.createElement('div');
+            overlay.className = 'nav-overlay';
+            document.body.appendChild(overlay);
+
+            // Toggle menu
+            navToggle.addEventListener('click', function() {
+                const isOpen = navToggle.getAttribute('aria-expanded') === 'true';
+                navToggle.setAttribute('aria-expanded', !isOpen);
+                navLinks.classList.toggle('is-open');
+                overlay.classList.toggle('is-visible');
+                document.body.style.overflow = !isOpen ? 'hidden' : '';
+            });
+
+            // Close menu when clicking overlay
+            overlay.addEventListener('click', function() {
+                navToggle.setAttribute('aria-expanded', 'false');
+                navLinks.classList.remove('is-open');
+                overlay.classList.remove('is-visible');
+                document.body.style.overflow = '';
+            });
+
+            // Handle dropdown toggles on mobile
+            const dropdowns = document.querySelectorAll('.nav-item-dropdown');
+            dropdowns.forEach(function(dropdown) {
+                const link = dropdown.querySelector('.nav-link.has-dropdown');
+                if (link) {
+                    link.addEventListener('click', function(e) {
+                        if (window.innerWidth <= 968) {
+                            e.preventDefault();
+                            dropdown.classList.toggle('is-open');
+                        }
+                    });
+                }
+            });
+
+            // Close menu on window resize if open
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 968) {
+                    navToggle.setAttribute('aria-expanded', 'false');
+                    navLinks.classList.remove('is-open');
+                    overlay.classList.remove('is-visible');
+                    document.body.style.overflow = '';
+                    dropdowns.forEach(function(d) { d.classList.remove('is-open'); });
+                }
+            });
+
+            // Close menu when clicking a link
+            navLinks.querySelectorAll('a:not(.has-dropdown)').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 968) {
+                        navToggle.setAttribute('aria-expanded', 'false');
+                        navLinks.classList.remove('is-open');
+                        overlay.classList.remove('is-visible');
+                        document.body.style.overflow = '';
+                    }
+                });
+            });
+        })();
     </script>
 </body>
 

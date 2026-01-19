@@ -1,33 +1,67 @@
 /* --- VARIABLES & RESET --- */
+/* Lucid Computing Design System - Synced from Figma */
 :root {
-    /* Palette - Updated to Lucid Computing Design System */
-    --c-black: #111111;
+    /* Brand Colors */
+    --c-brand: #f8d648;
+    --c-brand-medium: #ebde9f;
+    --c-brand-light: #e9e2c5;
+
+    /* Neutral Palette (Dark Theme) */
+    --c-neutral-800: #111111;
+    --c-neutral-700: #232323;
+    --c-neutral-600: #373737;
+    --c-neutral-500: #727272;
+    --c-neutral-400: #bbbcbf;
+    --c-neutral-300: #f2f2f2;
+    --c-neutral-200: #d9d9d9;
+    --c-neutral-100: #ffffff;
+
+    /* Feedback Colors */
+    --c-error: #7f1d1d;
+    --c-error-alt: #991b1b;
+    --c-success: #13532c;
+    --c-success-alt: #166433;
+
+    /* Legacy Aliases (for backward compatibility) */
+    --c-black: var(--c-neutral-800);
     --c-dark: #1a1a1a;
-    --c-card: #111111;
-    --c-white: #ffffff;
-    --c-gray: #bbbcbf;
-    --c-gray-dark: #373737;
+    --c-card: var(--c-neutral-800);
+    --c-white: var(--c-neutral-100);
+    --c-gray: var(--c-neutral-400);
+    --c-gray-dark: var(--c-neutral-600);
     --c-border: rgba(255, 255, 255, 0.15);
-    --c-yellow: #f8d648;
-    --c-yellow-dim: #ebde9f;
-    --c-green: #166534;
-    --c-red: #991b1b;
+    --c-border-button: #6d6d6d;
+    --c-yellow: var(--c-brand);
+    --c-yellow-dim: var(--c-brand-medium);
+    --c-green: var(--c-success-alt);
+    --c-red: var(--c-error-alt);
     --c-accent: #8a38f5;
 
-    /* Fonts - Added Lato and Space Grotesk */
-    --font-sans: 'Lato', 'Inter', system-ui, -apple-system, sans-serif;
+    /* Typography - Figma Design System */
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
     --font-mono: 'Space Mono', monospace;
     --font-accent: 'Space Grotesk', sans-serif;
 
-    /* Layout & Spacing (Base-8) */
+    /* Font Sizes (from Figma) */
+    --fs-h1: 72px;
+    --fs-h2: 32px;
+    --fs-h3: 24px;
+    --fs-body-lg: 18px;
+    --fs-body: 16px;
+    --fs-body-sm: 14px;
+    --fs-caption: 12px;
+    --fs-button: 16px;
+
+    /* Layout & Spacing (Base-8 from Figma) */
     --w-container: 1400px;
     --nav-dot-size: 10px;
-    --space-xs: 8px;
-    --space-s: 16px;
-    --space-m: 24px;
-    --space-l: 32px;
-    --space-xl: 48px;
-    --space-xxl: 80px;
+    --space-xs: 8px;   /* A - related texts, closely related elements */
+    --space-s: 16px;   /* B - related elements, components */
+    --space-m: 24px;   /* C - related elements, grid items */
+    --space-l: 32px;   /* D - unrelated elements */
+    --space-xl: 48px;  /* E - unrelated elements, section gaps */
+    --space-xxl: 80px; /* Large section spacing */
+    --space-gutter: 40px; /* Side gutters on desktop */
 
     /* Brutalist Defaults */
     --radius-none: 0px;
@@ -210,39 +244,84 @@ section {
     text-align: left;
 }
 
-/* --- TYPOGRAPHY --- */
+/* --- TYPOGRAPHY - Figma Design System --- */
+
+/* H1 - Page Titles (Space Mono, 72px) */
 h1 {
-    font-family: var(--font-sans);
-    font-size: clamp(2.5rem, 6vw, 5rem);
-    font-weight: 300;
-    margin-bottom: var(--space-m);
-    line-height: 1.1;
-    letter-spacing: -0.04em;
-}
-
-h2 {
-    font-family: var(--font-sans);
-    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-family: var(--font-mono);
+    font-size: clamp(2.5rem, 6vw, var(--fs-h1));
     font-weight: 400;
-    margin-bottom: var(--space-s);
+    margin-bottom: var(--space-m);
+    line-height: 1.4;
     letter-spacing: -0.02em;
+    color: var(--c-white);
 }
 
-h3,
+/* H2 - Section Titles (Space Mono, 32px, Bold) */
+h2 {
+    font-family: var(--font-mono);
+    font-size: clamp(1.5rem, 4vw, var(--fs-h2));
+    font-weight: 700;
+    margin-bottom: var(--space-s);
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+    color: var(--c-white);
+}
+
+/* H3 - Subsection Titles (Space Mono, 24px, Bold) */
+h3 {
+    font-family: var(--font-mono);
+    font-size: var(--fs-h3);
+    font-weight: 700;
+    margin-bottom: var(--space-xs);
+    line-height: 1.5;
+    color: var(--c-white);
+}
+
+/* H4-H6 - Minor Headings */
 h4,
 h5,
 h6 {
+    font-family: var(--font-mono);
     font-size: 1.25rem;
     font-weight: 700;
     margin-bottom: var(--space-xs);
-    font-family: var(--font-mono);
+    color: var(--c-white);
 }
 
+/* Body Text (Inter, 16px) */
 p {
-    font-size: 1rem;
+    font-family: var(--font-sans);
+    font-size: var(--fs-body);
     margin-bottom: var(--space-s);
     color: var(--c-gray);
-    font-weight: 300;
+    font-weight: 400;
+    line-height: 1.8;
+}
+
+/* Large Body Text (Inter, 18px) */
+.text-lg,
+.lead {
+    font-family: var(--font-sans);
+    font-size: var(--fs-body-lg);
+    line-height: 1.8;
+    color: var(--c-gray);
+}
+
+/* Small Body Text (Inter, 14px) */
+.text-sm,
+.small {
+    font-family: var(--font-sans);
+    font-size: var(--fs-body-sm);
+    line-height: 1.7;
+}
+
+/* Caption Text (Inter, 12px) */
+.text-xs,
+.caption {
+    font-family: var(--font-sans);
+    font-size: var(--fs-caption);
+    line-height: 1.5;
 }
 
 .subtitle {
@@ -267,30 +346,30 @@ p {
     font-family: var(--font-mono);
 }
 
-/* Pills */
+/* Pills/Tags - Figma Design System */
 .pill {
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    margin-bottom: var(--space-s);
     display: inline-block;
-    padding: 0.5rem 1.2rem;
+    padding: var(--space-xs) var(--space-s);
+    margin-bottom: var(--space-s);
     border-radius: var(--radius-none);
-    align-self: center;
     font-family: var(--font-mono);
+    font-size: var(--fs-body-sm);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    align-self: center;
 }
 
 .pill-dark {
     background: rgba(255, 255, 255, 0.05);
-    color: var(--c-yellow);
+    color: var(--c-brand);
     border: 1px solid rgba(248, 214, 72, 0.2);
 }
 
 .pill-light {
     background: rgba(255, 255, 255, 0.1);
     color: var(--c-white);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--c-border);
 }
 
 /* --- UTILITY CLASSES: SPACING --- */
@@ -404,23 +483,91 @@ p {
     color: var(--c-white);
 }
 
+/* Navigation CTA Button - Figma Design System */
 .nav-cta-btn {
     background: var(--c-white);
-    color: var(--c-black);
-    padding: 0.6rem 1.2rem;
+    color: var(--c-neutral-800);
+    padding: var(--space-xs) var(--space-s);
+    border: 1px solid var(--c-border-button);
     border-radius: var(--radius-none);
     font-family: var(--font-mono);
-    font-size: 0.85rem;
-    font-weight: 700;
+    font-size: var(--fs-button);
+    font-weight: 400;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
     transition: var(--transition-mechanical);
-    border: 1px solid var(--c-white);
 }
 
 .nav-cta-btn:hover {
     background: transparent;
     color: var(--c-white);
+}
+
+/* Highlighted Nav Link (For Developers / For Business) */
+.nav-link-highlight {
+    color: var(--c-brand) !important;
+}
+
+.nav-link-highlight:hover {
+    color: var(--c-brand-medium) !important;
+}
+
+/* Mobile Navigation Toggle */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    background: transparent;
+    border: 1px solid var(--c-border);
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.nav-toggle-icon,
+.nav-toggle-icon::before,
+.nav-toggle-icon::after {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background-color: var(--c-white);
+    transition: var(--transition-mechanical);
+}
+
+.nav-toggle-icon {
+    position: relative;
+}
+
+.nav-toggle-icon::before,
+.nav-toggle-icon::after {
+    content: '';
+    position: absolute;
+    left: 0;
+}
+
+.nav-toggle-icon::before {
+    top: -6px;
+}
+
+.nav-toggle-icon::after {
+    top: 6px;
+}
+
+/* Hamburger to X animation */
+.nav-toggle[aria-expanded="true"] .nav-toggle-icon {
+    background-color: transparent;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-icon::before {
+    top: 0;
+    transform: rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-icon::after {
+    top: 0;
+    transform: rotate(-45deg);
 }
 
 /* Nav Dots (Home) */
@@ -1725,23 +1872,27 @@ p {
     max-width: 90%;
 }
 
+/* Outline Button - Figma Design System (Secondary variant) */
 .btn-outline {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 1rem 2rem;
-    border: 1px solid var(--c-white);
+    justify-content: center;
+    gap: var(--space-xs);
+    padding: var(--space-m) var(--space-m);
+    border: 1px solid var(--c-border-button);
+    background: transparent;
     color: var(--c-white);
-    font-family: var(--font-sans);
-    font-size: 0.9rem;
+    font-family: var(--font-mono);
+    font-size: var(--fs-button);
+    font-weight: 400;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    transition: all 0.2s;
+    transition: var(--transition-mechanical);
+    cursor: pointer;
 }
 
 .btn-outline:hover {
     background: var(--c-white);
-    color: var(--c-black);
+    color: var(--c-neutral-800);
 }
 
 .hero-image-container {
@@ -4228,22 +4379,142 @@ p {
     }
 }
 
-@media (max-width: 768px) {
-    .nav-links {
-        display: none !important;
+/* Mobile Navigation Breakpoint */
+@media (max-width: 968px) {
+    .nav-toggle {
+        display: flex;
     }
 
     .navbar {
-        justify-content: center !important;
-        width: 90% !important;
+        justify-content: space-between;
+        padding: 0.75rem 1.5rem;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 100%;
+        max-width: 320px;
+        height: 100vh;
+        background: rgba(10, 10, 10, 0.98);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 100px 2rem 2rem;
+        gap: 0;
+        border-left: 1px solid var(--c-border);
+        transform: translateX(100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 999;
+        overflow-y: auto;
+    }
+
+    .nav-links.is-open {
+        transform: translateX(0);
+    }
+
+    .nav-links .nav-link {
+        width: 100%;
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--c-border);
+        font-size: 1rem;
+    }
+
+    .nav-links .nav-cta-btn {
+        margin-top: 1.5rem;
+        width: 100%;
+        text-align: center;
+        padding: var(--space-s) var(--space-m);
+    }
+
+    /* Mobile Dropdown Styles */
+    .nav-item-dropdown {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-item-dropdown .nav-link {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .nav-item-dropdown .dropdown-menu {
+        position: static;
+        transform: none;
+        opacity: 1;
+        visibility: visible;
+        width: 100%;
+        min-width: 100%;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        padding: 0 0 0.5rem 1rem;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+
+    .nav-item-dropdown .dropdown-menu::before {
+        display: none;
+    }
+
+    .nav-item-dropdown.is-open .dropdown-menu {
+        max-height: 500px;
+    }
+
+    .nav-item-dropdown .dropdown-link {
+        padding: 0.5rem 0;
+        font-size: 0.9rem;
+    }
+
+    .nav-item-dropdown .dropdown-link:hover {
+        padding-left: 0.5rem;
+    }
+
+    .nav-link.has-dropdown::after {
+        transition: transform 0.2s ease;
+    }
+
+    .nav-item-dropdown.is-open .nav-link.has-dropdown::after {
+        transform: rotate(180deg);
+    }
+
+    /* Mobile menu overlay */
+    .nav-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s, visibility 0.3s;
+        z-index: 998;
+    }
+
+    .nav-overlay.is-visible {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        width: 90%;
     }
 
     .nav-brand {
-        gap: 0.5rem !important;
+        gap: 0.5rem;
     }
 
     .nav-text {
-        font-size: 0.8rem !important;
+        font-size: 0.8rem;
     }
 
     .stat-box {
@@ -4598,64 +4869,132 @@ p {
     color: var(--c-red);
 }
 
-/* Buttons */
+/* Buttons - Figma Design System */
+
+/* Primary Button: White background, dark text */
 .btn-primary {
-    background: linear-gradient(90deg, var(--c-yellow) 0%, #fde047 100%);
-    color: var(--c-black);
-    padding: 1rem 2rem;
+    background: var(--c-white);
+    color: var(--c-neutral-800);
+    padding: var(--space-m) var(--space-m);
+    border: 1px solid var(--c-border-button);
     border-radius: var(--radius-none);
-    font-weight: 700;
+    font-family: var(--font-mono);
+    font-size: var(--fs-button);
+    font-weight: 400;
+    text-transform: uppercase;
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    transition: all 0.3s ease;
+    justify-content: center;
+    gap: var(--space-xs);
+    transition: var(--transition-mechanical);
+    text-decoration: none;
+    cursor: pointer;
 }
 
+.btn-primary:hover {
+    background: transparent;
+    color: var(--c-neutral-800);
+    border-color: var(--c-border-button);
+}
+
+/* Secondary Button: Transparent background, white text, border */
 .btn-secondary {
-    border: 1px solid var(--c-white);
+    background: transparent;
     color: var(--c-white);
-    padding: 1rem 2rem;
+    padding: var(--space-m) var(--space-m);
+    border: 1px solid var(--c-border-button);
     border-radius: var(--radius-none);
-    font-weight: 600;
+    font-family: var(--font-mono);
+    font-size: var(--fs-button);
+    font-weight: 400;
+    text-transform: uppercase;
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    transition: all 0.3s ease;
+    justify-content: center;
+    gap: var(--space-xs);
+    transition: var(--transition-mechanical);
+    text-decoration: none;
+    cursor: pointer;
 }
 
+.btn-secondary:hover {
+    background: var(--c-white);
+    color: var(--c-neutral-800);
+    border-color: var(--c-border-button);
+}
+
+/* Hero Button - Prominent CTA */
 .btn-white-hero {
     background: var(--c-white);
+    color: var(--c-neutral-800);
+    padding: var(--space-m) var(--space-m);
+    border: 1px solid var(--c-border-button);
+    border-radius: var(--radius-none);
+    font-family: var(--font-mono);
+    font-size: var(--fs-button);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: var(--space-s);
-    background-color: var(--c-white);
-    color: var(--c-black);
-    padding: 1.2rem 2.5rem;
-    font-family: var(--font-mono);
-    font-weight: 700;
-    font-size: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    border: 1px solid var(--c-white);
     transition: var(--transition-mechanical);
-    border-radius: var(--radius-none);
     text-decoration: none;
+    cursor: pointer;
 }
 
 .btn-white-hero:hover {
-    background-color: transparent;
+    background: transparent;
     color: var(--c-white);
 }
 
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(250, 204, 21, 0.3);
+/* Navigation Button: Compact size */
+.btn-nav {
+    background: var(--c-white);
+    color: var(--c-neutral-800);
+    padding: var(--space-xs) var(--space-s);
+    border: 1px solid var(--c-border-button);
+    border-radius: var(--radius-none);
+    font-family: var(--font-mono);
+    font-size: var(--fs-button);
+    font-weight: 400;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+    transition: var(--transition-mechanical);
+    text-decoration: none;
+    cursor: pointer;
 }
 
-.btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateY(-2px);
+.btn-nav:hover {
+    background: transparent;
+    color: var(--c-neutral-800);
+    border-color: var(--c-border-button);
+}
+
+/* Text Link Button: No background, no border */
+.btn-text-link {
+    background: transparent;
+    color: var(--c-white);
+    padding: 0;
+    border: none;
+    font-family: var(--font-mono);
+    font-size: var(--fs-button);
+    font-weight: 400;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    transition: var(--transition-mechanical);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-text-link:hover {
+    text-decoration: underline;
 }
 
 /* Flow Visualization */
@@ -7788,26 +8127,30 @@ p {
     text-align: center;
 }
 
+/* Light Outline Button - Figma Design System */
 .btn-outline-light {
     display: inline-flex;
     align-items: center;
-    gap: 0.75rem;
-    padding: 0.9rem 1.8rem;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    justify-content: center;
+    gap: var(--space-xs);
+    padding: var(--space-m) var(--space-m);
+    border: 1px solid var(--c-border-button);
     border-radius: var(--radius-none);
+    background: transparent;
     color: var(--c-white);
     font-family: var(--font-mono);
-    font-size: 0.85rem;
+    font-size: var(--fs-button);
+    font-weight: 400;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    transition: all 0.3s;
+    transition: var(--transition-mechanical);
     text-decoration: none;
+    cursor: pointer;
 }
 
 .btn-outline-light:hover {
     background: var(--c-white);
-    color: var(--c-black);
-    border-color: var(--c-white);
+    color: var(--c-neutral-800);
+    border-color: var(--c-border-button);
 }
 
 /* Responsive */
