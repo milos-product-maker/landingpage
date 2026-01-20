@@ -834,7 +834,101 @@ p {
     margin-top: 1rem;
     letter-spacing: -0.04em;
     font-weight: 300;
-    /* Thinner font */
+}
+
+/* Hero title stacked (two lines) */
+.hero-title-stacked {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.25rem;
+}
+
+.hero-title-stacked .hero-title-main {
+    display: block;
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    line-height: 1.1;
+    white-space: nowrap;
+}
+
+.hero-title-stacked .hero-title-suffix {
+    display: block;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    color: var(--c-brand);
+    line-height: 1.1;
+    transition: opacity 0.5s ease;
+    white-space: nowrap;
+}
+
+/* Right-positioned hero layout - content on right side of screen */
+.hero-right {
+    max-width: none;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    min-height: 80vh;
+    text-align: right;
+    padding-right: 6rem;
+    padding-left: 55%;
+}
+
+.hero-right .hero-content {
+    max-width: none;
+}
+
+.hero-right .subtitle {
+    max-width: none;
+    margin-top: 1.5rem;
+}
+
+.hero-right .hero-btns {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    justify-content: flex-end;
+}
+
+@media (max-width: 1400px) {
+    .hero-right {
+        padding-left: 50%;
+        padding-right: 4rem;
+    }
+}
+
+@media (max-width: 1200px) {
+    .hero-right {
+        padding-left: 45%;
+    }
+}
+
+@media (max-width: 968px) {
+    .hero-right {
+        padding-left: 2rem;
+        padding-right: 2rem;
+        align-items: center;
+        text-align: center;
+    }
+
+    .hero-right .subtitle {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 600px;
+    }
+
+    .hero-right .hero-btns {
+        justify-content: center;
+    }
+
+    .hero-title-stacked {
+        align-items: center;
+    }
+
+    .hero-title-stacked .hero-title-main,
+    .hero-title-stacked .hero-title-suffix {
+        white-space: normal;
+    }
 }
 
 
@@ -4810,6 +4904,213 @@ p {
 
 .code-content .comment {
     color: #6a9955;
+}
+
+/* Canvas Editor - Drag-Drop Audit Chain Builder */
+.canvas-editor {
+    background: #0d0d0d;
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius-none);
+    overflow: hidden;
+}
+
+.canvas-wrapper {
+    display: flex;
+    min-height: 320px;
+}
+
+.canvas-sidebar {
+    width: 48px;
+    background: #0a0a0a;
+    border-right: 1px solid var(--c-border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.75rem 0;
+}
+
+.canvas-sidebar-logo {
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--c-border);
+}
+
+.canvas-logo-img {
+    width: 24px;
+    height: 24px;
+}
+
+.canvas-sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.canvas-nav-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    color: rgba(255, 255, 255, 0.4);
+    transition: all 0.2s ease;
+}
+
+.canvas-nav-item:hover {
+    color: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.canvas-nav-item.active {
+    color: var(--c-brand);
+    background: rgba(255, 204, 0, 0.1);
+}
+
+.canvas-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.canvas-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--c-border);
+    background: #1a1a1a;
+}
+
+.canvas-title {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.canvas-status {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #666;
+}
+
+.status-dot.status-active {
+    background: #22c55e;
+    box-shadow: 0 0 6px rgba(34, 197, 94, 0.5);
+}
+
+.canvas-grid {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.5rem;
+    background:
+        radial-gradient(circle at 1px 1px, rgba(255,255,255,0.03) 1px, transparent 0);
+    background-size: 20px 20px;
+}
+
+.canvas-node-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.canvas-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 1rem 1.25rem;
+    background: #1a1a1a;
+    border: 1px solid var(--c-border);
+    border-radius: 8px;
+    min-width: 90px;
+    transition: all 0.2s ease;
+}
+
+.canvas-node:hover {
+    border-color: var(--c-brand);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 204, 0, 0.1);
+}
+
+.node-icon-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: rgba(255, 204, 0, 0.1);
+    color: var(--c-brand);
+}
+
+.canvas-node.sovereignty .node-icon-wrap {
+    background: rgba(59, 130, 246, 0.15);
+    color: #3b82f6;
+}
+
+.canvas-node.gdpr .node-icon-wrap {
+    background: rgba(34, 197, 94, 0.15);
+    color: #22c55e;
+}
+
+.canvas-node.eu-ai-act .node-icon-wrap {
+    background: rgba(168, 85, 247, 0.15);
+    color: #a855f7;
+}
+
+.node-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.node-version {
+    font-size: 0.6rem;
+    color: rgba(255, 255, 255, 0.4);
+    font-family: var(--ff-mono);
+}
+
+.canvas-connector {
+    display: flex;
+    align-items: center;
+}
+
+.canvas-footer {
+    padding: 0.6rem 1rem;
+    border-top: 1px solid var(--c-border);
+    background: #0d0d0d;
+}
+
+.canvas-hint {
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.35);
+    font-style: italic;
+}
+
+@media (max-width: 768px) {
+    .canvas-node-group {
+        flex-direction: column;
+    }
+
+    .canvas-connector {
+        transform: rotate(90deg);
+    }
+
+    .canvas-wrapper {
+        min-height: 400px;
+    }
 }
 
 /* Command Center Zones */
