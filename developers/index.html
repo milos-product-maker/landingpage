@@ -42,14 +42,20 @@
     <section class="page-hero" style="padding-top: 160px; padding-bottom: 80px;">
         <div class="container">
             <span class="pill pill-dark">FOR DEVELOPERS</span>
-            <h1 style="margin-top: 1.5rem;">Compliance as Code</h1>
+            <h1 style="margin-top: 1.5rem;">The Programmable Trust Layer for Agentic AI.</h1>
             <p class="subtitle" style="max-width: 700px; text-align: left; margin-left: 0;">
-                Don't let legal slow you down. One line of code generates your AI-BOM and audit trail automatically.
-                Ship compliant AI without the compliance overhead.
+                Inject governance as a sidecar. One line of code wraps your open-weights models in a Trusted Execution Environment (TEE). Generate hardware-signed audit trails that legal can verify, so you can get back to shipping.
             </p>
-            <div class="hero-btns" style="display:flex; gap:1rem; margin-top:2rem;">
+            <div class="hero-btns" style="display:flex; flex-direction:column; gap:1rem; margin-top:2rem; align-items:flex-start;">
                 <a href="../site/index.html" class="btn-white-hero">
-                    View SDK Documentation
+                    Read the SDK Docs
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </a>
+                <a href="../site/api-reference.html" class="btn-outline-hero">
+                    View the API Reference
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <line x1="5" y1="12" x2="19" y2="12"></line>
                         <polyline points="12 5 19 12 12 19"></polyline>
@@ -59,95 +65,135 @@
         </div>
     </section>
 
-    <!-- What is an Auditor? -->
+    <!-- Architecture -->
     <section class="py-120" style="background-color: var(--c-black);">
         <div class="container">
             <div class="section-header animate-up text-left">
-                <span class="pill pill-dark">01 — CORE CONCEPT</span>
-                <h2 style="margin-top: 1rem;">What is an Auditor?</h2>
+                <span class="pill pill-dark">01 — ARCHITECTURE</span>
+                <h2 style="margin-top: 1rem;">The Auditor Sidecar Pattern</h2>
             </div>
-            <div class="grid-split" style="margin-top: 3rem;">
-                <div class="animate-up delay-1" style="text-align: left;">
-                    <p style="font-size: 1.1rem; line-height: 1.8;">
-                        An <strong style="color: var(--c-yellow);">Auditor</strong> is simply a standard <strong>OCI Container</strong>. 
-                        You write your validation logic in Python, package it, and push it to the Lucid Marketplace.
-                    </p>
-                    <p style="font-size: 1.1rem; line-height: 1.8; margin-top: 1.5rem;">
-                        Lucid injects your Auditor as a sidecar into the AI agent's Pod. This means zero code changes
-                        to your existing models. The Auditor intercepts requests and responses, applying your
-                        custom policies in real-time.
-                    </p>
-                    <div class="check-item" style="margin-top: 2rem;">
-                        <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                            <line x1="12" y1="22.08" x2="12" y2="12"></line>
-                        </svg>
-                        <div>
-                            <h4 style="margin-bottom: 0.5rem; font-size: 1.1rem;">Infrastructure as Code</h4>
-                            <p style="font-size: 0.95rem; opacity: 0.8;">Define compliance policies in declarative manifests, version control them, and deploy with `kubectl apply`.</p>
-                        </div>
-                    </div>
-                    <div class="check-item">
-                        <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="4 17 10 11 4 5"></polyline>
-                            <line x1="12" y1="19" x2="20" y2="19"></line>
-                        </svg>
-                        <div>
-                            <h4 style="margin-bottom: 0.5rem; font-size: 1.1rem;">Familiar Tools</h4>
-                            <p style="font-size: 0.95rem; opacity: 0.8;">Use Python, Docker, and Kubernetes. No new languages or frameworks to learn.</p>
-                        </div>
+            <div class="animate-up delay-1" style="margin-top: 3rem; text-align: left; max-width: 800px;">
+                <p style="font-size: 1.1rem; line-height: 1.8;">
+                    Lucid decouples governance from model logic. An <strong style="color: var(--c-yellow);">"Auditor"</strong> is a containerized microservice that runs as a proxy sidecar alongside your inference engine.
+                </p>
+
+                <div class="check-item" style="margin-top: 2.5rem;">
+                    <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                        <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                    </svg>
+                    <div>
+                        <h4 style="margin-bottom: 0.5rem; font-size: 1.1rem;">Zero Code Changes</h4>
+                        <p style="font-size: 0.95rem; opacity: 0.8;">Lucid utilizes a Kubernetes Mutating Admission Controller to inject auditors into your Agent's Pod.</p>
                     </div>
                 </div>
 
-                <div class="animate-up delay-2">
-                    <div class="code-editor">
-                        <div class="code-header">
-                            <span class="mono" style="font-size:0.7rem; opacity:0.5; margin-left:1rem;">sovereignty_auditor.py</span>
-                        </div>
-                        <div class="code-content" style="text-align: left;">
-                            <pre><code><span class="kw">import</span> <span class="val">lucid.auditor</span> <span class="kw">as</span> <span class="val">auditor</span>
+                <div class="check-item">
+                    <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="4 17 10 11 4 5"></polyline>
+                        <line x1="12" y1="19" x2="20" y2="19"></line>
+                    </svg>
+                    <div>
+                        <h4 style="margin-bottom: 0.5rem; font-size: 1.1rem;">Runtime Interception</h4>
+                        <p style="font-size: 0.95rem; opacity: 0.8;">The auditor sits in the data path (gRPC/REST), inspecting inputs and outputs before they leave the secure enclave.</p>
+                    </div>
+                </div>
 
-<span class="comment"># Pin execution to Swedish nodes</span>
-<span class="kw">@auditor.on_request</span>
-<span class="kw">def</span> <span class="func">enforce_sovereignty</span>(request):
-    <span class="kw">if</span> request.node.country != <span class="str">"SE"</span>:
-        <span class="kw">return</span> auditor.Deny(<span class="str">"Sovereignty Breach"</span>)
-    <span class="kw">return</span> auditor.Proceed()
-
-<span class="comment"># Redact sensitive data from responses</span>
-<span class="kw">@auditor.on_response</span>
-<span class="kw">def</span> <span class="func">clean_output</span>(response):
-    <span class="kw">if</span> response.contains_pii():
-        <span class="kw">return</span> auditor.Redact()
-    <span class="kw">return</span> auditor.Proceed()</code></pre>
-                        </div>
+                <div class="check-item">
+                    <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
+                    <div>
+                        <h4 style="margin-bottom: 0.5rem; font-size: 1.1rem;">Hardware Root of Trust</h4>
+                        <p style="font-size: 0.95rem; opacity: 0.8;">Unlike standard middleware, Lucid Auditors run inside TEEs (Intel TDX, AMD SEV-SNP). They don't just log data; they sign it with a key bound to the physical processor.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Publish Your Own Auditor -->
+    <!-- Implementation -->
     <section class="py-120" style="background-color: var(--c-dark);">
         <div class="container">
             <div class="section-header animate-up text-left">
-                <span class="pill pill-dark">02 — BUILD & DEPLOY</span>
-                <h2 style="margin-top: 1rem;">Publish Your Own Auditor in Minutes</h2>
+                <span class="pill pill-dark">02 — IMPLEMENTATION</span>
+                <h2 style="margin-top: 1rem;">Python-Native Policy Definition</h2>
+                <p class="subtitle" style="max-width: 700px; text-align: left; margin-left: 0; margin-top: 1rem;">
+                    Write validation logic in standard Python. The Lucid SDK provides the interfaces to interact with the TEE's remote attestation capabilities and the request lifecycle.
+                </p>
+            </div>
+
+            <div class="animate-up delay-1" style="margin-top: 2rem; max-width: 800px;">
+                <div class="code-editor">
+                    <div class="code-header">
+                        <span class="mono" style="font-size:0.7rem; opacity:0.5; margin-left:1rem;">sovereignty_auditor.py</span>
+                    </div>
+                    <div class="code-content" style="text-align: left;">
+                        <pre><code><span class="kw">import</span> <span class="val">lucid.auditor</span> <span class="kw">as</span> <span class="val">auditor</span>
+<span class="kw">from</span> <span class="val">lucid.types</span> <span class="kw">import</span> <span class="val">Request, Response, Decision</span>
+
+<span class="comment"># 1. Enforce Data Residency via Hardware Attestation</span>
+<span class="kw">@auditor.on_request</span>
+<span class="kw">def</span> <span class="func">enforce_sovereignty</span>(ctx: Request) -> Decision:
+    <span class="comment"># Verify the cryptographic quote from the TEE hardware</span>
+    hw_quote = ctx.attestation.get_quote()
+
+    <span class="kw">if</span> hw_quote.location.country_code != <span class="str">"SE"</span>:
+        <span class="comment"># Block request at the network layer; never reaches the model</span>
+        <span class="kw">return</span> auditor.Deny(
+            reason=<span class="str">"HARDWARE_LOCATION_MISMATCH"</span>,
+            details={<span class="str">"required"</span>: <span class="str">"SE"</span>, <span class="str">"actual"</span>: hw_quote.location.country_code}
+        )
+    <span class="kw">return</span> auditor.Proceed()
+
+<span class="comment"># 2. Redact PII from Model Output (DLP)</span>
+<span class="kw">@auditor.on_response</span>
+<span class="kw">def</span> <span class="func">scrub_output</span>(ctx: Response) -> Decision:
+    <span class="kw">if</span> ctx.detect_pii(threshold=<span class="val">0.9</span>):
+        <span class="comment"># Mutate the response stream in-flight</span>
+        cleaned_text = ctx.redact(strategy=<span class="str">"hash"</span>)
+        <span class="kw">return</span> auditor.Modify(body=cleaned_text)
+
+    <span class="comment"># Log the hash of the clean response to the immutable ledger</span>
+    ctx.ledger.log(ctx.hash)
+    <span class="kw">return</span> auditor.Proceed()</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workflow -->
+    <section class="py-120" style="background-color: var(--c-black);">
+        <div class="container">
+            <div class="section-header animate-up text-left">
+                <span class="pill pill-dark">03 — WORKFLOW</span>
+                <h2 style="margin-top: 1rem;">From Local Dev to Enclave</h2>
+                <p class="subtitle" style="max-width: 700px; text-align: left; margin-left: 0; margin-top: 1rem;">
+                    Treat compliance artifacts exactly like software artifacts.
+                </p>
             </div>
 
             <div class="grid-split" style="margin-top: 3rem;">
                 <div class="animate-up delay-1" style="text-align: left;">
-                    <h3 style="margin-bottom: 1.5rem;">Step 1: Write Your Logic</h3>
-                    <p>Use our Python SDK to define request/response interceptors. The SDK provides helper methods for common tasks like PII detection, geo-fencing, and content filtering.</p>
-                    
-                    <h3 style="margin-bottom: 1.5rem; margin-top: 2rem;">Step 2: Package as OCI Container</h3>
-                    <p>Standard Docker build. Your auditor runs as a lightweight sidecar container alongside the AI model.</p>
-                    
-                    <h3 style="margin-bottom: 1.5rem; margin-top: 2rem;">Step 3: Push to Marketplace</h3>
-                    <p>Deploy to our registry. Your auditor is now available to be chained into any Lucid-powered AI deployment.</p>
+                    <h3 style="margin-bottom: 1rem; color: var(--c-yellow);">Step 1: Containerize</h3>
+                    <p style="font-size: 0.95rem; opacity: 0.8; margin-bottom: 2rem;">
+                        Package your Python logic as a standard OCI container.
+                    </p>
+
+                    <h3 style="margin-bottom: 1rem; color: var(--c-yellow);">Step 2: Measure & Sign</h3>
+                    <p style="font-size: 0.95rem; opacity: 0.8; margin-bottom: 2rem;">
+                        Build the container and generate the cryptographic measurement (MRENCLAVE) of the binary. This hash ensures that the auditor code cannot be tampered with by the cloud provider or a root user.
+                    </p>
+
+                    <h3 style="margin-bottom: 1rem; color: var(--c-yellow);">Step 3: Declarative Injection</h3>
+                    <p style="font-size: 0.95rem; opacity: 0.8;">
+                        Define your governance chain in your existing Kubernetes manifests. Lucid's operator handles the wiring.
+                    </p>
                 </div>
 
                 <div class="animate-up delay-2">
@@ -156,11 +202,10 @@
                             <span class="mono" style="font-size:0.7rem; opacity:0.5; margin-left:1rem;">Dockerfile</span>
                         </div>
                         <div class="code-content" style="text-align: left;">
-                            <pre><code><span class="kw">FROM</span> lucid/auditor-base:latest
-
-<span class="kw">COPY</span> sovereignty_auditor.py /app/auditor.py
-
-<span class="kw">ENTRYPOINT</span> ["python", "/app/auditor.py"]</code></pre>
+                            <pre><code><span class="kw">FROM</span> lucid/auditor-base:2.1-alpine
+<span class="kw">COPY</span> sovereignty_auditor.py /app/main.py
+<span class="comment"># The base image handles the TEE bootstrap and attestation daemon</span>
+<span class="kw">ENTRYPOINT</span> [<span class="str">"/init"</span>, <span class="str">"python"</span>, <span class="str">"/app/main.py"</span>]</code></pre>
                         </div>
                     </div>
                     <div class="code-editor" style="margin-top: 1.5rem;">
@@ -168,11 +213,11 @@
                             <span class="mono" style="font-size:0.7rem; opacity:0.5; margin-left:1rem;">terminal</span>
                         </div>
                         <div class="code-content" style="text-align: left;">
-                            <pre><code><span class="comment"># Build and push</span>
-$ docker build -t my-sovereignty-auditor .
-$ lucid push my-sovereignty-auditor
-
-<span class="val">✓ Auditor published to marketplace</span></code></pre>
+                            <pre><code>$ lucid build -t my-org/sovereignty-auditor:v1 .
+<span class="val">> Building OCI image...</span>
+<span class="val">> Measuring enclave binary...</span>
+<span class="val">> MRENCLAVE: 8f4b2e... (Signed by Dev Key)</span>
+<span class="val">> Pushing to Lucid Registry...</span></code></pre>
                         </div>
                     </div>
                 </div>
@@ -180,149 +225,20 @@ $ lucid push my-sovereignty-auditor
         </div>
     </section>
 
-    <!-- Visual Chain Builder -->
-    <section class="py-120" style="background-color: var(--c-black);">
+    <!-- Orchestration -->
+    <section class="py-120" style="background-color: var(--c-dark);">
         <div class="container">
             <div class="section-header animate-up text-left">
-                <span class="pill pill-dark">03 — VISUAL BUILDER</span>
-                <h2 style="margin-top: 1rem;">Compose Your Audit Chain</h2>
+                <span class="pill pill-dark">04 — ORCHESTRATION</span>
+                <h2 style="margin-top: 1rem;">Composable Audit Chains</h2>
             </div>
 
-            <div class="auditor-chain-container animate-up delay-1">
-                <div class="chain-viz">
-                    <!-- Node 1: Build-Time -->
-                    <div class="auditor-node">
-                        <div class="node-header">
-                            <div class="node-icon">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                                </svg>
-                            </div>
-                            <div class="node-title">Step 1: Build</div>
-                        </div>
-                        <div class="node-tags">
-                            <span class="node-tag">Safety Evals</span>
-                            <span class="node-tag">Provenance</span>
-                            <span class="node-tag">Bill of Materials</span>
-                        </div>
-                    </div>
-
-                    <div class="flow-arrow-mini"></div>
-
-                    <!-- Node 2: Input Gate -->
-                    <div class="auditor-node">
-                        <div class="node-header">
-                            <div class="node-icon">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                                </svg>
-                            </div>
-                            <div class="node-title">Step 2: Input</div>
-                        </div>
-                        <div class="node-tags">
-                            <span class="node-tag">PII</span>
-                            <span class="node-tag">Injection</span>
-                            <span class="node-tag">Filter</span>
-                        </div>
-                    </div>
-
-                    <div class="flow-arrow-mini"></div>
-
-                    <!-- Node 3: Runtime -->
-                    <div class="auditor-node">
-                        <div class="node-header">
-                            <div class="node-icon">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
-                                    <polyline points="13 2 13 9 20 9"></polyline>
-                                </svg>
-                            </div>
-                            <div class="node-title">Step 3: Runtime</div>
-                        </div>
-                        <div class="node-tags">
-                            <span class="node-tag">Hardware</span>
-                            <span class="node-tag">Monitoring</span>
-                            <span class="node-tag">Logging</span>
-                        </div>
-                    </div>
-
-                    <div class="flow-arrow-mini"></div>
-
-                    <!-- Node 4: Post-Inference -->
-                    <div class="auditor-node">
-                        <div class="node-header">
-                            <div class="node-icon">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                            </div>
-                            <div class="node-title">Step 4: Output</div>
-                        </div>
-                        <div class="node-tags">
-                            <span class="node-tag">RAG</span>
-                            <span class="node-tag">Bias</span>
-                            <span class="node-tag">Toxicity</span>
-                            <span class="node-tag">Quality</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="grid-33-66 mt-20">
-                <!-- Left Panel: Check Items -->
-                <div class="animate-up delay-2" style="text-align: left;">
-                    <div class="check-item">
-                        <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path
-                                d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
-                            </path>
-                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                            <line x1="12" y1="22.08" x2="12" y2="12"></line>
-                        </svg>
-                        <div>
-                            <h4 style="margin-bottom: 0.5rem; font-size: 1.1rem;">Zero Code Injection</h4>
-                            <p style="font-size: 0.95rem; opacity: 0.8;">An "Auditor" is simply a standard OCI
-                                container. We inject these auditors as sidecars into your Pod for seamless,
-                                standards-based integration.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="check-item">
-                        <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="4 17 10 11 4 5"></polyline>
-                            <line x1="12" y1="19" x2="20" y2="19"></line>
-                        </svg>
-                        <div>
-                            <h4 style="margin-bottom: 0.5rem; font-size: 1.1rem;">Build with Ease</h4>
-                            <p style="font-size: 0.95rem; opacity: 0.8;">Use our SDK to transform scripts into
-                                compliant Auditors that fit your policies.</p>
-                        </div>
-                    </div>
-
-                    <div class="check-item">
-                        <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                            <polyline points="7 10 12 15 17 10"></polyline>
-                            <line x1="12" y1="15" x2="12" y2="3"></line>
-                        </svg>
-                        <div>
-                            <h4 style="margin-bottom: 0.5rem; font-size: 1.1rem;">Marketplace Approach</h4>
-                            <p style="font-size: 0.95rem; opacity: 0.8;">Pull pre-built auditors for frameworks like
-                                ITAR, GDPR, HIPAA,
-                                SOC 2, or EU AI Act, from our marketplace.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right Panel: Drag-Drop Canvas -->
-                <div class="animate-up delay-2">
+            <div class="grid-split" style="margin-top: 1.5rem; align-items: flex-start;">
+                <!-- Left Panel: Text + Drag-Drop Canvas -->
+                <div class="animate-up delay-1">
+                    <p class="subtitle" style="text-align: left; margin-left: 0; margin-bottom: 2rem;">
+                        Chain multiple auditors together to satisfy complex regulatory requirements (e.g., EU AI Act + GDPR). The chain operates as a DAG (Directed Acyclic Graph), where every step must pass for the transaction to succeed.
+                    </p>
                     <div class="canvas-editor">
                         <div class="canvas-wrapper">
                             <!-- Mini Sidebar -->
@@ -371,42 +287,6 @@ $ lucid push my-sovereignty-auditor
                                 <div class="canvas-grid">
                                     <!-- Auditor Nodes with Connections -->
                                     <div class="canvas-node-group">
-                                        <!-- Sovereignty Auditor -->
-                                        <div class="canvas-node sovereignty">
-                                            <div class="node-icon-wrap">
-                                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                    <circle cx="12" cy="12" r="10"/>
-                                                    <line x1="2" y1="12" x2="22" y2="12"/>
-                                                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-                                                </svg>
-                                            </div>
-                                            <span class="node-label">Sovereignty</span>
-                                            <span class="node-version">v2.1</span>
-                                        </div>
-                                        <!-- Connection Arrow -->
-                                        <div class="canvas-connector">
-                                            <svg width="40" height="20" viewBox="0 0 40 20">
-                                                <line x1="0" y1="10" x2="32" y2="10" stroke="var(--c-brand)" stroke-width="2"/>
-                                                <polygon points="32,5 40,10 32,15" fill="var(--c-brand)"/>
-                                            </svg>
-                                        </div>
-                                        <!-- GDPR Auditor -->
-                                        <div class="canvas-node gdpr">
-                                            <div class="node-icon-wrap">
-                                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                                                </svg>
-                                            </div>
-                                            <span class="node-label">GDPR</span>
-                                            <span class="node-version">v3.0</span>
-                                        </div>
-                                        <!-- Connection Arrow -->
-                                        <div class="canvas-connector">
-                                            <svg width="40" height="20" viewBox="0 0 40 20">
-                                                <line x1="0" y1="10" x2="32" y2="10" stroke="var(--c-brand)" stroke-width="2"/>
-                                                <polygon points="32,5 40,10 32,15" fill="var(--c-brand)"/>
-                                            </svg>
-                                        </div>
                                         <!-- EU AI Act Auditor -->
                                         <div class="canvas-node eu-ai-act">
                                             <div class="node-icon-wrap">
@@ -420,6 +300,25 @@ $ lucid push my-sovereignty-auditor
                                             <span class="node-label">EU AI Act</span>
                                             <span class="node-version">v1.2</span>
                                         </div>
+                                        <!-- Connection Arrow -->
+                                        <div class="canvas-connector">
+                                            <svg width="40" height="20" viewBox="0 0 40 20">
+                                                <line x1="0" y1="10" x2="32" y2="10" stroke="var(--c-brand)" stroke-width="2"/>
+                                                <polygon points="32,5 40,10 32,15" fill="var(--c-brand)"/>
+                                            </svg>
+                                        </div>
+                                        <!-- Sovereignty Auditor -->
+                                        <div class="canvas-node sovereignty">
+                                            <div class="node-icon-wrap">
+                                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <circle cx="12" cy="12" r="10"/>
+                                                    <line x1="2" y1="12" x2="22" y2="12"/>
+                                                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                                                </svg>
+                                            </div>
+                                            <span class="node-label">Sovereignty</span>
+                                            <span class="node-version">v1</span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="canvas-footer">
@@ -429,88 +328,107 @@ $ lucid push my-sovereignty-auditor
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Manifest Example -->
-    <section class="py-120" style="background-color: var(--c-dark);">
-        <div class="container">
-            <div class="section-header animate-up text-left">
-                <span class="pill pill-dark">04 — CHAIN AUDITORS</span>
-                <h2 style="margin-top: 1rem;">Define in YAML</h2>
-                <p class="subtitle" style="max-width: 700px; text-align: left; margin-left: 0;">
-                    Declare your compliance policy in a simple YAML manifest. Mix and match pre-built auditors from the marketplace with your custom logic.
-                </p>
-            </div>
-
-            <div class="animate-up delay-1" style="max-width: 700px;">
-                <div class="code-editor" style="margin-top: 2rem;">
-                    <div class="code-header">
-                        <span class="mono" style="font-size:0.7rem; opacity:0.5; margin-left:1rem;">manifest.yaml</span>
-                    </div>
-                    <div class="code-content">
-                        <pre><code><span class="key">apiVersion</span>: <span class="val">lucid.sh/v1</span>
-<span class="key">kind</span>: <span class="val">VerifiableJobManifest</span>
+                <!-- Right Panel: deployment.yaml -->
+                <div class="animate-up delay-2">
+                    <div class="code-editor">
+                        <div class="code-header">
+                            <span class="mono" style="font-size:0.7rem; opacity:0.5; margin-left:1rem;">deployment.yaml</span>
+                        </div>
+                        <div class="code-content" style="text-align: left;">
+                            <pre><code><span class="key">apiVersion</span>: <span class="val">lucid.sh/v1alpha1</span>
+<span class="key">kind</span>: <span class="val">VerifiableAgent</span>
 <span class="key">metadata</span>:
-  <span class="key">name</span>: <span class="val">finance-chain-v1</span>
+  <span class="key">name</span>: <span class="val">finance-agent-prod</span>
 <span class="key">spec</span>:
-  <span class="key">auditors</span>:
-  <span class="comment"># Developer Logic (Custom via SDK)</span>
-  - <span class="key">name</span>: <span class="val">"dev-crash-catcher"</span>
-    <span class="key">image</span>: <span class="val">internal/debugger:v1</span>
-  <span class="comment"># Security Policy (MCP Compatible)</span>
-  - <span class="key">name</span>: <span class="val">"sec-firewall"</span>
-    <span class="key">image</span>: <span class="val">lucid-standard-v2:mcp-safe</span>
-  <span class="comment"># Regulatory Logging</span>
-  - <span class="key">name</span>: <span class="val">"gov-logger"</span>
-    <span class="key">image</span>: <span class="val">gov-registry.eu/logger:v4</span></code></pre>
+  <span class="comment"># Your existing model container</span>
+  <span class="key">workload</span>:
+    <span class="key">image</span>: <span class="val">internal/llama-3-finetune:v4</span>
+    <span class="key">gpu</span>: <span class="val">nvidia-h100</span>
+
+  <span class="comment"># The Governance Chain</span>
+  <span class="key">auditChain</span>:
+    <span class="key">policy</span>: <span class="val">FailClosed</span> <span class="comment"># If sidecar crashes, network cuts traffic</span>
+    <span class="key">auditors</span>:
+      <span class="comment"># 1. Marketplace Auditor (Off-the-shelf)</span>
+      - <span class="key">name</span>: <span class="str">"eu-ai-act-logger"</span>
+        <span class="key">image</span>: <span class="val">lucid-registry/eu-conformity:v1.2</span>
+        <span class="key">config</span>:
+          <span class="key">logLevel</span>: <span class="str">"FORENSIC"</span>
+
+      <span class="comment"># 2. Custom Auditor (Your internal logic)</span>
+      - <span class="key">name</span>: <span class="str">"sovereignty-check"</span>
+        <span class="key">image</span>: <span class="val">my-org/sovereignty-auditor:v1</span>
+        <span class="key">attestation</span>:
+          <span class="comment"># Only allow this exact code hash to run</span>
+          <span class="key">measurement</span>: <span class="str">"8f4b2e..."</span></code></pre>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA -->
-    <section class="py-120" style="background-color: var(--c-dark);">
-        <div class="container text-center">
-            <h2>Ready to Build?</h2>
-            <p class="subtitle" style="margin: 1rem auto 2rem;">
-                Explore the full SDK documentation or get started with our quickstart guide.
-            </p>
-            <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
-                <a href="../site/index.html" class="btn-white-hero">
-                    SDK Docs
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                        <polyline points="12 5 19 12 12 19"></polyline>
+    <!-- The Lucid SDK -->
+    <section class="py-120" style="background-color: var(--c-black);">
+        <div class="container">
+            <div class="section-header animate-up text-left">
+                <span class="pill pill-dark">05 — THE LUCID SDK</span>
+                <h2 style="margin-top: 1rem;">Why not just use LangChain/LangSmith?</h2>
+            </div>
+            <div class="animate-up delay-1" style="margin-top: 2rem; text-align: left; max-width: 800px;">
+                <p style="font-size: 1.1rem; line-height: 1.8;">
+                    Observability tools run in user-space. If the host is compromised, your logs are compromised. Lucid moves the "Truth" into the hardware.
+                </p>
+
+                <div class="check-item" style="margin-top: 2.5rem;">
+                    <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                     </svg>
-                </a>
-                <a href="../index.html#cta" class="btn-outline-light">
-                    Contact Sales
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                        <polyline points="12 5 19 12 12 19"></polyline>
+                    <div>
+                        <h4 style="margin-bottom: 0.5rem; font-size: 1.1rem;">Attestation-as-a-Service</h4>
+                        <p style="font-size: 0.95rem; opacity: 0.8;">We abstract the complexity of generating Intel SGX/TDX quotes.</p>
+                    </div>
+                </div>
+
+                <div class="check-item">
+                    <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                        <line x1="12" y1="22.08" x2="12" y2="12"></line>
                     </svg>
-                </a>
+                    <div>
+                        <h4 style="margin-bottom: 0.5rem; font-size: 1.1rem;">Immutable Ledgering</h4>
+                        <p style="font-size: 0.95rem; opacity: 0.8;">Logs written via <code style="background: rgba(255,255,255,0.1); padding: 0.1rem 0.3rem; border-radius: 3px;">ctx.ledger</code> are hashed and chained. You don't just get a log file; you get a mathematical proof of sequence.</p>
+                    </div>
+                </div>
+
+                <div class="check-item">
+                    <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="4 17 10 11 4 5"></polyline>
+                        <line x1="12" y1="19" x2="20" y2="19"></line>
+                    </svg>
+                    <div>
+                        <h4 style="margin-bottom: 0.5rem; font-size: 1.1rem;">Polyglot Support</h4>
+                        <p style="font-size: 0.95rem; opacity: 0.8;">Write auditors in Python, Go, or Rust.</p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 3rem;">
+                    <a href="../site/index.html" class="btn-white-hero">
+                        Explore the SDK Documentation
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
-
-    <!-- Footer -->
-    <footer class="site-footer" style="background-color: var(--c-black); padding: 3rem 0; border-top: 1px solid var(--c-border);">
-        <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-            <div style="display: flex; align-items: center; gap: 1rem;">
-                <img src="../lucid-logo.svg" alt="Lucid" style="width: 24px; height: 24px; filter: brightness(0) invert(1);">
-                <span style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--c-gray);">© 2026 Lucid Computing</span>
-            </div>
-            <div style="display: flex; gap: 2rem;">
-                <a href="../index.html" style="font-size: 0.85rem; color: var(--c-gray);">Home</a>
-                <a href="../site/index.html" style="font-size: 0.85rem; color: var(--c-gray);">Docs</a>
-                <a href="../insights.html" style="font-size: 0.85rem; color: var(--c-gray);">Insights</a>
-            </div>
-        </div>
-    </footer>
 
     <!-- Mobile Navigation Script -->
     <script>
