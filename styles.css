@@ -917,6 +917,7 @@ p {
 .hero-container .subtitle {
     max-width: 500px;
     margin-top: 1.5rem;
+    margin-left: 0;
     margin-right: auto;
     font-size: 1.1rem;
     line-height: 1.6;
