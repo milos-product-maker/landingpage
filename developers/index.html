@@ -42,9 +42,9 @@
     <section class="page-hero" style="padding-top: 160px; padding-bottom: 80px;">
         <div class="container">
             <span class="pill pill-dark">FOR DEVELOPERS</span>
-            <h1 style="margin-top: 1.5rem;">The Programmable Trust Layer for Agentic AI.</h1>
+            <h1 style="margin-top: 1.5rem;">Composable Trust Layer for Agentic AI.</h1>
             <p class="subtitle" style="max-width: 700px; text-align: left; margin-left: 0;">
-                Inject governance as a sidecar. One line of code wraps your open-weights models in a Trusted Execution Environment (TEE). Generate hardware-signed audit trails that legal can verify, so you can get back to shipping.
+                Add a composable trust module around your AI agents with a single line of code. Run inside a Trusted Execution Environment (TEE) and generate hardware-signed audit trails that legal can verify, so you can get back to shipping.
             </p>
             <div class="hero-btns" style="display:flex; flex-direction:column; gap:1rem; margin-top:2rem; align-items:flex-start;">
                 <a href="../site/index.html" class="btn-white-hero">
@@ -70,11 +70,11 @@
         <div class="container">
             <div class="section-header animate-up text-left">
                 <span class="pill pill-dark">01 — ARCHITECTURE</span>
-                <h2 style="margin-top: 1rem;">The Auditor Sidecar Pattern</h2>
+                <h2 style="margin-top: 1rem;">Decoupled Governance</h2>
             </div>
             <div class="animate-up delay-1" style="margin-top: 3rem; text-align: left; max-width: 800px;">
                 <p style="font-size: 1.1rem; line-height: 1.8;">
-                    Lucid decouples governance from model logic. An <strong style="color: var(--c-yellow);">"Auditor"</strong> is a containerized microservice that runs as a proxy sidecar alongside your inference engine.
+                    Lucid separates governance from agent logic. An <strong style="color: var(--c-yellow);">"Auditor"</strong> is a trust module that attaches to your agent runtime and observes inference without changing model behavior.
                 </p>
 
                 <div class="check-item" style="margin-top: 2.5rem;">
@@ -86,7 +86,7 @@
                     </svg>
                     <div>
                         <h4 style="margin-bottom: 0.5rem; font-size: 1.1rem;">Zero Code Changes</h4>
-                        <p style="font-size: 0.95rem; opacity: 0.8;">Lucid utilizes a Kubernetes Mutating Admission Controller to inject auditors into your Agent's Pod.</p>
+                        <p style="font-size: 0.95rem; opacity: 0.8;">Auditors are automatically applied at deployment time. No changes to your agent code or execution flow required.</p>
                     </div>
                 </div>
 
@@ -98,7 +98,7 @@
                     </svg>
                     <div>
                         <h4 style="margin-bottom: 0.5rem; font-size: 1.1rem;">Runtime Interception</h4>
-                        <p style="font-size: 0.95rem; opacity: 0.8;">The auditor sits in the data path (gRPC/REST), inspecting inputs and outputs before they leave the secure enclave.</p>
+                        <p style="font-size: 0.95rem; opacity: 0.8;">The Auditor operates directly in the inference path (gRPC / REST), inspecting inputs and outputs before they exit the secure execution boundary.</p>
                     </div>
                 </div>
 
@@ -109,7 +109,7 @@
                     </svg>
                     <div>
                         <h4 style="margin-bottom: 0.5rem; font-size: 1.1rem;">Hardware Root of Trust</h4>
-                        <p style="font-size: 0.95rem; opacity: 0.8;">Unlike standard middleware, Lucid Auditors run inside TEEs (Intel TDX, AMD SEV-SNP). They don't just log data; they sign it with a key bound to the physical processor.</p>
+                        <p style="font-size: 0.95rem; opacity: 0.8;">Unlike conventional middleware, Lucid Auditors run inside Trusted Execution Environments (Intel TDX, AMD SEV-SNP). They don't just record events, they cryptographically sign them using keys bound to the underlying processor.</p>
                     </div>
                 </div>
             </div>
@@ -121,9 +121,9 @@
         <div class="container">
             <div class="section-header animate-up text-left">
                 <span class="pill pill-dark">02 — IMPLEMENTATION</span>
-                <h2 style="margin-top: 1rem;">Python-Native Policy Definition</h2>
+                <h2 style="margin-top: 1rem;">Composable Policy Modules</h2>
                 <p class="subtitle" style="max-width: 700px; text-align: left; margin-left: 0; margin-top: 1rem;">
-                    Write validation logic in standard Python. The Lucid SDK provides the interfaces to interact with the TEE's remote attestation capabilities and the request lifecycle.
+                    Develop trust and validation policies in standard Python today, with first-class support for TEE remote attestation and inspection of agent inputs and outputs at execution time. Additional languages can be introduced without changing the trust model.
                 </p>
             </div>
 
@@ -172,7 +172,7 @@
         <div class="container">
             <div class="section-header animate-up text-left">
                 <span class="pill pill-dark">03 — WORKFLOW</span>
-                <h2 style="margin-top: 1rem;">From Local Dev to Enclave</h2>
+                <h2 style="margin-top: 1rem;">From Local Dev to Secure Enclave</h2>
                 <p class="subtitle" style="max-width: 700px; text-align: left; margin-left: 0; margin-top: 1rem;">
                     Treat compliance artifacts exactly like software artifacts.
                 </p>
@@ -180,19 +180,19 @@
 
             <div class="grid-split" style="margin-top: 3rem;">
                 <div class="animate-up delay-1" style="text-align: left;">
-                    <h3 style="margin-bottom: 1rem; color: var(--c-yellow);">Step 1: Containerize</h3>
+                    <h3 style="margin-bottom: 1rem; color: var(--c-yellow);">Step 1: Package the Module</h3>
                     <p style="font-size: 0.95rem; opacity: 0.8; margin-bottom: 2rem;">
-                        Package your Python logic as a standard OCI container.
+                        Author your trust or policy logic as a module. For example, package Python-based modules using a standard OCI container format.
                     </p>
 
                     <h3 style="margin-bottom: 1rem; color: var(--c-yellow);">Step 2: Measure & Sign</h3>
                     <p style="font-size: 0.95rem; opacity: 0.8; margin-bottom: 2rem;">
-                        Build the container and generate the cryptographic measurement (MRENCLAVE) of the binary. This hash ensures that the auditor code cannot be tampered with by the cloud provider or a root user.
+                        Build the module and generate a cryptographic measurement (MRENCLAVE) of its contents. This hash ensures that the auditor code cannot be tampered with by the cloud provider or a root user.
                     </p>
 
-                    <h3 style="margin-bottom: 1rem; color: var(--c-yellow);">Step 3: Declarative Injection</h3>
+                    <h3 style="margin-bottom: 1rem; color: var(--c-yellow);">Step 3: Declarative Attachment</h3>
                     <p style="font-size: 0.95rem; opacity: 0.8;">
-                        Define your governance chain in your existing Kubernetes manifests. Lucid's operator handles the wiring.
+                        Declare how trust modules are composed and applied to your agents at deployment time. Lucid handles secure attachment and execution inside the enclave.
                     </p>
                 </div>
 
@@ -417,7 +417,11 @@
                     </div>
                 </div>
 
-                <div style="margin-top: 3rem;">
+                <p style="margin-top: 3rem; font-size: 0.9rem; opacity: 0.6;">
+                    Deploy to AWS, Azure, GCP, or any infrastructure with TEE support.
+                </p>
+
+                <div style="margin-top: 2rem;">
                     <a href="../site/index.html" class="btn-white-hero">
                         Explore the SDK Documentation
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
