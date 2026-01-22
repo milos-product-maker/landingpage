@@ -117,4 +117,98 @@ document.addEventListener('DOMContentLoaded', () => {
 
         triggers.forEach(trigger => observer.observe(trigger));
     }
+
+    // --- MARKETPLACE CAROUSEL (Infinite Loop) ---
+    const marketplaceTrack = document.getElementById('marketplace-track');
+    if (marketplaceTrack) {
+        const cardWidth = 360 + 24; // card width + gap (updated to 360px)
+        const originalCards = Array.from(marketplaceTrack.children);
+        const numOriginalCards = originalCards.length;
+
+        // Clone all cards and append for seamless loop
+        originalCards.forEach(card => {
+            const clone = card.cloneNode(true);
+            marketplaceTrack.appendChild(clone);
+        });
+
+        let marketplacePosition = 0;
+        let autoScrollVelocity = 0.5; // pixels per frame
+        let isHovering = false;
+        const totalWidth = numOriginalCards * cardWidth;
+
+        // Auto-scroll animation with seamless loop
+        function animateMarketplace() {
+            if (!isHovering) {
+                marketplacePosition += autoScrollVelocity;
+
+                // Seamless reset when we've scrolled past the original set
+                if (marketplacePosition >= totalWidth) {
+                    marketplacePosition = 0;
+                }
+
+                marketplaceTrack.style.transform = `translateX(-${marketplacePosition}px)`;
+            }
+            requestAnimationFrame(animateMarketplace);
+        }
+
+        // Start animation
+        animateMarketplace();
+
+        // Pause on hover
+        marketplaceTrack.addEventListener('mouseenter', () => {
+            isHovering = true;
+        });
+
+        marketplaceTrack.addEventListener('mouseleave', () => {
+            isHovering = false;
+        });
+
+        // Manual scroll function (exposed globally for onclick)
+        window.scrollMarketplace = function(direction) {
+            marketplacePosition += direction * cardWidth;
+
+            // Wrap around for infinite loop
+            if (marketplacePosition < 0) {
+                marketplacePosition = totalWidth + marketplacePosition;
+            } else if (marketplacePosition >= totalWidth) {
+                marketplacePosition = marketplacePosition - totalWidth;
+            }
+
+            marketplaceTrack.style.transform = `translateX(-${marketplacePosition}px)`;
+        };
+    }
+
+    // --- LOGO CAROUSEL (Social Proof) ---
+    const logoTrack = document.getElementById('logo-carousel-track');
+    if (logoTrack) {
+        const logoItems = Array.from(logoTrack.children);
+        const numLogos = logoItems.length;
+
+        // Clone logos multiple times for seamless infinite scroll
+        for (let i = 0; i < 3; i++) {
+            logoItems.forEach(item => {
+                const clone = item.cloneNode(true);
+                logoTrack.appendChild(clone);
+            });
+        }
+
+        let logoPosition = 0;
+        const logoScrollSpeed = 0.3;
+        const logoGap = 64; // 4rem = 64px
+        const logoWidth = logoItems[0].offsetWidth + logoGap;
+        const totalLogoWidth = numLogos * logoWidth;
+
+        function animateLogos() {
+            logoPosition += logoScrollSpeed;
+
+            if (logoPosition >= totalLogoWidth) {
+                logoPosition = 0;
+            }
+
+            logoTrack.style.transform = `translateX(-${logoPosition}px)`;
+            requestAnimationFrame(animateLogos);
+        }
+
+        animateLogos();
+    }
 });

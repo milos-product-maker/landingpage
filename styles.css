@@ -101,7 +101,7 @@ body:not(.page-home) {
 }
 
 /* Home Page Body */
-.page-home body {
+body.page-home {
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
     height: 100vh;
@@ -226,7 +226,19 @@ section {
     align-items: center;
 }
 
+.grid-3-col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    align-items: start;
+}
+
 @media (max-width: 1024px) {
+
+    .grid-3-col {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
 
     .grid-33-66,
     .grid-66-33 {
@@ -417,6 +429,83 @@ p {
     color: var(--c-yellow);
     flex-shrink: 0;
     margin-top: 4px;
+}
+
+/* --- FAQ SECTION (Accordion) --- */
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+}
+
+@media (max-width: 768px) {
+    .faq-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.faq-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.faq-accordion {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.faq-accordion summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem;
+    cursor: pointer;
+    list-style: none;
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--c-white);
+    line-height: 1.4;
+    transition: background 0.2s ease;
+}
+
+.faq-accordion summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-accordion summary:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.faq-accordion summary span {
+    flex: 1;
+}
+
+.faq-chevron {
+    flex-shrink: 0;
+    color: var(--c-yellow);
+    transition: transform 0.3s ease;
+}
+
+.faq-accordion[open] .faq-chevron {
+    transform: rotate(180deg);
+}
+
+.faq-accordion[open] {
+    border-color: rgba(250, 204, 21, 0.3);
+}
+
+.faq-accordion p {
+    padding: 0 1.25rem 1.25rem;
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: #a1a1aa;
 }
 
 /* --- NAVIGATION --- */
@@ -652,12 +741,6 @@ p {
     border-right: none;
 }
 
-.card-dark:hover {
-    border-color: var(--c-yellow);
-    z-index: 2;
-    transform: translateY(-4px);
-}
-
 .card-header-row {
     display: flex;
     align-items: center;
@@ -787,7 +870,7 @@ p {
     /* Ensure text is above animation */
 }
 
-/* Hero container - right-aligned layout */
+/* Hero container - left-aligned layout starting at 40% */
 .hero-container {
     position: relative;
     z-index: 10;
@@ -796,20 +879,20 @@ p {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-end;
+    align-items: flex-start;
+    padding-left: 40%;
     padding-right: 5%;
-    padding-left: 45%;
 }
 
 .hero-container .hero-content {
-    text-align: right;
+    text-align: left;
 }
 
 .hero-container .hero-title {
     font-family: var(--font-mono);
     font-weight: 300;
     letter-spacing: -0.04em;
-    text-align: right;
+    text-align: left;
 }
 
 .hero-container .hero-title-main {
@@ -818,7 +901,7 @@ p {
     line-height: 1.1;
     color: var(--c-white);
     white-space: nowrap;
-    text-align: right;
+    text-align: left;
 }
 
 .hero-container .hero-title-suffix {
@@ -828,24 +911,24 @@ p {
     line-height: 1.1;
     margin-top: 0.25rem;
     transition: opacity 0.3s ease;
-    text-align: right;
+    text-align: left;
 }
 
 .hero-container .subtitle {
     max-width: 500px;
     margin-top: 1.5rem;
-    margin-left: auto;
+    margin-right: auto;
     font-size: 1.1rem;
     line-height: 1.6;
     color: rgba(255, 255, 255, 0.8);
-    text-align: right;
+    text-align: left;
 }
 
 .hero-container .hero-btns {
     display: flex;
     gap: 1rem;
     margin-top: 2rem;
-    justify-content: flex-end;
+    justify-content: flex-start;
 }
 
 @media (max-width: 1200px) {
@@ -2480,6 +2563,71 @@ p {
     margin-bottom: 0.5rem;
 }
 
+/* --- SOCIAL PROOF SECTION --- */
+#social-proof {
+    padding: 3rem 0 !important;
+    min-height: auto !important;
+    height: auto !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 10 !important;
+    background: #0a0a0a !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    scroll-snap-align: start !important;
+    overflow: visible !important;
+    flex: none !important;
+    justify-content: flex-start !important;
+}
+
+.page-home #social-proof .container {
+    display: block !important;
+    height: auto !important;
+    min-height: auto !important;
+    flex: none !important;
+}
+
+.social-proof-text {
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 2rem;
+}
+
+.logo-carousel-wrapper {
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.logo-carousel-track {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    width: max-content;
+}
+
+.logo-item {
+    flex-shrink: 0;
+    opacity: 0.4;
+    transition: opacity 0.3s ease;
+    filter: grayscale(100%);
+}
+
+.logo-item:hover {
+    opacity: 0.7;
+}
+
+.logo-item img {
+    height: 32px;
+    width: auto;
+}
+
 /* --- RESPONSIVE --- */
 @media (max-width: 1024px) {
     .grid-4 {
@@ -2532,7 +2680,7 @@ p {
 /* --- SCROLLYTELLING SECTION --- */
 .scrolly-section {
     min-height: auto !important;
-    padding: 2rem 0 4rem 0 !important;
+    padding: 0 !important;
     scroll-snap-align: none !important;
     overflow: visible !important;
     display: block !important;
@@ -2546,27 +2694,30 @@ p {
 }
 
 
-/* Wrapper that creates scroll height */
+/* Wrapper that creates scroll height - increased for smoother scrolling */
 .scrolly-sticky-wrapper {
     position: relative;
-    min-height: 250vh;
+    min-height: 300vh;
     margin-top: 0;
+    padding-top: 5vh;
+    padding-bottom: 15vh;
 }
 
 /* Sticky content: header + (diagram & text side by side) */
 .scrolly-sticky-content {
     position: sticky;
-    top: 2rem;
+    top: 5vh;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    padding: 1rem 0;
+    gap: 1rem;
+    padding: 0;
+    max-height: 90vh;
 }
 
 .scrolly-main {
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
-    gap: 3rem;
+    gap: 2rem;
     align-items: center;
 }
 
@@ -2643,9 +2794,17 @@ p {
     font-family: var(--font-mono);
     font-size: 1.5rem;
     font-weight: 500;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
     color: var(--c-white);
     letter-spacing: -0.01em;
+}
+
+.text-panel .panel-subtitle {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--c-yellow);
+    margin-bottom: 0.75rem;
+    opacity: 0.9;
 }
 
 .text-panel p {
@@ -2922,6 +3081,18 @@ p {
     line-height: 1;
     margin-bottom: 0.5rem;
     font-family: var(--font-mono);
+}
+
+.stat-val.icon-val {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.stat-val.icon-val svg {
+    width: 48px;
+    height: 48px;
+    stroke: var(--c-yellow);
 }
 
 .stat-label {
@@ -3264,8 +3435,16 @@ p {
 
 /* Hardware Enclave Spacing */
 .solution-header-wrapper {
-    margin-bottom: 2rem !important;
-    /* Override inline style if I can't reach HTML, but better to fix HTML */
+    margin-bottom: 0.5rem !important;
+    text-align: center;
+}
+
+.solution-header-wrapper h2 {
+    margin-bottom: 0.25rem;
+}
+
+.solution-header-wrapper .subtitle {
+    margin-bottom: 0;
 }
 
 .enclave-grid {
@@ -8307,6 +8486,118 @@ p {
     height: 28px;
     border-radius: var(--radius-none);
     flex-shrink: 0;
+}
+
+/* --- MARKETPLACE CAROUSEL (New) --- */
+.marketplace-carousel-section {
+    position: relative;
+    margin-top: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.marketplace-track-container {
+    flex: 1;
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+}
+
+.marketplace-track {
+    display: flex;
+    gap: 1.5rem;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.marketplace-card {
+    flex: 0 0 360px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.marketplace-card:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(250, 204, 21, 0.3);
+    transform: translateY(-4px);
+}
+
+.marketplace-card h4 {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--c-white);
+    margin: 0 0 0.5rem 0;
+}
+
+.marketplace-card p {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: #a1a1aa;
+    margin: 0;
+    flex: 1;
+}
+
+.card-category {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--c-yellow);
+    opacity: 0.7;
+    margin-top: 1rem;
+}
+
+.carousel-nav {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--c-white);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.carousel-nav:hover {
+    background: var(--c-yellow);
+    color: black;
+    border-color: var(--c-yellow);
+}
+
+@media (max-width: 768px) {
+    .marketplace-carousel-section {
+        flex-direction: column;
+    }
+
+    .carousel-nav {
+        display: none;
+    }
+
+    .marketplace-track-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        mask-image: none;
+        -webkit-mask-image: none;
+    }
+
+    .marketplace-track-container::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 

@@ -36,5 +36,5 @@ exclude:
   - vendor
 
 # Site settings
-baseurl: ""
-url: ""
+baseurl: "/landingpage"
+url: "https://milos-product-maker.github.io"
